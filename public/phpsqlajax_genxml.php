@@ -17,7 +17,7 @@
 */
 define('BASEPATH', "placeholder");
 
-include_once('../application/config/database.php');
+include_once('../application/config/development/database.php');
 
 function parseToXML($htmlStr)
 {
@@ -40,7 +40,7 @@ if ($mysqli->connect_errno) {
 }
 
 //join tables
-$query = "SELECT * FROM sc_Markers m, sc_Venue v WHERE m.VenueKey = v.VenueKey";
+$query = "SELECT * FROM Markers m, Venue v WHERE m.VenueKey = v.VenueKey";
 
 /* Select queries return a resultset */
 if ($result = $mysqli->query($query)) {

@@ -21,7 +21,7 @@ $config['nav-active'] = '';//will change in controller to add active class to na
 
 $config['protocol'] = 'smtp';
 $config['smtp_host'] = 'ssl://smtp.gmail.com';
-$config['smtp_user'] = 'mdiediker@gmail.com';
+$config['smtp_user'] = 'your email';
 $config['smtp_pass'] = '';
 $config['smtp_port'] = '465';
 
