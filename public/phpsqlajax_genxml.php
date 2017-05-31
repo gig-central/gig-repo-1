@@ -17,7 +17,7 @@
 */
 define('BASEPATH', "placeholder");
 
-include_once('../application/config/database.php');
+include_once('../application/config/development/database.php');
 
 function parseToXML($htmlStr)
 {
