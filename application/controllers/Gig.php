@@ -51,7 +51,7 @@ class Gig extends CI_Controller
 
     public function index()
     {//begin function index
-        $data['gigs'] = $this->gig_model->get_gigs();
+        $data['gigs'] = $this->gig_model->getGigs();
         $data['title']= 'Gigs';
         
         $this->load->view('gigs/index', $data);
@@ -59,7 +59,7 @@ class Gig extends CI_Controller
 
     public function view($slug = NULL)
     {//begin function index
-        $data['gig'] = $this->gig_model->get_gigs($slug);
+        $data['gig'] = $this->gig_model->getGigs($slug);
         if (empty($data['gig']))
         {
                 show_404();
@@ -82,7 +82,7 @@ class Gig extends CI_Controller
         }
         else
         {//this processes
-            $data['gigs'] = $this->gig_model->get_gigs();
+            $data['gigs'] = $this->gig_model->getGigs();
             $data['title']= 'Gigs';
             $this->gig_model->add_gig();
             $this->load->view('gigs/success', $data);
@@ -107,7 +107,7 @@ class Gig extends CI_Controller
             $subject = $this->config->item('autoemail_from_name');
             
             // time() will get a timestamp representing the current date/time. Used to filter the database for gigs posted today.
-            $data['gigs'] = $this->gig_model->get_gigs( /*slug=*/FALSE, /*sinceDate=*/time()  );
+            $data['gigs'] = $this->gig_model->getGigs( /*slug=*/FALSE, /*sinceDate=*/time()  );
             
             ob_start(); // Begin capture of view output for email
             $this->load->view('gigs/gignewsletter-email',$data);
