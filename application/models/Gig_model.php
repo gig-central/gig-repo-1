@@ -44,7 +44,7 @@ class Gig_model extends CI_Model {
      * @return array() of array(GigID, CompanyID, GigQualify, EmploymentType, GigOutline, SpInstructions, PayRate, GigPosted, LastUpdated, Name, Address, CompanyCity, State, ZipCode, CompanyPhone, Website, FirstName, LastName, Email, Phone). This is a join between the Gig and Company tables.
      * @todo none
      */
-    public function get_gigs($slug = FALSE, $sinceDate = FALSE)
+    public function getGigs($slug = FALSE, $sinceDate = FALSE)
     {
         if ($slug === FALSE)
         {
