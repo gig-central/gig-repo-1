@@ -36,7 +36,7 @@ class Contact_model extends CI_Model
 	 * @return array() of array('name' => xxx, 'email' => xxx, 'message' => xxx) representing the messages stored in the database, filtered by any optional parameters.
 	 * @todo none
 	 */
-	public function get_emails($email = FALSE)
+	public function getEmails($email = FALSE)
 	{
 		if ($email === FALSE)
 		{

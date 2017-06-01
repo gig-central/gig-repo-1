@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * 
  * controllers/Contact.php
  *
  * Contact page for Gig Central
@@ -39,7 +40,7 @@ class Contact extends CI_Controller
 
 		$data['title'] = 'Contact Us';
 		$data['name'] = 'Contact';
-		$data['contact'] = $this->contact_model->get_emails();
+		$data['contact'] = $this->contact_model->getEmails();
 
 		$this->form_validation->set_rules('name', 'Name', 'required');
 		$this->form_validation->set_rules('email', 'email', 'required');
