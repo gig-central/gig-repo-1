@@ -127,5 +127,5 @@ class Gig_model extends CI_Model {
         
         
     }
-
+ 
 }#end of the Gig_model
