@@ -27,7 +27,7 @@
 
 <h2>Gigs List</h2>
 
-<form class="navbar-form navbar-left" role="search" method="post" action="search">
+<form class="navbar-form navbar-left" role="search" method="post" action="gig/search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Enter a Keyword..." name="keyword">
         </div>
