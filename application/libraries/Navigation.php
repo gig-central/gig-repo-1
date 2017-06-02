@@ -37,7 +37,11 @@ var $out; // The HTML string to be returned
  * @return none
  * @todo none
  */
-function init(){
+    
+
+    
+    
+function init(){ 
     # HEADER NAV
     $menuOne = array
     (
@@ -117,6 +121,10 @@ function init(){
     #Admin menu
    $CI =& get_instance();
    $CI->load->library("session");
+   $CI->load->model('gig_model');
+   $getSessionId = $CI->gig_model->get_session_id();
+   $result = $CI->gig_model->find_post_id($getSessionId);
+    
    if ($CI->session->logged_in == TRUE){
    $adProfile = array(
             'text'		=> 	'Edit Profile',
@@ -133,10 +141,18 @@ function init(){
    $adGig = array(
             'text'		=> 	'Edit Gig',
             'link'		=> 	base_url() . 'gig/edit',
-            'show_condition'=>	1,
+            //'Edit' menu is hidden
+            'show_condition'=>	0,
             'parent'	=>	2
         );
-   array_push($menuOne,$adProfile,$adVenues,$adGig);
+    //If user id matches id stored in a post, 
+    //change the value in 'show_condition' for $adGig to show 'Edit' menu
+    if($result == true)
+    {
+        $adGig['show_condition'] = 1;
+    }  
+       array_push($menuOne,$adProfile,$adVenues,$adGig);
+       
    $login = array(
             'text'		=> 	'Logout',
             'link'		=> 	base_url() . 'admin/logout',
@@ -199,6 +215,7 @@ function init(){
  */
 function __construct(){
     $this->init();
+    
 }//end construct()
 
 /**
@@ -233,7 +250,8 @@ function setFooterMenu($myMenu){
  * @todo none
  */
 public function loadHeader($selected = null)
-	{
+	{  
+    
 		$out = '<ul class="nav navbar-nav">';
 		foreach ( $this->headerMenu as $i=>$arr )
 		{
