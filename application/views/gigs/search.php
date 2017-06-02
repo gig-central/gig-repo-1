@@ -1,18 +1,16 @@
 <?php
 /**
-* index.php is the view page of all gigs for Gigs controller
+* search.php displays search results for gigs
 *
-* views/gigs/index.php
+* views/gigs/search.php
 *
 * @package ITC 260 Gig Central CodeIgnitor
 * @subpackage Gig Controller
-* @author Patricia Barker <pbarke01@seattlecentral.edu>
+* @author Sophia Allen
 * @version 1.0 2015/05/25
-* @link http://www.tcbcommercialproperties.com/sandbox/ci/
 * @license http://www.apache.org/licenses/LICENSE-2.0
 * @see Gig_model.php
 * @see Gig.php
-* @todo none
 */
 ?>
 
@@ -25,9 +23,9 @@
 </ul>
 
 
-<h2>Gigs List</h2>
+<h2><?=$title;?></h2>
 
-<form class="navbar-form navbar-left" role="search" method="post" action="gig/search">
+<form class="navbar-form navbar-left" role="search" method="post" action="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Enter a Keyword..." name="keyword">
         </div>
@@ -35,12 +33,18 @@
 </form>
 
 <div id="gigs">
-<?php foreach ($gigs as $gig): ?>
-<h3><?php echo $gig['Name'] ?></h3>
-<p><?php echo $gig['CompanyCity'] . ", " . $gig['State'] ?></p>
-<p><?php echo $gig['GigOutline'] ?></p>
-<p><?php echo anchor('gig/'.$gig['GigID'] , 'Read More');?></p>
-<?php endforeach ?>
+<?php if ($gigs === null): ?>
+	<h3>Sorry, no results found. Please try again.</h3>
+<?php else: ?>
+	<h3><strong>Results found:</strong></h3>
+	<hr/>
+	<?php foreach ($gigs as $gig): ?>
+	<h3><?php echo $gig['Name'] ?></h3>
+	<p><?php echo $gig['CompanyCity'] . ", " . $gig['State'] ?></p>
+	<p><?php echo $gig['GigOutline'] ?></p>
+	<p><?php echo anchor('gig/'.$gig['GigID'] , 'Read More');?></p>
+	<?php endforeach ?>
+<?php endif ?>
 </div>
 
 <?php $this->load->view($this->config->item('theme') . 'footer'); ?>

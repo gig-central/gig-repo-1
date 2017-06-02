@@ -70,7 +70,23 @@ class Gig_model extends CI_Model {
         return $query->row_array();
     }#end getGigs()
     
+    public function searchGigs($keyword = null)
+    {
+        if (is_null($keyword))
+        {
+            return null;
+        }
 
+        $this->db->select('*');
+        $this->db->from('Company');
+        $this->db->join('Gigs', 'Gigs.CompanyID = Company.CompanyID');
+        $this->db->join('CompanyContact', 'Gigs.CompanyID = CompanyContact.CompanyID');
+        $this->db->like('Gigs.GigOutline', $keyword);
+        $this->db->or_like('Gigs.GigQualify', $keyword);
+        $query = $this->db->get();
+        return $query->result_array();
+        
+    }#end searchGigs()
 
     /**
      * Add a new gig to the DB using POST parameters.
