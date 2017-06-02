@@ -22,7 +22,12 @@
  * @todo none
  */
 class Gig_model extends CI_Model {
+<<<<<<< HEAD
 var $companyid=0;
+=======
+
+    var $companyid = 0;
+>>>>>>> master
      /**
      * Loads default data into Object
      *
@@ -93,6 +98,7 @@ var $companyid=0;
         );
         
         $this->db->insert('Company', $data);
+<<<<<<< HEAD
         $companyid=$this->db->insert_id();
         //$this->db->order_by("CompanyID", "desc");
         //$this->db->limit(0, 1);
@@ -101,6 +107,10 @@ var $companyid=0;
         //if(isset($row)) {
         //    $companyid = $row->CompanyID;//Joins CompanyID for gig and company tables
         //}
+=======
+        $companyid = $this->db->insert_id();
+     
+>>>>>>> master
         
         $data3= array(
            'FirstName' => $this->input->post('FirstName'),
@@ -113,6 +123,8 @@ var $companyid=0;
 
        $this->db->insert('CompanyContact', $data3);
         
+        $userId = $this->get_session_id();
+                
         $data2 = array(
             'CompanyID' => $companyid,    
             'GigQualify' => strip_tags($this->input->post('GigQualify'),'<p>'),
@@ -121,10 +133,43 @@ var $companyid=0;
             'SpInstructions' => strip_tags($this->input->post('SpInstructions'),'<p>'),
             'PayRate' => $this->input->post('PayRate'),
             'GigPosted' => date("Y-m-d H:i:s"),
-            'LastUpdated' => date("Y-m-d H:i:s")
+            'LastUpdated' => date("Y-m-d H:i:s"),
+            'id' => $userId
         );
         
+<<<<<<< HEAD
         $this->db->insert('Gigs', $data2);
     }
  
+=======
+        return $this->db->insert('Gigs', $data2);
+
+    }#end of add_gig()
+
+
+public function get_session_id()
+{//find userId in the session and return the value      
+    foreach ($_SESSION as $session) {
+            if ($session == "id")
+            {
+                 return $_SESSION["id"];               
+            }      
+        }       
+}#end of get_session_id     
+
+public function find_post_id($userId)
+{    
+    $postExist = false;
+    $query = $this->db->query("SELECT id FROM Gigs");
+    foreach ($query->result_array() as $row)
+             {
+                if($row['id'] == $userId)
+                    {
+                    $postExist = true;
+                    }
+             }
+     return $postExist;           
+}#end of find_post_id
+
+>>>>>>> master
 }#end of the Gig_model
