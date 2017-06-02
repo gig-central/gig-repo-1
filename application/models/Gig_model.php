@@ -22,7 +22,7 @@
  * @todo none
  */
 class Gig_model extends CI_Model {
-
+var $companyid=0;
      /**
      * Loads default data into Object
      *
@@ -93,13 +93,14 @@ class Gig_model extends CI_Model {
         );
         
         $this->db->insert('Company', $data);
-        $this->db->order_by("CompanyID", "desc");
-        $this->db->limit(0, 1);
-        $query = $this->db->get('Company');
-        $row = $query->row();
-        if(isset($row)) {
-            $companyid = $row->CompanyID;//Joins CompanyID for gig and company tables
-        }
+        $companyid=$this->db->insert_id();
+        //$this->db->order_by("CompanyID", "desc");
+        //$this->db->limit(0, 1);
+        //$query = $this->db->get('Company');
+        //$row = $query->row();
+        //if(isset($row)) {
+        //    $companyid = $row->CompanyID;//Joins CompanyID for gig and company tables
+        //}
         
         $data3= array(
            'FirstName' => $this->input->post('FirstName'),
@@ -110,7 +111,7 @@ class Gig_model extends CI_Model {
  
         );
 
-        $this->db->insert('CompanyContact', $data3);
+       $this->db->insert('CompanyContact', $data3);
         
         $data2 = array(
             'CompanyID' => $companyid,    
@@ -123,9 +124,7 @@ class Gig_model extends CI_Model {
             'LastUpdated' => date("Y-m-d H:i:s")
         );
         
-        return $this->db->insert('Gigs', $data2);
-        
-        
+        $this->db->insert('Gigs', $data2);
     }
  
 }#end of the Gig_model
