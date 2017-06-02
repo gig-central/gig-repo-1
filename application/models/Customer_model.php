@@ -1,5 +1,7 @@
 <?php
+
 /**
+ * 
  * models/Customer_model.php
  * controller for a generic Customer
  * used to show how to do CRUD in CodeIgniter
@@ -35,7 +37,7 @@ class Customer_model extends CI_Model {
             $this->load->database();
     }
 
-    public function get_customers()
+    public function getCustomers()
     {
         return $this->db->get('test_Customers');
     }
