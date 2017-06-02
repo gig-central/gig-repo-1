@@ -88,7 +88,6 @@ CREATE TABLE `Gigs` (
   `PayRate` varchar(50) DEFAULT '',
   `GigPosted` datetime DEFAULT NULL,
   `LastUpdated` timestamp NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
-  `id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`GigID`),
   KEY `CompanyID` (`CompanyID`),
   CONSTRAINT `Gigs_ibfk_1` FOREIGN KEY (`CompanyID`) REFERENCES `Company` (`CompanyID`) ON DELETE CASCADE
