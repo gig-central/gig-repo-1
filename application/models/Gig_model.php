@@ -27,6 +27,9 @@ var $companyid=0;
 =======
 
     var $companyid = 0;
+<<<<<<< HEAD
+>>>>>>> master
+=======
 >>>>>>> master
      /**
      * Loads default data into Object
@@ -99,6 +102,7 @@ var $companyid=0;
         
         $this->db->insert('Company', $data);
 <<<<<<< HEAD
+<<<<<<< HEAD
         $companyid=$this->db->insert_id();
         //$this->db->order_by("CompanyID", "desc");
         //$this->db->limit(0, 1);
@@ -107,6 +111,10 @@ var $companyid=0;
         //if(isset($row)) {
         //    $companyid = $row->CompanyID;//Joins CompanyID for gig and company tables
         //}
+=======
+        $companyid = $this->db->insert_id();
+     
+>>>>>>> master
 =======
         $companyid = $this->db->insert_id();
      
@@ -138,10 +146,13 @@ var $companyid=0;
         );
         
 <<<<<<< HEAD
+<<<<<<< HEAD
         $this->db->insert('Gigs', $data2);
     }
  
 =======
+=======
+>>>>>>> master
         return $this->db->insert('Gigs', $data2);
 
     }#end of add_gig()
