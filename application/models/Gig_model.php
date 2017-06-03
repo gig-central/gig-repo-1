@@ -77,7 +77,23 @@ var $companyid=0;
         return $query->row_array();
     }#end getGigs()
     
+    public function searchGigs($keyword = null)
+    {
+        if (is_null($keyword))
+        {
+            return null;
+        }
 
+        $this->db->select('*');
+        $this->db->from('Company');
+        $this->db->join('Gigs', 'Gigs.CompanyID = Company.CompanyID');
+        $this->db->join('CompanyContact', 'Gigs.CompanyID = CompanyContact.CompanyID');
+        $this->db->like('Gigs.GigOutline', $keyword);
+        $this->db->or_like('Gigs.GigQualify', $keyword);
+        $query = $this->db->get();
+        return $query->result_array();
+        
+    }#end searchGigs()
 
     /**
      * Add a new gig to the DB using POST parameters.
@@ -182,5 +198,9 @@ public function find_post_id($userId)
      return $postExist;           
 }#end of find_post_id
 
+<<<<<<< HEAD
 >>>>>>> master
 }#end of the Gig_model
+=======
+}#end of the Gig_model
+>>>>>>> master
