@@ -199,8 +199,12 @@ public function find_post_id($userId)
 }#end of find_post_id
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> master
 }#end of the Gig_model
+=======
+}#end of the Gig_model
+>>>>>>> master
 =======
 }#end of the Gig_model
 >>>>>>> master
