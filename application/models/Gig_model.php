@@ -22,15 +22,8 @@
  * @todo none
  */
 class Gig_model extends CI_Model {
-<<<<<<< HEAD
-var $companyid=0;
-=======
 
     var $companyid = 0;
-<<<<<<< HEAD
->>>>>>> master
-=======
->>>>>>> master
      /**
      * Loads default data into Object
      *
@@ -117,24 +110,8 @@ var $companyid=0;
         );
         
         $this->db->insert('Company', $data);
-<<<<<<< HEAD
-<<<<<<< HEAD
-        $companyid=$this->db->insert_id();
-        //$this->db->order_by("CompanyID", "desc");
-        //$this->db->limit(0, 1);
-        //$query = $this->db->get('Company');
-        //$row = $query->row();
-        //if(isset($row)) {
-        //    $companyid = $row->CompanyID;//Joins CompanyID for gig and company tables
-        //}
-=======
         $companyid = $this->db->insert_id();
      
->>>>>>> master
-=======
-        $companyid = $this->db->insert_id();
-     
->>>>>>> master
         
         $data3= array(
            'FirstName' => $this->input->post('FirstName'),
@@ -145,7 +122,7 @@ var $companyid=0;
  
         );
 
-       $this->db->insert('CompanyContact', $data3);
+        $this->db->insert('CompanyContact', $data3);
         
         $userId = $this->get_session_id();
                 
@@ -161,14 +138,6 @@ var $companyid=0;
             'id' => $userId
         );
         
-<<<<<<< HEAD
-<<<<<<< HEAD
-        $this->db->insert('Gigs', $data2);
-    }
- 
-=======
-=======
->>>>>>> master
         return $this->db->insert('Gigs', $data2);
 
     }#end of add_gig()
@@ -198,13 +167,4 @@ public function find_post_id($userId)
      return $postExist;           
 }#end of find_post_id
 
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> master
 }#end of the Gig_model
-=======
-}#end of the Gig_model
->>>>>>> master
-=======
-}#end of the Gig_model
->>>>>>> master
