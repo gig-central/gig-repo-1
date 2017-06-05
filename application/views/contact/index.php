@@ -28,18 +28,18 @@ $this->load->view($this->config->item('theme') . 'header');
   <label for="name">Name*</label>
   <div class="controls">
 
-    <input name="name" type="text">
+    <input name="Name" type="text">
 </div>
 <label for="email">Email*</label>
 
 <div class="controls">
-    <input name="email" type="email">
+    <input name="Email" type="email">
 </div>
   <label for="subject">Subject*</label>
 
 <div class="controls">
 
-    <select name="subject">
+    <select name="Subject">
 
         <option value="General Inquiry" selected="selected">General Help & Feedback</option>
         <option value="Specific Inquiry">Flag Inappropriate Content</option>
@@ -52,7 +52,7 @@ $this->load->view($this->config->item('theme') . 'header');
 </div>
 <label for="message">Message*</label>
 <div class="controls">
-  <textarea name="message" cols="40" rows="5" required></textarea>
+  <textarea name="Message" cols="40" rows="5" required></textarea>
 </div>
 <div class="controls">
   <?php echo $this->recaptcha->render(); ?>

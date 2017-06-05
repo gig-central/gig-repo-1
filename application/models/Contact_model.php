@@ -40,10 +40,10 @@ class Contact_model extends CI_Model
 	{
 		if ($email === FALSE)
 		{
-			$query = $this->db->get('contact');
+			$query = $this->db->get('Contact');
 			return $query->result_array();
 		}
-		$query = $this->db->get_where('contact', array('email' => $email));
+		$query = $this->db->get_where('Contact', array('Email' => $email));
 		return $query->row_array();
 	}
 
@@ -57,16 +57,16 @@ class Contact_model extends CI_Model
 	{
 		$this->load->helper('url');
 
-		$email = url_title($this->input->post('name'), 'dash', TRUE);
+		$email = url_title($this->input->post('Name'), 'dash', TRUE);
 
 		$data = array
 		(
-			'name' => $this->input->post('name'),
-			'email' => $email,
-			'message' => $this->input->post('message')
+			'Name' => $this->input->post('Name'),
+			'Email' => $email,
+			'Message' => $this->input->post('Message')
 		);
 
-		return $this->db->insert('contact', $data);
+		return $this->db->insert('Contact', $data);
 	}
 
 

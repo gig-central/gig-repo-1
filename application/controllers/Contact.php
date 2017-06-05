@@ -42,9 +42,9 @@ class Contact extends CI_Controller
 		$data['name'] = 'Contact';
 		$data['contact'] = $this->contact_model->getEmails();
 
-		$this->form_validation->set_rules('name', 'Name', 'required');
-		$this->form_validation->set_rules('email', 'email', 'required');
-		$this->form_validation->set_rules('message', 'message', 'required');
+		$this->form_validation->set_rules('Name', 'Name', 'required');
+		$this->form_validation->set_rules('Email', 'Email', 'required');
+		$this->form_validation->set_rules('Message', 'Message', 'required');
 
 		if ($this->form_validation->run() === FALSE)
 		{//no data yet, show form!
@@ -64,10 +64,10 @@ class Contact extends CI_Controller
 			  $this->contact_model->set_emails();
 
 			  //get the form data
-			    $name = $this->input->post('name');
-			    $email = $this->input->post('email');
-			    $subject = $this->input->post('subject');
-			    $message = $this->input->post('message');
+			    $name = $this->input->post('Name');
+			    $email = $this->input->post('Email');
+			    $subject = $this->input->post('Subject');
+			    $message = $this->input->post('Message');
 
 			    //$this->config->load('email');
 			    $this->load->helper('url');
