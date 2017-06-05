@@ -66,7 +66,7 @@
                 </li>
                 <li>
                     <b>Date Posted: </b>
-                    <?php echo date('Y-m-d H:i:s'); ?>
+                    <?php echo $gig['GigPosted']; ?>
                 </li>
             </ul>
         </div>
