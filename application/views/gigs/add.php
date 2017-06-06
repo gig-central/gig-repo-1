@@ -144,10 +144,9 @@
                 <div class="form-group">
             <label for="GigCloseDate"class="col-lg-3 control-label hidden-label"><em>Gig Close Date</em></label>
                     <div class="col-md-6">
-                    
+                    <?php echo form_error('GigCloseDate'); ?>
             <?php $attributes = 'id="GigCloseDate" placeholder="Gig close date"';
-            echo form_input('GigCloseDate', set_value('GigCloseDate'), $attributes); ?>
-            
+            echo form_input('GigCloseDate', set_value('GigCloseDate'), $attributes); ?> 
                         </div>
                     </div>
                 </fieldset>

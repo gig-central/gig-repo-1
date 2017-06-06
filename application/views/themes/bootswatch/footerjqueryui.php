@@ -21,9 +21,14 @@
 <!--load jquery ui js file-->
     <script src="<?=base_url();?>public/js/jquery-ui-1.12.1/jquery-ui.js"></script>
 
+<!--jquery ui datepicker-->
 <script type="text/javascript">
 $(function() {
-    $("#GigCloseDate").datepicker();
+    $("#GigCloseDate").datepicker(
+        {
+            dateFormat: 'yy-mm-dd'
+        }
+    );
 });
 </script>
   </body>
