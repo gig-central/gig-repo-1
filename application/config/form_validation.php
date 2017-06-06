@@ -53,6 +53,11 @@ $config = array(
                 'rules' => 'required|valid_email'
             ),
             array(
+                'field' => 'GigCloseDate',
+                'label' => 'Gig Close Date',
+                'rules' => 'required'
+            ),
+            array(
                 'field' => 'GigOutline',
                 'label' => 'Gig description',
                 'rules' => 'required'

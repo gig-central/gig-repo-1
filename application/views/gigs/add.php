@@ -19,7 +19,7 @@
 ?>
 
 
-<?php $this->load->view($this->config->item('theme') . 'header'); ?>
+<?php $this->load->view($this->config->item('theme') . 'headerjqueryui'); ?>
 
 <div class="container">
   <div class="col-lg-10">
@@ -139,6 +139,19 @@
                 </fieldset>
         <br>
         <br>
+            <fieldset>
+            <legend><h3><strong>Gig Close Date</strong></h3></legend>
+                <div class="form-group">
+            <label for="GigCloseDate"class="col-lg-3 control-label hidden-label"><em>Gig Close Date</em></label>
+                    <div class="col-md-6">
+                    <?php echo form_error('GigCloseDate'); ?>
+            <?php $attributes = 'id="GigCloseDate" placeholder="Gig close date"';
+            echo form_input('GigCloseDate', set_value('GigCloseDate'), $attributes); ?> 
+                        </div>
+                    </div>
+                </fieldset>
+        <br>
+        <br>
                  <fieldset>
                 <legend><h3><strong>Gig Description</strong></h3></legend>
             <div class="form-group">
@@ -183,4 +196,4 @@
         </form>
     </div>
 </div>
-<?php $this->load->view($this->config->item('theme') . 'footer'); ?>
+<?php $this->load->view($this->config->item('theme') . 'footerjqueryui'); ?>
