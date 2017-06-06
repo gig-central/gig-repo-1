@@ -19,8 +19,7 @@ $this->load->view($this->config->item('theme').'header');
 ?>
 <div class="container">
     <h1>Success!</h1>
-    <p>You have successfully created a gig!</p>
-    
+    <p>You have successfully <?php echo $success; ?> a gig!</p> 
     <p><?php echo anchor('gig/', 'Back to Gigs List'); ?></p>
     
 </div>

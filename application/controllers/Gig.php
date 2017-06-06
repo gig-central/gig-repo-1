@@ -41,6 +41,8 @@ class Gig extends CI_Controller
  * @return void
  * @todo none
  */
+    
+    
     public function __construct()
     {//begin constructor
         parent::__construct();
@@ -51,7 +53,7 @@ class Gig extends CI_Controller
 
     public function index()
     {//begin function index
-        $data['gigs'] = $this->gig_model->getGigs();
+        $data['gigs'] = $this->gig_model->get_gigs();
         $data['title']= 'Gigs';
         
         $this->load->view('gigs/index', $data);
@@ -59,7 +61,7 @@ class Gig extends CI_Controller
 
     public function view($slug = NULL)
     {//begin function index
-        $data['gig'] = $this->gig_model->getGigs($slug);
+        $data['gig'] = $this->gig_model->get_gigs($slug);
         if (empty($data['gig']))
         {
                 show_404();
@@ -73,7 +75,7 @@ class Gig extends CI_Controller
     {
         $this->load->helper('form');
         $this->load->library('form_validation');
-        $this->form_validation->set_message('checkDropdown', 'You need to select an employment type.');
+        $this->form_validation->set_message('check_dropdown', 'You need to select an employment type.');
         $data['title'] = 'Add a new gig';
         
         if ($this->form_validation->run() == FALSE)
@@ -82,73 +84,95 @@ class Gig extends CI_Controller
         }
         else
         {//this processes
-            $data['gigs'] = $this->gig_model->getGigs();
+            $data['gigs'] = $this->gig_model->get_gigs();
             $data['title']= 'Gigs';
+            $data['success'] = 'created';
             $this->gig_model->add_gig();
             $this->load->view('gigs/success', $data);
 
         }
     }#end function add()
     
-    public function search($keyword = null)
-    {
-        $keyword = $this->input->post('keyword');
-        $data['gigs'] = $this->gig_model->searchGigs($keyword);
-        $data['title']= 'Searching for: '.$keyword;
+    public function edit(){
         
-        $this->load->view('gigs/search', $data);
-    }
-
-    public function sendnewsletter()
-    {
-    	// XXX TODO FIXME add authentication to this so not just anybody can spam everybody with newsletters
-    	
-    	// Ensure that the request is a POST. POST signifies an intentional action, as opposed to passively requesting information.
-        if( $this->input->method(/*capitalizeReturnValue=*/TRUE) === "POST" )
-        {        
-            // XXX TODO check for a "secret" post value to ensure that a GigCentral process authorized this. Random POST requests shouldn't trigger this            
-            $this->load->library('email');
-            $this->config->load('email');
-            $this->load->helper('url');
-
-            // XXX add config option for this
-            $email = $this->config->item('autoemail_from_address'); $name = $this->config->item('autoemail_from_name');
-            $subject = $this->config->item('autoemail_from_name');
-            
-            // time() will get a timestamp representing the current date/time. Used to filter the database for gigs posted today.
-            $data['gigs'] = $this->gig_model->getGigs( /*slug=*/FALSE, /*sinceDate=*/time()  );
-            
-            ob_start(); // Begin capture of view output for email
-            $this->load->view('gigs/gignewsletter-email',$data);
-            $message = ob_get_contents();
-            ob_end_clean(); // discard the output buffer. it's contents are saved into $message, and we don't want to print it directly
-
-            $this->load->model('profile_model');
-            foreach( $this->profile_model->get_subscribed_profiles(/*slug=*/FALSE, /*newsletterUsersOnly=*/TRUE) as $subscribedUser)
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        $this->form_validation->set_message('check_dropdown', 'You need to select an employment type.');
+        $data['title'] = 'Edit Gigs';
+        
+        $userId = $this->gig_model->get_session_id();
+        $id = $this->gig_model->get_session_id();
+        $companyId = $this->gig_model->find_id_in_table('CompanyID', 'Gigs', 'id', $id); 
+        $companyContactId = $this->gig_model->find_id_in_table('CompanyContactID', 'CompanyContact', 'CompanyID', $companyId);
+        
+        if ($this->session->logged_in == TRUE)
+        {//if logged get data of the gig(s) that matches userId from db
+            if ($this->gig_model->find_post_id($userId) == TRUE)
             {
-                $this->email->from($email, $name);
-                $this->email->to( $subscribedUser['email'] );
-                $this->email->subject($subject);
-                $this->email->set_mailtype("html");
-
-                $this->email->message($message);
-
-                if(! $this->email->send())
-                {
-                    // XXX TODO: Log failure-to-sends; too many failures in a row may mean the email is no longer valid
+                if(!isset($_POST['submit']))
+                {//create form to edit gigs
+                    //Get CompanyContact
+                    $data['single_company_contact'] = $this->gig_model->get_table('CompanyContact', 'CompanyContactID', $companyContactId);
+                    
+                    //Get Company                 
+                    $data['single_company'] = $this->gig_model->get_table('Company', 'CompanyID', $companyId);
+                    
+                    //Get gigs
+                    $data['single_gig'] = $this->gig_model->get_table('Gigs', 'id', $id);
+                    $this->load->view('gigs/edit', $data);
+                }
+                if(isset($_POST['submit']))
+                {   
+                    //if ($this->form_validation->run() == FALSE) // validation hasn't been passed
+                    //{ 
+                        //$data['data'] = "Validation failed!";
+                        //$this->load->view('gigs/edit', $data);
+                    //}else{
+                $data = array(
+                    'Name' => $this->input->post('Name'),
+                    'Address' => $this->input->post('Address'),
+                    'CompanyCity' => $this->input->post('CompanyCity'),
+                    'State' => $this->input->post('State'),
+                    'ZipCode' => $this->input->post('ZipCode'),
+                    'CompanyPhone' => $this->input->post('CompanyPhone'),
+                    'Website' => $this->input->post('Website'),
+                    );
+                
+                $data3= array(
+                    'FirstName' => $this->input->post('FirstName'),
+                    'LastName' => $this->input->post('LastName'),
+                    'Email' => $this->input->post('Email'),
+                    'Phone' => $this->input->post('Phone'),
+                    );
+                
+                $data2 = array(
+                    
+                    'GigQualify' => strip_tags($this->input->post('GigQualify'),'<p>'),
+                    'EmploymentType' => $this->input->post('EmploymentType'),              
+                    'GigOutline' => strip_tags($this->input->post('GigOutline'),'<p>'),       
+                    'SpInstructions' => strip_tags($this->input->post('SpInstructions'),'<p>'),        
+                    'PayRate' => $this->input->post('PayRate'),      
+                    'LastUpdated' => date("Y-m-d H:i:s"),
+                    );
+                    if ($data['gigs'] = $this->gig_model->edit_gigs($companyId, $data, $companyContactId, $data3, $userId, $data2) == TRUE)
+                    {
+                        $data['title']= 'Gigs';
+                        $data['success'] = 'updated';
+                        $this->load->view('gigs/success', $data);
+                    }
                 }
             }
+            else
+            {//The user hasn't posted a gig yet. Redirect to add gig page
+                $data['title'] = 'Add Gigs';
+                $this->load->view('gigs/add', $data);  
+            }          
+        }else{//redirect to login page
+                redirect("admin/login");
+        }      
+    }#end of function edit
 
-        }
-        else
-        {
-            $this->output->set_status_header('405');
-            $this->output->set_header("Allow: POST");
-            echo "Sorry, we don't allow random GET requests to kick off subscription emails; perhaps try a POST?";
-        }
-    }#end function sendnewsletter()
-
-    public function checkDropdown($post_dropdown){
+ public function check_dropdown($post_dropdown){
         return $post_dropdown == '0' ? FALSE : TRUE;
     }
 }#end Gigs class/controller
