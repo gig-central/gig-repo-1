@@ -22,7 +22,6 @@
  * @todo none
  */
 class Gig_model extends CI_Model {
-
     var $companyid = 0;
      /**
      * Loads default data into Object
@@ -45,7 +44,7 @@ class Gig_model extends CI_Model {
      * @return array() of array(GigID, CompanyID, GigQualify, EmploymentType, GigOutline, SpInstructions, PayRate, GigPosted, LastUpdated, Name, Address, CompanyCity, State, ZipCode, CompanyPhone, Website, FirstName, LastName, Email, Phone). This is a join between the Gig and Company tables.
      * @todo none
      */
-    public function getGigs($slug = FALSE, $sinceDate = FALSE)
+    public function get_gigs($slug = FALSE, $sinceDate = FALSE)
     {
         if ($slug === FALSE)
         {
@@ -70,23 +69,7 @@ class Gig_model extends CI_Model {
         return $query->row_array();
     }#end getGigs()
     
-    public function searchGigs($keyword = null)
-    {
-        if (is_null($keyword))
-        {
-            return null;
-        }
 
-        $this->db->select('*');
-        $this->db->from('Company');
-        $this->db->join('Gigs', 'Gigs.CompanyID = Company.CompanyID');
-        $this->db->join('CompanyContact', 'Gigs.CompanyID = CompanyContact.CompanyID');
-        $this->db->like('Gigs.GigOutline', $keyword);
-        $this->db->or_like('Gigs.GigQualify', $keyword);
-        $query = $this->db->get();
-        return $query->result_array();
-        
-    }#end searchGigs()
 
     /**
      * Add a new gig to the DB using POST parameters.
@@ -111,7 +94,13 @@ class Gig_model extends CI_Model {
         
         $this->db->insert('Company', $data);
         $companyid = $this->db->insert_id();
-     
+        //$this->db->order_by("CompanyID", "desc");
+        //$this->db->limit(0, 1);
+        //$query = $this->db->get('Company');
+        //$row = $query->row();
+        //if(isset($row)) {
+             //$companyid = $row->CompanyID;//Joins CompanyID for gig and company tables
+        //}
         
         $data3= array(
            'FirstName' => $this->input->post('FirstName'),
@@ -130,6 +119,7 @@ class Gig_model extends CI_Model {
             'CompanyID' => $companyid,    
             'GigQualify' => strip_tags($this->input->post('GigQualify'),'<p>'),
             'EmploymentType' => $this->input->post('EmploymentType'),
+            //'GigCloseDate' => $this->input->post('GigCloseDate'),
             'GigOutline' => strip_tags($this->input->post('GigOutline'),'<p>'),
             'SpInstructions' => strip_tags($this->input->post('SpInstructions'),'<p>'),
             'PayRate' => $this->input->post('PayRate'),
@@ -143,28 +133,80 @@ class Gig_model extends CI_Model {
     }#end of add_gig()
 
 
-public function get_session_id()
-{//find userId in the session and return the value      
-    foreach ($_SESSION as $session) {
-            if ($session == "id")
-            {
-                 return $_SESSION["id"];               
-            }      
-        }       
-}#end of get_session_id     
 
-public function find_post_id($userId)
-{    
-    $postExist = false;
-    $query = $this->db->query("SELECT id FROM Gigs");
-    foreach ($query->result_array() as $row)
-             {
-                if($row['id'] == $userId)
-                    {
-                    $postExist = true;
-                    }
-             }
-     return $postExist;           
-}#end of find_post_id
+    
+    /**
+     * Update Gig, Company, Company contact in the DB using POST parameters.
+     *
+     * @return TRUE
+     * @todo Currently, it only works if the user has only one gig posted. It need to be able to update multiple gigs.
+     * @todo Validate data. Currently, when you leave a field blank, it still updates the tables with empty data.
+     */
 
+    public function edit_gigs($companyid, $data, $companyContactId, $data3, $id, $data2)
+    {
+        //Update Company table
+        $this->db->where('CompanyID', $companyid);
+        $this->db->update('Company', $data);    
+        //Update CompanyContact table
+        $this->db->where('CompanyContactID', $companyContactId);
+        $this->db->update('CompanyContact', $data3);        
+        //Update Gigs table
+        $this->db->where('id', $id);
+        $this->db->update('Gigs', $data2);
+                 return TRUE;    
+    }#end of edit_gigs
+    
+    public function get_session_id()
+    {//find userId in the session and return the value      
+        foreach ($_SESSION as $session) {
+                if ($session == "id")
+                {
+                     return $_SESSION["id"];               
+                }      
+            }       
+    }#end of get_session_id     
+
+<<<<<<< HEAD
+=======
+    public function find_post_id($userId)
+    {    
+        $postExist = false;
+        $query = $this->db->query("SELECT id FROM Gigs");
+        foreach ($query->result_array() as $row)
+                 {
+                    if($row['id'] == $userId)
+                        {
+                        $postExist = true;
+                        }
+                 }
+         return $postExist;           
+    }#end of find_post_id
+    
+    
+    public function get_table($table, $id, $data)
+    {
+        $this->db->select('*');
+        $this->db->from($table);
+        $this->db->where($id, $data);
+        $query = $this->db->get();
+        $result = $query->result();
+        return $result;
+    }#end of get_table
+    
+    public function find_id_in_table($targeId, $table, $id, $searchId)
+    {
+        $result = 0;
+        $this->db->select($targeId);
+        $this->db->from($table);
+        $this->db->where($id, $searchId);
+        $query = $this->db->get();
+        foreach ($query->result_array() as $row)
+                 {
+                    $result = $row[$targeId];
+                 }
+        return $result;
+    }#end of find_id_in_table
+    
+>>>>>>> master
 }#end of the Gig_model
