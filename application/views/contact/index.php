@@ -76,7 +76,7 @@ $this->load->view($this->config->item('theme') . 'header');
       </form>
 
       <?php
-//$this->load->view('themes/bootswatch/footer');
+//$this->load->view('themes/bootswatch/footer'); - old code
 $this->load->view($this->config->item('theme') . 'footer');
 
 ?>
