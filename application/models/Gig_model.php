@@ -167,8 +167,6 @@ class Gig_model extends CI_Model {
             }       
     }#end of get_session_id     
 
-<<<<<<< HEAD
-=======
     public function find_post_id($userId)
     {    
         $postExist = false;
@@ -208,5 +206,4 @@ class Gig_model extends CI_Model {
         return $result;
     }#end of find_id_in_table
     
->>>>>>> master
 }#end of the Gig_model

@@ -45,22 +45,7 @@ $this->load->view($this->config->item('theme') . 'header');
 
       <div class="col-md-6">
 
-<<<<<<< HEAD
-    <input name="Name" type="text">
-</div>
-<label for="email">Email*</label>
-
-<div class="controls">
-    <input name="Email" type="email">
-</div>
-  <label for="subject">Subject*</label>
-
-<div class="controls">
-
-    <select name="Subject">
-=======
         <select name="subject" class="form-control inputstl">
->>>>>>> master
 
         <option value="General Inquiry" selected="selected">General Help & Feedback</option>
         <option value="Specific Inquiry">Flag Inappropriate Content</option>
@@ -70,18 +55,6 @@ $this->load->view($this->config->item('theme') . 'header');
         <option value="Stoopid Inquiry">Partnership Inquiry</option>
         <option value="Stoopid Inquiry">Advertising</option>
     </select>
-<<<<<<< HEAD
-</div>
-<label for="message">Message*</label>
-<div class="controls">
-  <textarea name="Message" cols="40" rows="5" required></textarea>
-</div>
-<div class="controls">
-  <?php echo $this->recaptcha->render(); ?>
-  <input name="submit" class="btn btn-primary" type="submit" value="Submit Message" />
-</div>
-</form>
-=======
       </div>
       </div>
       <div class="form-group">
@@ -101,7 +74,6 @@ $this->load->view($this->config->item('theme') . 'header');
        
       </div>
       </form>
->>>>>>> master
 
       <?php
 //$this->load->view('themes/bootswatch/footer');
