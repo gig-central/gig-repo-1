@@ -99,6 +99,18 @@ $attributes = array('class'=>'form-horizontal', 'role'=>'form');
                       </select>
                   </div>
                 </div>
+            <!--<div class="form-group">
+            <label for="VenuePostDate" class="col-lg-3 control-label"><em>Venue Post Date</em></label><br>
+                <div class="col-md-6">
+                  <input type="text" class="form-control" id="VenuePostDate" name="VenuePostDate" placeholder="Venue Post Date" value="<//?php echo set_value('VenuePostDate'); ?>">
+                </div>
+           </div>-->
+           <div class="form-group">
+            <label for="VenueExpirationDate" class="col-lg-3 control-label"><em>Venue Expiration Date</em></label><br>
+                <div class="col-md-6">
+                  <input type="text" class="form-control" id="VenueExpirationDate" name="VenueExpirationDate" placeholder="Venue Expiration Date" value="<?php echo set_value('VenueExpirationDate'); ?>">
+                </div>
+           </div>        
         </fieldset>
             
         <fieldset>   

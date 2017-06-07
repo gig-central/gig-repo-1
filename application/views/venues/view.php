@@ -47,6 +47,8 @@ $this->load->view($this->config->item('theme').'header');
     <p><b>Outdoor Seating: </b><?php echo $venue['Outdoor']; ?></p>
     <p><b>Wheelchair Access: </b><?php echo $venue['Wheelchair']; ?></p>
     <p><b>Parking: </b><?php echo $venue['Parking']; ?></p>
+    <p><b>Venue Post Date: </b><?php echo $venue['VenuePostDate']; ?></p>
+    <p><b>Venue Expiration Date: </b><?php echo $venue['VenueExpirationDate']; ?></p>
     <p><?php echo anchor('venues/', 'Back to Venue List'); ?></p>
 </div>
 
