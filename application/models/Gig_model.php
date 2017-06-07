@@ -133,7 +133,22 @@ class Gig_model extends CI_Model {
     }#end of add_gig()
 
 
+    public function searchGigs($keyword = null)
+    {
+        if (is_null($keyword))
+        {
+            return null;
+        }
+        $this->db->select('*');
+        $this->db->from('Company');
+        $this->db->join('Gigs', 'Gigs.CompanyID = Company.CompanyID');
+        $this->db->join('CompanyContact', 'Gigs.CompanyID = CompanyContact.CompanyID');
+        $this->db->like('Gigs.GigOutline', $keyword);
+        $this->db->or_like('Gigs.GigQualify', $keyword);
+        $query = $this->db->get();
+        return $query->result_array();
 
+    }#end searchGigs()
     
     /**
      * Update Gig, Company, Company contact in the DB using POST parameters.
