@@ -85,7 +85,8 @@ class Venues_model extends CI_Model {
     {
          $this->load->helper('url');
 
-
+         $now = date('Y-m-d H:i:s');
+        
          $data = array(
             'VenueName' => $this->input->post('VenueName'),
             'VenueTypeKey' => $this->input->post('VenueTypeKey'),
@@ -102,9 +103,15 @@ class Venues_model extends CI_Model {
             'WiFi' => $this->input->post('WiFi'),
             'Outdoor' => $this->input->post('Outdoor'),
             'Wheelchair' => $this->input->post('Wheelchair'),
-            'Parking' => $this->input->post('Parking')
-
+            'Parking' => $this->input->post('Parking'),
+            'VenuePostDate' =>$now, 
+            'VenueExpirationDate' => $this->input->post('VenueExpirationDate') 
+            
          );
+        //$this->db-post('VenuePostDate', 'NOW()', FALSE);
+        
+        
+       
         
         return $this->db->insert('Venue', $data);
 
