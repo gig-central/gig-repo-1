@@ -92,7 +92,14 @@ class Gig extends CI_Controller
 
         }
     }#end function add()
-    
+    public function search()
+    {
+        $keyword = $this->input->post('keyword');
+        $data['gigs'] = $this->gig_model->searchGigs($keyword);
+        $data['title']= 'Searching for: '.$keyword;
+
+        $this->load->view('gigs/search', $data);
+    }
     public function edit(){
         
         $this->load->helper('form');
@@ -172,7 +179,9 @@ class Gig extends CI_Controller
         }      
     }#end of function edit
 
- public function check_dropdown($post_dropdown){
+    public function check_dropdown($post_dropdown){
         return $post_dropdown == '0' ? FALSE : TRUE;
     }
+
+
 }#end Gigs class/controller
