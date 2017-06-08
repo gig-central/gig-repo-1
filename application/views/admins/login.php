@@ -24,31 +24,31 @@
 <?php $this->load->view($this->config->item('theme').'header'); ?>
 
 <div class="container">
-    <div class="row col-xs-12 col-md-8 lg-6 offset-lg-3">
-        
-        <h1>Log In</h1>
-        
+    <div class="col-lg-4 col-lg-offset-4 well">
         <form class="form-horizontal" role="form" method="post">
             <div class="form-group">
-                <label for="Email">Email address:</label>
-                <input type="email" class="form-control" id="Email" name="email">
+  <h1 class="text-center">Log In</h1>
+ </div>
+            <div class="form-group">
+                <label for="Email" class="col-lg-3 control-label hidden">Email address:</label>
+                <input type="email" class="form-control" id="Email" name="email" placeholder="Name">
             </div>
             <?php echo form_error('email'); ?>
             <div class="form-group">
-                <label for="Pass">Password:</label>
-                <input type="password" class="form-control" id="Pass" name="pass">
+                <label for="Pass" class="col-lg-3 control-label hidden">Password:</label>
+                <input type="password" class="form-control" id="Pass" name="pass" placeholder="Password">
             </div>
             <?php echo form_error('pass'); ?>
             <?php echo $error; ?>
-            <div class="checkbox">
-               <!-- <label><input type="checkbox"> Remember me</label> -->
+            <div class="form-group">
+            <button type="submit" class="btn btn-default btn-block" name="Submit">Submit</button>
             </div>
-            <button type="submit" class="btn btn-default" name="Submit">Submit</button>
-        </form>
+            <div class="form-group text-center">
         <a href="#">Forgot Password?</a><br>
-        
         <h2>Not A Member?</h2><br>
         <a href="http://dianeselvy.com/gig-central/profiles/add">Register</a>
+        </div>
+        </form>
         
     </div><!-- end row form -->
 </div><!-- end .container -->
