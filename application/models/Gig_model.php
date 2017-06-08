@@ -119,7 +119,7 @@ class Gig_model extends CI_Model {
             'CompanyID' => $companyid,    
             'GigQualify' => strip_tags($this->input->post('GigQualify'),'<p>'),
             'EmploymentType' => $this->input->post('EmploymentType'),
-            //'GigCloseDate' => $this->input->post('GigCloseDate'),
+            'GigCloseDate' => $this->input->post('GigCloseDate'),
             'GigOutline' => strip_tags($this->input->post('GigOutline'),'<p>'),
             'SpInstructions' => strip_tags($this->input->post('SpInstructions'),'<p>'),
             'PayRate' => $this->input->post('PayRate'),
