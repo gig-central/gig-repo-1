@@ -29,7 +29,7 @@ $this->load->view($this->config->item('theme') . 'header');
       <div class="form-group">
         <label for="name" class="col-lg-3 control-label"><em>Name*</label>
         <div class="col-md-6">
-          <input name="name" class="form-control" type="text">
+          <input name="Name" class="form-control" type="text">
         </div>
       </div>
 
@@ -37,7 +37,7 @@ $this->load->view($this->config->item('theme') . 'header');
       <label for="email" class="col-lg-3 control-label">Email*</label>
 
       <div class="col-md-6">
-        <input name="email" class="form-control" type="email">
+        <input name="Email" class="form-control" type="email">
       </div>
       </div>
       <div class="form-group">
@@ -45,7 +45,7 @@ $this->load->view($this->config->item('theme') . 'header');
 
       <div class="col-md-6">
 
-        <select name="subject" class="form-control inputstl">
+        <select name="Subject" class="form-control inputstl">
 
         <option value="General Inquiry" selected="selected">General Help & Feedback</option>
         <option value="Specific Inquiry">Flag Inappropriate Content</option>
@@ -60,7 +60,7 @@ $this->load->view($this->config->item('theme') . 'header');
       <div class="form-group">
       <label for="message" class="col-lg-3 control-label">Message*</label>
       <div class="col-md-6">
-        <textarea name="message" class="form-control" cols="40" rows="5" required></textarea>
+        <textarea name="Message" class="form-control" cols="40" rows="5" required></textarea>
       </div>
       </div>
       <div class="form-group">  
