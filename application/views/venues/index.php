@@ -22,7 +22,7 @@ $this->load->view($this->config->item('theme').'header');
 
 
 <ul class="breadcrumb">
-  <li><a href="#">Home</a></li>
+  <li><a href="<?=base_url()?>">Home</a></li>
   <li class="active">Venues</li>
 </ul>
 

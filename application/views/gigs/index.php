@@ -20,7 +20,7 @@
 
 
 <ul class="breadcrumb">
-  <li><a href="#">Home</a></li>
+  <li><a href="<?=base_url()?>">Home</a></li>
   <li class="active">Gigs</li>
 </ul>
 
