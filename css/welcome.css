@@ -323,3 +323,23 @@ body{
 .faq .accordion-inner {
     margin-left: 3%;
 }
+
+/** ReCaptcha Div, Contact Button Alignment **/
+@media (min-width: 1200px) {
+    .g-recaptcha {
+        margin-left: 27%;
+    }
+    .contact-btn {
+        margin-left: 34%;
+    }
+}
+
+@media (max-width: 1199px) {
+    .g-recaptcha {
+        margin-left: 15px;
+    }
+    .contact-btn {
+        margin-left: -15px;
+    }
+}
+
