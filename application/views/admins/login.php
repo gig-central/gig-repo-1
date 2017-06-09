@@ -43,8 +43,6 @@
             <div class="form-group">
             <button type="submit" class="btn btn-default btn-block" name="Submit">Submit</button>
             </div>
-
-            <button type="submit" class="btn btn-default" name="Submit">Submit</button>
         </form>
         
         <a href="<?=base_url()?>admin/reset">Forgot Password?</a><br>
