@@ -97,7 +97,7 @@ class Profile extends CI_Controller {
 	public function view($slug = NULL)
 	{
 			$data['profile'] = $this->profile_model->getProfiles($slug)[0];
-
+            $data['title'] = 'Profile';
 			if (empty($data['profile']))
 			{
 					show_404();
