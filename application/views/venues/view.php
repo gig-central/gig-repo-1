@@ -32,11 +32,11 @@ $this->load->view($this->config->item('theme').'header');
 <div class="container">
     <h2><?php echo $venue['VenueName']; ?></h2>
     <p><b>Venue Type: </b><?php echo $venue['VenuetypeName']; ?></p>
-    <p><b>Company Address: </b><?php echo $venue['VenueAddress']; ?></p>
+    <p><b>Company Address: </b><a target="blank" href="https://www.google.com/maps/place/<?php echo $venue['VenueAddress']; ?>,<?php echo $venue['City']; ?>"><?php echo $venue['VenueAddress']; ?></a></p>
     <p><b>City: </b><?php echo $venue['City']; ?></p>
     <p><b>State: </b><?php echo $venue['State']; ?></p>
     <p><b>Zip code: </b><?php echo $venue['ZipCode']; ?></p>
-    <p><b>Website: </b><a href="<?php echo $venue['VenueWebsite']; ?>"><?php echo $venue['VenueWebsite']; ?></a></p>
+    <p><b>Website: </b><a target="blank" href="<?php echo $venue['VenueWebsite']; ?>"><?php echo $venue['VenueWebsite']; ?></a></p>
     <p><b>Phone: </b><a href="tel:<?php echo $venue['VenuePhone']; ?>"><?php echo $venue['VenuePhone']; ?></a></p>
     <p><b>Hours: </b><?php echo $venue['VenueHours']; ?></p>
     <h3>Amenities</h3>
