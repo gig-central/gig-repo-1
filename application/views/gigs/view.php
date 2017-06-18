@@ -33,11 +33,11 @@
             </h2>
             <ul class="list-group-item-text">
                 <li>
-                    <?php echo "<b>Company Address:</b> " . $gig['Address'] . ", " . $gig['CompanyCity']  . ", " .  $gig['State']; ?>
+                    <b>Company Address: </b><a target="blank" href="https://www.google.com/maps/place/<?php echo $gig['Address']; ?>,<?php echo $gig['CompanyCity']; ?>"><?php echo $gig['Address'] . ", " . $gig['CompanyCity']  . ", " .  $gig['State']; ?></a>  
                 </li>
                 <li>
                     <b>Website: </b>
-                    <a href="<?php echo $gig['Website']; ?>">
+                    <a target="blank" href="<?php echo $gig['Website']; ?>">
                         <?php echo $gig['Website']; ?>
                     </a>
                 </li>
@@ -88,11 +88,12 @@
             </li>
             <li>
                 <b>Email: </b>
-                <?php echo $gig['Email']; ?>
+                <a href="mailto:<?php echo $gig['Email']; ?>"><?php echo $gig['Email']; ?></a>
             </li>
             <li>
                 <b>Phone: </b>
-                <?php echo $gig['Phone']; ?>
+                <a href="tel:<?php echo $gig['Phone']; ?>"><?php echo $gig['Phone']; ?></a>
+                
             </li>
             <li>
                 <a class="btn btn-warning " href="<?php echo $gig['Website']; ?>">Apply</a></li>
