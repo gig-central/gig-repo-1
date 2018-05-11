@@ -18,7 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | environments.
 |
 */
-$config['base_url'] = 'your domain here';
+$config['base_url'] = 'http://www.pianohagens.com/itc260/gig-central/';
 
 /*
 |--------------------------------------------------------------------------
