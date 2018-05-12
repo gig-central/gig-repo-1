@@ -7489,12 +7489,14 @@ td.hidden-lg {
 
 @media (max-width: 400px) {
   h3 {
-    Margin-top: 10px;
-    Margin-bottom: 5px;
+    Margin-top: 9px;
+    Margin-bottom: auto;
+    font-size: 1em;
+    font-weight: bold;
   }
   .inner-box h1 {
     Font-size: 1.5em !important;
-    Margin-top: 5px !important;
+    Margin-top: auto !important;
   }
 
   p {
