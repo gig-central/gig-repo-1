@@ -129,10 +129,6 @@ body{
     color: #fff;
 }
 
-.inner-box:hover .bar{
-    display: block;
-}
-
 .inner-box:hover > p{
     color: #fff;
 }
@@ -322,6 +318,11 @@ body{
 /** FAQ **/
 .faq .accordion-inner {
     margin-left: 3%;
+}
+@media (min-width: 768px) {
+    .inner-box:hover .bar{
+        display: block;
+    }
 }
 
 /** ReCaptcha Div, Contact Button Alignment **/
