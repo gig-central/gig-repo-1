@@ -7487,6 +7487,22 @@ td.hidden-lg {
   }
 }
 
+@media (max-width: 400px) {
+  h3 {
+    Margin-top: 9px;
+    Margin-bottom: auto;
+    font-size: 1em;
+    font-weight: bold;
+  }
+  .inner-box h1 {
+    Font-size: 1.5em !important;
+    Margin-top: auto !important;
+  }
+
+  p {
+    Margin: 0px 0 7px 0;
+  }
+}
 .visible-print,
 tr.visible-print,
 th.visible-print,
