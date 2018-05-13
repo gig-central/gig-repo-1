@@ -18,8 +18,8 @@
     <?php $this->load->view($this->config->item('theme') . 'header'); ?>
 
     <ul class="breadcrumb">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Gigs</a></li>
+        <li><a href="<?php echo base_url();?>">Home</a></li>
+        <li><a href="<?php echo base_url();?>gig">Gigs</a></li>
         <li class="active">
             <?php echo $gig['Name']; ?>
         </li>
