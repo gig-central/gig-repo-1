@@ -35,12 +35,12 @@ class Gig_model extends CI_Model {
             $this->load->database();
     }#end constructor
 
-       
+
      /**
      * Retreive a list of available gigs from the DB.
      *
      * @param $slug string Retreives data about a specific gig by slug. If $sinceDate is specified, this parameter must be explicitly given a value of FALSE. Can be omitted to retreive a list of all gigs posted.
-     * @param $sinceDate int (timestamp from eg, time() function) If specified, this function will only return gigs posted since the specified date. The time portion of this timestamp is ignored. Timestamp is based off the number of seconds elapsed since the Unix Epoch (January 1 1970 00:00:00 GMT), and can be retreived using a function like time(). 
+     * @param $sinceDate int (timestamp from eg, time() function) If specified, this function will only return gigs posted since the specified date. The time portion of this timestamp is ignored. Timestamp is based off the number of seconds elapsed since the Unix Epoch (January 1 1970 00:00:00 GMT), and can be retreived using a function like time().
      * @return array() of array(GigID, CompanyID, GigQualify, EmploymentType, GigOutline, SpInstructions, PayRate, GigPosted, LastUpdated, Name, Address, CompanyCity, State, ZipCode, CompanyPhone, Website, FirstName, LastName, Email, Phone). This is a join between the Gig and Company tables.
      * @todo none
      */
@@ -52,10 +52,10 @@ class Gig_model extends CI_Model {
              $this->db->from('Company');
              $this->db->join('Gigs', 'Gigs.CompanyID = Company.CompanyID');
              $this->db->join('CompanyContact', 'Gigs.CompanyID = CompanyContact.CompanyID');
-             
+
              // If sinceDate is specified, load it as a PHP timestamp and filter out all listings created BEFORE that date. Time portion of timestamp is ignored.
              if($sinceDate !== FALSE) $this->db->where('GigPosted > ', date( 'Y-m-d 00:00:00', $sinceDate ) );
-             
+
              $query = $this->db->get();
              return $query->result_array();
         }
@@ -68,7 +68,7 @@ class Gig_model extends CI_Model {
         //$query = $this->db->like('GigOutline', $slug);
         return $query->row_array();
     }#end getGigs()
-    
+
 
 
     /**
@@ -89,9 +89,9 @@ class Gig_model extends CI_Model {
             'ZipCode' => $this->input->post('ZipCode'),
             'CompanyPhone' => $this->input->post('CompanyPhone'),
             'Website' => $this->input->post('CompanyWebsite'),
-            
+
         );
-        
+
         $this->db->insert('Company', $data);
         $companyid = $this->db->insert_id();
         //$this->db->order_by("CompanyID", "desc");
@@ -101,22 +101,22 @@ class Gig_model extends CI_Model {
         //if(isset($row)) {
              //$companyid = $row->CompanyID;//Joins CompanyID for gig and company tables
         //}
-        
+
         $data3= array(
            'FirstName' => $this->input->post('FirstName'),
             'LastName' => $this->input->post('LastName'),
             'Email' => $this->input->post('Email'),
             'Phone' => $this->input->post('Phone'),
             'CompanyID' => $companyid
- 
+
         );
 
         $this->db->insert('CompanyContact', $data3);
-        
+
         $userId = $this->get_session_id();
-                
+
         $data2 = array(
-            'CompanyID' => $companyid,    
+            'CompanyID' => $companyid,
             'GigQualify' => strip_tags($this->input->post('GigQualify'),'<p>'),
             'EmploymentType' => $this->input->post('EmploymentType'),
             'GigCloseDate' => $this->input->post('GigCloseDate'),
@@ -125,9 +125,9 @@ class Gig_model extends CI_Model {
             'PayRate' => $this->input->post('PayRate'),
             'GigPosted' => date("Y-m-d H:i:s"),
             'LastUpdated' => date("Y-m-d H:i:s"),
-            'id' => $userId
+            'id' => 0 //use the variable $userId for this. 0 is a temporay fix as the db column wont take null input
         );
-        
+
         return $this->db->insert('Gigs', $data2);
 
     }#end of add_gig()
@@ -149,7 +149,7 @@ class Gig_model extends CI_Model {
         return $query->result_array();
 
     }#end searchGigs()
-    
+
     /**
      * Update Gig, Company, Company contact in the DB using POST parameters.
      *
@@ -162,28 +162,28 @@ class Gig_model extends CI_Model {
     {
         //Update Company table
         $this->db->where('CompanyID', $companyid);
-        $this->db->update('Company', $data);    
+        $this->db->update('Company', $data);
         //Update CompanyContact table
         $this->db->where('CompanyContactID', $companyContactId);
-        $this->db->update('CompanyContact', $data3);        
+        $this->db->update('CompanyContact', $data3);
         //Update Gigs table
         $this->db->where('id', $id);
         $this->db->update('Gigs', $data2);
-                 return TRUE;    
+                 return TRUE;
     }#end of edit_gigs
-    
+
     public function get_session_id()
-    {//find userId in the session and return the value      
+    {//find userId in the session and return the value
         foreach ($_SESSION as $session) {
                 if ($session == "id")
                 {
-                     return $_SESSION["id"];               
-                }      
-            }       
-    }#end of get_session_id     
+                     return $_SESSION["id"];
+                }
+            }
+    }#end of get_session_id
 
     public function find_post_id($userId)
-    {    
+    {
         $postExist = false;
         $query = $this->db->query("SELECT id FROM Gigs");
         foreach ($query->result_array() as $row)
@@ -193,10 +193,10 @@ class Gig_model extends CI_Model {
                         $postExist = true;
                         }
                  }
-         return $postExist;           
+         return $postExist;
     }#end of find_post_id
-    
-    
+
+
     public function get_table($table, $id, $data)
     {
         $this->db->select('*');
@@ -206,7 +206,7 @@ class Gig_model extends CI_Model {
         $result = $query->result();
         return $result;
     }#end of get_table
-    
+
     public function find_id_in_table($targeId, $table, $id, $searchId)
     {
         $result = 0;
@@ -220,5 +220,5 @@ class Gig_model extends CI_Model {
                  }
         return $result;
     }#end of find_id_in_table
-    
+
 }#end of the Gig_model
