@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | -------------------------------------------------------------------
 | FORM VALIDATION SETTINGS
 | -------------------------------------------------------------------
-| 
+|
 */
 
 // Set custom form validation rules here.
@@ -65,7 +65,7 @@ $config = array(
             array(
                 'field' => 'EmploymentType',
                 'label' => 'Employment type',
-                'rules' => 'required|callback_checkDropdown'
+                'rules' => 'required|callback_check_dropdown'
             )
         ),
         'venues/add' => array(
@@ -142,8 +142,7 @@ $config = array(
         )
 );
 
-// Sets custom delimeters for error messages on forms. 
+// Sets custom delimeters for error messages on forms.
 // These settings MAY not work if they are above custom validation rules.
 $config['error_prefix'] = '<div class="text-danger">';
 $config['error_suffix'] = '</div>';
-
