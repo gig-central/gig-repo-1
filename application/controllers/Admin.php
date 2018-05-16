@@ -37,7 +37,7 @@ class Admin extends CI_Controller {
         public function index(){
             $data['title'] ="Admin dashboard";
             if ($this->session->logged_in == TRUE){
-                $logged = 'You have Logged in GigCentral!';
+                $logged = 'Welcome to GigCentral website!';
             }else{
                 $logged = 'You have Logout!';
             }
