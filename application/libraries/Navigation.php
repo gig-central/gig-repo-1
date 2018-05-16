@@ -1,7 +1,7 @@
 <?php 
 
 /**
- * Navigation.php - manages all navs on the pages
+ * application/libraries/Navigation.php - manages all navs on the pages
  *
  * @package GIG_CENTRAL
  * @subpackage GIG
@@ -111,12 +111,13 @@ function init(){
             'show_condition'=>	1,
             'parent'	=>	0
         ),
-		12 =>	array(
-            'text'		=> 	'Login',
-            'link'		=> 	base_url() . 'admin/login',
-            'show_condition'=>	1,
-            'parent'	=>	0
-        ),
+//take a way Login from the head nav. it shows Logout once user Loggedin
+//		12 =>	array(
+//            'text'		=> 	'Login',
+//            'link'		=> 	base_url() . 'admin/login',
+//            'show_condition'=>	1,
+//            'parent'	=>	0
+//        ),
     );//end $menuOne
     #Admin menu
    $CI =& get_instance();
@@ -126,6 +127,13 @@ function init(){
    $result = $CI->gig_model->find_post_id($getSessionId);
     
    if ($CI->session->logged_in == TRUE){
+       
+       //I moved this nest if statment for less confuse 
+            if($result == true)
+        {
+            $adGig['show_condition'] = 1;
+        } 
+       
    $adProfile = array(
             'text'		=> 	'Edit Profile',
             'link'		=> 	base_url() . 'profiles/edit',
@@ -145,29 +153,28 @@ function init(){
             'show_condition'=>	0,
             'parent'	=>	2
         );
+   
     //If user id matches id stored in a post, 
     //change the value in 'show_condition' for $adGig to show 'Edit' menu
-    if($result == true)
-    {
-        $adGig['show_condition'] = 1;
-    }  
-       array_push($menuOne,$adProfile,$adVenues,$adGig);
-       
-   $login = array(
-            'text'		=> 	'Logout',
-            'link'		=> 	base_url() . 'admin/logout',
-            'show_condition'=>	1,
-            'parent'	=>	0
-        );
-   }else{
-    $login = array(
-            'text'		=> 	'Login',
-            'link'		=> 	base_url() . 'admin/login',
-            'show_condition'=>	1,
-            'parent'	=>	0
-        );
+
+           $login = array(
+                    'text'		=> 	'Logout',
+                    'link'		=> 	base_url() . 'admin/logout',
+                    'show_condition'=>	1,
+                    'parent'	=>	0
+                );
+            //adding $login to show the user loggin status
+            array_push($menuOne,$adProfile,$adVenues,$adGig,$login);
+
+           }else{
+        $login = array(
+                    'text'		=> 	'Login',
+                    'link'		=> 	base_url() . 'admin/login',
+                    'show_condition'=>	1,
+                    'parent'	=>	0
+                );
+   
    }
-    
     
     # FOOTER NAV
     $menuTwo = array
@@ -199,7 +206,6 @@ function init(){
         
     );//end $menuTwo
     array_push($menuTwo,$login);
-    
     $this->setHeaderMenu($menuOne);
     $this->setFooterMenu($menuTwo);
 
@@ -250,52 +256,52 @@ function setFooterMenu($myMenu){
  * @todo none
  */
 public function loadHeader($selected = null)
-	{  
-    
-		$out = '<ul class="nav navbar-nav">';
-		foreach ( $this->headerMenu as $i=>$arr )
-		{
-			if ( is_array ( $this->headerMenu[ $i ] ) ) 
-            {//must be by construction but let's keep the errors home
-                
-				if ( $this->headerMenu[ $i ] [ 'show_condition' ] && $this->headerMenu [ $i ] [ 'parent' ] == 0 ) 
-				{//are we allowed to see this menu?
-                    
-					// Set class for current nav item - Binary safe case-insensitive string comparison
-					(strcasecmp($this->headerMenu[ $i ] [ 'text' ], $selected) == 0 ) ? $class = "active" : $class = "";
+{  
 
-					if($this->hasChildren($i))
-					{
-						$class .=" dropdown";
-						$out .= "<li class=\"" . $class . "\">";
-						$out .= "<a href=\"" . $this->headerMenu [ $i ] [ 'link' ] . "\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">";
-						$out .= $this->headerMenu [ $i ] [ 'text' ];
-						$out .= '<b class="caret"></b>';
-						$out .= '</a>';
-						$out .= $this->getChildren ( $i ); //loop through children
-						$out .= '</li>' . "\n";
-					}else{
-						$out .= "<li class=\"" . $class . "\">";
-						if($this->headerMenu [ $i ] [ 'link' ]!=null)	{
-							$out .= "<a href=\"" . $this->headerMenu [ $i ] [ 'link' ] . "\">";
-							$out .= $this->headerMenu [ $i ] [ 'text' ];
-							$out .= '</a>';
-						} else {
-							$out .= "<span>".$this->headerMenu [ $i ] [ 'text' ]."</span>";
-						}
-						$out .= '</li>' . "\n";
-					}
-				}
-			}
-			else
-			{
-				die ( sprintf ( 'menu nr %s must be an array', $i ) );
-			}
-		}//end foreach
+    $out = '<ul class="nav navbar-nav">';
+    foreach ( $this->headerMenu as $i=>$arr )
+    {
+        if ( is_array ( $this->headerMenu[ $i ] ) ) 
+        {//must be by construction but let's keep the errors home
 
-		$out .= '</ul>';
-		return $out;
-	}// end public function loadHeader()
+            if ( $this->headerMenu[ $i ] [ 'show_condition' ] && $this->headerMenu [ $i ] [ 'parent' ] == 0 ) 
+            {//are we allowed to see this menu?
+
+                // Set class for current nav item - Binary safe case-insensitive string comparison
+                (strcasecmp($this->headerMenu[ $i ] [ 'text' ], $selected) == 0 ) ? $class = "active" : $class = "";
+
+                if($this->hasChildren($i))
+                {
+                    $class .=" dropdown";
+                    $out .= "<li class=\"" . $class . "\">";
+                    $out .= "<a href=\"" . $this->headerMenu [ $i ] [ 'link' ] . "\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">";
+                    $out .= $this->headerMenu [ $i ] [ 'text' ];
+                    $out .= '<b class="caret"></b>';
+                    $out .= '</a>';
+                    $out .= $this->getChildren ( $i ); //loop through children
+                    $out .= '</li>' . "\n";
+                }else{
+                    $out .= "<li class=\"" . $class . "\">";
+                    if($this->headerMenu [ $i ] [ 'link' ]!=null)	{
+                        $out .= "<a href=\"" . $this->headerMenu [ $i ] [ 'link' ] . "\">";
+                        $out .= $this->headerMenu [ $i ] [ 'text' ];
+                        $out .= '</a>';
+                    } else {
+                        $out .= "<span>".$this->headerMenu [ $i ] [ 'text' ]."</span>";
+                    }
+                    $out .= '</li>' . "\n";
+                }
+            }
+        }
+        else
+        {
+            die ( sprintf ( 'menu nr %s must be an array', $i ) );
+        }
+    }//end foreach
+
+    $out .= '</ul>';
+    return $out;
+}// end public function loadHeader()
 
     
 /**
