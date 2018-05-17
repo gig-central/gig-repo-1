@@ -125,7 +125,7 @@ class Gig_model extends CI_Model {
             'PayRate' => $this->input->post('PayRate'),
             'GigPosted' => date("Y-m-d H:i:s"),
             'LastUpdated' => date("Y-m-d H:i:s"),
-            'id' => $userId
+            'id' => 0
         );
         
         return $this->db->insert('Gigs', $data2);
