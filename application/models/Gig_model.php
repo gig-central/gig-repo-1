@@ -76,6 +76,8 @@ class Gig_model extends CI_Model {
      *
      * @return void
      * @todo Refactor functino so POST parameters are replaced with function parameters, allowing bulk-imports of new gigs.
+     * @todo Make more robust by checking to see if company already exists in database, This will prevent the same company from being added multiple times.
+     * @todo Make sure session is started so userID can be retrieved by sessionID. If no session_ID generate random number.
      */
     public function add_gig()
     {
