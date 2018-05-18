@@ -115,7 +115,12 @@ class Gig_model extends CI_Model {
 
         $this->db->insert('CompanyContact', $data3);
         
+        if ($_SESSION['id'])
+        {
         $userId = $this->get_session_id();
+        } else {
+        $userId = 0;
+        }
                 
         $data2 = array(
             'CompanyID' => $companyid,    

@@ -30,7 +30,8 @@ class Admin extends CI_Controller {
             $this->load->database();
 		    $this->load->helper('form');
 		    //$this->load->helper('email');
-            $this->load->library('session');
+            //$this->load->library('session'); this will regenerate a new session everytime the constructor is called
+            // which will destroy the userData that is set when logging in!
             //$this->load->library('recaptcha');
         }#end constructor
         
