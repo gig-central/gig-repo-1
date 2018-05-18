@@ -12,6 +12,7 @@
 # Config #
 ##########
 system/
+application/config/config.php
 application/config/database.php
 application/config/custom_config.php
 
