@@ -59,9 +59,13 @@ $this->load->view($this->config->item('theme') . 'header'); //Loads Bootswatch t
             <?php echo form_error('i_am_a'); ?>
           <div class="col-lg-6">
             <select name="i_am_a" id="i_am_a" class="form-control">
-              <option value="employee"><?=$i_am?></option> 
-              <option value="employee">Employee</option>
-              <option value="employer">Employer</option>
+              <?php if($i_am == 'employee') { ?>
+                <option value="<?=$i_am?>"><?=ucwords($i_am)?></option> 
+                <option value="employer">Employer</option>
+              <?php } else { ?>
+                <option value="<?=$i_am?>"><?=ucwords($i_am)?></option> 
+                <option value="employee">Employee</option>
+              <?php } ?>
             </select>
           </div>
         </div>
