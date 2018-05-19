@@ -55,7 +55,7 @@ $this->load->view($this->config->item('theme') . 'header'); //Loads Bootswatch t
         </div>
         
         <div class="form-group">
-            <label for="i_am_a" class="col-lg-3 control-label">I am <span class="required">*</span></label>
+            <label for="i_am_a" class="col-lg-3 control-label">I am an<span class="required">*</span></label>
             <?php echo form_error('i_am_a'); ?>
           <div class="col-lg-6">
             <select name="i_am_a" id="i_am_a" class="form-control">
