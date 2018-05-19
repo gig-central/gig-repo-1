@@ -73,6 +73,7 @@ class Gig extends CI_Controller
 
     public function add()
     {
+        var_dump($this->session);
         $this->load->helper('form');
         $this->load->library('form_validation');
         $this->form_validation->set_message('check_dropdown', 'You need to select an employment type.');
