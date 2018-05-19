@@ -31,6 +31,7 @@ class Admin extends CI_Controller {
 		    $this->load->helper('form');
 		    //$this->load->helper('email');
             $this->load->library('session');
+            $this->config->set_item('nav-active', 'Login');//sets active class on current nav item
             //$this->load->library('recaptcha');
         }#end constructor
         
@@ -52,7 +53,6 @@ class Admin extends CI_Controller {
         }
         public function login()
         {
-            
             $data['title'] = "Login page";
             if(!isset($_POST['Submit'])){
                 $data['error']='';
