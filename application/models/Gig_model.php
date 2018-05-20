@@ -142,12 +142,6 @@ class Gig_model extends CI_Model {
             'PayRate' => $this->input->post('PayRate'),
             'GigPosted' => date("Y-m-d H:i:s"),
             'LastUpdated' => date("Y-m-d H:i:s"),
-<<<<<<< HEAD
-            'id' => 0
-        );
-        
-        return $this->db->insert('Gigs', $data2);
-=======
             'id' => $user_id
          );
 
@@ -164,7 +158,6 @@ class Gig_model extends CI_Model {
         //if(isset($row)) {
              //$companyid = $row->CompanyID;//Joins CompanyID for gig and company tables
         //}
->>>>>>> refactors addGig method, changes names to psr compliance, adds check to see if company exists in database to reduce multiple instances of same company, adds check to see if userdata exists in SESSION var
 
     }#end of add_gig()
 
