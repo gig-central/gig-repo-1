@@ -53,7 +53,6 @@ class Admin extends CI_Controller {
         }
         public function login()
         {
-            var_dump($this->session);
             $data['title'] = "Login page";
             if(!isset($_POST['Submit'])){
                 $data['error']='';
