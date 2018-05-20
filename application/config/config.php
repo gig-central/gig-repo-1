@@ -18,7 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | environments.
 |
 */
-$config['base_url'] = 'http://www.localhostshit.test:8888/gig-central';
+$config['base_url'] = 'INSERT BASE URL HERE';
 
 /*
 |--------------------------------------------------------------------------
