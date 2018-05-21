@@ -58,7 +58,7 @@ class Gig_model extends CI_Model {
              //GigCloseDate column was set up as VARCHAR(10) instead of DATE, without altering the database we can use
              // native sql functions to convert the strings to dates and compare with today's date
              //this will filter out any gig posting that has expired.
-             $queryString = "STR_TO_DATE(GigCloseDate, '%Y-%m-%d') > STR_TO_DATE('" . $dateNow . "', '%Y-%m-%d')";
+             $queryString = "STR_TO_DATE(GigCloseDate, '%Y-%m-%d') > STR_TO_DATE('" . $dateNow . "', '%Y-%m-%d') OR GigCloseDate = ''";
              $this->db->where($queryString);
              
              // We can use this feature in the future for a more robust search functionality that filters results by date posted.
