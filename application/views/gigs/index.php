@@ -45,36 +45,40 @@
 <?php endforeach ?>
 </div>
 
-<?php 
-function unique_multidim_array($array, $key) { 
-    $temp_array = array(); 
-    $i = 0; 
-    $key_array = array(); 
-    
-    foreach($array as $val) { 
-        if (!in_array($val[$key], $key_array)) { 
-            $key_array[$i] = $val[$key]; 
-            $temp_array[$i] = $val; 
-        } 
-        $i++; 
-    } 
-    return $temp_array; 
-} 
-?>
+
 
 <form class="navbar-form navbar-left" role="search" method="post" action="gig/search">
+    <label>Type of Job: </label>
         <div class="form-group">
           <select name="keyword">
-              <?php 
-              $ugigs = unique_multidim_array($gigs,'GigOutline'); 
-              ?>
-            <?php foreach ($ugigs as $gig): ?>
-              <?php// if (<?=$gig['GigOutline'])?>
+            <?php foreach ($gigs_outline as $gig): ?>
               <option value="<?=$gig['GigOutline']?>"><?=$gig['GigOutline']?></option>
             <?php endforeach ?>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Go</button>
+</form>
+<form class="navbar-form navbar-left" role="search" method="post" action="gig/search">
+    <label>City: </label>
+        <div class="form-group">
+          <select name="keyword">
+            <?php foreach ($gigs_city as $gig): ?>
+              <option value="<?=$gig['CompanyCity']?>"><?=$gig['CompanyCity']?></option>
+            <?php endforeach ?>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Go</button>
+</form>
+<form class="navbar-form navbar-left" role="search" method="post" action="gig/search">
+    <label>Company Name: </label>
+        <div class="form-group">
+          <select name="keyword">
+            <?php foreach ($gigs_name as $gig): ?>
+              <option value="<?=$gig['Name']?>"><?=$gig['Name']?></option>
+            <?php endforeach ?>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Go</button>
 </form>
 
 <?php $this->load->view($this->config->item('theme') . 'footer'); ?>

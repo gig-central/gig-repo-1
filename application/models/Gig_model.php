@@ -196,6 +196,31 @@ class Gig_model extends CI_Model {
      * @todo Currently, it only works if the user has only one gig posted. It need to be able to update multiple gigs.
      * @todo Validate data. Currently, when you leave a field blank, it still updates the tables with empty data.
      */
+    
+        public function unique_multidim_array($array, $key) { 
+        $temp_array = array(); 
+        $i = 0; 
+        $key_array = array(); 
+
+        foreach($array as $val) { 
+            if (!in_array($val[$key], $key_array)) { 
+                $key_array[$i] = $val[$key]; 
+                $temp_array[$i] = $val; 
+            } 
+            $i++; 
+        }
+        return $temp_array;
+    }
+    
+    public function get_catagory($catagory)
+    {
+        $this->db->select('*');
+        $this->db->from('Company');
+        $this->db->join('Gigs', 'Gigs.CompanyID = Company.CompanyID');
+        $this->db->join('CompanyContact', 'Gigs.CompanyID = CompanyContact.CompanyID');
+        $query = $this->db->get();
+        return $query->result_array();
+    }#end get_catagory()
 
     public function editGigs($companyid, $data, $companyContactId, $data3, $id, $data2)
     {

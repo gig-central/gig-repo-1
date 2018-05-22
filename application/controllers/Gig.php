@@ -54,6 +54,9 @@ class Gig extends CI_Controller
     public function index()
     {//begin function index
         $data['gigs'] = $this->gig_model->getGigs();
+        $data['gigs_outline'] = $this->gig_model->unique_multidim_array($data['gigs'], 'GigOutline');
+        $data['gigs_city'] = $this->gig_model->unique_multidim_array($data['gigs'], 'CompanyCity');
+        $data['gigs_name'] = $this->gig_model->unique_multidim_array($data['gigs'], 'Name');
         $data['title']= 'Gigs';
         
         $this->load->view('gigs/index', $data);
