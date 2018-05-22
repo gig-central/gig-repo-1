@@ -162,7 +162,7 @@ $attributes = array('class'=>'form-horizontal', 'role'=>'form');
                 </div>
            </div>-->
            <div class="form-group">
-            <label for="VenueExpirationDate" class="col-lg-3 control-label"><em>Venue Expiration Date</em></label><br>
+            <label for="VenueExpirationDate" class="col-lg-3 control-label"><em>Venue Expiration Date</em></label>
                 <div class="col-md-6">
                   <input type="text" class="form-control" id="VenueExpirationDate" name="VenueExpirationDate" placeholder="Venue Expiration Date" value="<?php echo set_value('VenueExpirationDate'); ?>">
                 </div>
