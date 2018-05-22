@@ -14,7 +14,8 @@
 * @todo none
 */
 
-$this->load->view($this->config->item('theme').'header');
+$this->load->view($this->config->item('theme') . 'headerjqueryui'); 
+//$this->load->view($this->config->item('theme').'header');
 $attributes = array('class'=>'form-horizontal', 'role'=>'form');
 ?>
 
@@ -106,9 +107,18 @@ $attributes = array('class'=>'form-horizontal', 'role'=>'form');
                 </div>
            </div>-->
            <div class="form-group">
+<<<<<<< HEAD
             <label for="VenueExpirationDate" class="col-lg-3 control-label"><em>Venue Expiration Date</em></label>
                 <div class="col-md-6">
                   <input type="text" class="form-control" id="VenueExpirationDate" name="VenueExpirationDate" placeholder="Venue Expiration Date" value="<?php echo set_value('VenueExpirationDate'); ?>">
+=======
+            <label for="VenueExpirationDate" class="col-lg-3 control-label"><em>Venue Expiration Date</em></label><br>
+                <div class="col-md-6"> 
+                  <?php $attrib = 'id="VenueExpirationDate" placeholder="Venue Expiration Date"';  
+                    echo form_input('VenueExpirationDate', set_value('VenueExpirationDate'), $attrib); ?> 
+                    
+                 <!-- <input type="text" class="form-control hasDatepicker" id="VenueExpirationDate" name="VenueExpirationDate" placeholder="Venue Expiration Date" value="<?php echo set_value('VenueExpirationDate'); ?>"> -->
+>>>>>>> master
                 </div>
            </div>        
         </fieldset>
@@ -205,4 +215,4 @@ $attributes = array('class'=>'form-horizontal', 'role'=>'form');
 </div>
 
 
-<?php $this->load->view($this->config->item('theme').'footer'); ?>
+<?php $this->load->view($this->config->item('theme') . 'footerjqueryui'); //$this->load->view($this->config->item('theme').'footer'); ?>
