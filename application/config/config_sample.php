@@ -18,7 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | environments.
 |
 */
-$config['base_url'] = 'your domain here';
+$config['base_url'] = 'YOUR BASE URL HERE';
 
 /*
 |--------------------------------------------------------------------------
@@ -357,10 +357,10 @@ $config['encryption_key'] = '';
 | except for 'cookie_prefix' and 'cookie_httponly', which are ignored here.
 |
 */
-$config['sess_driver'] = 'files';
-$config['sess_cookie_name'] = 'ci_session';
-$config['sess_expiration'] = 7200;
-$config['sess_save_path'] = NULL;
+$config['sess_driver'] = 'files'; //uses the files driver for saving session info
+$config['sess_cookie_name'] = 'gig_central_session';
+$config['sess_expiration'] = 0; // keeps session alive until browser is closed
+$config['sess_save_path'] = BASEPATH . 'cache/sessions/'; // saves all session data to /system/cach/sessions
 $config['sess_match_ip'] = FALSE;
 $config['sess_time_to_update'] = 300;
 $config['sess_regenerate_destroy'] = FALSE;

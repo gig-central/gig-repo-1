@@ -30,6 +30,19 @@ $(function() {
         }
     );
 });
+    
+
+$(function() {
+    $("#VenueExpirationDate").datepicker(
+        {
+            dateFormat: 'yy-mm-dd'
+            
+        }
+    );
+});
+    
+    
+    
 </script>
   </body>
 </html>

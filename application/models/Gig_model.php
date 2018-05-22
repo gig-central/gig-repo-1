@@ -41,10 +41,10 @@ class Gig_model extends CI_Model {
      *
      * @param $slug string Retreives data about a specific gig by slug. If $sinceDate is specified, this parameter must be explicitly given a value of FALSE. Can be omitted to retreive a list of all gigs posted.
      * @param $sinceDate int (timestamp from eg, time() function) If specified, this function will only return gigs posted since the specified date. The time portion of this timestamp is ignored. Timestamp is based off the number of seconds elapsed since the Unix Epoch (January 1 1970 00:00:00 GMT), and can be retreived using a function like time(). 
-     * @return array() of array(GigID, CompanyID, GigQualify, EmploymentType, GigOutline, SpInstructions, PayRate, GigPosted, LastUpdated, Name, Address, CompanyCity, State, ZipCode, CompanyPhone, Website, FirstName, LastName, Email, Phone). This is a join between the Gig and Company tables.
-     * @todo none
+     * @return array(GigID, CompanyID, GigQualify, EmploymentType, GigOutline, SpInstructions, PayRate, GigPosted, LastUpdated, Name, Address, CompanyCity, State, ZipCode, CompanyPhone, Website, FirstName, LastName, Email, Phone)
+     * @todo order query by date posted
      */
-    public function get_gigs($slug = FALSE, $sinceDate = FALSE)
+    public function getGigs($slug = FALSE, $sinceDate = FALSE)
     {
         if ($slug === FALSE)
         {
@@ -52,7 +52,16 @@ class Gig_model extends CI_Model {
              $this->db->from('Company');
              $this->db->join('Gigs', 'Gigs.CompanyID = Company.CompanyID');
              $this->db->join('CompanyContact', 'Gigs.CompanyID = CompanyContact.CompanyID');
+
+             //get the current date
+             $dateNow = date('Y-m-d');
+             //GigCloseDate column was set up as VARCHAR(10) instead of DATE, without altering the database we can use
+             // native sql functions to convert the strings to dates and compare with today's date
+             //this will filter out any gig posting that has expired.
+             $queryString = "STR_TO_DATE(GigCloseDate, '%Y-%m-%d') > STR_TO_DATE('" . $dateNow . "', '%Y-%m-%d') OR GigCloseDate = ''";
+             $this->db->where($queryString);
              
+             // We can use this feature in the future for a more robust search functionality that filters results by date posted.
              // If sinceDate is specified, load it as a PHP timestamp and filter out all listings created BEFORE that date. Time portion of timestamp is ignored.
              if($sinceDate !== FALSE) $this->db->where('GigPosted > ', date( 'Y-m-d 00:00:00', $sinceDate ) );
              
@@ -76,12 +85,23 @@ class Gig_model extends CI_Model {
      *
      * @return void
      * @todo Refactor functino so POST parameters are replaced with function parameters, allowing bulk-imports of new gigs.
+     *
      */
-    public function add_gig()
+    public function addGig()
     {
         $this->load->helper('url');
 
-        $data = array(
+         // checks to see if company submitted on form already exists in db
+         $company_query = $this->db->get_where('Company', array(
+            'Name' => $this->input->post('Name'),
+            'Address' => $this->input->post('CompanyAddress'),
+            )
+        );
+        //  returns matching query result as Object
+        $company_query_result = $company_query->row();
+    
+        // build array for Company table from form data 
+        $company_data = array(
             'Name' => $this->input->post('Name'),
             'Address' => $this->input->post('CompanyAddress'),
             'CompanyCity' => $this->input->post('CompanyCity'),
@@ -91,32 +111,38 @@ class Gig_model extends CI_Model {
             'Website' => $this->input->post('CompanyWebsite'),
             
         );
-        
-        $this->db->insert('Company', $data);
-        $companyid = $this->db->insert_id();
-        //$this->db->order_by("CompanyID", "desc");
-        //$this->db->limit(0, 1);
-        //$query = $this->db->get('Company');
-        //$row = $query->row();
-        //if(isset($row)) {
-             //$companyid = $row->CompanyID;//Joins CompanyID for gig and company tables
-        //}
-        
-        $data3= array(
-           'FirstName' => $this->input->post('FirstName'),
-            'LastName' => $this->input->post('LastName'),
-            'Email' => $this->input->post('Email'),
-            'Phone' => $this->input->post('Phone'),
-            'CompanyID' => $companyid
- 
-        );
+        // if company doesn't exist, insert into database and get ID, else id equals existing column ID
+        // prevents bloat of database with multiple instances of same company
+        if ($company_query->num_rows() < 1) {
+            $this->db->insert('Company', $company_data);
+            $company_id = $this->db->insert_id();
+        } else {
+            $company_id = $company_query_result->CompanyID;
+        }
 
-        $this->db->insert('CompanyContact', $data3);
-        
-        $userId = $this->get_session_id();
-                
-        $data2 = array(
-            'CompanyID' => $companyid,    
+        // build array for CompanyContact table from form data
+        $contact_data= array(
+            'FirstName' => $this->input->post('FirstName'),
+             'LastName' => $this->input->post('LastName'),
+             'Email' => $this->input->post('Email'),
+             'Phone' => $this->input->post('Phone'),
+             'CompanyID' => $company_id
+  
+         );
+
+         // insert into CompanyContact table 
+         $this->db->insert('CompanyContact', $contact_data);
+
+         // checks to see if User ID exists in the session variable, else assume anonymous user
+         if (isset($_SESSION['id'])) {
+             $user_id = $_SESSION['id'];
+         } else {
+             $user_id = 0;
+         }
+
+         // Build the array for Gigs table
+         $gig_data = array(
+            'CompanyID' => $company_id,    
             'GigQualify' => strip_tags($this->input->post('GigQualify'),'<p>'),
             'EmploymentType' => $this->input->post('EmploymentType'),
             'GigCloseDate' => $this->input->post('GigCloseDate'),
@@ -125,10 +151,22 @@ class Gig_model extends CI_Model {
             'PayRate' => $this->input->post('PayRate'),
             'GigPosted' => date("Y-m-d H:i:s"),
             'LastUpdated' => date("Y-m-d H:i:s"),
-            'id' => 0
-        );
-        
-        return $this->db->insert('Gigs', $data2);
+            'id' => $user_id
+         );
+
+         // insert gig data into Gigs table
+        $this->db->insert('Gigs', $gig_data);
+
+        return;
+
+        //not sure why this is here or what they were trying to do. possibly an attempt to check if data already exists?
+        //$this->db->order_by("CompanyID", "desc");
+        //$this->db->limit(0, 1);
+        //$query = $this->db->get('Company');
+        //$row = $query->row();
+        //if(isset($row)) {
+             //$companyid = $row->CompanyID;//Joins CompanyID for gig and company tables
+        //}
 
     }#end of add_gig()
 
@@ -159,7 +197,7 @@ class Gig_model extends CI_Model {
      * @todo Validate data. Currently, when you leave a field blank, it still updates the tables with empty data.
      */
 
-    public function edit_gigs($companyid, $data, $companyContactId, $data3, $id, $data2)
+    public function editGigs($companyid, $data, $companyContactId, $data3, $id, $data2)
     {
         //Update Company table
         $this->db->where('CompanyID', $companyid);
