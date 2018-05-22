@@ -41,8 +41,8 @@ class Gig_model extends CI_Model {
      *
      * @param $slug string Retreives data about a specific gig by slug. If $sinceDate is specified, this parameter must be explicitly given a value of FALSE. Can be omitted to retreive a list of all gigs posted.
      * @param $sinceDate int (timestamp from eg, time() function) If specified, this function will only return gigs posted since the specified date. The time portion of this timestamp is ignored. Timestamp is based off the number of seconds elapsed since the Unix Epoch (January 1 1970 00:00:00 GMT), and can be retreived using a function like time(). 
-     * @return array() of array(GigID, CompanyID, GigQualify, EmploymentType, GigOutline, SpInstructions, PayRate, GigPosted, LastUpdated, Name, Address, CompanyCity, State, ZipCode, CompanyPhone, Website, FirstName, LastName, Email, Phone). This is a join between the Gig and Company tables.
-     * @todo none
+     * @return array(GigID, CompanyID, GigQualify, EmploymentType, GigOutline, SpInstructions, PayRate, GigPosted, LastUpdated, Name, Address, CompanyCity, State, ZipCode, CompanyPhone, Website, FirstName, LastName, Email, Phone)
+     * @todo order query by date posted
      */
     public function getGigs($slug = FALSE, $sinceDate = FALSE)
     {
@@ -52,7 +52,16 @@ class Gig_model extends CI_Model {
              $this->db->from('Company');
              $this->db->join('Gigs', 'Gigs.CompanyID = Company.CompanyID');
              $this->db->join('CompanyContact', 'Gigs.CompanyID = CompanyContact.CompanyID');
+
+             //get the current date
+             $dateNow = date('Y-m-d');
+             //GigCloseDate column was set up as VARCHAR(10) instead of DATE, without altering the database we can use
+             // native sql functions to convert the strings to dates and compare with today's date
+             //this will filter out any gig posting that has expired.
+             $queryString = "STR_TO_DATE(GigCloseDate, '%Y-%m-%d') > STR_TO_DATE('" . $dateNow . "', '%Y-%m-%d') OR GigCloseDate = ''";
+             $this->db->where($queryString);
              
+             // We can use this feature in the future for a more robust search functionality that filters results by date posted.
              // If sinceDate is specified, load it as a PHP timestamp and filter out all listings created BEFORE that date. Time portion of timestamp is ignored.
              if($sinceDate !== FALSE) $this->db->where('GigPosted > ', date( 'Y-m-d 00:00:00', $sinceDate ) );
              
