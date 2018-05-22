@@ -41,10 +41,7 @@
             </div>
             <div class="form-group">
                 <label for="CompanyAddress" class="col-lg-3 control-label"><em>Company Address</em></label>
-                    <div class="col-md-6">
-                        <?php echo form_error('CompanyAddress'); ?>
-                        <input type="text" class="form-control" id="CompanyAddress" name="CompanyAddress" placeholder="Company Address" value="<?php echo set_value('CompanyAddress'); ?>">
-                    </div>
+                    
             </div>
             <div class="form-group">
                 <label for="CompanyCity" class="col-lg-3 control-label"><em>City</em></label>
