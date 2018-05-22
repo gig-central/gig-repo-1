@@ -30,21 +30,22 @@ class Admin extends CI_Controller {
             $this->load->database();
 		    $this->load->helper('form');
 		    //$this->load->helper('email');
-            $this->load->library('session');
+            //$this->load->library('session'); this will regenerate a new session everytime the constructor is called
+            // which will destroy the userData that is set when logging in!
             //$this->load->library('recaptcha');
         }#end constructor
         
         public function index(){
             $data['title'] ="Admin dashboard";
             if ($this->session->logged_in == TRUE){
-                $logged = 'Logged';
+                $logged = 'Welcome to GigCentral website!';
             }else{
-                $logged = 'Logout';
+                $logged = 'You have Logout!';
             }
-            if (isset($this->session->email)){
-                $data['email'] = $this->session->email;   
+            if (isset($this->session->first_name)){
+                $data['first_name'] = $this->session->first_name;   
             }else{
-                $data['email'] = "Login to see your person.";
+                $data['first_name'] = "";
             }
             
             $data['logged'] = $logged;
@@ -52,7 +53,6 @@ class Admin extends CI_Controller {
         }
         public function login()
         {
-            
             $data['title'] = "Login page";
             if(!isset($_POST['Submit'])){
                 $data['error']='';
