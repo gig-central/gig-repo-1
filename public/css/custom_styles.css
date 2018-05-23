@@ -21,3 +21,7 @@
 .navbar-brand {
     padding: 5px 15px 0 10px;
 }
+
+input#userfile {
+    height: auto;
+}

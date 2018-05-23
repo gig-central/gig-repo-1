@@ -47,14 +47,14 @@ $this->load->view($this->config->item('theme') . 'header'); //Loads Bootswatch t
                 </div>
             
                 <div class="form-group">
-                    <label for="i_am_a" class="col-lg-3 control-label"></label>
+                    <label for="pic_id" class="col-lg-3 control-label"></label>
                     <div class="col-lg-6">
                         <img src="<?=base_url()?>img/picID.jpg" alt="Picture ID" id="pic_id">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="i_am_a" class="col-lg-3 control-label"></label>
+                    <label for="userfile" class="col-lg-3 control-label"></label>
                     <div class="col-lg-6">
                         <input type="file" class="form-control" name="userfile" id="userfile">
                     </div>
@@ -62,7 +62,7 @@ $this->load->view($this->config->item('theme') . 'header'); //Loads Bootswatch t
 
                 <div class="form-group">
                     <?php echo form_error('i_am_a'); ?>
-                    <label for="i_am_a" class="col-lg-3 control-label">I am</label>
+                    <label for="i_am_a" class="col-lg-3 control-label">I am an</label>
                     <div class="col-lg-6">
                         <select name="i_am_a" id="i_am_a" class="form-control">
                             <option value="employee">Employee</option>
