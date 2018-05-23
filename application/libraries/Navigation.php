@@ -108,12 +108,12 @@ class Navigation
                 'parent'	    =>	0
             ),
             //take away Login from the head nav. it shows Logout once user Loggedin
-            12 => array(
+            /* 12 => array(
                 'text'		    => 	'Login',
                 'link'		    => 	base_url() . 'admin/login',
                 'show_condition'=>	1,
                 'parent'	    =>	0
-            ),
+            ), */
         );//end $menuOne
         #Admin menu
         $CI =& get_instance();
@@ -172,6 +172,7 @@ class Navigation
                     'show_condition'=>	1,
                     'parent'	    =>	0
             );   
+            array_push($menuOne,$login);
         }
         
         # FOOTER NAV
