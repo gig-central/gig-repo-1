@@ -33,52 +33,70 @@
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+<br>
+<div class="container-fluid">
+<h1>&nbsp;</h1>
+  <div class="row">
+    <div class="col-sm-6">
 
-
-
-<div id="gigs">
 <?php foreach ($gigs as $gig): ?>
 <h3><?php echo $gig['Name'] ?></h3>
 <p><?php echo $gig['CompanyCity'] . ", " . $gig['State'] ?></p>
 <p><?php echo $gig['GigOutline'] ?></p>
 <p><?php echo anchor('gig/'.$gig['GigID'] , 'Read More');?></p>
 <?php endforeach ?>
-</div>
 
-
-
-<form class="navbar-form navbar-left" role="search" method="post" action="gig/search">
+      </div>
+    <div class="col-sm-6">
+        <h2>Filter</h2>
+<form role="search" method="post" action="gig/search">
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Go</button>
     <label>Type of Job: </label>
-        <div class="form-group">
+
           <select name="keyword">
             <?php foreach ($gigs_outline as $gig): ?>
               <option value="<?=$gig['GigOutline']?>"><?=$gig['GigOutline']?></option>
             <?php endforeach ?>
             </select>
-        </div>
-        <button type="submit" class="btn btn-primary">Go</button>
+        
+        
+            </div>
 </form>
-<form class="navbar-form navbar-left" role="search" method="post" action="gig/search">
+
+
+<form role="search" method="post" action="gig/search">
+    <div class="form-group">
+                <button type="submit" class="btn btn-primary">Go</button>
     <label>City: </label>
-        <div class="form-group">
+        
           <select name="keyword">
             <?php foreach ($gigs_city as $gig): ?>
               <option value="<?=$gig['CompanyCity']?>"><?=$gig['CompanyCity']?></option>
             <?php endforeach ?>
             </select>
-        </div>
-        <button type="submit" class="btn btn-primary">Go</button>
+        
+
+            </div>
 </form>
-<form class="navbar-form navbar-left" role="search" method="post" action="gig/search">
+
+<form role="search" method="post" action="gig/search">
+    <div class="form-group">
+                <button type="submit" class="btn btn-primary">Go</button>
     <label>Company Name: </label>
-        <div class="form-group">
+        
           <select name="keyword">
             <?php foreach ($gigs_name as $gig): ?>
               <option value="<?=$gig['Name']?>"><?=$gig['Name']?></option>
             <?php endforeach ?>
             </select>
-        </div>
-        <button type="submit" class="btn btn-primary">Go</button>
-</form>
+        
 
+            </div>
+</form>
+      </div>
+  </div>
+</div>
+
+</div>
 <?php $this->load->view($this->config->item('theme') . 'footer'); ?>
