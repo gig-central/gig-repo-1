@@ -17,3 +17,11 @@
 .contact-btn {
     margin-left: 180px;
 }
+
+.navbar-brand {
+    padding: 5px 15px 0 10px;
+}
+
+input#userfile {
+    height: auto;
+}
