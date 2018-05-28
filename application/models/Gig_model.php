@@ -197,7 +197,7 @@ class Gig_model extends CI_Model {
      * @todo Validate data. Currently, when you leave a field blank, it still updates the tables with empty data.
      */
     
-        public function unique_multidim_array($array, $key) { 
+    public function uniqueFromArray($array, $key) { 
         $temp_array = array(); 
         $i = 0; 
         $key_array = array(); 
@@ -212,7 +212,7 @@ class Gig_model extends CI_Model {
         return $temp_array;
     }
     
-    public function get_catagory($catagory)
+    public function getCatagory($catagory)
     {
         $this->db->select('*');
         $this->db->from('Company');

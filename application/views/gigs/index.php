@@ -37,32 +37,29 @@
 <div class="container-fluid">
 <h1>&nbsp;</h1>
   <div class="row">
+      
     <div class="col-sm-6">
-
-<?php foreach ($gigs as $gig): ?>
-<h3><?php echo $gig['Name'] ?></h3>
-<p><?php echo $gig['CompanyCity'] . ", " . $gig['State'] ?></p>
-<p><?php echo $gig['GigOutline'] ?></p>
-<p><?php echo anchor('gig/'.$gig['GigID'] , 'Read More');?></p>
-<?php endforeach ?>
-
+        <?php foreach ($gigs as $gig): ?>
+        <h3><?php echo $gig['Name'] ?></h3>
+        <p><?php echo $gig['CompanyCity'] . ", " . $gig['State'] ?></p>
+        <p><?php echo $gig['GigOutline'] ?></p>
+        <p><?php echo anchor('gig/'.$gig['GigID'] , 'Read More');?></p>
+        <?php endforeach ?>
       </div>
+      
     <div class="col-sm-6">
         <h2>Filter</h2>
-<form role="search" method="post" action="gig/search">
-    <div class="form-group">
+        <form role="search" method="post" action="gig/search">
+        <div class="form-group">
         <button type="submit" class="btn btn-primary">Go</button>
-    <label>Type of Job: </label>
-
+        <label>Type of Job: </label>
           <select name="keyword">
             <?php foreach ($gigs_outline as $gig): ?>
               <option value="<?=$gig['GigOutline']?>"><?=$gig['GigOutline']?></option>
             <?php endforeach ?>
-            </select>
-        
-        
+            </select>        
             </div>
-</form>
+        </form>
 
 
 <form role="search" method="post" action="gig/search">
