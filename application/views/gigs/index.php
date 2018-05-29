@@ -49,48 +49,42 @@
       
     <div class="col-sm-6">
         <h2>Filter</h2>
-        <form role="search" method="post" action="gig/search">
+        <form role="filter" method="post" action="gig/filter">
         <div class="form-group">
         <button type="submit" class="btn btn-primary">Go</button>
         <label>Type of Job: </label>
           <select name="keyword">
             <?php foreach ($gigs_outline as $gig): ?>
-              <option value="<?=$gig['GigOutline']?>"><?=$gig['GigOutline']?></option>
+              <option value="0|<?=$gig['GigOutline']?>"><?=$gig['GigOutline']?></option>
             <?php endforeach ?>
             </select>        
             </div>
         </form>
 
 
-<form role="search" method="post" action="gig/search">
-    <div class="form-group">
-                <button type="submit" class="btn btn-primary">Go</button>
-    <label>City: </label>
-        
+        <form role="filter" method="post" action="gig/filter">
+        <div class="form-group">
+        <button type="submit" class="btn btn-primary">Go</button>
+        <label>City: </label>
           <select name="keyword">
             <?php foreach ($gigs_city as $gig): ?>
-              <option value="<?=$gig['CompanyCity']?>"><?=$gig['CompanyCity']?></option>
+              <option value="1|<?=$gig['CompanyCity']?>"><?=$gig['CompanyCity']?></option>
             <?php endforeach ?>
             </select>
-        
-
             </div>
-</form>
+        </form>
 
-<form role="search" method="post" action="gig/search">
-    <div class="form-group">
-                <button type="submit" class="btn btn-primary">Go</button>
-    <label>Company Name: </label>
-        
+        <form role="filter" method="post" action="gig/filter">
+        <div class="form-group">
+        <button type="submit" class="btn btn-primary">Go</button>
+        <label>Company Name: </label>
           <select name="keyword">
             <?php foreach ($gigs_name as $gig): ?>
-              <option value="<?=$gig['Name']?>"><?=$gig['Name']?></option>
+              <option value="2|<?=$gig['Name']?>"><?=$gig['Name']?></option>
             <?php endforeach ?>
             </select>
-        
-
             </div>
-</form>
+        </form>
       </div>
   </div>
 </div>
