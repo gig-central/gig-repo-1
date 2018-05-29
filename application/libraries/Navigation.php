@@ -148,7 +148,6 @@ class Navigation
             
             //If user id matches id stored in a post, 
             //change the value in 'show_condition' for $adGig to show 'Edit' menu
-
             if($result == true)
             {
                 $adGig['show_condition'] = 1;
