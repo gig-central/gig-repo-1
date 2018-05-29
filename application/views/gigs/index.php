@@ -33,48 +33,61 @@
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-
-
-
-<div id="gigs">
-<?php foreach ($gigs as $gig): ?>
-<h3><?php echo $gig['Name'] ?></h3>
-<p><?php echo $gig['CompanyCity'] . ", " . $gig['State'] ?></p>
-<p><?php echo $gig['GigOutline'] ?></p>
-<p><?php echo anchor('gig/'.$gig['GigID'] , 'Read More');?></p>
-<?php endforeach ?>
-</div>
-
-<?php 
-function unique_multidim_array($array, $key) { 
-    $temp_array = array(); 
-    $i = 0; 
-    $key_array = array(); 
-    
-    foreach($array as $val) { 
-        if (!in_array($val[$key], $key_array)) { 
-            $key_array[$i] = $val[$key]; 
-            $temp_array[$i] = $val; 
-        } 
-        $i++; 
-    } 
-    return $temp_array; 
-} 
-?>
-
-<form class="navbar-form navbar-left" role="search" method="post" action="gig/search">
+<br>
+<div class="container-fluid">
+<h1>&nbsp;</h1>
+  <div class="row">
+      
+    <div class="col-sm-6">
+        <?php foreach ($gigs as $gig): ?>
+        <h3><?php echo $gig['Name'] ?></h3>
+        <p><?php echo $gig['CompanyCity'] . ", " . $gig['State'] ?></p>
+        <p><?php echo $gig['GigOutline'] ?></p>
+        <p><?php echo anchor('gig/'.$gig['GigID'] , 'Read More');?></p>
+        <?php endforeach ?>
+      </div>
+      
+    <div class="col-sm-6">
+        <h2>Filter</h2>
+        <form role="filter" method="post" action="gig/filter">
         <div class="form-group">
+        <button type="submit" class="btn btn-primary">Go</button>
+        <label>Type of Job: </label>
           <select name="keyword">
-              <?php 
-              $ugigs = unique_multidim_array($gigs,'GigOutline'); 
-              ?>
-            <?php foreach ($ugigs as $gig): ?>
-              <?php// if (<?=$gig['GigOutline'])?>
-              <option value="<?=$gig['GigOutline']?>"><?=$gig['GigOutline']?></option>
+            <?php foreach ($gigs_outline as $gig): ?>
+              <option value="0|<?=$gig['GigOutline']?>"><?=$gig['GigOutline']?></option>
+            <?php endforeach ?>
+            </select>        
+            </div>
+        </form>
+
+
+        <form role="filter" method="post" action="gig/filter">
+        <div class="form-group">
+        <button type="submit" class="btn btn-primary">Go</button>
+        <label>City: </label>
+          <select name="keyword">
+            <?php foreach ($gigs_city as $gig): ?>
+              <option value="1|<?=$gig['CompanyCity']?>"><?=$gig['CompanyCity']?></option>
             <?php endforeach ?>
             </select>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+            </div>
+        </form>
 
+        <form role="filter" method="post" action="gig/filter">
+        <div class="form-group">
+        <button type="submit" class="btn btn-primary">Go</button>
+        <label>Company Name: </label>
+          <select name="keyword">
+            <?php foreach ($gigs_name as $gig): ?>
+              <option value="2|<?=$gig['Name']?>"><?=$gig['Name']?></option>
+            <?php endforeach ?>
+            </select>
+            </div>
+        </form>
+      </div>
+  </div>
+</div>
+
+</div>
 <?php $this->load->view($this->config->item('theme') . 'footer'); ?>

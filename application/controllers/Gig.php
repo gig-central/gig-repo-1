@@ -54,6 +54,9 @@ class Gig extends CI_Controller
     public function index()
     {//begin function index
         $data['gigs'] = $this->gig_model->getGigs();
+        $data['gigs_outline'] = $this->gig_model->uniqueFromArray($data['gigs'], 'GigOutline');
+        $data['gigs_city'] = $this->gig_model->uniqueFromArray($data['gigs'], 'CompanyCity');
+        $data['gigs_name'] = $this->gig_model->uniqueFromArray($data['gigs'], 'Name');
         $data['title']= 'Gigs';
         
         $this->load->view('gigs/index', $data);
@@ -100,6 +103,17 @@ class Gig extends CI_Controller
 
         $this->load->view('gigs/search', $data);
     }
+    
+    public function filter()
+    {
+        $keyword = $this->input->post('keyword');
+        //$keyword = $this->input->post('catagory');
+        $data['gigs'] = $this->gig_model->getCatagory($keyword);
+        $data['title']= 'Searching for: '.substr($keyword, 2);
+
+        $this->load->view('gigs/filter', $data);
+    }
+    
     public function edit(){
         
         $this->load->helper('form');
