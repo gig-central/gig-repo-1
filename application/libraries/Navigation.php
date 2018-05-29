@@ -142,7 +142,7 @@ class Navigation
                 'text'		     => 	'Edit Gig',
                 'link'		     => 	base_url() . 'gig/edit',
                 //'Edit' menu is hidden
-                'show_condition' =>	    1,
+                'show_condition' =>	    0,
                 'parent'	     =>	    2
             );
             
