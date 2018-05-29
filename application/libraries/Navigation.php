@@ -124,12 +124,6 @@ class Navigation
 
         if ($CI->session->logged_in == TRUE)
         {
-            //I moved this nest if statment for less confuse 
-            if($result == true)
-            {
-                $adGig['show_condition'] = 1;
-            } 
-            
             $adProfile = array(
                 'text'		     => 	'Edit Profile',
                 'link'		     => 	base_url() . 'profiles/edit',
@@ -148,12 +142,17 @@ class Navigation
                 'text'		     => 	'Edit Gig',
                 'link'		     => 	base_url() . 'gig/edit',
                 //'Edit' menu is hidden
-                'show_condition' =>	    0,
+                'show_condition' =>	    1,
                 'parent'	     =>	    2
             );
             
             //If user id matches id stored in a post, 
             //change the value in 'show_condition' for $adGig to show 'Edit' menu
+
+            if($result == true)
+            {
+                $adGig['show_condition'] = 1;
+            } 
 
             $login = array(
                     'text'		    => 	'Logout',
