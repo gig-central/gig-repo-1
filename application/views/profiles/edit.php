@@ -25,6 +25,7 @@ $this->load->view($this->config->item('theme') . 'header'); //Loads Bootswatch t
 
   <div class="col-lg-10">
 
+  <a href="<?php base_url() . 'profiles/changepass'; ?>"> Change Password</a>
 
     <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data">
       <fieldset>

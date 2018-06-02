@@ -256,31 +256,6 @@ class Profile extends CI_Controller {
             }else{
                 $pic_id = $this->session->picture;
             }
-            /*
-            if($_POST['password']!=""){
-                
-                $this->form_validation->set_rules('password', 'password', 'required');
-                $this->form_validation->set_rules('re_password', 'Password Confirmation', 'required|matches[password]');
-                
-                if($this->profile_model->getPass($_POST['old_password']) == TRUE){
-                    echo set_value('password');
-              
-                        $password = pass_encrypt(set_value('password'),KEY_ENCRYPT);
-                }else{
-                    $this->form_validation->set_rules('old_password', 'old_password','required',
-                    array(
-                     'required' => 'Your old_password is not correct.'   
-                    ));
-                }
-                     if ($this->form_validation->run() == FALSE) // validation hasn't been passed
-                        { 
-                            $this->load->view('profiles/edit', $data);
-                        }
-                  die;        
-            }else{
-                $password = $this->session->pass;
-            }
-            */
             
                 //initial data
             $form_data = array(
@@ -307,8 +282,49 @@ class Profile extends CI_Controller {
         }else{//show form
                $this->load->view('profiles/edit',$data);
         }
-        
-        
-        
     }
+
+    public function changePass()
+    {
+        //create link on edit profile page ^
+        //page should link to a form with three fields ^
+        // current password, new password, confirm new password. ^
+        //confirm user is logged in, get email from session variable or userID
+        // if current password matches database pass, and new pass equals confirm pass
+        // Salt/hash new password and update the password column for user
+
+        $data['title'] = 'Change Password';
+        $_SESSION['logged_in'] = true;
+
+        if(!$this->session->logged_in) {
+            redirect('admin/login');
+        }
+
+        if(isset($_POST['Submit'])) {
+
+            $_SESSION['logged_in'] = true;
+            $_SESSION['id'] = '1'; 
+            $_SESSION['email'] = 'gillilands19@gmail.com';
+
+            if($this->form_validation->run()) {
+                
+                $form_data = array(
+                    'old_password' => $_POST['old_password'],
+                    'new_password' => password_hash($_POST['new_password'], PASSWORD_BCRYPT)
+                );
+
+                if($this->profile_model->verifyPass($form_data['old_password'])){
+                    $this->profile_model->changePassword($form_data['new_password']);
+                    $this->load->view('profiles/success');
+                }
+
+            } else {
+                $this->load->view('profiles/changePass', $data);
+            }
+         } else {
+             $this->load->view('profiles/changePass', $data);
+         } 
+
+    }
+
 }

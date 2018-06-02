@@ -89,6 +89,7 @@ $route['profile/add'] = 'profile/add';
 $route['profiles/add'] = 'profile/add';
 $route['profile/edit'] = 'profile/edit';
 $route['profiles/edit'] = 'profile/edit';
+$route['profile/changepass'] = 'profile/changePass';
 $route['profiles'] = 'profile';
 $route['profile'] = 'profile';
 $route['profile/success'] = 'profile/success';
