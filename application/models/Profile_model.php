@@ -182,11 +182,12 @@ class Profile_model extends CI_Model
 
     public function changePassword($new_password)
     {   
+        //data for where statement
         $where_data = array(
             'id' => $this->session->id,
             'email' => $this->session->email
         );
-
+        //data for update statement
         $update_data = array(
             'password' => $new_password
         );

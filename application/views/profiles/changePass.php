@@ -33,15 +33,15 @@ $this->load->view($this->config->item('theme') . 'header'); //Loads Bootswatch t
 
       <div class="form-group">
           <legend><h2><strong>Change Password</strong></h2></legend>
-        </div>   
-
+        </div>
     <div class="form-group">
-          <label for="old_password" class="col-lg-3 control-label">Old Password <span class="required">*</span></label>
+          <label for="old_password" class="col-lg-3 control-label">Current Password <span class="required">*</span></label>
             
           <div class="col-lg-6">
             <input id="old_password" class="form-control" type="password" name="old_password"  >
           </div>
           <div class="col-lg-3">
+          <p style="color: red;"><?php if(!empty($error)) {echo $error;} ?></p>
           <?php echo form_error('old_password'); ?>
           </div>
         </div>

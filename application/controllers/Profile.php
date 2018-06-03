@@ -284,47 +284,56 @@ class Profile extends CI_Controller {
         }
     }
 
+    /**
+	 * changePass method for Profile class. 
+	 * 
+	 * @return void 
+	 * @todo create a custom validation callback method for current password verification.
+	 */ 
+
     public function changePass()
     {
-        //create link on edit profile page ^
-        //page should link to a form with three fields ^
-        // current password, new password, confirm new password. ^
-        //confirm user is logged in, get email from session variable or userID
-        // if current password matches database pass, and new pass equals confirm pass
-        // Salt/hash new password and update the password column for user
-
         $data['title'] = 'Change Password';
-        $_SESSION['logged_in'] = true;
-
+        //if not logged in redirect to login page
         if(!$this->session->logged_in) {
             redirect('admin/login');
         }
-
+        // Check to see if POST data exists
         if(isset($_POST['Submit'])) {
 
-            $_SESSION['logged_in'] = true;
-            $_SESSION['id'] = '1'; 
-            $_SESSION['email'] = 'gillilands19@gmail.com';
-
+            // Run validation checks in application/config/form_validation.php
             if($this->form_validation->run()) {
                 
+                //get the data from the form
                 $form_data = array(
                     'old_password' => $_POST['old_password'],
+                    //hash and salt password before sending to the model methods
                     'new_password' => password_hash($_POST['new_password'], PASSWORD_BCRYPT)
                 );
 
+                // verify current password matches whats in DB, if true, change password
                 if($this->profile_model->verifyPass($form_data['old_password'])){
                     $this->profile_model->changePassword($form_data['new_password']);
                     $this->load->view('profiles/success');
+                } else {
+                    // if current password doesn't match, go back to form and show error
+                    $data['error'] = 'Current Password Incorrect';
+                    $this->load->view('profiles/changePass', $data);
                 }
 
             } else {
+                //if validation doesn't pass, go back to form and show form errors 
                 $this->load->view('profiles/changePass', $data);
             }
          } else {
+             // if there is no POST data, render the form page
              $this->load->view('profiles/changePass', $data);
          } 
 
     }
 
+
+
 }
+
+
