@@ -65,6 +65,7 @@ $route['translate_uri_dashes'] = FALSE;
 $route['admin'] = 'admin/index';
 $route['admin/login'] = 'admin/login';
 $route['admin/logout'] = 'admin/logout';
+$route['admin/reset'] = 'admin/requestReset';
 //gig routes
 $route['gig'] = 'gig/index';
 $route['gig/add'] = 'gig/add';

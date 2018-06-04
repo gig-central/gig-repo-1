@@ -28,7 +28,8 @@ class Admin extends CI_Controller {
             $this->load->model('admin_model');
             $this->load->library('form_validation');
             $this->load->database();
-		    $this->load->helper('form');
+            $this->load->helper('form');
+            $this->load->library('email');
 		    //$this->load->helper('email');
             //$this->load->library('session'); this will regenerate a new session everytime the constructor is called
             // which will destroy the userData that is set when logging in!
@@ -84,31 +85,72 @@ class Admin extends CI_Controller {
             }
             
         }
-        public function reset()
+
+        public function requestReset()
         {
-            $data['title'] = "Reset Password";
-            $data['error']='';
-            if(!isset($_POST['Submit']))
-            {
-                $this->load->view('admins/reset',$data);    
-            }else{
-                $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
-                if ($this->form_validation->run() == FALSE) // validation hasn't been passed
-                { 
-                    $this->load->view('admins/reset',$data);
-                    
-                }else{
-                    $email = set_value('email');
-                    
-                    $data['error'] = $this->admin_model->reset($email);
-                    $this->load->view('admins/success',$data);
+            $data['title'] = 'Forgot Password';
+            $this->load->view('admins/requestReset', $data);
+
+            if(isset($_POST['email'])) {
+                // get form data
+                $email = $_POST['email'];
+                // verify user exists in database
+               if($this->admin_model->verifyUserExists($email, 'email')){
+                    //get unique data from matching user
+                    $unique_data = $this->admin_model->getUniqueData($email);
+
+                    //build the unique url to send via email
+                    $unique_url = base_url('admin/resetpassword');
+                    $unique_url .= '?key=';
+                    $unique_url .= $unique_data['key'];
+                    $unique_url .= '&reset=';
+                    $unique_url .= $unique_data['reset'];
+
+                    $this->email->from('reset@gigcentral.com');
+                    $this->email->to($email);
+                    $this->email->subject('Gig Central Password Reset');
+                    $this->email->message('Click to reset password: ' . "\n" . $unique_url);
+                    $diditwork = $this->email->send();
+
                 }
             }
+        }
+
+        // this method will get the data from the form that is sent to users via
+        // the requestReset method
+        // it will parse the query string, verify the hashed info in the query string against what
+        // is stored in the database, and then change the password with the value in the new password field
+        public function resetPassword() 
+        {
+
+        }
+
+
+        // public function reset()
+        // {
+        //     $data['title'] = "Reset Password";
+        //     $data['error']='';
+        //     if(!isset($_POST['Submit']))
+        //     {
+        //         $this->load->view('admins/reset',$data);    
+        //     }else{
+        //         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+        //         if ($this->form_validation->run() == FALSE) // validation hasn't been passed
+        //         { 
+        //             $this->load->view('admins/reset',$data);
+                    
+        //         }else{
+        //             $email = set_value('email');
+                    
+        //             $data['error'] = $this->admin_model->reset($email);
+        //             $this->load->view('admins/success',$data);
+        //         }
+        //     }
             
             
             
                 
-        }
+        // }
         
         public function view($slug = NULL)
         {
