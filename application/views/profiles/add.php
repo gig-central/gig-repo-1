@@ -94,6 +94,22 @@ $this->load->view($this->config->item('theme') . 'header'); //Loads Bootswatch t
                         <input id="email" class="form-control" type="text" name="email" value="<?php echo set_value('email'); ?>">
                     </div>
                 </div>
+                
+                <div class="form-group">
+                    <label for="linkedin" class="col-lg-3 control-label">Linkedin</label>
+                    <div class="col-lg-6">
+                        <?php echo form_error('email'); ?>
+                        <input id="linkedin" class="form-control" type="text" name="linkedin" value="<?php echo set_value('email'); ?>">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="github" class="col-lg-3 control-label">Github</label>
+                    <div class="col-lg-6">
+                        <?php echo form_error('email'); ?>
+                        <input id="github" class="form-control" type="text" name="github" value="<?php echo set_value('email'); ?>">
+                    </div>
+                </div>
 
             <div class="form-group">
                 <label for="password" class="col-lg-3 control-label">Password</label>

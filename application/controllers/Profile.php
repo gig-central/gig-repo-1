@@ -159,8 +159,8 @@ class Profile extends CI_Controller {
                 'password'   => set_value('password'),
                 'picture'    => $pic_id,
                 'email'      => set_value('email'),
-                //add github 
-                //add linkedin
+                'linkedin' =>set_value('linkedin'),
+                'github' => set_value('github'), 
                 'bio'  => set_value('bio'),
                 'subscribed_to_newsletters' => set_value('subscribed_to_newsletters')
                 
@@ -202,6 +202,8 @@ class Profile extends CI_Controller {
                 $data['last_name'] = $this->session->last_name;
                 $data['email'] = $this->session->email;
                 $data['picture'] = $this->session->picture;
+                $data['github'] = $this->session->github;
+                $data['linkedin'] = $this->session->linkedin;
                 //add github
                 //add linkedin
                 $data['bio'] = $this->session->bio;
