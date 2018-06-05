@@ -8,8 +8,8 @@
  * @package ITC260
  * @subpackage Forms
 
- * @author Lydia King, Anna Atiagina, Jenny Crimp 
- * @author Alex, Spencer, Mith, Jeremiah
+ * @author Lydia King, Anna Atiagina, Jenny Crimp
+ * @author Alex, Spencer, Mith, Jeremiah, Marcus Price, Hannah Lee
  * @version 3.0 2016/06/14
  * @link
  * @license http://www.apache.org/licenses/LICENSE-2.0
@@ -42,7 +42,7 @@ class Venues extends CI_Controller {
             $this->load->helper('form');
             $this->config->set_item('nav-active', 'Venues');//sets active class on all Venues children
        }
-    
+
        /**
         * index function loads venues data from Venues/Model and allows you to view in venues/index
         *
@@ -50,12 +50,12 @@ class Venues extends CI_Controller {
         * @return void
         * @todo none
         */
-       public function index()
-       {
-             $data['venues'] = $this->Venues_model->getVenues();
-             $data['title'] = 'Venues';
-             $this->load->view('venues/index', $data);
-       }//end index()
+      public function index()
+      {
+            $data['venues'] = $this->Venues_model->getVenues();
+            $data['title'] = 'Venues';
+            $this->load->view('venues/index', $data);
+      }//end index()
 
     /**
      * view method allows you too view venues through venues/view.php
@@ -64,7 +64,7 @@ class Venues extends CI_Controller {
      * @return void
      * @todo none
      */
-       public function view($slug = NULL)
+     public function view($slug = NULL)
 	   {
 			$data['venue'] = $this->Venues_model->getVenues($slug);
 
@@ -100,8 +100,49 @@ class Venues extends CI_Controller {
         else
         {
             $this->Venues_model->addVenues();
-            $this->load->view('venues/success');
+            $data['title'] = 'Venue Successfully Added';
+            $this->load->view('venues/success', $data);
         }
     }//end add()
+
+    /**
+     * allows you to edit an existing venue
+     *
+     * @param none
+     * @return venues/edit-success if form is validated correctly
+     * @todo none
+     */
+    public function edit($slug = NULL)
+    {
+      $this->load->helper('form');
+      $this->load->library('form_validation');
+
+      if ($this->form_validation->run() == FALSE)
+      {
+        if(is_null($slug))
+        {
+          $data['venues'] = $this->Venues_model->getVenues();
+          $data['title'] = 'Edit Venues';
+          $this->load->view('venues/edit-list', $data);
+        }
+        else
+        {
+          $data['venue'] = $this->Venues_model->getVenues($slug);
+          if (empty($data['venue']))
+          {
+              show_404();
+          }
+          $this->load->helper('date');
+          $data['title'] = 'Edit ' . $data['venue']['VenueName'];
+          $this->load->view('venues/edit-view', $data);
+        }
+      }
+      else
+      {
+        $this->Venues_model->editVenues($slug);
+        $data['title'] = 'Venue Successfully Edited';
+        $this->load->view('venues/edit-success', $data);
+      }
+    }//end edit()
 
 }//END Venues
