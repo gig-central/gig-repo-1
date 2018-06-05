@@ -7,7 +7,7 @@ $this->load->view($this->config->item('theme') . 'header'); //Loads Bootswatch t
 
 <div class="container">
 <?php
-echo $error;
+echo $success_message;
 ?>
 </div>
 

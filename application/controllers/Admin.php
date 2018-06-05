@@ -86,10 +86,10 @@ class Admin extends CI_Controller {
             
         }
 
+        // todo: form validation, documentation
         public function requestReset()
         {
             $data['title'] = 'Forgot Password';
-            $this->load->view('admins/requestReset', $data);
 
             if(isset($_POST['email'])) {
                 // get form data
@@ -106,13 +106,29 @@ class Admin extends CI_Controller {
                     $unique_url .= '&reset=';
                     $unique_url .= $unique_data['reset'];
 
+                    // build and send email
                     $this->email->from('reset@gigcentral.com');
                     $this->email->to($email);
                     $this->email->subject('Gig Central Password Reset');
                     $this->email->message('Click to reset password: ' . "\n" . $unique_url);
-                    $diditwork = $this->email->send();
+                    // if email successfully sends show success message
+                    if($this->email->send()){
+                        $data['title'] = 'Success!';
+                        $data['success_message'] = 'Request Successful. An Email was sent to the provided address!';
+                        $this->load->view('admins/success', $data);
+                    } else{
+                        $data['error'] = 'Something Went Wrong!';
+                        $this->load->view('admins/requestReset', $data);
+                    }
+                
+                // if user doesn't exist in DB return to form with error message
+                } else {
+                    $data['error'] = 'No account for that email';
+                    $this->load->view('admins/requestReset', $data);
 
                 }
+            } else {
+                $this->load->view('admins/requestReset', $data);
             }
         }
 
@@ -120,38 +136,42 @@ class Admin extends CI_Controller {
         // the requestReset method
         // it will parse the query string, verify the hashed info in the query string against what
         // is stored in the database, and then change the password with the value in the new password field
+
+        //todo: form validation, commenting and documentation
         public function resetPassword() 
         {
-
-        }
-
-
-        // public function reset()
-        // {
-        //     $data['title'] = "Reset Password";
-        //     $data['error']='';
-        //     if(!isset($_POST['Submit']))
-        //     {
-        //         $this->load->view('admins/reset',$data);    
-        //     }else{
-        //         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
-        //         if ($this->form_validation->run() == FALSE) // validation hasn't been passed
-        //         { 
-        //             $this->load->view('admins/reset',$data);
-                    
-        //         }else{
-        //             $email = set_value('email');
-                    
-        //             $data['error'] = $this->admin_model->reset($email);
-        //             $this->load->view('admins/success',$data);
-        //         }
-        //     }
+            $data['title'] = 'Reset Password';
             
-            
-            
+            // if form submitted
+            if(isset($_POST['new_password']) && isset($_POST['key'])){
+                // get the data from the form
+                $key = $_POST['key'];
+                $reset = $_POST['reset'];
+                // salt and hash new password
+                $new_password = password_hash($_POST['new_password'], PASSWORD_BCRYPT);
                 
-        // }
+                // if password was updated successfully, show success page
+                if($this->admin_model->resetPassword($key, $reset, $new_password)){
+                    $data['title'] = 'Success!';
+                    $data['success_message'] = 'Password succesfully updated. You can now login with your new password';
+                    $this->load->view('admins/success', $data);
+                } else {
+                    // else show error message
+                    $data['error'] = 'Something went Wrong!';
+                    $this->load->view('admins/resetPassword', $data);
+                }
+            } elseif(!isset($_POST['new_password']) && !empty($_GET)) {
+                //if form hasn't been submitted, parse the query string provided in password reset email and pass to view
+                // put the key and reset values in hidden form fields 
+                $data['key'] = $_GET['key'];
+                $data['reset'] = $_GET['reset'];
+                $this->load->view('admins/resetPassword', $data);
+            } else {
+                redirect('admin/login');
+            }
+        }
         
+
         public function view($slug = NULL)
         {
             

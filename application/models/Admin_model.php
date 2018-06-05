@@ -21,16 +21,6 @@
  * @todo
  */
  
-// function randomPassword() {
-//     $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
-//     $pass = array(); //remember to declare $pass as an array
-//     $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
-//     for ($i = 0; $i < 8; $i++) {
-//         $n = rand(0, $alphaLength);
-//         $pass[] = $alphabet[$n];
-//     }
-//     return implode($pass); //turn the array into a string
-// }
 class Admin_model extends CI_Model {
        public function __construct()
         {
@@ -89,11 +79,13 @@ class Admin_model extends CI_Model {
         }
 
         //should return an array with two pieces of hashed information. This is simply for a unique query string
-        // so md5 should suffice
+        // use at least sha512 for hashing
         public function getUniqueData($email)
         {
+            //get the row by email
             $query = $this->db->get_where('Profile', array('email' => $email));
             $row = $query->row();
+            //Hash information to pass unique data associated with user
             $unique_data = array(
                 'key' => hash('sha512', $row->email),
                 'reset' => hash('sha512', $row->password)
@@ -101,44 +93,22 @@ class Admin_model extends CI_Model {
             return $unique_data;
         }
 
-
-        
-        // public function reset($email){
-        //     $error="";
-        //  $this->load->library('email');
-        //   if ($email == ""){
-        //     return FALSE;
-        //   }else{//check the email in the database
-        //     $query = $this->db->get_where('Profile', array('email' => $email));
-        //     $row = $query->row();
-        //         if (isset($row))
-        //         {
-                    
-        //             //echo $tmp_pass = substr( md5( time( ) ) ,1 );//chr( mt_rand( 97 ,122 ) ) 
-        //             echo randomPassword();
-        //             echo '</br>';
-                    
-        //             die;
-        //             /*
-        //             $message = "This is your password :". pass_decrypt($row->password,KEY_ENCRYPT);
-        //             //send mail
-        //             $this->email->from('admin@rattananeak.com', 'Admin');
-        //             $this->email->to($email);
-        //             $this->email->subject("Password Reset");
-        //             $this->email->message($message);
-        //             if ($this->email->send())
-        //             {
-        //             $error = "The passsword has been sent to your email. Please make sure you check in the spam box.";    
-        //             }else{
-        //             $error = "<h1>Failed To Send Email</h1><p />Debug Details follow:<br />" . $this->email->print_debugger() ;    
-        //             }
-        //             */
-        //         }else{
-        //             $error = "The email doesn't exist on our database";
-                        
-        //         }
-        //         return $error;
-        //   }
-        // }
+        public function resetPassword($key, $reset, $new_password)
+        {
+            // build array for new password insertion
+            $new_pass = array(
+                'password' => $new_password
+            );
+            // converts given values to SHA512 checksums and verifies the correct user's password is updated
+            $this->db->where("SHA2(email, 512)='" . $key . "' and SHA2(password, 512) = '" . $reset . "'");
+            // update user password
+            $this->db->update('Profile', $new_pass);
+            // if update successful return true, else return false
+            if($this->db->affected_rows() != '0') {
+                return true;
+            } else {
+                return false;
+            }
+        }
         
 }

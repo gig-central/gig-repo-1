@@ -25,7 +25,7 @@
 
 <div class="col-lg-10">
 
-<form class="form-horizontal" role="form" method="post" action="reset">
+<form class="form-horizontal" role="form" method="post" action="resetpassword">
     <fieldset>
       <?php
       $attributes = array('class' => '', 'id' => '');
@@ -33,19 +33,42 @@
       ?>
 
     <div class="form-group">
-        <legend><h2><strong>Password Reset</strong></h2></legend>
+        <legend><h2><strong>Enter New Password</strong></h2></legend>
       </div>
   <div class="form-group">
-        <label for="email" class="col-lg-3 control-label">Email<span class="required">*</span></label>
+        <label for="new_password" class="col-lg-3 control-label">New Password<span class="required">*</span></label>
           
       <div class="col-lg-6">
-          <input id="email" class="form-control" type="email" name="email"  >
+          <input id="new_password" class="form-control" type="password" name="new_password">
         </div>
         <div class="col-lg-3">
         <p style="color: red;"><?php if(!empty($error)) {echo $error;} ?></p>
-        <?php echo form_error('not_registered_email'); ?>
+        <?php echo form_error('new_password'); ?>
         </div>
       </div>
+
+      <div class="form-group">
+        <label for="confirm_password" class="col-lg-3 control-label">Confirm Password<span class="required">*</span></label>
+
+      <div class="col-lg-6">
+          <input id="confirm_password" class="form-control" type="password" name="confirm_password">
+        </div>
+        <div class="col-lg-3">
+        <p style="color: red;"><?php if(!empty($error)) {echo $error;} ?></p>
+        <?php echo form_error('confirm_password'); ?>
+        </div>
+      </div>
+      <?php if (!empty($key)): ?>
+      <div class="col-lg-6">
+          <input id="pass_key" class="form-control" type="hidden" name="key" value="<?php echo $key ?>">
+        </div>
+      <?php endif; ?>
+      <?php if(!empty($reset)): ?>
+      <div class="col-lg-6">
+          <input id="confirm_password" class="form-control" type="hidden" name="reset" value="<?php echo $reset ?>">
+        </div>
+
+      <?php endif; ?>
 
       <div class="form-group text-right">
             <div class="col-lg-3">
