@@ -7,8 +7,8 @@
  * 
  * @package ITC260
  * @subpackage Pages
- * @author Rattana Neak
- * @version 2.0 2016/06/14
+ * @author Rattana Neak, Sean Gilliland
+ * @version 3.0 2018/06/05
  * @license http://www.apache.org/licenses/LICENSE-2.0
  * @see controllers/Admin.php
  * @see view/admins/add.php
@@ -31,16 +31,14 @@ class Admin_model extends CI_Model {
         
         public function getInfor($data)
         {
-           
            if ($data == ""){
             return FALSE;
-            }else{
+            } else {
             $query = $this->db->get_where('Profile', array('email' => $data['email']));
             $row = $query->row();    
                 if (isset($row))
                 {
-                    //if(pass_decrypt($row->password,KEY_ENCRYPT) == $data['pass'])
-                        if(password_verify($data['pass'], $row->password))
+                    if(password_verify($data['pass'], $row->password))
                     {
                     
                     $newdata = array(
@@ -52,7 +50,6 @@ class Admin_model extends CI_Model {
                         'picture'=> $row->picture, 
                         'logged_in' => TRUE,
                         'bio'     => $row->bio,
-                        'pass' => $row->password
                     );
                         $this->load->library('session');
                         $this->session->set_userdata($newdata); 
@@ -66,9 +63,17 @@ class Admin_model extends CI_Model {
             }
         }
 
+        /**
+         * verifyUserExists method for Admin_model class. 
+         *
+         * @param string $search_term is being searched for in the profile table
+         * @param $search_column is the column in the database to match with search term 
+         * @return boolean 
+         * @todo none
+         */ 
         public function verifyUserExists($search_term, $search_column) 
         {
-            //check to see if passed email exists in the database
+            //check to see if passed term exists in the passed column of the profile table
             $query = $this->db->get_where('Profile', array($search_column => $search_term));
             if($query->row()){
                 return true;
@@ -78,8 +83,13 @@ class Admin_model extends CI_Model {
             
         }
 
-        //should return an array with two pieces of hashed information. This is simply for a unique query string
-        // use at least sha512 for hashing
+        /**
+         * getUniqueData method for Admin_model class. 
+         *
+         * @param string $email the email of the user to retrieve unique data from 
+         * @return array(key => users hashed email, reset => hash of users salted/hashed password) 
+         * @todo none
+         */ 
         public function getUniqueData($email)
         {
             //get the row by email
@@ -93,6 +103,15 @@ class Admin_model extends CI_Model {
             return $unique_data;
         }
 
+        /**
+         * resetPassword method for Admin_model class. 
+         *
+         * @param string $key the hashed email returned by getUniqueData method
+         * @param string $reset the hash of salted/hashed password returned by getUniqueData method
+         * @param string $new_password the salted/hashed new password to insert in database 
+         * @return boolean
+         * @todo none
+         */ 
         public function resetPassword($key, $reset, $new_password)
         {
             // build array for new password insertion

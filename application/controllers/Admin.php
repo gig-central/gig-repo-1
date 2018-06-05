@@ -7,8 +7,8 @@
  * 
  * @package ITC260
  * @subpackage Pages
- * @author Rattana Neak
- * @version 2.0 2016/06/14
+ * @author Rattana Neak, Sean Gilliland
+ * @version 3.0 2018/06/05
  * @license http://www.apache.org/licenses/LICENSE-2.0
  * @see models/admin_model.php
  * @see view/admins/add.php
@@ -86,7 +86,16 @@ class Admin extends CI_Controller {
             
         }
 
-        // todo: form validation, documentation
+        /**
+         * requestReset method for Admin controller class. 
+         *
+         * handles the forgot password feature. If email is provided, we build a unique url with
+         * unique information in the query string that correlates to the user.
+         * then send the link via email
+         * 
+         * @return void
+         * @todo form validation for email field, custom validation callback for verifying user?
+         */
         public function requestReset()
         {
             $data['title'] = 'Forgot Password';
@@ -125,19 +134,23 @@ class Admin extends CI_Controller {
                 } else {
                     $data['error'] = 'No account for that email';
                     $this->load->view('admins/requestReset', $data);
-
                 }
             } else {
                 $this->load->view('admins/requestReset', $data);
             }
         }
 
-        // this method will get the data from the form that is sent to users via
-        // the requestReset method
-        // it will parse the query string, verify the hashed info in the query string against what
-        // is stored in the database, and then change the password with the value in the new password field
-
-        //todo: form validation, commenting and documentation
+        /**
+         * resetPassword method for Admin controller class. 
+         *
+         * This method gets the data from the form if POST is set including two hidden fields
+         * with the key and reset hashes unique to the user who has requested a password reset.
+         * key, reset, and new password values are passed to the resetPassword method in the model
+         * on successful password reset show success page 
+         * 
+         * @return void
+         * @todo form validation
+         */
         public function resetPassword() 
         {
             $data['title'] = 'Reset Password';
