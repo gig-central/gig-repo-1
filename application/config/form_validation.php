@@ -100,6 +100,38 @@ $config = array(
                 'rules' => 'required'
             )
         ),
+        'venues/edit' => array(
+            array(
+                'field' => 'VenueName',
+                'label' => 'Venue Name',
+                'rules' => 'required'
+            ),
+            array(
+                'field' => 'VenueAddress',
+                'label' => 'Venue Address',
+                'rules' => 'required'
+            ),
+            array(
+                'field' => 'City',
+                'label' => 'Venue City',
+                'rules' => 'required'
+            ),
+            array(
+                'field' => 'ZipCode',
+                'label' => 'Venue Zip Code',
+                'rules' => 'required'
+            ),
+            array(
+                'field' => 'VenuePhone',
+                'label' => 'Venue Phone',
+                'rules' => 'required'
+            ),
+            array(
+                'field' => 'State',
+                'label' => 'Venue State',
+                'rules' => 'required'
+            )
+        ),
         'profile/add' => array(
             array(
             'field' => 'i_am_a',
