@@ -25,7 +25,6 @@ $this->load->view($this->config->item('theme') . 'header'); //Loads Bootswatch t
 
   <div class="col-lg-10">
 
-
     <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data">
       <fieldset>
         <?php
@@ -34,7 +33,7 @@ $this->load->view($this->config->item('theme') . 'header'); //Loads Bootswatch t
         ?>
 
         <div class="form-group">
-          <legend><h2><strong>Add Profile</strong></h2></legend>
+          <legend><h2><strong>Edit Profile</strong></h2></legend>
         </div>
         <div class="form-group">
             <label class="col-lg-3 control-label">
@@ -96,38 +95,7 @@ $this->load->view($this->config->item('theme') . 'header'); //Loads Bootswatch t
           </div>
           <?php echo form_error('email'); ?>
         </div>
-        <!--
-        <div class="form-group">
-          <label for="old_password" class="col-lg-3 control-label">Old Password <span class="required">*</span></label>
-            
-          <div class="col-lg-6">
-            <input id="old_password" class="form-control" type="password" name="old_password"  >
-          </div>
-          <div class="col-lg-3">
-          <?php// echo form_error('old_password'); ?>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="password" class="col-lg-3 control-label">New Password <span class="required">*</span></label>
-            
-          <div class="col-lg-6">
-            <input id="password" class="form-control" type="password" name="password" >
-          </div>
-          <div class="col-lg-3">
-          <?php// echo form_error('password'); ?>
-          </div>
-        </div>
-        
-        <div class="form-group">
-          <label for="re_password" class="col-lg-3 control-label">Retype Password <span class="required">*</span></label>
-          <div class="col-lg-6">
-            <input id="re_password" class="form-control" type="password" name="re_password">
-          </div>
-          <div class="col-lg-3">
-          <?php// echo form_error('re_password'); ?>
-          </div>
-        </div>
-        -->
+
         <div class="form-group">
           <label for="languages" class="col-lg-3 control-label">Bio <span class="required">*</span></label>
           <div class="col-lg-3">
@@ -141,6 +109,7 @@ $this->load->view($this->config->item('theme') . 'header'); //Loads Bootswatch t
           <label for="subscribed_to_newsletters" class="col-lg-3 control-label">Subscribe to Newsletter?</label>           
           <div class="col-lg-6">
             <input id="subscribed_to_newsletters" class="form-control" type="checkbox" name="subscribed_to_newsletters" value="1" checked>
+            <a href="<?php echo base_url('profile/changepass'); ?>"> Change Password</a>
           </div>
         </div>
         

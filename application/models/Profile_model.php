@@ -134,14 +134,13 @@ class Profile_model extends CI_Model
 	 * @return void 
 	 * @todo none
 	 */ 
-    function getPass($id,$pass){
+    function verifyPass($pass){
         $query = $this->db->get_where('Profile', array('id'=>$this->session->id));
          $row = $query->row();    
         if (isset($row))
         {
             //if(pass_decrypt($row->password,KEY_ENCRYPT) == $pass)
-            if(password_verify($pass, $row->password))
-            {
+            if(password_verify($pass, $row->password)){
                 return TRUE;
             }
         }
@@ -180,5 +179,27 @@ class Profile_model extends CI_Model
                 }
                 return FALSE;
     }//end function
+
+    public function changePassword($new_password)
+    {   
+        //data for where statement
+        $where_data = array(
+            'id' => $this->session->id,
+            'email' => $this->session->email
+        );
+        //data for update statement
+        $update_data = array(
+            'password' => $new_password
+        );
+        // Build the query
+        $this->db->where($where_data);
+        $this->db->update('Profile', $update_data);
+        // check to see if the above was successful, if so return true
+        if($this->db->affected_rows() != '0') {
+            return true;
+        } else {
+            return false;
+        }
+    }
     
 }//end class

@@ -1,4 +1,5 @@
 
+.vscode
 
 # Code Igniter #
 ################
@@ -15,6 +16,7 @@ system/
 application/config/config.php
 application/config/database.php
 application/config/custom_config.php
+application/config/email.php
 
 # OS generated files #
 ######################

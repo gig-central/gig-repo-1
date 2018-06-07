@@ -256,31 +256,6 @@ class Profile extends CI_Controller {
             }else{
                 $pic_id = $this->session->picture;
             }
-            /*
-            if($_POST['password']!=""){
-                
-                $this->form_validation->set_rules('password', 'password', 'required');
-                $this->form_validation->set_rules('re_password', 'Password Confirmation', 'required|matches[password]');
-                
-                if($this->profile_model->getPass($_POST['old_password']) == TRUE){
-                    echo set_value('password');
-              
-                        $password = pass_encrypt(set_value('password'),KEY_ENCRYPT);
-                }else{
-                    $this->form_validation->set_rules('old_password', 'old_password','required',
-                    array(
-                     'required' => 'Your old_password is not correct.'   
-                    ));
-                }
-                     if ($this->form_validation->run() == FALSE) // validation hasn't been passed
-                        { 
-                            $this->load->view('profiles/edit', $data);
-                        }
-                  die;        
-            }else{
-                $password = $this->session->pass;
-            }
-            */
             
                 //initial data
             $form_data = array(
@@ -307,8 +282,58 @@ class Profile extends CI_Controller {
         }else{//show form
                $this->load->view('profiles/edit',$data);
         }
-        
-        
-        
     }
+
+    /**
+	 * changePass method for Profile class. 
+	 * 
+	 * @return void 
+	 * @todo create a custom validation callback method for current password verification.
+	 */ 
+
+    public function changePass()
+    {
+        $data['title'] = 'Change Password';
+        //if not logged in redirect to login page
+        if(!$this->session->logged_in) {
+            redirect('admin/login');
+        }
+        // Check to see if POST data exists
+        if(isset($_POST['Submit'])) {
+
+            // Run validation checks in application/config/form_validation.php
+            if($this->form_validation->run()) {
+                
+                //get the data from the form
+                $form_data = array(
+                    'old_password' => $_POST['old_password'],
+                    //hash and salt password before sending to the model methods
+                    'new_password' => password_hash($_POST['new_password'], PASSWORD_BCRYPT)
+                );
+
+                // verify current password matches whats in DB, if true, change password
+                if($this->profile_model->verifyPass($form_data['old_password'])){
+                    $this->profile_model->changePassword($form_data['new_password']);
+                    $this->load->view('profiles/success');
+                } else {
+                    // if current password doesn't match, go back to form and show error
+                    $data['error'] = 'Current Password Incorrect';
+                    $this->load->view('profiles/changePass', $data);
+                }
+
+            } else {
+                //if validation doesn't pass, go back to form and show form errors 
+                $this->load->view('profiles/changePass', $data);
+            }
+         } else {
+             // if there is no POST data, render the form page
+             $this->load->view('profiles/changePass', $data);
+         } 
+
+    }
+
+
+
 }
+
+

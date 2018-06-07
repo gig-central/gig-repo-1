@@ -65,6 +65,8 @@ $route['translate_uri_dashes'] = FALSE;
 $route['admin'] = 'admin/index';
 $route['admin/login'] = 'admin/login';
 $route['admin/logout'] = 'admin/logout';
+$route['admin/reset'] = 'admin/requestReset';
+$route['admin/resetpassword'] = 'admin/resetPassword';
 //gig routes
 $route['gig'] = 'gig/index';
 $route['gig/add'] = 'gig/add';
@@ -90,6 +92,7 @@ $route['profile/add'] = 'profile/add';
 $route['profiles/add'] = 'profile/add';
 $route['profile/edit'] = 'profile/edit';
 $route['profiles/edit'] = 'profile/edit';
+$route['profile/changepass'] = 'profile/changePass';
 $route['profiles'] = 'profile';
 $route['profile'] = 'profile';
 $route['profile/success'] = 'profile/success';

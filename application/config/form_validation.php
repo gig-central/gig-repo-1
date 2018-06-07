@@ -154,23 +154,30 @@ $config = array(
             'rules' => 'trim|required|valid_email|is_unique[Profile.email]',
                 array(
                     'is_unique'     => 'This %s already exists.'
-                )
+                ),
             ),
             array(
-            'field' => 'password',
-            'label' => 'Password',
+                'field' => 'bio',
+                'label' => 'bio',
+                'rules' => 'required'
+                )
+        ),
+        'profile/changePass' => array(
+            array(
+            'field' => 'old_password',
+            'label' => 'Current Password',
+            'rules' => 'required'
+            ),
+            array(
+            'field' => 'new_password',
+            'label' => 'New Password',
             'rules' => 'required'
             ),
             array(
             'field' => 're_password',
             'label' => 'Password confirmation',
-            'rules' => 'required|matches[password]'
+            'rules' => 'required|matches[new_password]'
             ),
-            array(
-            'field' => 'bio',
-            'label' => 'bio',
-            'rules' => 'required'
-            )
         )
 );
 
