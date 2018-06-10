@@ -122,6 +122,8 @@ CREATE TABLE `Profile` (
   `first_name` text,
   `last_name` text,
   `email` text,
+  `github` text,
+  `linkedin` text,
   `password` text NOT NULL,
   `picture` varchar(24) DEFAULT NULL,
   `bio` text,
