@@ -150,23 +150,22 @@ class Gig extends CI_Controller
     }#end of function edit
     public function delete($id, $userId)
     {
-
-        $userId = $this->gig_model->get_session_id();
-        $id = $this->uri->segment(3);
-        $data['title'] = 'Delete a gig';
+        $data = array(
+            'title' => 'Delete a Gig',
+            'userId' => $this->gig_model->get_session_id(),
+            'id' => $this->uri->segment(3),
+            'postId' => $this->gig_model->find_post_id($userId),
+        );
         
-        if ($this->session->logged_in == TRUE && $this->gig_model->find_post_id($userId) == TRUE)
+        if ($this->session->logged_in == TRUE && $this->gig_model->post_id($userId) == TRUE)
         {//if logged and user ID matches
-            //here you were basically saying, if deleteGig returns a truthy value, render the success page. The problem was you were calling
-            // the model like '$this->Gig_model->deleteGig'. Should be as seen below all lower case like 'gig_model'.
 
             if($this->gig_model->deleteGig($id)){
-                $this->load->view('gigs/view', $userId);
                 $this->load->view('gigs/delete', $data);
                 
             }else{
                 
-                $this->load->view('gigs/view');
+                $this->load->view('gigs/view', $data);
             }
 
         }
