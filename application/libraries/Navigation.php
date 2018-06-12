@@ -28,7 +28,7 @@ class Navigation
 {
     private $headerMenu = array();  //The array holding all header navigation elements
     private $footerMenu = array();  //The array holding all footer navigation elements
-    private $out;                   // The HTML string to be returned
+    private $interfacePart;                   // The HTML string to be returned
 
     /**
      * contains the data for the navs but does not create it
@@ -40,7 +40,7 @@ class Navigation
     
     function init()
     { // HEADER NAV
-        $menuOne = array(
+        $headerNavigation = array(
             1 => array(
                 'text'		    => 	'Home',
                 'link'		    => 	base_url(),
@@ -114,31 +114,31 @@ class Navigation
                 'show_condition'=>	1,
                 'parent'	    =>	0
             ), */
-        );//end $menuOne
+        );//end $headerNavigation
         #Admin menu
-        $CI =& get_instance();
-        $CI->load->library("session");
-        $CI->load->model('gig_model');
-        $getSessionId = $CI->gig_model->get_session_id();
-        $result = $CI->gig_model->find_post_id($getSessionId);
+        $codeIgniter =& get_instance();
+        $codeIgniter->load->library("session");
+        $codeIgniter->load->model('gig_model');
+        $getSessionId = $codeIgniter->gig_model->get_session_id();
+        $gigResult = $codeIgniter->gig_model->find_post_id($getSessionId);
 
-        if ($CI->session->logged_in == TRUE)
+        if ($codeIgniter->session->logged_in == TRUE)
         {
-            $adProfile = array(
+            $editProfile = array(
                 'text'		     => 	'Edit Profile',
                 'link'		     => 	base_url() . 'profiles/edit',
                 'show_condition' =>	    1,
                 'parent'	     => 	8
             );
 
-            $adVenues = array(
+            $editVenues = array(
                 'text'		     => 	'Edit Venues',
                 'link'		     => 	base_url() . 'venues/edit',
                 'show_condition' =>	    1,
                 'parent'	     =>	    5
             );
             
-            $adGig = array(
+            $editGig = array(
                 'text'		     => 	'Edit Gig',
                 'link'		     => 	base_url() . 'gig/edit',
                 //'Edit' menu is hidden
@@ -147,10 +147,10 @@ class Navigation
             );
             
             //If user id matches id stored in a post, 
-            //change the value in 'show_condition' for $adGig to show 'Edit' menu
-            if($result == true)
+            //change the value in 'show_condition' for $editGig to show 'Edit' menu
+            if($gigResult == true)
             {
-                $adGig['show_condition'] = 1;
+                $editGig['show_condition'] = 1;
             } 
 
             $login = array(
@@ -161,7 +161,7 @@ class Navigation
                 );
 
             //adding $login to show the user loggin status
-            array_push($menuOne,$adProfile,$adVenues,$adGig,$login);
+            array_push($headerNavigation,$editProfile,$editVenues,$editGig,$login);
 
         } else { 
             $login = array(
@@ -170,11 +170,11 @@ class Navigation
                     'show_condition'=>	1,
                     'parent'	    =>	0
             );   
-            array_push($menuOne,$login);
+            array_push($headerNavigation,$login);
         }
         
         # FOOTER NAV
-        $menuTwo = array(
+        $footerNavigation = array(
             1 => array(
                 'text'		    => 	'About',
                 'link'		    => 	base_url() . 'pages/about',
@@ -200,10 +200,10 @@ class Navigation
                 'parent'	    =>	0
             ),
             
-        );//end $menuTwo
-        array_push($menuTwo,$login);
-        $this->setHeaderMenu($menuOne);
-        $this->setFooterMenu($menuTwo);
+        );//end $footerNavigation
+        array_push($footerNavigation,$login);
+        $this->setHeaderMenu($headerNavigation);
+        $this->setFooterMenu($footerNavigation);
     }// end function init
 
 /**
@@ -227,7 +227,7 @@ class Navigation
  */
     function setHeaderMenu($myMenu)
     {
-        $CI =& get_instance();
+        $codeIgniter =& get_instance();
         $this->headerMenu = $myMenu;
     }//end setHeaderMenu()
 
@@ -241,7 +241,7 @@ class Navigation
 
     function setFooterMenu($myMenu)
     {
-        $CI =& get_instance();
+        $codeIgniter =& get_instance();
         $this->footerMenu = $myMenu;
     }// end setFooterMenu()
 
@@ -255,45 +255,45 @@ class Navigation
 
     public function loadHeader($selected = null)
     {  
-        $out = '<ul class="nav navbar-nav">';
-        foreach ( $this->headerMenu as $i=>$arr )
+        $interfacePart = '<ul class="nav navbar-nav">';
+        foreach ( $this->headerMenu as $iterator=>$headerOrFooter )
         {
-            if ( is_array ( $this->headerMenu[ $i ] ) ) 
+            if ( is_array ( $this->headerMenu[ $iterator ] ) ) 
             {//must be by construction but let's keep the errors home
-                if ( $this->headerMenu[ $i ] [ 'show_condition' ] && $this->headerMenu [ $i ] [ 'parent' ] == 0 ) 
+                if ( $this->headerMenu[ $iterator ] [ 'show_condition' ] && $this->headerMenu [ $iterator ] [ 'parent' ] == 0 ) 
                 {//are we allowed to see this menu?
                     // Set class for current nav item - Binary safe case-insensitive string comparison
-                    (strcasecmp($this->headerMenu[ $i ] [ 'text' ], $selected) == 0 ) ? $class = "active" : $class = "";
-                    if($this->hasChildren($i))
+                    (strcasecmp($this->headerMenu[ $iterator ] [ 'text' ], $selected) == 0 ) ? $class = "active" : $class = "";
+                    if($this->hasChildren($iterator))
                     {
                         $class .= "dropdown";
-                        $out .= "<li class=\"" . $class . "\">";
-                        $out .= "<a href=\"" . $this->headerMenu [ $i ] [ 'link' ] . "\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">";
-                        $out .= $this->headerMenu [ $i ] [ 'text' ];
-                        $out .= '<b class="caret"></b>';
-                        $out .= '</a>';
-                        $out .= $this->getChildren ( $i ); //loop through children
-                        $out .= '</li>' . "\n";
+                        $interfacePart .= "<li class=\"" . $class . "\">";
+                        $interfacePart .= "<a href=\"" . $this->headerMenu [ $iterator ] [ 'link' ] . "\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">";
+                        $interfacePart .= $this->headerMenu [ $iterator ] [ 'text' ];
+                        $interfacePart .= '<b class="caret"></b>';
+                        $interfacePart .= '</a>';
+                        $interfacePart .= $this->getChildren ( $iterator ); //loop through children
+                        $interfacePart .= '</li>' . "\n";
                     } else {
-                        $out .= "<li class=\"" . $class . "\">";
-                        if($this->headerMenu [ $i ] [ 'link' ]!=null)	
+                        $interfacePart .= "<li class=\"" . $class . "\">";
+                        if($this->headerMenu [ $iterator ] [ 'link' ]!=null)	
                         {
-                            $out .= "<a href=\"" . $this->headerMenu [ $i ] [ 'link' ] . "\">";
-                            $out .= $this->headerMenu [ $i ] [ 'text' ];
-                            $out .= '</a>';
+                            $interfacePart .= "<a href=\"" . $this->headerMenu [ $iterator ] [ 'link' ] . "\">";
+                            $interfacePart .= $this->headerMenu [ $iterator ] [ 'text' ];
+                            $interfacePart .= '</a>';
                         } else {
-                            $out .= "<span>".$this->headerMenu [ $i ] [ 'text' ]."</span>";
+                            $interfacePart .= "<span>".$this->headerMenu [ $iterator ] [ 'text' ]."</span>";
                         }
-                        $out .= '</li>' . "\n";
+                        $interfacePart .= '</li>' . "\n";
                     }
                 }
             } else {
-                die ( sprintf ( 'menu nr %s must be an array', $i ) );
+                die ( sprintf ( 'menu nr %s must be an array', $iterator ) );
             }
         }//end foreach
 
-        $out .= '</ul>';
-        return $out;
+        $interfacePart .= '</ul>';
+        return $interfacePart;
     }// end public function loadHeader()
 
     
@@ -306,9 +306,9 @@ class Navigation
  */
     private function hasChildren($menu_id)
     {
-        foreach ( $this->headerMenu as $i=>$arr )
+        foreach ( $this->headerMenu as $iterator=>$headerOrFooter )
         {
-            if ( $this->headerMenu [ $i ] [ 'show_condition' ] && $this->headerMenu [ $i ] [ 'parent' ] == $menu_id ) 
+            if ( $this->headerMenu [ $iterator ] [ 'show_condition' ] && $this->headerMenu [ $iterator ] [ 'parent' ] == $menu_id ) 
             {
                 return TRUE;
             }
@@ -324,23 +324,23 @@ class Navigation
  * @todo none
  */
 
-    private function getChildren ( $el_id )
+    private function getChildren ( $parent_id )
     {
         $has_subcats = FALSE;
-        $out  = '';
-        $out .= "\n".'	<ul class="dropdown-menu">' . "\n";
+        $interfacePart  = '';
+        $interfacePart .= "\n".'	<ul class="dropdown-menu">' . "\n";
         
-        foreach ( $this->headerMenu as $i=>$arr )
+        foreach ( $this->headerMenu as $iterator=>$headerOrFooter )
         {
-            if ( $this->headerMenu [ $i ] [ 'show_condition' ] && $this->headerMenu [ $i ] [ 'parent' ] == $el_id ) 
+            if ( $this->headerMenu [ $iterator ] [ 'show_condition' ] && $this->headerMenu [ $iterator ] [ 'parent' ] == $parent_id ) 
             {//are we allowed to see this menu?
                 $has_subcats = TRUE;
-                $out .= "<li><a href=\"{$this->headerMenu[ $i ][ 'link' ]}\">{$this->headerMenu [ $i ] [ 'text' ]}</a>" . $this->getChildren ( $this->headerMenu, $i ) . "</li>";
+                $interfacePart .= "<li><a href=\"{$this->headerMenu[ $iterator ][ 'link' ]}\">{$this->headerMenu [ $iterator ] [ 'text' ]}</a>" . $this->getChildren ( $this->headerMenu, $iterator ) . "</li>";
             }
         }//end foreach
         
-        $out .= '	</ul>'."\n";
-        return ( $has_subcats ) ? $out : FALSE;
+        $interfacePart .= '	</ul>'."\n";
+        return ( $has_subcats ) ? $interfacePart : FALSE;
     }// end function getChildren()
 
 /**
@@ -352,47 +352,47 @@ class Navigation
  */
     public function loadFooter($selected = null)
     {
-		$out = '<ul class="nav navbar-nav">';
-		foreach ( $this->footerMenu as $i=>$arr )
+		$interfacePart = '<ul class="nav navbar-nav">';
+		foreach ( $this->footerMenu as $iterator=>$headerOrFooter )
 		{
-			if ( is_array ( $this->footerMenu[ $i ] ) ) 
+			if ( is_array ( $this->footerMenu[ $iterator ] ) ) 
             {//must be by construction but let's keep the errors home
-				if ( $this->footerMenu[ $i ] [ 'show_condition' ] && $this->footerMenu [ $i ] [ 'parent' ] == 0 )
+				if ( $this->footerMenu[ $iterator ] [ 'show_condition' ] && $this->footerMenu [ $iterator ] [ 'parent' ] == 0 )
 				{//are we allowed to see this menu?
                     
 					// Set class for current nav item -- Binary safe case-insensitive string comparison
-					(strcasecmp($this->footerMenu[ $i ] [ 'text' ], $selected) == 0 ) ? $class = "active" : $class = "";
+					(strcasecmp($this->footerMenu[ $iterator ] [ 'text' ], $selected) == 0 ) ? $class = "active" : $class = "";
 
-					if($this->hasChildrenFooter($i))
+					if($this->hasChildrenFooter($iterator))
 					{
 						$class .=" dropdown";
-						$out .= "<li class=\"" . $class . "\">";
-						$out .= "<a href=\"" . $this->footerMenu [ $i ] [ 'link' ] . "\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">";
-						$out .= $this->footerMenu [ $i ] [ 'text' ];
-						$out .= '<b class="caret"></b>';
-						$out .= '</a>';
-						$out .= $this->getChildrenFooter ( $i ); //loop through children
-						$out .= '</li>' . "\n";
+						$interfacePart .= "<li class=\"" . $class . "\">";
+						$interfacePart .= "<a href=\"" . $this->footerMenu [ $iterator ] [ 'link' ] . "\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">";
+						$interfacePart .= $this->footerMenu [ $iterator ] [ 'text' ];
+						$interfacePart .= '<b class="caret"></b>';
+						$interfacePart .= '</a>';
+						$interfacePart .= $this->getChildrenFooter ( $iterator ); //loop through children
+						$interfacePart .= '</li>' . "\n";
 					} else {
-						$out .= "<li class=\"" . $class . "\">";
-						if($this->footerMenu [ $i ] [ 'link' ]!=null)	
+						$interfacePart .= "<li class=\"" . $class . "\">";
+						if($this->footerMenu [ $iterator ] [ 'link' ]!=null)	
                         {
-							$out .= "<a href=\"" . $this->footerMenu [ $i ] [ 'link' ] . "\">";
-							$out .= $this->footerMenu [ $i ] [ 'text' ];
-							$out .= '</a>';
+							$interfacePart .= "<a href=\"" . $this->footerMenu [ $iterator ] [ 'link' ] . "\">";
+							$interfacePart .= $this->footerMenu [ $iterator ] [ 'text' ];
+							$interfacePart .= '</a>';
 						} else {
-							$out .= "<span>".$this->footerMenu [ $i ] [ 'text' ]."</span>";
+							$interfacePart .= "<span>".$this->footerMenu [ $iterator ] [ 'text' ]."</span>";
 						}
-						$out .= '</li>' . "\n";
+						$interfacePart .= '</li>' . "\n";
 					}
 				}
 			} else {
-				die ( sprintf ( 'menu nr %s must be an array', $i ) );
+				die ( sprintf ( 'menu nr %s must be an array', $iterator ) );
 			}
 		}//end foreach
 
-		$out .= '</ul>';
-		return $out;
+		$interfacePart .= '</ul>';
+		return $interfacePart;
 	}// end function loadFooter()
 
 /**
@@ -404,9 +404,9 @@ class Navigation
  */
     private function hasChildrenFooter($menu_id)
 	{
-		foreach ( $this->footerMenu as $i=>$arr )
+		foreach ( $this->footerMenu as $iterator=>$headerOrFooter )
         {
-			if ( $this->footerMenu [ $i ] [ 'show_condition' ] && $this->footerMenu [ $i ] [ 'parent' ] == $menu_id ) 
+			if ( $this->footerMenu [ $iterator ] [ 'show_condition' ] && $this->footerMenu [ $iterator ] [ 'parent' ] == $menu_id ) 
             {
 				return TRUE;
 			}
@@ -423,22 +423,22 @@ class Navigation
  * @return adds a class of dropdown-menu to the nav item 
  * @todo none
  */
-    private function getChildrenFooter ( $el_id )
+    private function getChildrenFooter ( $parent_id )
 	{
 		$has_subcats = FALSE;
-		$out  = '';
-		$out .= "\n".'	<ul class="dropdown-menu">' . "\n";
+		$interfacePart  = '';
+		$interfacePart .= "\n".'	<ul class="dropdown-menu">' . "\n";
         
-		foreach ( $this->footerMenu as $i=>$arr )
+		foreach ( $this->footerMenu as $iterator=>$headerOrFooter )
         {
-			if ( $this->footerMenu [ $i ] [ 'show_condition' ] && $this->footerMenu [ $i ] [ 'parent' ] == $el_id ) 
+			if ( $this->footerMenu [ $iterator ] [ 'show_condition' ] && $this->footerMenu [ $iterator ] [ 'parent' ] == $parent_id ) 
             {//are we allowed to see this menu?
 				$has_subcats = TRUE;
-				$out .= "<li><a href=\"{$this->footerMenu[ $i ][ 'link' ]}\">{$this->footerMenu [ $i ] [ 'text' ]}</a>" . $this->getChildrenFooter ( $this->footerMenu, $i ) . "</li>";
+				$interfacePart .= "<li><a href=\"{$this->footerMenu[ $iterator ][ 'link' ]}\">{$this->footerMenu [ $iterator ] [ 'text' ]}</a>" . $this->getChildrenFooter ( $this->footerMenu, $iterator ) . "</li>";
 			}
 		}// end foreach
         
-		$out .= '	</ul>'."\n";
-		return ( $has_subcats ) ? $out : FALSE;
+		$interfacePart .= '	</ul>'."\n";
+		return ( $has_subcats ) ? $interfacePart : FALSE;
 	}// end function getChildrenFooter
 }// end class Navigation
