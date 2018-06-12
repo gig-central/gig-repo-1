@@ -148,7 +148,7 @@ class Gig extends CI_Controller
                 redirect("admin/login");
         }      
     }#end of function edit
-    public function delete($id)
+    public function delete($id, $userId)
     {
 
         $userId = $this->gig_model->get_session_id();
@@ -161,10 +161,12 @@ class Gig extends CI_Controller
             // the model like '$this->Gig_model->deleteGig'. Should be as seen below all lower case like 'gig_model'.
 
             if($this->gig_model->deleteGig($id)){
-                $this->load->view('gigs/delete', $data, $result);
+                $this->load->view('gigs/view', $userId);
+                $this->load->view('gigs/delete', $data);
                 
             }else{
-                echo '<p>error</p>';
+                
+                $this->load->view('gigs/view');
             }
 
         }
