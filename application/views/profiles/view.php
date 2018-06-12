@@ -11,6 +11,8 @@ $this->load->view($this->config->item('theme') . 'header');
         <div class="col-sm-8">
             <h3><?php echo $profile['first_name']." ". $profile['last_name'] ?></h3>
 			<p><?php echo $profile['email'] ?></p>
+			<p><?php echo $profile['linkedin'] ?></p>
+			<p><?php echo $profile['github'] ?></p>
             <p><?php echo $profile['bio'] ?></p>   
         </div>
 </div>
