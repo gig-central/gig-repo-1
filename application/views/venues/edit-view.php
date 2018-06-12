@@ -14,7 +14,7 @@
 * @todo none
 */
 
-
+$this->load->view($this->config->item('theme') . 'headerjqueryui'); 
 $this->load->view($this->config->item('theme').'header');
 $attributes = array('class'=>'form-horizontal', 'role'=>'form');
 //$this->load->library('passphraseclass');
@@ -91,7 +91,7 @@ $attributes = array('class'=>'form-horizontal', 'role'=>'form');
                     </div>
             </div>
            <div class="form-group">
-            <label for="VenueHours" class="col-lg-3 control-label"><em>Hours</em></label><br>
+            <label for="VenueHours" class="col-lg-3 control-label"><em>Hours</em></label>
                 <div class="col-md-6">
                   <input type="text" class="form-control" id="VenueHours" name="VenueHours" value="<?=$venue['VenueHours']?>">
                 </div>
@@ -117,8 +117,11 @@ $attributes = array('class'=>'form-horizontal', 'role'=>'form');
            </div>-->
            <div class="form-group">
             <label for="VenueExpirationDate" class="col-lg-3 control-label"><em>Venue Expiration Date</em></label><br>
-                <div class="col-md-6">
-                  <input type="text" class="form-control" id="VenueExpirationDate" name="VenueExpirationDate" value="<?=$venue['VenueExpirationDate']?>">
+                <div class="col-md-6"> 
+                  <?php $attrib = 'id="VenueExpirationDate" placeholder="Venue Expiration Date"';  
+                    echo form_input('VenueExpirationDate', set_value('VenueExpirationDate'), $attrib); ?> 
+                    
+                 <!-- <input type="text" class="form-control hasDatepicker" id="VenueExpirationDate" name="VenueExpirationDate" placeholder="Venue Expiration Date" value="<?php echo set_value('VenueExpirationDate'); ?>"> -->
                 </div>
            </div>
         </fieldset>
@@ -214,4 +217,4 @@ $attributes = array('class'=>'form-horizontal', 'role'=>'form');
       </fieldset>
     </div>
 </div>
-<?php $this->load->view($this->config->item('theme').'footer'); ?>
+<?php $this->load->view($this->config->item('theme') . 'footerjqueryui'); 
