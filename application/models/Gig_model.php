@@ -208,7 +208,7 @@ class Gig_model extends CI_Model {
         $this->db->update('Gigs', $data2);
                  return TRUE;    
     }#end of edit_gigs
-    public function deleteGig($id, $userId)
+    public function deleteGig($id, $userId, $postId)
     {
         // here, 'id' was your first parameter when it should be looking for the GigID column in the table.
         $this->db->where('GigID', $id);
