@@ -169,18 +169,6 @@ class Gig_model extends CI_Model {
         //}
 
     }#end of add_gig()
-    
-    public function deleteGig($id)
-    {
-        // here, 'id' was your first parameter when it should be looking for the GigID column in the table.
-        $this->db->where('GigID', $id);
-        //you didn't specify which table the where clause should be deleting from.
-        $this->db->delete('Gigs');
-        
-        return $this->db->affected_rows();
-    }
-
-
     public function searchGigs($keyword = null)
     {
         if (is_null($keyword))
@@ -220,7 +208,15 @@ class Gig_model extends CI_Model {
         $this->db->update('Gigs', $data2);
                  return TRUE;    
     }#end of edit_gigs
-    
+    public function deleteGig($id, $userId)
+    {
+        // here, 'id' was your first parameter when it should be looking for the GigID column in the table.
+        $this->db->where('GigID', $id);
+        //you didn't specify which table the where clause should be deleting from.
+        $this->db->delete('Gigs');
+        
+        return $this->db->affected_rows();
+    }
     public function get_session_id()
     {//find userId in the session and return the value      
         foreach ($_SESSION as $session) {
@@ -246,8 +242,6 @@ class Gig_model extends CI_Model {
                  }
          return $postExist;           
     }#end of find_post_id
-    
-    
     public function get_table($table, $id, $data)
     {
         $this->db->select('*');

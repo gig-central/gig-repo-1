@@ -96,13 +96,11 @@
                 
             </li>
             
-            <?php echo $userId, $postId; ?>
-            
-            <?php if($userId == TRUE && postId == TRUE) : ?>
+            <?php if($this->session->logged_in == TRUE && $this->gig_model->find_post_id($userId) == TRUE) : ?>
                     <li><a class="btn btn-warning" href="<?php echo $gig["Website"]; ?>">Edit</a></li>';
                     <li><a class="btn btn-warning " href="<?php echo site_url("gig/delete/".$gig["GigID"])?>">Delete</a></li>
 
-            <?php elseif($userId == TRUE && $postId == FALSE) : ?>
+            <?php elseif ($this->session->logged_in == TRUE && $this->gig_model->find_post_id($userId) == FALSE) : ?>
                     <li><a class="btn btn-warning " href="<?php echo $gig["Website"]; ?>">Apply</a></li>
             
             <?php else : ?>

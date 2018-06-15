@@ -148,7 +148,7 @@ class Gig extends CI_Controller
                 redirect("admin/login");
         }      
     }#end of function edit
-    public function delete($id, $userId)
+    public function delete()
     {
         $data = array(
             'title' => 'Delete a Gig',
@@ -157,19 +157,9 @@ class Gig extends CI_Controller
             'postId' => $this->gig_model->find_post_id($userId),
         );
         
-        if ($this->session->logged_in == TRUE && $this->gig_model->post_id($userId) == TRUE)
-        {//if logged and user ID matches
-
-            if($this->gig_model->deleteGig($id)){
                 $this->load->view('gigs/delete', $data);
-                
-            }else{
-                
                 $this->load->view('gigs/view', $data);
-            }
-
-        }
-    }#end function delete()
+            }#end function delete()
         
     public function add()
     {
