@@ -150,13 +150,18 @@ class Gig extends CI_Controller
     }#end of function edit
     public function delete($userId)
     {
-        $data['title'] = 'Delete a Gig';
-        $data['userId'] = $this->gig_model->get_session_id();
-        $data['postId'] = $this->gig_model->find_post_id($userId);
-        $data['id'] = $this->uri->segment(3);
+        $id = $this->uri->segment(3);
         
-        $this->load->view('gigs/view', $data);
-        $this->load->view('gigs/delete', $data);
+        $data2['title'] = 'Delete a Gig';
+        $data['userId'] = $this->gig_model->get_session_id();
+        $data['findPostId'] = $this->gig_model->find_post_id($userId);
+        
+        if($this->gig_model->deleteGig($id)){
+            $this->load->view('gigs/delete', $data2);
+        }else{
+            
+            $this->load->view('gigs/view', $data);
+        }
         
         
     }#end function delete()

@@ -95,16 +95,13 @@
                 <a href="tel:<?php echo $gig['Phone']; ?>"><?php echo $gig['Phone']; ?></a>
                 
             </li>
-            <?php var_dump($this->session->logged_in);?>
-            <?php if($this->session->logged_in == TRUE && $this->gig_model->find_post_id($userId) == TRUE) : ?>
-                <li><a class="btn btn-warning" href="<?php echo $gig["Website"]; ?>">Edit</a></li>';
+            <?php if($this->session->logged_in == TRUE) : ?>
+                <li><a class="btn btn-warning" href="<?php echo site_url("gig/edit/".$gig["GigID"])?>">Edit</a></li>
+            `<br>
                 <li><a class="btn btn-warning " href="<?php echo site_url("gig/delete/".$gig["GigID"])?>">Delete</a></li>
 
-            <?php elseif ($this->session->logged_in == TRUE && $postId == FALSE) : ?>
+            <?php elseif ($this->session->logged_in == FALSE) : ?>
                 <li><a class="btn btn-warning " href="<?php echo $gig["Website"]; ?>">Apply</a></li>
-            
-            <?php else : ?>
-            <li><a class="btn btn-warning " href="<?php echo $gig["Website"]; ?>">Apply</a></li>
             <?php endif; ?>
         </ul>
     </div>
