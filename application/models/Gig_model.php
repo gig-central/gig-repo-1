@@ -210,11 +210,10 @@ class Gig_model extends CI_Model {
     }#end of edit_gigs
     public function deleteGig($id)
     {
-        // here, 'id' was your first parameter when it should be looking for the GigID column in the table.
+        //get the id of the gig from the database
         $this->db->where('GigID', $id);
-        //you didn't specify which table the where clause should be deleting from.
+        //delete from the Gigs table
         $this->db->delete('Gigs');
-        
         return $this->db->affected_rows();
     }
     public function get_session_id()
@@ -227,8 +226,9 @@ class Gig_model extends CI_Model {
             }       
     }#end of get_session_id     
     public function list_all_posts(){
-        
+        //        $this->db->
     }#end of list_all_posts
+    
     public function find_post_id($userId)
     {    
         $postExist = false;

@@ -61,6 +61,7 @@ class Gig extends CI_Controller
 
     public function view($slug = NULL)
     {//begin function index
+        $data['userId'] = $this->gig_model->get_session_id();
         $data['gig'] = $this->gig_model->getGigs($slug);
         if (empty($data['gig']))
         {
@@ -148,21 +149,15 @@ class Gig extends CI_Controller
                 redirect("admin/login");
         }      
     }#end of function edit
-    public function delete($userId)
+    public function delete($id)
     {
+        $userId = $this->gig_model->get_session_id();
+        
         $id = $this->uri->segment(3);
-        
-        $data2['title'] = 'Delete a Gig';
-        $data['userId'] = $this->gig_model->get_session_id();
-        $data['findPostId'] = $this->gig_model->find_post_id($userId);
-        
-        if($this->gig_model->deleteGig($id)){
-            $this->load->view('gigs/delete', $data2);
-        }else{
-            
-            $this->load->view('gigs/view', $data);
+        $data['title'] = 'Delete a Gig';
+
+        if($this->gig_model->deleteGig($id)){       $this->load->view('gigs/delete', $data);
         }
-        
         
     }#end function delete()
         
