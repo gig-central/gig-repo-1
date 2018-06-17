@@ -159,6 +159,8 @@ class Profile extends CI_Controller {
                 'password'   => set_value('password'),
                 'picture'    => $pic_id,
                 'email'      => set_value('email'),
+                'linkedin' =>set_value('linkedin'),
+                'github' => set_value('github'), 
                 'bio'  => set_value('bio'),
                 'subscribed_to_newsletters' => set_value('subscribed_to_newsletters')
                 
@@ -200,6 +202,10 @@ class Profile extends CI_Controller {
                 $data['last_name'] = $this->session->last_name;
                 $data['email'] = $this->session->email;
                 $data['picture'] = $this->session->picture;
+                $data['github'] = $this->session->github;
+                $data['linkedin'] = $this->session->linkedin;
+                //add github
+                //add linkedin
                 $data['bio'] = $this->session->bio;
                  
             
@@ -215,6 +221,8 @@ class Profile extends CI_Controller {
                 $this->form_validation->set_rules('last_name', 'Last Name', 'required');
                 $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
                 $this->form_validation->set_rules('userfile', 'userfile');
+                //add for github
+                //add for linkedin
                 $this->form_validation->set_rules('bio', 'bio', 'required');    
                   
             if ($this->form_validation->run() == FALSE) // validation hasn't been passed
@@ -264,6 +272,8 @@ class Profile extends CI_Controller {
                 'last_name'  => set_value('last_name'),
                 'picture' => $pic_id,
                 'email'      => set_value('email'),
+                //'linkedin' => set_value('linkedin'),
+                //'github' => set_value('github'),
                 'bio'  => set_value('bio'),
                 'subscribed_to_newsletters' => set_value('subscribed_to_newsletters')
             );

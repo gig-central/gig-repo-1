@@ -92,7 +92,7 @@ class Profile_model extends CI_Model
 	 * @return void 
 	 * @todo none
 	 */ 
-    
+    //is setProfiles() being used? Did a search could not find anything
     public function setProfiles()
     {
          $this->load->helper('url');
@@ -171,7 +171,9 @@ class Profile_model extends CI_Model
                         'status'=> $row->i_am_a,
                         'first_name'=> $row->first_name,
                         'last_name'=> $row->last_name,
-                        'picture'=> $row->picture, 
+                        'picture'=> $row->picture,
+                        //add github 
+                        //add linkedin
                         'bio'     => $row->bio
                     );
                         $this->session->set_userdata($newdata); 
