@@ -36,7 +36,29 @@ $attributes = array('class'=>'form-horizontal', 'role'=>'form');
                 <label for="VenueName" class="col-lg-3 control-label" required><em>Venue Name</em></label>
                     <div class="col-md-6">
                         
-                         <select class="form-control" id="state" name="state">
+              <?php echo form_error('VenueName'); ?>
+                        <input type="text" class="form-control" id="VenueName" name="VenueName" placeholder="Venue Name" value="<?php echo set_value('VenueName'); ?>">
+                    </div>
+            </div>
+
+            <div class="form-group">
+                <label for="VenueAddress" class="col-lg-3 control-label" required><em>Venue Address</em></label>
+                    <div class="col-md-6">
+                        <?php echo form_error('VenueAddress'); ?>
+                        <input type="text" class="form-control" id="VenueAddress" name="VenueAddress" placeholder="Venue Address" value="<?php echo set_value('VenueAddress'); ?>">
+                    </div>
+            </div>
+            <div class="form-group">
+                <label for="City" class="col-lg-3 control-label"><em>City</em></label>
+                    <div class="col-md-6">
+                        <?php echo form_error('City'); ?>
+                        <input type="text" class="form-control" id="City" name="City" placeholder="City" value="<?php echo set_value('City'); ?>">
+                    </div>
+            </div>
+            <div class="form-group">
+                <label for="State" class="col-lg-3 control-label"><em>State</em></label>
+                    <div class="col-md-6">
+                       <select class="form-control" id="state" name="state">
                         <option value="">State</option>
                         <option value="AK">Alaska</option>
                         <option value="AL">Alabama</option>
@@ -92,28 +114,6 @@ $attributes = array('class'=>'form-horizontal', 'role'=>'form');
                         <option value="WY">Wyoming</option>
                     </select>
 
-                    </div>
-            </div>
-
-            <div class="form-group">
-                <label for="VenueAddress" class="col-lg-3 control-label" required><em>Venue Address</em></label>
-                    <div class="col-md-6">
-                        <?php echo form_error('VenueAddress'); ?>
-                        <input type="text" class="form-control" id="VenueAddress" name="VenueAddress" placeholder="Venue Address" value="<?php echo set_value('VenueAddress'); ?>">
-                    </div>
-            </div>
-            <div class="form-group">
-                <label for="City" class="col-lg-3 control-label"><em>City</em></label>
-                    <div class="col-md-6">
-                        <?php echo form_error('City'); ?>
-                        <input type="text" class="form-control" id="City" name="City" placeholder="City" value="<?php echo set_value('City'); ?>">
-                    </div>
-            </div>
-            <div class="form-group">
-                <label for="State" class="col-lg-3 control-label"><em>State</em></label>
-                    <div class="col-md-6">
-                        <?php echo form_error('State'); ?>
-                        <input type="text" class="form-control" id="State" name="State" placeholder="State" value="<?php echo set_value('State'); ?>">
                         
                         
                     </div>
