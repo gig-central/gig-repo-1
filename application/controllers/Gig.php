@@ -46,7 +46,7 @@ class Gig extends CI_Controller
     public function __construct()
     {//begin constructor
         parent::__construct();
-        $this->load->model('gig_model');
+        $this->load->model('Gig_model');
         $this->config->set_item('banner', 'Global News Banner');
         $this->config->set_item('nav-active', 'Gigs');//sets active class on all gig children
     }#end constructor
@@ -54,9 +54,6 @@ class Gig extends CI_Controller
     public function index()
     {//begin function index
         $data['gigs'] = $this->gig_model->getGigs();
-        $data['gigs_outline'] = $this->gig_model->uniqueFromArray($data['gigs'], 'GigOutline');
-        $data['gigs_city'] = $this->gig_model->uniqueFromArray($data['gigs'], 'CompanyCity');
-        $data['gigs_name'] = $this->gig_model->uniqueFromArray($data['gigs'], 'Name');
         $data['title']= 'Gigs';
         
         $this->load->view('gigs/index', $data);
@@ -64,6 +61,7 @@ class Gig extends CI_Controller
 
     public function view($slug = NULL)
     {//begin function index
+        $data['userId'] = $this->gig_model->get_session_id();
         $data['gig'] = $this->gig_model->getGigs($slug);
         if (empty($data['gig']))
         {
@@ -73,59 +71,18 @@ class Gig extends CI_Controller
         
         $this->load->view('gigs/view', $data);
     }#end function view
-
-    public function add()
-    {
-        $this->load->helper('form');
-        $this->load->library('form_validation');
-        $this->form_validation->set_message('check_dropdown', 'You need to select an employment type.');
-        $data['title'] = 'Add a new gig';
-        
-        if ($this->form_validation->run() == FALSE)
-        {//create form to add gigs
-            $this->load->view('gigs/add', $data); 
-        }
-        else
-        {//this processes
-            $data['gigs'] = $this->gig_model->getGigs();
-            $data['title']= 'Gigs';
-            $data['success'] = 'created';
-            $this->gig_model->addGig();
-            $this->load->view('gigs/success', $data);
-
-        }
-    }#end function add()
-    public function search()
-    {
-        $keyword = $this->input->post('keyword');
-        $data['gigs'] = $this->gig_model->searchGigs($keyword);
-        $data['title']= 'Searching for: '.$keyword;
-
-        $this->load->view('gigs/search', $data);
-    }
-    
-    public function filter()
-    {
-        $keyword = $this->input->post('keyword');
-        //$keyword = $this->input->post('catagory');
-        $data['gigs'] = $this->gig_model->getCatagory($keyword);
-        $data['title']= 'Searching for: '.substr($keyword, 2);
-
-        $this->load->view('gigs/filter', $data);
-    }
-    
     public function edit(){
-        
+
         $this->load->helper('form');
         $this->load->library('form_validation');
         $this->form_validation->set_message('check_dropdown', 'You need to select an employment type.');
         $data['title'] = 'Edit Gigs';
-        
+
         $userId = $this->gig_model->get_session_id();
         $id = $this->gig_model->get_session_id();
         $companyId = $this->gig_model->find_id_in_table('CompanyID', 'Gigs', 'id', $id); 
         $companyContactId = $this->gig_model->find_id_in_table('CompanyContactID', 'CompanyContact', 'CompanyID', $companyId);
-        
+
         if ($this->session->logged_in == TRUE)
         {//if logged get data of the gig(s) that matches userId from db
             if ($this->gig_model->find_post_id($userId) == TRUE)
@@ -134,10 +91,10 @@ class Gig extends CI_Controller
                 {//create form to edit gigs
                     //Get CompanyContact
                     $data['single_company_contact'] = $this->gig_model->get_table('CompanyContact', 'CompanyContactID', $companyContactId);
-                    
+
                     //Get Company                 
                     $data['single_company'] = $this->gig_model->get_table('Company', 'CompanyID', $companyId);
-                    
+
                     //Get gigs
                     $data['single_gig'] = $this->gig_model->get_table('Gigs', 'id', $id);
                     $this->load->view('gigs/edit', $data);
@@ -158,16 +115,16 @@ class Gig extends CI_Controller
                     'CompanyPhone' => $this->input->post('CompanyPhone'),
                     'Website' => $this->input->post('Website'),
                     );
-                
+
                 $data3= array(
                     'FirstName' => $this->input->post('FirstName'),
                     'LastName' => $this->input->post('LastName'),
                     'Email' => $this->input->post('Email'),
                     'Phone' => $this->input->post('Phone'),
                     );
-                
+
                 $data2 = array(
-                    
+
                     'GigQualify' => strip_tags($this->input->post('GigQualify'),'<p>'),
                     'EmploymentType' => $this->input->post('EmploymentType'),              
                     'GigOutline' => strip_tags($this->input->post('GigOutline'),'<p>'),       
@@ -192,7 +149,48 @@ class Gig extends CI_Controller
                 redirect("admin/login");
         }      
     }#end of function edit
+    public function delete($id)
+    {
+        $userId = $this->gig_model->get_session_id();
+        
+        $id = $this->uri->segment(3);
+        $data['title'] = 'Delete a Gig';
 
+        if($this->gig_model->deleteGig($id)){       $this->load->view('gigs/delete', $data);
+        }
+        
+    }#end function delete()
+        
+    public function add()
+    {
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        $this->form_validation->set_message('check_dropdown', 'You need to select an employment type.');
+        $data['title'] = 'Add a new gig';
+        
+        if ($this->form_validation->run() == FALSE)
+        {//create form to add gigs
+            $this->load->view('gigs/add', $data); 
+        }
+        else
+        {//this processes
+            $data['gigs'] = $this->gig_model->getGigs();
+            $data['title']= 'Gigs';
+            $data['success'] = 'created';
+            $this->gig_model->addGig();
+            $this->load->view('gigs/success', $data);
+
+        }
+    }#end function add()
+    
+    public function search()
+    {
+        $keyword = $this->input->post('keyword');
+        $data['gigs'] = $this->gig_model->searchGigs($keyword);
+        $data['title']= 'Searching for: '.$keyword;
+
+        $this->load->view('gigs/search', $data);
+    }
     public function check_dropdown($post_dropdown){
         return $post_dropdown == '0' ? FALSE : TRUE;
     }

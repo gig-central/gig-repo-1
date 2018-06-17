@@ -169,8 +169,6 @@ class Gig_model extends CI_Model {
         //}
 
     }#end of add_gig()
-
-
     public function searchGigs($keyword = null)
     {
         if (is_null($keyword))
@@ -196,47 +194,6 @@ class Gig_model extends CI_Model {
      * @todo Currently, it only works if the user has only one gig posted. It need to be able to update multiple gigs.
      * @todo Validate data. Currently, when you leave a field blank, it still updates the tables with empty data.
      */
-    
-    public function uniqueFromArray($array, $key) { 
-        $temp_array = array(); 
-        $i = 0; 
-        $key_array = array(); 
-
-        foreach($array as $val) { 
-            if (!in_array($val[$key], $key_array)) { 
-                $key_array[$i] = $val[$key]; 
-                $temp_array[$i] = $val; 
-            } 
-            $i++; 
-        }
-        return $temp_array;
-    }
-    
-    public function getCatagory($keyword)
-    {
-        $result = $keyword;
-        $result_explode = explode('|', $result);
-        $catagory = $result_explode[0];
-        $word = $result_explode[1];
-        
-        $this->db->select('*');
-        $this->db->from('Company');
-        $this->db->join('Gigs', 'Gigs.CompanyID = Company.CompanyID');
-        $this->db->join('CompanyContact', 'Gigs.CompanyID = CompanyContact.CompanyID');
-        switch ($catagory) {
-            case 0:
-                $this->db->like('Gigs.GigOutline', $word);
-                break;
-            case 1:
-                $this->db->like('Company.CompanyCity', $word);
-                break;
-            case 2:
-                $this->db->like('Company.Name', $word);
-                break;
-        }
-        $query = $this->db->get();
-        return $query->result_array();
-    }#end getCatagory()
 
     public function editGigs($companyid, $data, $companyContactId, $data3, $id, $data2)
     {
@@ -251,7 +208,14 @@ class Gig_model extends CI_Model {
         $this->db->update('Gigs', $data2);
                  return TRUE;    
     }#end of edit_gigs
-    
+    public function deleteGig($id)
+    {
+        //get the id of the gig from the database
+        $this->db->where('GigID', $id);
+        //delete from the Gigs table
+        $this->db->delete('Gigs');
+        return $this->db->affected_rows();
+    }
     public function get_session_id()
     {//find userId in the session and return the value      
         foreach ($_SESSION as $session) {
@@ -261,7 +225,10 @@ class Gig_model extends CI_Model {
                 }      
             }       
     }#end of get_session_id     
-
+    public function list_all_posts(){
+        //        $this->db->
+    }#end of list_all_posts
+    
     public function find_post_id($userId)
     {    
         $postExist = false;
@@ -275,8 +242,6 @@ class Gig_model extends CI_Model {
                  }
          return $postExist;           
     }#end of find_post_id
-    
-    
     public function get_table($table, $id, $data)
     {
         $this->db->select('*');
