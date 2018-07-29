@@ -89,5 +89,4 @@
   </div>
 </div>
 
-</div>
 <?php $this->load->view($this->config->item('theme') . 'footer'); ?>
