@@ -31,9 +31,8 @@ $this->load->view($this->config->item('theme') . 'header'); //Loads Bootswatch t
 -->
 
 <div class="container">
-<?php
-echo 'this form has been successfully submitted with all validation being passed.';
-?>
+    <p><?php echo 'You successfully submitted a profile!'; ?><p>
+    <p><?php echo anchor('profiles/','View Profiles'); ?></p>
 </div>
 
 
