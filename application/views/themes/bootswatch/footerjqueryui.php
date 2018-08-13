@@ -13,8 +13,9 @@
     </footer>
 </div>
 
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="<?=base_url();?>public/themes/bootswatch/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <script src="<?=base_url();?>public/themes/bootswatch/js/bootswatch.js"></script>
     <script src="http://beneposto.pl/jqueryrotate/js/jQueryRotateCompressed.js"></script>
     
@@ -40,7 +41,24 @@ $(function() {
         }
     );
 });
-    
+
+$( function() {
+    $( "#dialog" ).dialog({
+      autoOpen: false,
+      show: {
+        effect: "blind",
+        duration: 1000
+      },
+      hide: {
+        effect: "explode",
+        duration: 1000
+      }
+    });
+ 
+    $( "#opener" ).on( "click", function() {
+      $( "#dialog" ).dialog( "open" );
+    });
+});
     
     
 </script>
