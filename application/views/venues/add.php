@@ -18,7 +18,7 @@ $this->load->view($this->config->item('theme') . 'headerjqueryui');
 $this->load->view($this->config->item('theme').'header');
 $attributes = array('class'=>'form-horizontal', 'role'=>'form');
 ?>
-
+  
 <div class="container">
   <div class="col-lg-10">
       <!--error messages for form validation -->
@@ -29,6 +29,8 @@ $attributes = array('class'=>'form-horizontal', 'role'=>'form');
             <fieldset>
                 <div class="form-group">
                 <h1><strong>Add a Startup Venue</strong></h1><br />
+                    <p>Job seekers and startups alike need public places to meet with potential employers and team members. We hope to provide them with great places they can gather and do business. Or, perhaps, to have something delicious to drink and to brainstorm.</p>
+                    <p>Please add your gathering place below. Thanks for the input!</p>
                 <legend><h3><strong>Venue Information</strong></h3></legend>
 
             </div>
@@ -145,7 +147,14 @@ $attributes = array('class'=>'form-horizontal', 'role'=>'form');
                 </div>
            </div>
           <div class="form-group">
-              <label for="VenueTypeKey" class="col-lg-3 control-label"><em>Venue Type</em></label>
+              <label for="VenueTypeKey" class="col-lg-3 control-label"><em>Venue Type </em>
+             <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample1">?</a>   
+            <div class="collapse" id="collapseExample1">
+              <div class="card card-body">
+                This can help people decide whether they want a quiet or active space to get together in.
+              </div>
+            </div>
+              </label>
                   <div class="col-md-6">
                       <select class="form-control" id="VenueTypeKey" name="VenueTypeKey">
                           <option value="select">Select One</option>
@@ -153,7 +162,8 @@ $attributes = array('class'=>'form-horizontal', 'role'=>'form');
                           <option value="2" <?php echo  set_select('VenueTypeKey', '2'); ?>>Library</option>
                           <option value="3" <?php echo  set_select('VenueTypeKey', '3'); ?>>School</option>
                           <option value="4" <?php echo  set_select('VenueTypeKey', '4'); ?>>Community Center</option>
-                          <option value="5" <?php echo  set_select('VenueTypeKey', '5'); ?>>Other</option>
+                          <option value="5" <?php echo  set_select('VenueTypeKey', '5'); ?>>Shared Work Space</option>
+                          <option value="6" <?php echo  set_select('VenueTypeKey', '6'); ?>>Other</option>
                       </select>
                   </div>
                 </div>
@@ -164,7 +174,15 @@ $attributes = array('class'=>'form-horizontal', 'role'=>'form');
                 </div>
            </div>-->
            <div class="form-group">
-            <label for="VenueExpirationDate" class="col-lg-3 control-label"><em>Venue Expiration Date</em></label><br>
+            <label for="VenueExpirationDate" class="col-lg-3 control-label"><em>Venue Expiration Date </em>
+            <a class="btn btn-primary" data-toggle="collapse" href="#VenueExpirationHelp" role="button" aria-expanded="false" aria-controls="collapseExample">?</a>   
+            <div class="collapse" id="VenueExpirationHelp">
+              <div class="VenueExpirationHelp">
+                Will this venue be changing their policies on gathering there any time soon?
+              </div>
+            </div>
+            
+            </label><br>
                 <div class="col-md-6"> 
                   <?php $attrib = 'id="VenueExpirationDate" placeholder="Venue Expiration Date"';  
                     echo form_input('VenueExpirationDate', set_value('VenueExpirationDate'), $attrib); ?> 
@@ -234,6 +252,17 @@ $attributes = array('class'=>'form-horizontal', 'role'=>'form');
                             <input type="radio" name="Outdoor" value="No" <?php echo set_radio('Outdoor', 'No', TRUE); ?>>No
                         </label>
                       </div>
+ <!--                      <div class="form-group">
+                        <label class="radio-inline">
+                            <strong>Separate Meeting Room(s):</strong>
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="MeetRoom" value="Yes" <?php echo set_radio('MeetRoom', 'Yes', TRUE); ?>>Yes
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="MeetRoom" value="No" <?php echo set_radio('MeetRoom', 'No', TRUE); ?>>No
+                        </label>
+                      </div>  -->
                       <div class="form-group">
                         <label class="radio-inline">
                             <strong>Wheelchair Access:</strong>
@@ -256,12 +285,56 @@ $attributes = array('class'=>'form-horizontal', 'role'=>'form');
                             <input type="radio" name="Parking" value="No" <?php echo set_radio('Parking', 'No', TRUE); ?>>No
                         </label>
                       </div>
-                      <div class="border2">
-                      <button type="submit" class="btn btn-default">Submit</button>
-                      </div>
+                      
                </div>
             </div>          
+
+<!--           <div class="form-group">
+              <label for="Ambiance" class="col-lg-3 control-label"><em>Venue Ambiance</em></label>
+                  <div class="col-md-6">
+                      <div class="form-group">
+                          <label class="radio-inline">
+                            <strong>Loud Music:</strong>
+                          </label>
+                          <label class="radio-inline">
+                            <input type="radio" name="Music" value="Yes" <?php echo set_radio('Music', 'Yes', TRUE); ?>>Yes
+                           </label>
+                          <label class="radio-inline">
+                            <input type="radio" name="Music" value="No" <?php echo set_radio('Music', 'No', TRUE); ?>>No
+                          </label>
+                        </div>
+
+                      <div class="form-group">
+                          <label class="radio-inline">
+                            <strong>Loud Conversation:</strong>
+                          </label>
+                          <label class="radio-inline">
+                            <input type="radio" name="Conversation" value="Yes" <?php echo set_radio('Conversation', 'Yes', TRUE); ?>>Yes
+                           </label>
+                          <label class="radio-inline">
+                            <input type="radio" name="Conversation" value="No" <?php echo set_radio('Conversation', 'No', TRUE); ?>>No
+                          </label>
+                        </div>
+
+                      <div class="form-group">
+                          <label class="radio-inline">
+                            <strong>Busy Location:</strong>
+                          </label>
+                          <label class="radio-inline">
+                            <input type="radio" name="Busy" value="Yes" <?php echo set_radio('Busy', 'Yes', TRUE); ?>>Yes
+                           </label>
+                          <label class="radio-inline">
+                            <input type="radio" name="Busy" value="No" <?php echo set_radio('Busy', 'No', TRUE); ?>>No
+                          </label>
+                        </div>
+                        <div class="border2">
+                        <button type="submit" class="btn btn-default">Submit</button>
+                        </div>   
+               </div>
+
+            </div>  -->         
       </fieldset>
+      
     </div>
 </div>
 
