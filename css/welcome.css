@@ -142,10 +142,9 @@ body{
 }
 
 #profile-pics {
-    width: 560px;
-    height: 350px;
+    width: 100%
     border: 1px solid black;
-    opacity: .5;
+    opacity: .6;
 }
 
 
