@@ -141,6 +141,37 @@ body{
     margin-top: 10px !important;
 }
 
+#profile-pics {
+    width: 100%
+    border: 1px solid black;
+    opacity: .6;
+}
+
+
+
+.container .btn {
+    position: absolute;
+    top: 80%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #2c3e50;
+    color: white;
+    font-size: 1.8em;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.container .btn:hover {
+    background-color: black;
+}
+
+
+
+
 #recent-data{
     background-color: #fff;
     position: relative;

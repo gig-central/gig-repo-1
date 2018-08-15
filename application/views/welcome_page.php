@@ -64,6 +64,37 @@ $this->load->view($this->config->item('theme') . 'header');
 
 <div class="clear-both"></div>
 
+<!-- this is for the 'Profile Pictures section on the page' -->
+
+<div class="container col-lg-6">
+<a href="<?=base_url()?>profiles/add">
+<img id="profile-pics"  src="img/profile-create.jpg">     
+    
+   
+    
+    
+</a>
+    <a href="<?=base_url()?>profiles/add">
+ <button class="btn">Create Profile</button>
+    </a>
+</div>   
+    
+
+<div class="container col-lg-6">
+<a href="<?=base_url()?>profiles">
+<img id="profile-pics" src="img/profile-view.jpg">     
+    
+  
+    
+    
+</a>
+<a href="<?=base_url()?>profiles">    
+<button class="btn">View Profiles</button> 
+    </a>
+</div>
+
+
+
 <!-- this is for the 'Recent Posts section on the page' -->
 <div id="data-example" class="main-box-container">
 <div class="column col-lg-8 col-sm-12 col-xs-12">
