@@ -80,7 +80,7 @@
         <label>Company Name: </label>
           <select name="Name">
             <?php foreach ($gigs as $gig): ?>
-              <option value="2|<?=$gig['Name']?>"><?=$gig['Name']?></option>
+              <option value="<?=$gig['Name']?>"><?=$gig['Name']?></option>
             <?php endforeach ?>
             </select>
             </div>
