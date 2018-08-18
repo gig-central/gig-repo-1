@@ -31,7 +31,7 @@
  </div>
             <div class="form-group">
                 <label for="Email" class="col-lg-3 control-label hidden">Email address:</label>
-                <input type="email" class="form-control" id="Email" name="email" placeholder="Name">
+                <input type="email" class="form-control" id="Email" name="email" placeholder="Email">
             </div>
             <?php echo form_error('email'); ?>
             <div class="form-group">
