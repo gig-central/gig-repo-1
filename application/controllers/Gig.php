@@ -165,7 +165,7 @@ class Gig extends CI_Controller
 
     public function add()
     {
-        $this->form_validation->set_message('check_dropdown', 'You need to select an employment type.');
+        //$this->form_validation->set_message('check_dropdown', 'You need to select an employment type.');
 
         $data['title'] = 'Add a New Gig';
 
@@ -198,16 +198,10 @@ class Gig extends CI_Controller
                 //     'PayRate' => set_value('PayRate'),
                 //     'GigCloseDate' => set_value(strip_tags('GigCloseDate','<p>'),
                 //     'GigOutline' => set_value('GigCloseDate'),
-                     'GigQualify' => strip_tags(set_value('GigQualify'),'<p>')
+                //     'GigQualify' => strip_tags(set_value('GigQualify'),'<p>')
                  );
 
-
-
-
-
-
-
-                $data['gigs'] = $this->gig_model->getGigs();
+                // $data['gigs'] = $this->gig_model->getGigs();
                 // $data['title']= 'Gigs';
                 // $data['success'] = 'created';
 
@@ -224,8 +218,9 @@ class Gig extends CI_Controller
                     // Or whatever error handling is necessary
                 }
             }
-        }else{//if the form not submit
-             $this->load->view('gigs/add',$data);
+        }else
+        {//if the form not submit
+             $this->load->view('gigs/add', $data);
         }
     }#end function add()
 
