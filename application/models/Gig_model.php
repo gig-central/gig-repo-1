@@ -128,6 +128,9 @@ class Gig_model extends CI_Model {
         // );
 
         // insert into CompanyContact table
+
+        //Now that CompanyID is known, add to $contact_data array from form
+        $contact_data['CompanyID'] = $company_id;
         $this->db->insert('CompanyContact', $contact_data);
 
         // checks to see if User ID exists in the session variable, else assume anonymous user
@@ -152,6 +155,8 @@ class Gig_model extends CI_Model {
          // );
 
          // insert gig data into Gigs table
+        //Now that CompanyID is known, add to $contact_data array from form
+        $gig_data['CompanyID'] = $company_id;
         $this->db->insert('Gigs', $gig_data);
         if ($this->db->affected_rows() == '1')
             return true;
