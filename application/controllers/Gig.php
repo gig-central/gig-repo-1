@@ -168,7 +168,7 @@ class Gig extends CI_Controller
         //$this->form_validation->set_message('check_dropdown', 'You need to select an employment type.');
 
         $data['title'] = 'Add a New Gig';
-
+        //var_dump($_POST);
         if (isset($_POST['Submit']))
         {
             if ($this->form_validation->run() == FALSE)

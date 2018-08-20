@@ -27,7 +27,7 @@
 
         <form class="form-horizontal" role="form" method="post" action="add">
         <fieldset>
-            
+
             <div class="form-group">
                 <h1><strong>Add a Gig</strong></h1><br />
                 <legend><h3><strong>Company Information</strong></h3></legend>
@@ -46,7 +46,7 @@
                         <?php echo form_error('CompanyAddress'); ?>
                         <input type="text" class="form-control" id="CompanyAddress" name="CompanyAddress" placeholder="Company Address" value="<?php echo set_value('CompanyAddress'); ?>">
                     </div>
-                    
+
             </div>
             <div class="form-group">
                 <label for="CompanyCity" class="col-lg-3 control-label"><em>City</em></label>
@@ -202,7 +202,7 @@
                     <div class="col-md-6">
                     <?php echo form_error('GigCloseDate'); ?>
             <?php $attributes = 'id="GigCloseDate" placeholder="Gig close date"';
-            echo form_input('GigCloseDate', set_value('GigCloseDate'), $attributes); ?> 
+            echo form_input('GigCloseDate', set_value('GigCloseDate'), $attributes); ?>
                         </div>
                     </div>
                 </fieldset>
@@ -233,21 +233,32 @@
                 </fieldset>
         <br>
         <br>
-                <fieldset>
-                <legend><h3><strong>Gig Special Instructions</strong></h3></legend>
-            <div class="form-group">
-                <label for="SpInstructions" class="col-lg-3 control-label hidden-label"><em>Special Instructions</em></label><br>
-                    <div class="col-md-6">
-                        <?php echo form_error('SpInstructions'); ?>
-                        <textarea rows="15" cols="25" class="form-control" id="SpInstructions" name="SpInstructions" placeholder="Special Instructions"><?php echo set_value('SpInstructions'); ?></textarea>
-                    </div>
-            </div>
-                </fieldset>
-        <br>
         <fieldset>
-            <div class="col-xs-12 col-md-6 col-lg-9">
-                <button type="submit" class="btn btn-default pull-right">Submit</button>
+            <legend><h3><strong>Gig Special Instructions</strong></h3></legend>
+            <div class="form-group">
+                <label for="SpInstructions" class="col-lg-3 control-label hidden-label">
+                    <em>Special Instructions</em>
+                </label>
+                <br>
+                <div class="col-md-6">
+                    <?php echo form_error('SpInstructions'); ?>
+                    <textarea rows="15" cols="25" class="form-control" id="SpInstructions" name="SpInstructions" placeholder="Special Instructions"><?php echo set_value('SpInstructions'); ?></textarea>
+                </div>
             </div>
+
+            <div class="form-group text-right">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-6">
+                    <?php echo form_submit('Submit', 'Add',"class='btn btn-success'"); ?>
+                </div>
+            </div>
+
+            <!-- <div class="col-xs-12 col-md-6 col-lg-9">
+                <button type="submit" class="btn btn-default pull-right">Submit</button>
+            </div> -->
+
+            <?php echo form_close(); ?>
+
         </fieldset>
         </form>
     </div>
