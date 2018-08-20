@@ -39,25 +39,24 @@
                 </div>
                 <div class="form-group">
                     <label for="Name" class="col-lg-3 control-label"><em>Company Name</em></label>
-                        <div class="col-md-6">
-                            <?php echo form_error('Name'); ?>
-                            <input type="text" class="form-control" id="Name" name="Name" placeholder="Company Name" value="<?php echo set_value('Name'); ?>">
-                        </div>
+                    <div class="col-md-6">
+                        <?php echo form_error('Name'); ?>
+                        <input type="text" class="form-control" id="Name" name="Name" placeholder="Company Name" value="<?php echo set_value('Name'); ?>">
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="CompanyAddress" class="col-lg-3 control-label"><em>Company Address</em></label>
                     <div class="col-md-6">
-                            <?php echo form_error('CompanyAddress'); ?>
-                            <input type="text" class="form-control" id="CompanyAddress" name="CompanyAddress" placeholder="Company Address" value="<?php echo set_value('CompanyAddress'); ?>">
-                        </div>
-
+                        <?php echo form_error('CompanyAddress'); ?>
+                        <input type="text" class="form-control" id="CompanyAddress" name="CompanyAddress" placeholder="Company Address" value="<?php echo set_value('CompanyAddress'); ?>">
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="CompanyCity" class="col-lg-3 control-label"><em>City</em></label>
-                        <div class="col-md-6">
-                            <?php echo form_error('CompanyCity'); ?>
-                            <input type="text" class="form-control" id="CompanyCity" name="CompanyCity" placeholder="City" value="<?php echo set_value('CompanyCity'); ?>">
-                        </div>
+                    <div class="col-md-6">
+                        <?php echo form_error('CompanyCity'); ?>
+                        <input type="text" class="form-control" id="CompanyCity" name="CompanyCity" placeholder="City" value="<?php echo set_value('CompanyCity'); ?>">
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="CompanyState" class="col-lg-3 control-label"><em>State</em></label>
@@ -148,17 +147,17 @@
                 </div>
                 <div class="form-group">
                     <label for="FirstName" class="col-lg-3 control-label"><em>First Name</em></label>
-                        <div class="col-md-6">
-                            <?php echo form_error('FirstName'); ?>
-                            <input type="text" class="form-control" id="FirstName" name="FirstName" placeholder="First Name" value="<?php echo set_value('FirstName'); ?>">
-                        </div>
+                    <div class="col-md-6">
+                        <?php echo form_error('FirstName'); ?>
+                        <input type="text" class="form-control" id="FirstName" name="FirstName" placeholder="First Name" value="<?php echo set_value('FirstName'); ?>">
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="LastName" class="col-lg-3 control-label"><em>Last Name</em></label>
-                        <div class="col-md-6">
-                            <?php echo form_error('LastName'); ?>
-                            <input type="text" class="form-control" id="LastName" name="LastName" placeholder="Last Name" value="<?php echo set_value('LastName'); ?>">
-                        </div>
+                    <div class="col-md-6">
+                        <?php echo form_error('LastName'); ?>
+                        <input type="text" class="form-control" id="LastName" name="LastName" placeholder="Last Name" value="<?php echo set_value('LastName'); ?>">
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="Email" class="col-lg-3 control-label"><em>Email</em></label>
@@ -168,13 +167,12 @@
                         </div>
                 </div>
                 <div class="form-group">
-                        <label for="Phone" class="col-lg-3 control-label"><em>Phone</em></label>
-                        <div class="col-md-6">
-                            <?php echo form_error('Phone'); ?>
-                            <input type="text" class="form-control" id="Phone" name="Phone" placeholder="Gig Contact Phone" value="<?php echo set_value('Phone'); ?>">
-                        </div>
+                    <label for="Phone" class="col-lg-3 control-label"><em>Phone</em></label>
+                    <div class="col-md-6">
+                        <?php echo form_error('Phone'); ?>
+                        <input type="text" class="form-control" id="Phone" name="Phone" placeholder="Gig Contact Phone" value="<?php echo set_value('Phone'); ?>">
                     </div>
-                <!-- </fieldset> -->
+                </div>
                 <div class="form-group">
                     <legend><h3><strong>Gig Information</strong></h3></legend>
                 </div>
