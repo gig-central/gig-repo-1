@@ -190,11 +190,16 @@ class Gig extends CI_Controller
                     'Website' => set_value('CompanyWebsite')
                 );
 
-                // build gig array for the model
-                $gig_data = array(
+                $contact_data = array(
                     'FirstName' => set_value('FirstName'),
                     'LastName'  => set_value('LastName'),
                     'Email'   => set_value('Email'),
+                    'Phone' => set_value('Phone')
+                );
+
+                // build gig array for the model
+                $gig_data = array(
+
                 //     'Phone' => set_value('Phone'),
                     'EmploymentType' => set_value('EmploymentType'),
                 //     'PayRate' => set_value('PayRate'),
@@ -208,7 +213,7 @@ class Gig extends CI_Controller
                 // $data['success'] = 'created';
 
 
-                if ($this->gig_model->addGig($company_data, $gig_data) == TRUE) // the gig information has been successfully saved in the db
+                if ($this->gig_model->addGig($company_data, $contact_data, $gig_data) == TRUE) // the gig information has been successfully saved in the db
                 {
                     $data['success'] = 'created';
                     $data['title'] = 'Success!';

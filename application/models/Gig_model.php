@@ -85,7 +85,7 @@ class Gig_model extends CI_Model {
      * @todo Refactor functino so POST parameters are replaced with function parameters, allowing bulk-imports of new gigs.
      *
      */
-    public function addGig($company_data, $gig_data)
+    public function addGig($company_data, $contact_data, $gig_data)
     {
         $this->load->helper('url');
 
@@ -119,13 +119,13 @@ class Gig_model extends CI_Model {
         }
 
         // build array for CompanyContact table from form data
-        $contact_data= array(
-            'FirstName' => $gig_data['FirstName'],
-            'LastName' => $gig_data['LastName'],
-            'Email' => $gig_data['Email'],
-            'Phone' => $gig_data['Phone'],
-            'CompanyID' => $company_id
-        );
+        // $contact_data= array(
+        //     'FirstName' => $gig_data['FirstName'],
+        //     'LastName' => $gig_data['LastName'],
+        //     'Email' => $gig_data['Email'],
+        //     'Phone' => $gig_data['Phone'],
+        //     'CompanyID' => $company_id
+        // );
 
         // insert into CompanyContact table
         $this->db->insert('CompanyContact', $contact_data);
@@ -138,18 +138,18 @@ class Gig_model extends CI_Model {
         }
 
          // Build the array for Gigs table
-         $gig_data = array(
-            'CompanyID' => $company_id,
-            'GigQualify' => $gig_data['GigQualify'],
-            // 'EmploymentType' => $gig_data['EmploymentType'),
-            // 'GigCloseDate' => $gig_data['GigCloseDate'),
-            // 'GigOutline' => strip_tags($this->input->post('GigOutline'),'<p>'),
-            // 'SpInstructions' => strip_tags($this->input->post('SpInstructions'),'<p>'),
-            // 'PayRate' => $this->input->post('PayRate'),
-            // 'GigPosted' => date("Y-m-d H:i:s"),
-            // 'LastUpdated' => date("Y-m-d H:i:s"),
-            'id' => 54
-         );
+         // $gig_data = array(
+         //    'CompanyID' => $company_id,
+         //    'GigQualify' => $gig_data['GigQualify'],
+         //    // 'EmploymentType' => $gig_data['EmploymentType'),
+         //    // 'GigCloseDate' => $gig_data['GigCloseDate'),
+         //    // 'GigOutline' => strip_tags($this->input->post('GigOutline'),'<p>'),
+         //    // 'SpInstructions' => strip_tags($this->input->post('SpInstructions'),'<p>'),
+         //    // 'PayRate' => $this->input->post('PayRate'),
+         //    // 'GigPosted' => date("Y-m-d H:i:s"),
+         //    // 'LastUpdated' => date("Y-m-d H:i:s"),
+         //    'id' => 54
+         // );
 
          // insert gig data into Gigs table
         $this->db->insert('Gigs', $gig_data);
