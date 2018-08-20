@@ -4,8 +4,9 @@
 *
 * @package ITC 260 Gig Central CodeIgnitor
 * @subpackage Gig Controller
-* @author Patricia Barker, Mitchell Thompson, Spencer Echon, Turner Tackitt, Mike Archambault
-* @version 2.4 2018/08/15
+* @author Patricia Barker, Mitchell Thompson, Spencer Echon, Turner Tackitt
+* @author Mike Archambault
+* @version 2.5 2018/08/19
 * @license http://www.apache.org/licenses/LICENSE-2.0
 * @see Gig_model.php
 * @see view/gigs/index.php
@@ -165,15 +166,12 @@ class Gig extends CI_Controller
 
     public function add()
     {
-        //$this->form_validation->set_message('check_dropdown', 'You need to select an employment type.');
-
         $data['title'] = 'Add a New Gig';
 
         if (isset($_POST['Submit']))
         {
             if ($this->form_validation->run() == FALSE)
             {// validation not passed, re-load form to add gig
-                var_dump($_POST);
                 $this->load->view('gigs/add', $data);
             }
             else //passed validation, proceed to post Success logic
@@ -199,25 +197,21 @@ class Gig extends CI_Controller
 
                 // build gig array for the model
                 $gig_data = array(
-
-                //     'Phone' => set_value('Phone'),
                     'EmploymentType' => set_value('EmploymentType'),
-                //     'PayRate' => set_value('PayRate'),
+                    'PayRate' => set_value('PayRate'),
                     'GigCloseDate' => set_value(strip_tags('GigCloseDate','<p>')),
-                    'GigOutline' => set_value('GigOutline')
-                    // 'GigQualify' => strip_tags(set_value('GigQualify'),'<p>')
+                    'GigOutline' => set_value('GigOutline'),
+                    'GigQualify' => set_value(strip_tags('GigQualify','<p>')),
+                    'SpInstructions' => set_value(strip_tags('SpInstructions','<p>'))
                  );
 
-                // $data['gigs'] = $this->gig_model->getGigs();
-                // $data['title']= 'Gigs';
-                // $data['success'] = 'created';
-
-
-                if ($this->gig_model->addGig($company_data, $contact_data, $gig_data) == TRUE) // the gig information has been successfully saved in the db
+                if ($this->gig_model->addGig($company_data, $contact_data, $gig_data) == TRUE)
                 {
+                    // gig information has been successfully saved in the db
+                    // $data['gigs'] = $this->gig_model->getGigs();
                     $data['success'] = 'created';
                     $data['title'] = 'Success!';
-                    $this->load->view('gigs/success', $data);   // or whatever logic needs to occur
+                    $this->load->view('gigs/success', $data);
                 }
                 else
                 {
@@ -225,8 +219,9 @@ class Gig extends CI_Controller
                     // Or whatever error handling is necessary
                 }
             }
-        }else
-        {//if the form not submit
+        }
+        else {
+            //load the blank form if the form is not a submit
              $this->load->view('gigs/add', $data);
         }
     }#end function add()

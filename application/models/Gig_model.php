@@ -6,7 +6,8 @@
 * @package ITC 260 CodeIgnitor - Gig Central
 * @subpackage Gig Controller
 * @author Patricia Barker <patriciabethbarker@gmail.com>, Turner Tackitt <turner8193@gmail.com>, Spencer Echon
-* @version 2.2 2016/06/14
+* @author Mike Archambault <michael.archambault@seattlecentral.edu>
+* @version 2.3 2018/08/19
 * @link http://www.tcbcommercialproperties.com/sandbox/codeignitor/
 * @license http://www.apache.org/licenses/LICENSE-2.0
 * @see controllers/Gig.php
@@ -98,17 +99,7 @@ class Gig_model extends CI_Model {
         //  returns matching query result as Object
         $company_query_result = $company_query->row();
 
-        // build array for Company table from form data
-        // $company_data = array(
-        //     'Name' => $company_data['Name'],
-        //     'Address' => $company_data['CompanyAddress'],
-        //     'CompanyCity' => $company_data['CompanyCity'],
-        //     'CompanyState' => $company_data['CompanyState'],
-        //     'ZipCode' => $company_data['ZipCode'],
-        //     'CompanyPhone' => $company_data['CompanyPhone'],
-        //     'Website' => $company_data['CompanyWebsite'],
-        //
-        // );
+
         // if company doesn't exist, insert into database and get ID, else id equals existing column ID
         // prevents bloat of database with multiple instances of same company
         if ($company_query->num_rows() < 1) {
@@ -118,19 +109,9 @@ class Gig_model extends CI_Model {
             $company_id = $company_query_result->CompanyID;
         }
 
-        // build array for CompanyContact table from form data
-        // $contact_data= array(
-        //     'FirstName' => $gig_data['FirstName'],
-        //     'LastName' => $gig_data['LastName'],
-        //     'Email' => $gig_data['Email'],
-        //     'Phone' => $gig_data['Phone'],
-        //     'CompanyID' => $company_id
-        // );
-
-        // insert into CompanyContact table
-
         //Now that CompanyID is known, add to $contact_data array from form
         $contact_data['CompanyID'] = $company_id;
+        // insert into CompanyContact table
         $this->db->insert('CompanyContact', $contact_data);
 
         // checks to see if User ID exists in the session variable, else assume anonymous user
@@ -140,21 +121,7 @@ class Gig_model extends CI_Model {
             $user_id = 0;
         }
 
-         // Build the array for Gigs table
-         // $gig_data = array(
-         //    'CompanyID' => $company_id,
-         //    'GigQualify' => $gig_data['GigQualify'],
-         //    // 'EmploymentType' => $gig_data['EmploymentType'),
-         //    // 'GigCloseDate' => $gig_data['GigCloseDate'),
-         //    // 'GigOutline' => strip_tags($this->input->post('GigOutline'),'<p>'),
-         //    // 'SpInstructions' => strip_tags($this->input->post('SpInstructions'),'<p>'),
-         //    // 'PayRate' => $this->input->post('PayRate'),
-         //    // 'GigPosted' => date("Y-m-d H:i:s"),
-         //    // 'LastUpdated' => date("Y-m-d H:i:s"),
-         //    'id' => 54
-         // );
-
-         // insert gig data into Gigs table
+        // insert gig data into Gigs table
         //Now that CompanyID is known, add to $contact_data array from form
         $gig_data['CompanyID'] = $company_id;
         $this->db->insert('Gigs', $gig_data);

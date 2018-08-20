@@ -7,12 +7,14 @@
 * @package ITC 260 Gig Central CodeInitor
 * @subpackage Gig Controller
 * @author Patricia Barker <pbarke01@seattlecentral.edu>
-* @version 2.1 2015/06/11
+* @author Mike Archambault <michael.archambault@seattlecentral.edu
+* @version 3.0 2018/08/19
 * @link http://www.tcbcommercialproperties.com/sandbox/codeignitor/
 * @license http://www.apache.org/licenses/LICENSE-2.0
 * @see Gig_model.php
 * @see Gig.php
-* @todo none
+* @todo Change CompanyState field to be a dropdown instead of text
+* @todo Fix validation for Gig Type
 */
 //error messages for form validation
 ?>
@@ -28,10 +30,7 @@
             <fieldset>
                 <?php
                     $attributes = array('class' => '', 'id' => '');
-                    echo validation_errors();
                     echo form_open('Gig', $attributes);
-
-
                 ?>
 
                 <div class="form-group">
@@ -64,7 +63,9 @@
                     <label for="CompanyState" class="col-lg-3 control-label"><em>State</em></label>
                     <div class="col-md-6">
                         <?php echo form_error('CompanyState'); ?>
+                        <!-- CompanyState is temporarily a text field just to get code working -->
                         <input type="text" class="form-control" id="CompanyState" name="CompanyState" placeholder="State" value="<?php echo set_value('CompanyState'); ?>">
+                        <!-- This html code below should be fixed so that State can be dropcown -->
                         <!-- <select class="form-control" id="CompanyState" name="CompanyState"> -->
                             <!-- <option value="">State</option>
                             <option value="AK">Alaska</option>
@@ -142,7 +143,6 @@
                         <input type="text" class="form-control" id="CompanyWebsite" name="CompanyWebsite" placeholder="Company Website" value="<?php echo set_value('CompanyWebsite'); ?>">
                     </div>
                 </div>
-                <!-- <fieldset> -->
                 <div class="form-group">
                     <legend><h3><strong>Company Gig Contact</strong></h3></legend>
                 </div>
@@ -175,7 +175,6 @@
                         </div>
                     </div>
                 <!-- </fieldset> -->
-                <!-- <fieldset> -->
                 <div class="form-group">
                     <legend><h3><strong>Gig Information</strong></h3></legend>
                 </div>
@@ -192,8 +191,6 @@
                         </select>
                     </div>
                 </div>
-                    <!-- </fieldset> -->
-                    <!-- <fieldset> -->
                 <div class="form-group">
                     <label for="PayRate" class="col-lg-3 control-label"><em>Pay rate</em></label>
                         <div class="col-md-6">
@@ -201,11 +198,6 @@
                             <input type="text" class="form-control" id="PayRate" name="PayRate" placeholder="Pay rate" value="<?php echo set_value('PayRate'); ?>">
                         </div>
                 </div>
-                <!-- </fieldset> -->
-                <!-- <fieldset> -->
-                    <!-- <div class="form-group">
-                        <legend><h3><strong>Gig Close Date</strong></h3></legend>
-                    </div> -->
                 <div class="form-group">
                     <label for="GigCloseDate"class="col-lg-3 control-label hidden-label">
                         <em>Gig Close Date</em>
@@ -218,11 +210,6 @@
                         ?>
                     </div>
                 </div>
-            <!-- </fieldset> -->
-            <!-- <fieldset> -->
-                <!-- <div class="form-group">
-                    <legend><h3><strong>Description</strong></h3></legend>
-                </div> -->
                 <div class="form-group">
                     <label for="GigOutline" class="col-lg-3 control-label hidden-label"><em>Gig Description</em></label>
                     <div class="col-md-6">
@@ -230,11 +217,6 @@
                         <textarea class="form-control" rows="15" cols="25" id="GigOutline" name="GigOutline" placeholder="Project/Gig Description"><?php echo set_value('GigOutline'); ?></textarea>
                     </div>
                 </div>
-                    <!-- </fieldset> -->
-                    <!-- <fieldset> -->
-                <!-- <div class="form-group">
-                    <legend><h3><strong>Gig Qualifications</strong></h3></legend>
-                </div> -->
                 <div class="form-group">
                     <label for="GigQualify" class="col-lg-3 control-label hidden-label"><em>Gig Qualifications</em></label>
                     <div class="col-md-6">
@@ -242,12 +224,6 @@
                         <textarea  rows="15" cols="25" class="form-control" id="GigQualify" name="GigQualify" placeholder="Qualifications"><?php echo set_value('GigQualify'); ?></textarea>
                     </div>
                 </div>
-                    <!-- </fieldset> -->
-            <!-- <fieldset> -->
-                <!-- <div class="form-group">
-                    <legend><h3><strong>Gig Special Instructions</strong></h3></legend>
-                </div> -->
-
                 <div class="form-group">
                     <label for="SpInstructions" class="col-lg-3 control-label hidden-label"><em>Gig Special Instructions</em></label>
                     <div class="col-md-6">
@@ -255,17 +231,12 @@
                         <textarea rows="15" cols="25" class="form-control" id="SpInstructions" name="SpInstructions" placeholder="Special Instructions"><?php echo set_value('SpInstructions'); ?></textarea>
                     </div>
                 </div>
-
                 <div class="form-group text-right">
                     <div class="col-lg-3"></div>
                     <div class="col-lg-6">
                         <?php echo form_submit('Submit', 'Add',"class='btn btn-success'"); ?>
                     </div>
                 </div>
-
-                <!-- <div class="col-xs-12 col-md-6 col-lg-9">
-                    <button type="submit" class="btn btn-default pull-right">Submit</button>
-                </div> -->
 
                 <?php echo form_close(); ?>
 
