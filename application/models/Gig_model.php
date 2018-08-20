@@ -92,7 +92,7 @@ class Gig_model extends CI_Model {
          // checks to see if company submitted on form already exists in db
         $company_query = $this->db->get_where('Company', array(
             'Name' => $company_data['Name'],
-            'Address' => $company_data['CompanyAddress'],
+            'Address' => $company_data['Address'],
             )
         );
         //  returns matching query result as Object
@@ -101,7 +101,7 @@ class Gig_model extends CI_Model {
         // build array for Company table from form data
         // $company_data = array(
         //     'Name' => $company_data['Name'],
-        //     'Address' => $company_data['Address'],
+        //     'Address' => $company_data['CompanyAddress'],
         //     'CompanyCity' => $company_data['CompanyCity'],
         //     'CompanyState' => $company_data['CompanyState'],
         //     'ZipCode' => $company_data['ZipCode'],

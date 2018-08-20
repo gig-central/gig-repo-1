@@ -184,7 +184,7 @@ class Gig extends CI_Controller
                     'Name' => set_value('Name'),
                     'Address' => set_value('CompanyAddress'),
                     'CompanyCity' => set_value('CompanyCity'),
-                    'CompanyState' => set_value('CompanyState'),
+                    'State' => set_value('CompanyState'),
                     'ZipCode' => set_value('ZipCode'),
                     'CompanyPhone' => set_value('CompanyPhone'),
                     'Website' => set_value('CompanyWebsite')
@@ -208,7 +208,7 @@ class Gig extends CI_Controller
                 // $data['success'] = 'created';
 
 
-                if ($this->gig_model->SaveForm($form_data) == TRUE) // the gig information has been successfully saved in the db
+                if ($this->gig_model->addGig($company_data, $gig_data) == TRUE) // the gig information has been successfully saved in the db
                 {
                     $data['success'] = 'created';
                     $data['title'] = 'Success!';
