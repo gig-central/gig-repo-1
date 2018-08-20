@@ -181,26 +181,26 @@ class Gig extends CI_Controller
 
                 //build company info array for model
                 $company_data = array(
-                    'Name' => set_value('Name')
-                    // 'Address' => set_value('CompanyAddress'),
-                    // 'CompanyCity' => set_value('CompanyCity'),
-                    // 'State' => set_value('CompanyState'),
-                    // 'ZipCode' => set_value('ZipCode'),
-                    // 'CompanyPhone' => set_value('CompanyPhone'),
-                    // 'Website' => set_value('CompanyWebsite')
+                    'Name' => set_value('Name'),
+                    'Address' => set_value('CompanyAddress'),
+                    'CompanyCity' => set_value('CompanyCity'),
+                    'State' => set_value('CompanyState'),
+                    'ZipCode' => set_value('ZipCode'),
+                    'CompanyPhone' => set_value('CompanyPhone'),
+                    'Website' => set_value('CompanyWebsite')
                 );
 
                 // // build gig array for the model
                 $gig_data = array(
-                     'FirstName' => set_value('FirstName'),
-                //     'LastName'  => set_value('LastName'),
-                //     'Email'   => set_value('Email'),
+                    'FirstName' => set_value('FirstName'),
+                    'LastName'  => set_value('LastName'),
+                    'Email'   => set_value('Email'),
                 //     'Phone' => set_value('Phone'),
-                //     'EmploymentType' => set_value('EmploymentType'),
+                    'EmploymentType' => set_value('EmploymentType'),
                 //     'PayRate' => set_value('PayRate'),
-                //     'GigCloseDate' => set_value(strip_tags('GigCloseDate','<p>'),
-                //     'GigOutline' => set_value('GigCloseDate'),
-                //     'GigQualify' => strip_tags(set_value('GigQualify'),'<p>')
+                    'GigCloseDate' => set_value(strip_tags('GigCloseDate','<p>')),
+                    'GigOutline' => set_value('GigOutline')
+                    // 'GigQualify' => strip_tags(set_value('GigQualify'),'<p>')
                  );
 
                 // $data['gigs'] = $this->gig_model->getGigs();
