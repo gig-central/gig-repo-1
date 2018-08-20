@@ -108,37 +108,37 @@ class Gig extends CI_Controller
                         //$data['data'] = "Validation failed!";
                         //$this->load->view('gigs/edit', $data);
                     //}else{
-                $data = array(
-                    'Name' => $this->input->post('Name'),
-                    'Address' => $this->input->post('Address'),
-                    'CompanyCity' => $this->input->post('CompanyCity'),
-                    'State' => $this->input->post('State'),
-                    'ZipCode' => $this->input->post('ZipCode'),
-                    'CompanyPhone' => $this->input->post('CompanyPhone'),
-                    'Website' => $this->input->post('Website'),
+                    $data = array(
+                        'Name' => $this->input->post('Name'),
+                        'Address' => $this->input->post('Address'),
+                        'CompanyCity' => $this->input->post('CompanyCity'),
+                        'State' => $this->input->post('State'),
+                        'ZipCode' => $this->input->post('ZipCode'),
+                        'CompanyPhone' => $this->input->post('CompanyPhone'),
+                        'Website' => $this->input->post('Website'),
+                        );
+
+                    $data3= array(
+                        'FirstName' => $this->input->post('FirstName'),
+                        'LastName' => $this->input->post('LastName'),
+                        'Email' => $this->input->post('Email'),
+                        'Phone' => $this->input->post('Phone')
                     );
 
-                $data3= array(
-                    'FirstName' => $this->input->post('FirstName'),
-                    'LastName' => $this->input->post('LastName'),
-                    'Email' => $this->input->post('Email'),
-                    'Phone' => $this->input->post('Phone'),
+                    $data2 = array(
+                        'GigQualify' => strip_tags($this->input->post('GigQualify'),'<p>'),
+                        'EmploymentType' => $this->input->post('EmploymentType'),
+                        'GigOutline' => strip_tags($this->input->post('GigOutline'),'<p>'),
+                        'SpInstructions' => strip_tags($this->input->post('SpInstructions'),'<p>'),
+                        'PayRate' => $this->input->post('PayRate'),
+                        'LastUpdated' => date("Y-m-d H:i:s")
                     );
 
-                $data2 = array(
-
-                    'GigQualify' => strip_tags($this->input->post('GigQualify'),'<p>'),
-                    'EmploymentType' => $this->input->post('EmploymentType'),
-                    'GigOutline' => strip_tags($this->input->post('GigOutline'),'<p>'),
-                    'SpInstructions' => strip_tags($this->input->post('SpInstructions'),'<p>'),
-                    'PayRate' => $this->input->post('PayRate'),
-                    'LastUpdated' => date("Y-m-d H:i:s"),
-                    );
                     if ($data['gigs'] = $this->gig_model->editGigs($companyId, $data, $companyContactId, $data3, $userId, $data2) == TRUE)
                     {
-                        $data['title']= 'Gigs';
-                        $data['success'] = 'updated';
-                        $this->load->view('gigs/success', $data);
+                            $data['title']= 'Gigs';
+                            $data['success'] = 'updated';
+                            $this->load->view('gigs/success', $data);
                     }
                 }
             }
