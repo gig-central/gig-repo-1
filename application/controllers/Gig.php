@@ -168,15 +168,17 @@ class Gig extends CI_Controller
         //$this->form_validation->set_message('check_dropdown', 'You need to select an employment type.');
 
         $data['title'] = 'Add a New Gig';
-        //var_dump($_POST);
+
         if (isset($_POST['Submit']))
         {
             if ($this->form_validation->run() == FALSE)
             {// validation not passed, re-load form to add gig
+                var_dump($_POST);
                 $this->load->view('gigs/add', $data);
             }
             else //passed validation, proceed to post Success logic
             {
+
                 //build company info array for model
                 $company_data = array(
                     'Name' => set_value('Name')
