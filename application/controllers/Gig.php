@@ -68,7 +68,7 @@ class Gig extends CI_Controller
         $data['gig'] = $this->gig_model->getGigs($slug);
         if (empty($data['gig']))
         {
-                show_404();
+            show_404();
         }
         $data['title']= 'Gig';
 
@@ -104,11 +104,6 @@ class Gig extends CI_Controller
                 }
                 if(isset($_POST['submit']))
                 {
-                    //if ($this->form_validation->run() == FALSE) // validation hasn't been passed
-                    //{
-                        //$data['data'] = "Validation failed!";
-                        //$this->load->view('gigs/edit', $data);
-                    //}else{
                     $data = array(
                         'Name' => $this->input->post('Name'),
                         'Address' => $this->input->post('Address'),
@@ -137,9 +132,9 @@ class Gig extends CI_Controller
 
                     if ($data['gigs'] = $this->gig_model->editGigs($companyId, $data, $companyContactId, $data3, $userId, $data2) == TRUE)
                     {
-                            $data['title']= 'Gigs';
-                            $data['success'] = 'updated';
-                            $this->load->view('gigs/success', $data);
+                        $data['title']= 'Gigs';
+                        $data['success'] = 'updated';
+                        $this->load->view('gigs/success', $data);
                     }
                 }
             }
