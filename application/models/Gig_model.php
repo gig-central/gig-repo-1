@@ -78,8 +78,6 @@ class Gig_model extends CI_Model {
         return $query->row_array();
     }#end getGigs()
 
-
-
     /**
      * Add a new gig to the DB using POST parameters.
      *
@@ -105,7 +103,7 @@ class Gig_model extends CI_Model {
         //     'Name' => $company_data['Name'],
         //     'Address' => $company_data['Address'],
         //     'CompanyCity' => $company_data['CompanyCity'],
-        //     'State' => $company_data['CompanyState'],
+        //     'CompanyState' => $company_data['CompanyState'],
         //     'ZipCode' => $company_data['ZipCode'],
         //     'CompanyPhone' => $company_data['CompanyPhone'],
         //     'Website' => $company_data['CompanyWebsite'],
@@ -169,6 +167,7 @@ class Gig_model extends CI_Model {
         //}
 
     }#end of add_gig()
+
     public function searchGigs($keyword = null)
     {
         if (is_null($keyword))
@@ -194,7 +193,6 @@ class Gig_model extends CI_Model {
      * @todo Currently, it only works if the user has only one gig posted. It need to be able to update multiple gigs.
      * @todo Validate data. Currently, when you leave a field blank, it still updates the tables with empty data.
      */
-
     public function editGigs($companyid, $data, $companyContactId, $data3, $id, $data2)
     {
         //Update Company table

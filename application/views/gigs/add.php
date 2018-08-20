@@ -28,7 +28,10 @@
             <fieldset>
                 <?php
                     $attributes = array('class' => '', 'id' => '');
+                    echo validation_errors();
                     echo form_open('Gig', $attributes);
+
+
                 ?>
 
                 <div class="form-group">
@@ -60,8 +63,10 @@
                 <div class="form-group">
                     <label for="CompanyState" class="col-lg-3 control-label"><em>State</em></label>
                     <div class="col-md-6">
-                        <select class="form-control" id="state" name="state">
-                            <option value="">State</option>
+                        <?php echo form_error('CompanyState'); ?>
+                        <input type="text" class="form-control" id="CompanyState" name="CompanyState" placeholder="State" value="<?php echo set_value('CompanyState'); ?>">
+                        <!-- <select class="form-control" id="CompanyState" name="CompanyState"> -->
+                            <!-- <option value="">State</option>
                             <option value="AK">Alaska</option>
                             <option value="AL">Alabama</option>
                             <option value="AR">Arkansas</option>
@@ -114,7 +119,7 @@
                             <option value="WI">Wisconsin</option>
                             <option value="WV">West Virginia</option>
                             <option value="WY">Wyoming</option>
-                        </select>
+                        </select> -->
                     </div>
                 </div>
                 <div class="form-group">
@@ -196,11 +201,11 @@
                             <input type="text" class="form-control" id="PayRate" name="PayRate" placeholder="Pay rate" value="<?php echo set_value('PayRate'); ?>">
                         </div>
                 </div>
-            <!-- </fieldset> -->
-            <!-- <fieldset> -->
-                <!-- <div class="form-group">
-                    <legend><h3><strong>Gig Close Date</strong></h3></legend>
-                </div> -->
+                <!-- </fieldset> -->
+                <!-- <fieldset> -->
+                    <!-- <div class="form-group">
+                        <legend><h3><strong>Gig Close Date</strong></h3></legend>
+                    </div> -->
                 <div class="form-group">
                     <label for="GigCloseDate"class="col-lg-3 control-label hidden-label">
                         <em>Gig Close Date</em>

@@ -184,13 +184,13 @@ class Gig extends CI_Controller
                     'Name' => set_value('Name'),
                     'Address' => set_value('CompanyAddress'),
                     'CompanyCity' => set_value('CompanyCity'),
-                    'State' => set_value('CompanyState'),
+                    'CompanyState' => set_value('CompanyState'),
                     'ZipCode' => set_value('ZipCode'),
                     'CompanyPhone' => set_value('CompanyPhone'),
                     'Website' => set_value('CompanyWebsite')
                 );
 
-                // // build gig array for the model
+                // build gig array for the model
                 $gig_data = array(
                     'FirstName' => set_value('FirstName'),
                     'LastName'  => set_value('LastName'),
