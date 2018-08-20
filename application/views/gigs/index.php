@@ -53,9 +53,9 @@
         <div class="form-group">
         <button type="submit" class="btn btn-primary">Go</button>
         <label>Type of Job: </label>
-          <select name="keyword">
-            <?php foreach ($gigs_outline as $gig): ?>
-              <option value="0|<?=$gig['GigOutline']?>"><?=$gig['GigOutline']?></option>
+          <select name="GigOutline">
+            <?php foreach ($gigs as $gig): ?>
+              <option value="<?=$gig['GigOutline']?>"><?=$gig['GigOutline']?></option>
             <?php endforeach ?>
             </select>        
             </div>
@@ -66,9 +66,9 @@
         <div class="form-group">
         <button type="submit" class="btn btn-primary">Go</button>
         <label>City: </label>
-          <select name="keyword">
-            <?php foreach ($gigs_city as $gig): ?>
-              <option value="1|<?=$gig['CompanyCity']?>"><?=$gig['CompanyCity']?></option>
+          <select name="CompanyCity">
+            <?php foreach ($gigs as $gig): ?>
+              <option value="<?=$gig['CompanyCity']?>"><?=$gig['CompanyCity']?></option>
             <?php endforeach ?>
             </select>
             </div>
@@ -78,9 +78,9 @@
         <div class="form-group">
         <button type="submit" class="btn btn-primary">Go</button>
         <label>Company Name: </label>
-          <select name="keyword">
-            <?php foreach ($gigs_name as $gig): ?>
-              <option value="2|<?=$gig['Name']?>"><?=$gig['Name']?></option>
+          <select name="Name">
+            <?php foreach ($gigs as $gig): ?>
+              <option value="<?=$gig['Name']?>"><?=$gig['Name']?></option>
             <?php endforeach ?>
             </select>
             </div>
