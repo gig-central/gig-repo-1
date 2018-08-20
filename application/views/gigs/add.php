@@ -16,7 +16,6 @@
 * @todo Change CompanyState field to be a dropdown instead of text
 * @todo Fix validation for Gig Type
 */
-//error messages for form validation
 ?>
 
 
