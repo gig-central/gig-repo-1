@@ -82,7 +82,7 @@ $this->load->view($this->config->item('theme') . 'header');
 
 <div class="container col-lg-6">
 <a href="<?=base_url()?>profiles">
-<img id="profile-pics" src="img/profile-view.jpg">     
+<img id="profile-pics1" src="img/profile-view.jpg">     
     
   
     
