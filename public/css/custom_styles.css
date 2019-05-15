@@ -1,17 +1,17 @@
 
 .text-xs-center {
         text-align: center;
-    }
+}
 
-    .g-recaptcha {
-        display: inline-block;
-    }
+.g-recaptcha {
+    display: inline-block;
+}
 
 .form-actions {
     margin: 0;
     background-color: transparent;
     text-align: center;
-    
+
 }
 
 .contact-btn {
@@ -35,7 +35,8 @@ input#userfile {
 	float: left;
 	width: 100%;
 	padding: 0 1em;
-  }
+}
+
   /* Acordeon styles */
   .tab {
 	position: relative;
@@ -44,11 +45,15 @@ input#userfile {
 	color: #fff;
 	overflow: hidden;
   }
+
+  /*
   input {
 	position: absolute;
 	opacity: 0;
 	z-index: -1;
   }
+  */
+
   label {
 	position: relative;
 	display: block;
