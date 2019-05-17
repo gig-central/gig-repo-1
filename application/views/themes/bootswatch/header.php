@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="<?=base_url()?>public/css/custom_styles.css" media="screen">
     <!--Forms Style sheet -->
     <link rel="stylesheet" href="<?=base_url()?>public/css/custom_styles_forms.css" media="screen">
+    <link rel="stylesheet" href="<?=base_url()?>public/css/custom_styles_media.css" media="screen">
 </head>
   
 <body>

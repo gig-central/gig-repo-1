@@ -10,8 +10,7 @@
  * @link
  * @license http://www.apache.org/licenses/LICENSE-2.0
  * @see application/view/themes/bootswatch/header.php
- * @todo consolidate @media
- * @todo move @media to separate file
+ * @todo 
  */
 
 body{
@@ -38,28 +37,6 @@ body{
     display: block;
     margin: 0 auto;
 }
-@media (min-width: 580px){
-    .main-box{
-        padding-bottom: 35%;
-    }
-}
-
-@media (min-width: 768px){
-    .main-box{
-        padding-bottom: 30%;
-    }
-}
-
-@media (min-width: 992px) {
-    .main-box{
-        padding-bottom: 30%;
-    }
-}
-@media (min-width: 1200px) {
-    .main-box{
-        padding-bottom: 25%;
-    }
-}
 
 .inner-box{
     padding: 1em;
@@ -79,27 +56,6 @@ body{
 .inner-box h1{
     font-size: 2em;
     margin-top: 15px;
-}
-
-@media (min-width: 768px){
-    .inner-box h1{
-        font-size: 2em;
-    }
-
-    .inner-box:hover h1{
-    font-size: 2em;
-    }
-}
-
-@media (min-width: 992px) {
-    .inner-box h1{
-        font-size: 3em;
-    }
-}
-@media (min-width: 1200px) {
-    .inner-box h1{
-        font-size: 5em;
-    }
 }
 
 .inner-box h3{
@@ -325,30 +281,6 @@ body{
 /** FAQ **/
 .faq .accordion-inner {
     margin-left: 3%;
-}
-@media (min-width: 768px) {
-    .inner-box:hover .bar{
-        display: block;
-    }
-}
-
-/** ReCaptcha Div, Contact Button Alignment **/
-@media (min-width: 1200px) {
-    .g-recaptcha {
-        /*margin-left: 27%;*/
-    }
-    .contact-btn {
-        margin-left: 34%;
-    }
-}
-
-@media (max-width: 1199px) {
-    .g-recaptcha {
-        margin-left: 15px;
-    }
-    .contact-btn {
-        margin-left: -15px;
-    }
 }
 
 /** ADDITIONS **/
