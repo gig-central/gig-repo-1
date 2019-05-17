@@ -21,6 +21,10 @@
 
 }
 
+.member {
+    font-size: 20px;
+}
+
 .container .btn {
     /* position: absolute;
     top: 80%;
@@ -35,6 +39,9 @@
     cursor: pointer;
     border-radius: 15px;
     text-align: center;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .container .btn:hover {
