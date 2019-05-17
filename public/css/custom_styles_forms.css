@@ -21,12 +21,11 @@
 
 }
 
+.member {
+    font-size: 20px;
+}
+
 .container .btn {
-    /* position: absolute;
-    top: 80%;
-    left: 25%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%); */
     background-color: #2c3e50;
     color: white;
     font-size: 1.8em;
@@ -35,6 +34,9 @@
     cursor: pointer;
     border-radius: 15px;
     text-align: center;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .container .btn:hover {
@@ -84,7 +86,3 @@
  input:checked ~ .tab-content {
 	max-height: 15em;
   }
-
-
-
-

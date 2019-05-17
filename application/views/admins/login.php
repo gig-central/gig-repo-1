@@ -7,9 +7,9 @@
 *
 * @package itc-260-sp15-gig-central
 * @subpackage Admin Controller
-* @author Rattana Neak 
+* @author Rattana Neak
 * @version 1.0 2016/05/22
-* @link 
+* @link
 * @license http://www.apache.org/licenses/LICENSE-2.0
 * @see Admin_model.php
 * @see Admin.php
@@ -40,17 +40,19 @@
             </div>
             <?php echo form_error('pass'); ?>
             <?php echo $error; ?>
-            <div class="form-group">
-            <button type="submit" class="btn btn-default btn-block" name="Submit">Submit</button>
-            </div>
+
         </form>
-        
+
         <a href="<?=base_url()?>admin/reset">Forgot Password?</a><br>
-        
-        <h2>Not A Member?</h2><br>
+
+        <h2 class="member">Not A Member?</h2><br>
         <a href="<?=base_url()?>profiles/add">Register</a>
 
-        
+        <div class="form-group">
+            <button type="submit" class="btn btn-default btn-block" name="Submit">Submit</button>
+        </div>
+
+
     </div><!-- end row form -->
 </div><!-- end .container -->
 <?php $this->load->view($this->config->item('theme').'footer'); ?>
