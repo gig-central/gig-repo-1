@@ -16,7 +16,7 @@
     <!-- font-awesome CSS link -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <!-- Homepage CSS Link -->
-    <link rel="stylesheet" href="<?=base_url()?>css/welcome.css" media="screen">
+    <link rel="stylesheet" href="<?=base_url()?>public/css/welcome.css" media="screen">
     <!--Custom styles-->
     <link rel="stylesheet" href="<?=base_url()?>public/css/custom_styles.css" media="screen">
 </head>
