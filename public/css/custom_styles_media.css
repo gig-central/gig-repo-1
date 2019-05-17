@@ -1,0 +1,84 @@
+/**
+ * public/css/custom_styles_media.css
+ *
+ * css style for @media
+ *
+ * @package GigCentral
+ * @subpackage Home
+ * @author Elizabeth Jones
+ * @version 1.0 2019/5/16
+ * @link
+ * @license http://www.apache.org/licenses/LICENSE-2.0
+ * @see application/view/themes/bootswatch/header.php
+ * @todo consolidate @media styles
+ */
+
+@media (min-width: 580px){
+    .main-box{
+        padding-bottom: 35%;
+    }
+}
+
+@media (min-width: 768px){
+    .main-box{
+        padding-bottom: 30%;
+    }
+}
+
+@media (min-width: 992px) {
+    .main-box{
+        padding-bottom: 30%;
+    }
+}
+@media (min-width: 1200px) {
+    .main-box{
+        padding-bottom: 25%;
+    }
+}
+
+@media (min-width: 768px){
+    .inner-box h1{
+        font-size: 2em;
+    }
+
+    .inner-box:hover h1{
+    font-size: 2em;
+    }
+}
+
+@media (min-width: 992px) {
+    .inner-box h1{
+        font-size: 3em;
+    }
+}
+@media (min-width: 1200px) {
+    .inner-box h1{
+        font-size: 5em;
+    }
+}
+
+@media (min-width: 768px) {
+    .inner-box:hover .bar{
+        display: block;
+    }
+}
+
+/** ReCaptcha Div, Contact Button Alignment **/
+@media (min-width: 1200px) {
+    .g-recaptcha {
+        /*margin-left: 27%;*/
+    }
+    .contact-btn {
+        margin-left: 34%;
+    }
+}
+
+@media (max-width: 1199px) {
+    .g-recaptcha {
+        margin-left: 15px;
+    }
+    .contact-btn {
+        margin-left: -15px;
+    }
+}
+
