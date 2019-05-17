@@ -7,17 +7,6 @@
     display: inline-block;
 }
 
-.form-actions {
-    margin: 0;
-    background-color: transparent;
-    text-align: center;
-
-}
-
-.contact-btn {
-    margin-left: 180px;
-}
-
 .navbar-brand {
     padding: 5px 15px 0 10px;
 }
@@ -37,7 +26,7 @@ input#userfile {
 	padding: 0 1em;
 }
 
-  /* Acordeon styles */
+  /* Accordian styles */
   .tab {
 	position: relative;
 	margin-bottom: 1px;
@@ -46,23 +35,6 @@ input#userfile {
 	overflow: hidden;
   }
 
-  /*
-  input {
-	position: absolute;
-	opacity: 0;
-	z-index: -1;
-  }
-  */
-
-  label {
-	position: relative;
-	display: block;
-	padding: 0 0 0 1em;
-	background: #16a085;
-	font-weight: bold;
-	line-height: 3;
-	cursor: pointer;
-  }
   .blue label {
 	background: #2980b9;
   }
@@ -81,32 +53,4 @@ input#userfile {
 	margin: 1em;
 	  height: auto;
   }
-  /* :checked */
-  input:checked ~ .tab-content {
-	max-height: 15em;
-  }
-  /* Icon */
-  label::after {
-	position: absolute;
-	right: 0;
-	top: 0;
-	display: block;
-	width: 3em;
-	line-height: 3;
-	text-align: center;
-	-webkit-transition: all .35s;
-	-o-transition: all .35s;
-	transition: all .35s;
-  }
-  input[type=checkbox] + label::after {
-	content: "+";
-  }
-  input[type=radio] + label::after {
-	content: "\25BC";
-  }
-  input[type=checkbox]:checked + label::after {
-	transform: rotate(315deg);
-  }
-  input[type=radio]:checked + label::after {
-	transform: rotateX(180deg);
-  }
+
