@@ -52,6 +52,7 @@ class Gig extends CI_Controller
         $this->config->set_item('nav-active', 'Gigs');//sets active class on all gig children
         $this->load->helper('form');
         $this->load->library('form_validation');
+        $this->form_validation->set_message('check_dropdown', 'An employment type must be selected.');
     }#end constructor
 
     public function index()
@@ -74,11 +75,8 @@ class Gig extends CI_Controller
 
         $this->load->view('gigs/view', $data);
     }#end function view
+    
     public function edit(){
-
-        $this->load->helper('form');
-        $this->load->library('form_validation');
-        $this->form_validation->set_message('check_dropdown', 'You need to select an employment type.');
         $data['title'] = 'Edit Gigs';
 
         $userId = $this->gig_model->get_session_id();
