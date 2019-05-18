@@ -17,6 +17,7 @@ application/config/config.php
 application/config/database.php
 application/config/custom_config.php
 application/config/email.php
+application/config/credentials.php
 
 # OS generated files #
 ######################
