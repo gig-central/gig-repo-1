@@ -5,8 +5,8 @@
 * @package ITC 260 Gig Central CodeIgnitor
 * @subpackage Gig Controller
 * @author Patricia Barker, Mitchell Thompson, Spencer Echon, Turner Tackitt
-* @author Mike Archambault, Thom Harrington
-* @version 2.6 2019/05/18
+* @author Mike Archambault
+* @version 2.5 2018/08/19
 * @license http://www.apache.org/licenses/LICENSE-2.0
 * @see Gig_model.php
 * @see view/gigs/index.php
@@ -52,7 +52,7 @@ class Gig extends CI_Controller
         $this->config->set_item('nav-active', 'Gigs');//sets active class on all gig children
         $this->load->helper('form');
         $this->load->library('form_validation');
-        $this->form_validation->set_message('check_dropdown', 'The {field} must be selected.'); //customer message for droopdown fields
+        $this->form_validation->set_message('check_dropdown', 'An employment type must be selected.');
     }#end constructor
 
     public function index()
@@ -111,7 +111,7 @@ class Gig extends CI_Controller
                         'CompanyPhone' => $this->input->post('CompanyPhone'),
                         'Website' => $this->input->post('Website'),
                         );
-                    
+
                     $data3= array(
                         'FirstName' => $this->input->post('FirstName'),
                         'LastName' => $this->input->post('LastName'),

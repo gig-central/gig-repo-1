@@ -5,16 +5,16 @@
 * views/gigs/add.php
 *
 * @package ITC 260 Gig Central CodeInitor
-* @subpackage Gig view
+* @subpackage Gig Controller
 * @author Patricia Barker <pbarke01@seattlecentral.edu>
 * @author Mike Archambault <michael.archambault@seattlecentral.edu
-* @author Thom Harrington <thomas.harrington@seattlecentral.edu
-* @version 3.1 2019/08/19
-* @link tbd
+* @version 3.0 2018/08/19
+* @link http://www.tcbcommercialproperties.com/sandbox/codeignitor/
 * @license http://www.apache.org/licenses/LICENSE-2.0
 * @see Gig_model.php
 * @see Gig.php
-* @todo none
+* @todo Change CompanyState field to be a dropdown instead of text
+* @todo Fix validation for Gig Type
 */
 ?>
 
@@ -59,15 +59,66 @@
                 </div>
                 <div class="form-group">
                     <label for="CompanyState" class="col-lg-3 control-label"><em>State</em></label>
-                    <div class="col-md-6"> 
+                    <div class="col-md-6">
                         <?php echo form_error('CompanyState'); ?>
-                        <!--php tag with eco starts here to avoid having echo in the middle of the makeDropdownSelect() function -->
-                        <?php echo '
-                        <select class="form-control" id="CompanyState" name="CompanyState">
-                            <option value="0">Select State</option>' .
-                            //insert <option> elements
-                            makeDropdownSelect($this->config->item("stateSelect")) . ' 
-                        </select>'; ?>
+                        <!-- CompanyState is temporarily a text field just to get code working -->
+                        <input type="text" class="form-control" id="CompanyState" name="CompanyState" placeholder="State" value="<?php echo set_value('CompanyState'); ?>">
+                        <!-- This html code below should be fixed so that State can be dropcown -->
+                        <!-- <select class="form-control" id="CompanyState" name="CompanyState"> -->
+                            <!-- <option value="">State</option>
+                            <option value="AK">Alaska</option>
+                            <option value="AL">Alabama</option>
+                            <option value="AR">Arkansas</option>
+                            <option value="AZ">Arizona</option>
+                            <option value="CA">California</option>
+                            <option value="CO">Colorado</option>
+                            <option value="CT">Connecticut</option>
+                            <option value="DC">District of Columbia</option>
+                            <option value="DE">Delaware</option>
+                            <option value="FL">Florida</option>
+                            <option value="GA">Georgia</option>
+                            <option value="HI">Hawaii</option>
+                            <option value="IA">Iowa</option>
+                            <option value="ID">Idaho</option>
+                            <option value="IL">Illinois</option>
+                            <option value="IN">Indiana</option>
+                            <option value="KS">Kansas</option>
+                            <option value="KY">Kentucky</option>
+                            <option value="LA">Louisiana</option>
+                            <option value="MA">Massachusetts</option>
+                            <option value="MD">Maryland</option>
+                            <option value="ME">Maine</option>
+                            <option value="MI">Michigan</option>
+                            <option value="MN">Minnesota</option>
+                            <option value="MO">Missouri</option>
+                            <option value="MS">Mississippi</option>
+                            <option value="MT">Montana</option>
+                            <option value="NC">North Carolina</option>
+                            <option value="ND">North Dakota</option>
+                            <option value="NE">Nebraska</option>
+                            <option value="NH">New Hampshire</option>
+                            <option value="NJ">New Jersey</option>
+                            <option value="NM">New Mexico</option>
+                            <option value="NV">Nevada</option>
+                            <option value="NY">New York</option>
+                            <option value="OH">Ohio</option>
+                            <option value="OK">Oklahoma</option>
+                            <option value="OR">Oregon</option>
+                            <option value="PA">Pennsylvania</option>
+                            <option value="PR">Puerto Rico</option>
+                            <option value="RI">Rhode Island</option>
+                            <option value="SC">South Carolina</option>
+                            <option value="SD">South Dakota</option>
+                            <option value="TN">Tennessee</option>
+                            <option value="TX">Texas</option>
+                            <option value="UT">Utah</option>
+                            <option value="VA">Virginia</option>
+                            <option value="VT">Vermont</option>
+                            <option value="WA">Washington</option>
+                            <option value="WI">Wisconsin</option>
+                            <option value="WV">West Virginia</option>
+                            <option value="WY">Wyoming</option>
+                        </select> -->
                     </div>
                 </div>
                 <div class="form-group">

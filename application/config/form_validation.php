@@ -1,23 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-/**
- * form_validation.php does FORM VALIDATION SETTINGS
- * 
- * In addition it does blah.
- *
- * @package ITC 260 Gig Central CodeInitor
- * @subpackage form validation
- * @author thomas.harrington@seattlecentral.edu
- * @version 2019q2
- * @link tbd 
- * @license http://www.apache.org/licenses/LICENSE-2.0
- * @see related_file.php
- * @see other_related_file.php
- * @todo none
- */
+/*
+| -------------------------------------------------------------------
+| FORM VALIDATION SETTINGS
+| -------------------------------------------------------------------
+|
+*/
 
-// Set form validation rules here.
+// Set custom form validation rules here.
 $config = array(
         // Sets validation rules for the 'Add a Gig' form
         'gig/add' => array(
@@ -39,7 +30,7 @@ $config = array(
             array(
                 'field' => 'CompanyState',
                 'label' => 'Company State',
-                'rules' => 'required|callback_check_dropdown'
+                'rules' => 'required'
             ),
             array(
                 'field' => 'ZipCode',
