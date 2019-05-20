@@ -50,10 +50,10 @@
  label {
 	position: relative;
 	display: block;
-	padding: 0 0 0 1em;
+	padding: 0 2em 0 .5em;
 	background: #16a085;
 	font-weight: bold;
-	line-height: 3;
+	line-height: 2.5em;
 	cursor: pointer;
   }
 
