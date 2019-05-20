@@ -150,3 +150,43 @@ $decrypted = rtrim(
 return $decrypted;
 }
 
+/**
+ * makeDropdownSelect($option) inserts dropdown <option> elements
+ * this function is written generically and can be applied to any dropdown
+ * 
+ *
+ * <code>
+ *    <?php echo '
+ *        <select class="form-control" id="CompanyState" name="CompanyState">
+ *            <option value="0">Select State</option>' .
+ *            makeDropdownSelect($this->config->item("stateSelect")) . ' 
+ *        </select>'; 
+ *     ?>
+ * </code>
+ *
+ * @param string $option is an array of key/value pairs
+ * 
+ * @return string $myReturn is a fully formatted <option> element
+ *
+ * @see related custom validation message used is
+ * @see controller function __construct:         $this->form_validation->set_message('check_dropdown', 'The {field} must be selected.');
+ * @see form_validation.php: 'rules' => 'required|callback_check_dropdown' for field used
+ *
+ * @todo none
+ */
+
+
+if(!function_exists('makeDropdownSelect'))
+{
+    function makeDropdownSelect($option)
+    {
+        $myReturn = '';
+        foreach ($option as $key => $value)
+        
+        {            
+            $myReturn .= '<option value="' . $key . '"' . set_select("CompanyState", "$key") . '>' . $value . '</option>' . PHP_EOL;
+        }
+        return $myReturn;
+            
+    }
+}//end makeDropdownSelect
