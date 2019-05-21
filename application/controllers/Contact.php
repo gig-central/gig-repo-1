@@ -59,7 +59,12 @@ class Contact extends CI_Controller
 
 			// Verify user's answer
 			$captcha_googleresponse = $this->recaptcha->verifyResponse($captcha_answer);
-			if( !$captcha_googleresponse['success'] ) { echo "Validation Failure"; return; }
+
+			if( !$captcha_googleresponse['success'] ) 
+			{ 
+				$this->load->view('contact/failed'); 
+				return;
+			}
 
 			  $this->contact_model->set_emails();
 
