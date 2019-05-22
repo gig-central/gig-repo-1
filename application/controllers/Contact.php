@@ -42,6 +42,11 @@ class Contact extends CI_Controller
 		$data['name'] = 'Contact';
 		$data['contact'] = $this->contact_model->getEmails();
 
+		//default form placeholder values
+		$data['contact_Form_Name'] = '';
+		$data['contact_Form_Email'] = '';
+		$data['contact_Form_Message'] = '';
+
 		$this->form_validation->set_rules('Name', 'Name', 'required');
 		$this->form_validation->set_rules('Email', 'Email', 'required');
 		$this->form_validation->set_rules('Message', 'Message', 'required');
@@ -57,11 +62,6 @@ class Contact extends CI_Controller
 			$email = $this->input->post('Email');
 			$subject = $this->input->post('Subject');
 			$message = $this->input->post('Message');
-
-			//default form placeholder values
-			$data['contact_Form_Name'] = 'Name';
-			$data['contact_Form_Email'] = 'Email';
-			$data['contact_Form_Message'] = 'Your message goes here';
 
 			// Catch the user's answer
 			$captcha_answer = $this->input->post('g-recaptcha-response');
@@ -100,8 +100,8 @@ class Contact extends CI_Controller
 			{
 				// mail sent
 				feedback('<h1>Thanks for contacting us!</h1>
-				<p>We\'ll be sure to get back to your inquiry as soon as possible!</p>','error'); //set feedback
-				$this->load->view('contact');
+				<p>We\'ll be sure to get back to your inquiry as soon as possible!</p>','info'); //set feedback
+				$this->load->view('contact/index', $data);
 			}
 			else
 			{

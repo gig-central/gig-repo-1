@@ -11,7 +11,7 @@
  * @version 2.0 2016/06/14
  * @license http://www.apache.org/licenses/LICENSE-2.0
  * @see
- * @todo
+ * @todo 
  */
  
 //$this->load->view('themes/bootswatch/header');
@@ -27,11 +27,11 @@ $this->load->view($this->config->item('theme') . 'header');
       </div>
       <div class="form-group">
         <label for="name" class="col-lg-3 control-label hidden">Name</label>
-        <input name="Name" class="form-control" type="text" id="name" placeholder="<?=$contact_Form_Name?>">
+        <input name="Name" class="form-control" type="text" id="name" placeholder="Name" value="<?=$contact_Form_Name?>"> 
       </div>
       <div class="form-group">
         <label for="email" class="col-lg-3 control-label hidden">Email</label>
-        <input name="Email" class="form-control" type="email" placeholder="<?=$contact_Form_Email?>">
+        <input name="Email" class="form-control" type="email" placeholder="Email" value="<?=$contact_Form_Email?>">
       </div>
       <div class="form-group">
         <label for="subject" class="col-lg-3 control-label hidden">Subject</label>
@@ -47,7 +47,7 @@ $this->load->view($this->config->item('theme') . 'header');
       </div>  
     <div class="form-group">
       <label for="message" class="col-lg-3 control-label hidden">Message</label>
-      <textarea name="Message" class="form-control" cols="40" rows="5" required placeholder="<?=$contact_Form_Message?>"></textarea>
+      <textarea name="Message" class="form-control" cols="40" rows="5" required placeholder="Message"><?=$contact_Form_Message?></textarea>
     </div>
     <div class="form-group">
       <?php echo $this->recaptcha->render(); ?>
