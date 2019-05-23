@@ -22,6 +22,5 @@ echo '<p>'.$contact_item['Email'].'</p>';
 echo'<p>'.$contact_item['Subject'].'</p>';
 echo '<p>'.$contact_item['Message'].'<p>';
 
-echo '<p>' . anchor('contact/create', 'Send new email') . '</p>';
 echo '<p>' . anchor('contact/', 'Go back') . '</p>';
 ?>
