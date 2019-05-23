@@ -27,8 +27,8 @@
     <div class="col-lg-4 col-lg-offset-4 well">
         <form class="form-horizontal" role="form" method="post">
             <div class="form-group">
-  <h1 class="text-center">Log In</h1>
- </div>
+                <h1 class="text-center">Log In</h1>
+            </div>
             <div class="form-group">
                 <label for="Email" class="col-lg-3 control-label hidden">Email address:</label>
                 <input type="email" class="form-control" id="Email" name="email" placeholder="Email">
@@ -41,18 +41,15 @@
             <?php echo form_error('pass'); ?>
             <?php echo $error; ?>
 
+            <a href="<?=base_url()?>admin/reset">Forgot Password?</a><br>
+
+            <h2 class="member">Not A Member?</h2><br>
+            <a href="<?=base_url()?>profiles/add">Register</a>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-default btn-block" name="Submit">Submit</button>
+            </div>
         </form>
-
-        <a href="<?=base_url()?>admin/reset">Forgot Password?</a><br>
-
-        <h2 class="member">Not A Member?</h2><br>
-        <a href="<?=base_url()?>profiles/add">Register</a>
-
-        <div class="form-group">
-            <button type="submit" class="btn btn-default btn-block" name="Submit">Submit</button>
-        </div>
-
-
     </div><!-- end row form -->
 </div><!-- end .container -->
 <?php $this->load->view($this->config->item('theme').'footer'); ?>
