@@ -5,8 +5,8 @@
  *
  * @package GigCentral
  * @subpackage Home
- * @author Kate Lee, Elizabeth Jones
- * @version 2.0 2019/05/16
+ * @author Kate Lee, Elizabeth Jones, John Nguyen
+ * @version 2.1 2019/05/21
  * @link
  * @license http://www.apache.org/licenses/LICENSE-2.0
  * @see application/view/themes/bootswatch/header.php
@@ -98,12 +98,6 @@ body{
     margin-top: 10px !important;
 }
 
-#profile-pics {
-    width: 100%
-    border: 1px solid black;
-    opacity: .6;
-}
-
 #recent-data{
     background-color: #fff;
     position: relative;
@@ -118,7 +112,7 @@ body{
     margin-bottom: 1em;
 }
 
-.clea-both{
+.clear-both{ 
     clear: both;
 }
 
@@ -301,4 +295,29 @@ p {
 
 .inner-column h2 {
     color: #1ABC9C;
+}
+
+/* Profile Banner Things */
+
+.profile-btn {
+    position:absolute;
+    top:78%;
+    left:5%;
+}
+
+.profile-container {
+    position:relative;
+}
+
+.profile-pics {
+    border:1px solid black;
+    opacity:.6;
+    float:left;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.profile-ctnr-rm-pad {
+    padding:0;
 }

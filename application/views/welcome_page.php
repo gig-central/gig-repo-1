@@ -65,34 +65,30 @@ $this->load->view($this->config->item('theme') . 'header');
 <div class="clear-both"></div>
 
 <!-- this is for the 'Profile Pictures section on the page' -->
+<div class="profile-container">
 
-<div class="container col-lg-6">
-<a href="<?=base_url()?>profiles/add">
-<img id="profile-pics"  src="img/profile-create.jpg">     
+    <div class="container col-lg-6 profile-ctnr-rm-pad">
+        <a href="<?=base_url()?>profiles/add">
+            <img class="profile-pics"  src="img/profile-create.jpg">
+        </a>
+
+        <a href="<?=base_url()?>profiles/add">
+            <button class="btn profile-btn">Create Profile</button>
+        </a>
+    </div>
     
    
-    
-    
-</a>
-    <a href="<?=base_url()?>profiles/add">
- <button class="btn">Create Profile</button>
-    </a>
-</div>   
-    
+    <div class="container col-lg-6 profile-ctnr-rm-pad">
+        <a href="<?=base_url()?>profiles">
+            <img class="profile-pics" src="img/profile-view.jpg">
+        </a>
 
-<div class="container col-lg-6">
-<a href="<?=base_url()?>profiles">
-<img id="profile-pics1" src="img/profile-view.jpg">     
-    
-  
-    
-    
-</a>
-<a href="<?=base_url()?>profiles">    
-<button class="btn">View Profiles</button> 
-    </a>
+        <a href="<?=base_url()?>profiles">
+            <button class="btn profile-btn">View Profiles</button>
+        </a>
+    </div>
+
 </div>
-
 
 
 <!-- this is for the 'Recent Posts section on the page' -->
