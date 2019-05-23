@@ -75,44 +75,41 @@ class Contact extends CI_Controller
 				$data['contact_Form_Email'] = $email;
 				$data['contact_Form_Message'] = $message;
 
-				feedback('Invalid Captcha, Please Try Again.','error'); //set feedback
+				feedback('<h1>Invalid Captcha, Please Try Again.</h1>','error'); //set feedback
 				$this->load->view('contact/index', $data); 
 				return;
 			}
-
-			$this->contact_model->set_emails();
-
-			//$this->config->load('email');
-			$this->load->helper('url');
-			$this->load->library('email');
-
-			//set to_email id to which you want to receive mails
-			//$this->config->load('email');
-			//$this->load->helper('url');
-
-
-			//send mail
-			$this->email->from($email, $name);
-			$this->email->to( $this->config->item('email_contact_sendto') );
-			$this->email->subject($subject);
-			$this->email->message($message);
-			if ($this->email->send())
-			{
-				// mail sent
-				feedback('<h1>Thanks for contacting us!</h1>
-				<p>We\'ll be sure to get back to your inquiry as soon as possible!</p>','info'); //set feedback
-				$this->load->view('contact/index', $data);
-			}
 			else
 			{
-				// an error occured
-				// XXX TODO In the event of an error, we need to redirect back to the submission form, and show an in-line error message (eg, using session variable)
-				// -- Turner Tackitt aka Hastwell, 19 May 2016
-			
-				//redirect('contact');
-				echo "Error!";
-				show_error( "<h1>Failed To Send Email</h1><p />Debug Details follow:<br />" . $this->email->print_debugger() );
+				//Use model to set email values to DB
+				$this->contact_model->set_emails();
+
+				//load helpers /libries
+				$this->load->helper('url');
+				$this->load->library('email');
+
+				//send mail
+				$this->email->from($email, $name);
+				$this->email->to( $this->config->item('email_contact_sendto') );
+				$this->email->subject($subject);
+				$this->email->message($message);
+				if ($this->email->send())
+				{// mail sent
+					feedback('<h1>Thanks for contacting us!</h1>
+					<p>We\'ll be sure to get back to your inquiry as soon as possible!</p>','success'); //set feedback
+					$this->load->view('contact/index', $data);
+				}
+				else
+				{
+					// an error occured
+					// XXX TODO In the event of an error, we need to redirect back to the submission form, and show an in-line error message (eg, using session variable)
+					// -- Turner Tackitt aka Hastwell, 19 May 2016
+				
+					//redirect('contact');
+					echo "Error!";
+					show_error( "<h1>Failed To Send Email</h1><p />Debug Details follow:<br />" . $this->email->print_debugger() );
+				}
 			}
-	    	}
+	    }
 	}
-  }
+}
