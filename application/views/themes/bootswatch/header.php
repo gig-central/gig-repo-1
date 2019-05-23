@@ -14,7 +14,7 @@
     <![endif]-->
 
     <!-- font-awesome CSS link -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <!-- Homepage CSS -->
     <link rel="stylesheet" href="<?=base_url()?>public/css/custom_styles_index.css" media="screen">
     <!--Custom styles-->
@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="<?=base_url()?>public/css/custom_styles_forms.css" media="screen">
     <link rel="stylesheet" href="<?=base_url()?>public/css/custom_styles_media.css" media="screen">
 </head>
-  
+
 <body>
  <div class="navbar navbar-default navbar-fixed-top">
   <div class="container">
