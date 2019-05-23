@@ -52,12 +52,12 @@
         <form role="filter" method="post" action="gig/filter">
         <div class="form-group">
         <button type="submit" class="btn btn-primary">Go</button>
-        <label>Type of Job: </label>
+        <label>Type of Job: 
           <select name="GigOutline">
             <?php foreach ($gigs as $gig): ?>
               <option value="<?=$gig['GigOutline']?>"><?=$gig['GigOutline']?></option>
             <?php endforeach ?>
-            </select>        
+            </select>  </label>      
             </div>
         </form>
 
@@ -65,24 +65,24 @@
         <form role="filter" method="post" action="gig/filter">
         <div class="form-group">
         <button type="submit" class="btn btn-primary">Go</button>
-        <label>City: </label>
+        <label>City:
           <select name="CompanyCity">
             <?php foreach ($gigs as $gig): ?>
               <option value="<?=$gig['CompanyCity']?>"><?=$gig['CompanyCity']?></option>
             <?php endforeach ?>
-            </select>
+            </select> </label>
             </div>
         </form>
 
         <form role="filter" method="post" action="gig/filter">
         <div class="form-group">
         <button type="submit" class="btn btn-primary">Go</button>
-        <label>Company Name: </label>
+        <label>Company Name: 
           <select name="Name">
             <?php foreach ($gigs as $gig): ?>
               <option value="<?=$gig['Name']?>"><?=$gig['Name']?></option>
             <?php endforeach ?>
-            </select>
+            </select></label>
             </div>
         </form>
       </div>

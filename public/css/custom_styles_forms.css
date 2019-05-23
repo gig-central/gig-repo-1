@@ -86,3 +86,4 @@
  input:checked ~ .tab-content {
 	max-height: 15em;
   }
+
