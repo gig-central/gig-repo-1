@@ -17,8 +17,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <script src="<?=base_url();?>public/themes/bootswatch/js/bootswatch.js"></script>
-    <script src="http://beneposto.pl/jqueryrotate/js/jQueryRotateCompressed.js"></script>
-    
+    <script src="<?=base_url();?>public/js/jQueryRotateCompressed.js"></script>
+
 <!--load jquery ui js file-->
     <script src="<?=base_url();?>public/js/jquery-ui-1.12.1/jquery-ui.js"></script>
 
@@ -31,13 +31,13 @@ $(function() {
         }
     );
 });
-    
+
 
 $(function() {
     $("#VenueExpirationDate").datepicker(
         {
             dateFormat: 'yy-mm-dd'
-            
+
         }
     );
 });
@@ -54,13 +54,13 @@ $( function() {
         duration: 1000
       }
     });
- 
+
     $( "#opener" ).on( "click", function() {
       $( "#dialog" ).dialog( "open" );
     });
 });
-    
-    
+
+
 </script>
   </body>
 </html>

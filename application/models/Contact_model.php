@@ -62,7 +62,8 @@ class Contact_model extends CI_Model
 		$data = array
 		(
 			'Name' => $this->input->post('Name'),
-			'Email' => $email,
+			'Subject' => $this->input->post('Subject'),
+			'Email' => $this->input->post('Email'),
 			'Message' => $this->input->post('Message')
 		);
 

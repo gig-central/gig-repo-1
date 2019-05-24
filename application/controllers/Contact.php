@@ -42,6 +42,11 @@ class Contact extends CI_Controller
 		$data['name'] = 'Contact';
 		$data['contact'] = $this->contact_model->getEmails();
 
+		//default form placeholder values
+		$data['contact_Form_Name'] = '';
+		$data['contact_Form_Email'] = '';
+		$data['contact_Form_Message'] = '';
+
 		$this->form_validation->set_rules('Name', 'Name', 'required');
 		$this->form_validation->set_rules('Email', 'Email', 'required');
 		$this->form_validation->set_rules('Message', 'Message', 'required');
@@ -51,54 +56,60 @@ class Contact extends CI_Controller
 		    $this->load->view('contact/index', $data);
 		}
 		else
-		{
-			//process data, send email!
+		{//process data, send email!
+			//get the form data
+			$name = $this->input->post('Name');
+			$email = $this->input->post('Email');
+			$subject = $this->input->post('Subject');
+			$message = $this->input->post('Message');
 
 			// Catch the user's answer
 			$captcha_answer = $this->input->post('g-recaptcha-response');
 
 			// Verify user's answer
 			$captcha_googleresponse = $this->recaptcha->verifyResponse($captcha_answer);
-			if( !$captcha_googleresponse['success'] ) { echo "Validation Failure"; return; }
 
-			  $this->contact_model->set_emails();
+			if( !$captcha_googleresponse['success'] )
+			{//reload index with form data in placeholder values for form
+				$data['contact_Form_Name'] = $name;
+				$data['contact_Form_Email'] = $email;
+				$data['contact_Form_Message'] = $message;
 
-			  //get the form data
-			    $name = $this->input->post('Name');
-			    $email = $this->input->post('Email');
-			    $subject = $this->input->post('Subject');
-			    $message = $this->input->post('Message');
+				feedback('<h1>Invalid Captcha, Please Try Again.</h1>','error'); //set feedback
+				$this->load->view('contact/index', $data); 
+				return;
+			}
+			else
+			{
+				//Use model to set email values to DB
+				$this->contact_model->set_emails();
 
-			    //$this->config->load('email');
-			    $this->load->helper('url');
+				//load helpers /libries
+				$this->load->helper('url');
 				$this->load->library('email');
 
-			    //set to_email id to which you want to receive mails
-			    //$this->config->load('email');
-			    //$this->load->helper('url');
-
-
-			    //send mail
-			    $this->email->from($email, $name);
-			    $this->email->to( $this->config->item('email_contact_sendto') );
-			    $this->email->subject($subject);
-			    $this->email->message($message);
-			    if ($this->email->send())
-			    {
-				// mail sent
-				//redirect('contact/success');
-				$this->load->view('contact/success', $data);
-			    }
-			    else
-			    {
-				// an error occured
-				// XXX TODO In the event of an error, we need to redirect back to the submission form, and show an in-line error message (eg, using session variable)
-				// -- Turner Tackitt aka Hastwell, 19 May 2016
-			
-				//redirect('contact');
-				echo "Error!";
-				show_error( "<h1>Failed To Send Email</h1><p />Debug Details follow:<br />" . $this->email->print_debugger() );
-			    }
-	    	}
+				//send mail
+				$this->email->from($email, $name);
+				$this->email->to( $this->config->item('email_contact_sendto') );
+				$this->email->subject($subject);
+				$this->email->message($message);
+				if ($this->email->send())
+				{// mail sent
+					feedback('<h1>Thanks for contacting us!</h1>
+					<p>We\'ll be sure to get back to your inquiry as soon as possible!</p>','success'); //set feedback
+					$this->load->view('contact/index', $data);
+				}
+				else
+				{
+					// an error occured
+					// XXX TODO In the event of an error, we need to redirect back to the submission form, and show an in-line error message (eg, using session variable)
+					// -- Turner Tackitt aka Hastwell, 19 May 2016
+				
+					//redirect('contact');
+					echo "Error!";
+					show_error( "<h1>Failed To Send Email</h1><p />Debug Details follow:<br />" . $this->email->print_debugger() );
+				}
+			}
+	    }
 	}
-  }
+}

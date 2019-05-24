@@ -31,7 +31,7 @@
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Enter a Keyword..." name="keyword">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn-gigs-list">Submit</button>
 </form>
 <br>
 <div class="container-fluid">
@@ -51,7 +51,6 @@
         <h2>Filter</h2>
         <form role="filter" method="post" action="gig/filter">
         <div class="form-group">
-        <button type="submit" class="btn btn-primary">Go</button>
         <label>Type of Job: </label>
           <select name="GigOutline">
             <?php foreach ($gigs as $gig): ?>
@@ -64,7 +63,6 @@
 
         <form role="filter" method="post" action="gig/filter">
         <div class="form-group">
-        <button type="submit" class="btn btn-primary">Go</button>
         <label>City: </label>
           <select name="CompanyCity">
             <?php foreach ($gigs as $gig): ?>
@@ -76,13 +74,15 @@
 
         <form role="filter" method="post" action="gig/filter">
         <div class="form-group">
-        <button type="submit" class="btn btn-primary">Go</button>
         <label>Company Name: </label>
-          <select name="Name">
+          <select name="Name"> 
             <?php foreach ($gigs as $gig): ?>
               <option value="<?=$gig['Name']?>"><?=$gig['Name']?></option>
             <?php endforeach ?>
             </select>
+            </div>
+            <div>
+               <button type="submit" class="btn-gigs-list">Go</button>  
             </div>
         </form>
       </div>
