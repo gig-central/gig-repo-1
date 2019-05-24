@@ -1,0 +1,98 @@
+/**
+ * public/css/custom_styles_forms.css
+ *
+ * css style for forms
+ *
+ * @package GigCentral
+ * @subpackage Home
+ * @author Elizabeth Jones
+ * @version 1.0 2019/5/16
+ * @link
+ * @license http://www.apache.org/licenses/LICENSE-2.0
+ * @see application/view/themes/bootswatch/header.php
+ * @todo none
+ */
+
+
+.form-actions {
+    margin: 0;
+    background-color: transparent;
+    text-align: center;
+
+}
+
+.member {
+    font-size: 20px;
+}
+
+.container .btn {
+    background-color: #2c3e50;
+    color: white;
+    font-size: 1.8em;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 15px;
+    text-align: center;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container .btn:hover {
+    background-color: black;
+}
+
+.contact-btn {
+    margin-left: 180px;
+}
+
+ label {
+	position: relative;
+	display: block;
+	padding: 0 2em 0 .5em;
+	background: #16a085;
+	font-weight: bold;
+	line-height: 2.5em;
+	cursor: pointer;
+  }
+
+  label::after {
+	position: absolute;
+	right: 0;
+	top: 0;
+	display: block;
+	width: 3em;
+	line-height: 3;
+	text-align: center;
+	-webkit-transition: all .35s;
+	-o-transition: all .35s;
+	transition: all .35s;
+  }
+
+  input[type=checkbox] + label::after {
+	content: "+";
+  }
+  input[type=radio] + label::after {
+	content: "\25BC";
+  }
+  input[type=checkbox]:checked + label::after {
+	transform: rotate(315deg);
+  }
+  input[type=radio]:checked + label::after {
+	transform: rotateX(180deg);
+  }
+
+ input:checked ~ .tab-content {
+	max-height: 15em;
+  }
+
+@media (max-width: 425px) {
+	.g-recaptcha{
+		transform:scale(0.77);
+		-webkit-transform:scale(0.77);
+		transform-origin:0 0;
+		-webkit-transform-origin:0 0;
+		margin: 0;
+	}
+}
