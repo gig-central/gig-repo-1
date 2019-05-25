@@ -19,7 +19,6 @@ $this->load->view($this->config->item('theme') . 'header');
 ?>
   <div class="container ">
     <div class="col-lg-4 col-lg-offset-4 well">
-      <?php echo validation_errors(); ?>
       <?php $attributes = array('class'=>'form-horizontal');
  echo form_open('contact', $attributes) ?>
       <div class="form-group">
@@ -27,11 +26,13 @@ $this->load->view($this->config->item('theme') . 'header');
       </div>
       <div class="form-group">
         <label for="name" class="col-lg-3 control-label hidden">Name</label>
-        <input name="Name" class="form-control" type="text" id="name" placeholder="Name" value="<?=$contact_Form_Name?>"> 
+          <?php echo form_error('Name'); ?>
+        <input name="Name" class="form-control" type="text" id="name" placeholder="Name" value="<?php echo set_value('Name'); ?>">
       </div>
       <div class="form-group">
         <label for="email" class="col-lg-3 control-label hidden">Email</label>
-        <input name="Email" class="form-control" type="email" placeholder="Email" value="<?=$contact_Form_Email?>">
+          <?php echo form_error('Email'); ?>
+        <input name="Email" class="form-control" type="email" placeholder="Email" value="<?php echo set_value('Email'); ?>">
       </div>
       <div class="form-group">
         <label for="subject" class="col-lg-3 control-label hidden">Subject</label>
@@ -47,7 +48,8 @@ $this->load->view($this->config->item('theme') . 'header');
       </div>  
     <div class="form-group">
       <label for="message" class="col-lg-3 control-label hidden">Message</label>
-      <textarea name="Message" class="form-control" cols="40" rows="5" required placeholder="Message"><?=$contact_Form_Message?></textarea>
+        <?php echo form_error('Message'); ?>
+      <textarea name="Message" class="form-control" cols="40" rows="5" placeholder="Message"><?php echo set_value('Message'); ?></textarea>
     </div>
     <div class="form-group">
       <?php echo $this->recaptcha->render(); ?>
