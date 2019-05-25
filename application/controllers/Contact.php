@@ -42,12 +42,6 @@ class Contact extends CI_Controller
         $data['name'] = 'Contact';
         $data['contact'] = $this->contact_model->getEmails();
 
-        /*
-        //default form placeholder values
-        $data['contact_Form_Name'] = '';
-        $data['contact_Form_Email'] = '';
-        $data['contact_Form_Message'] = '';*/
-
         $this->form_validation->set_rules('Name', 'Name', 'trim|required');
         $this->form_validation->set_rules('Email', 'Email', 'trim|min_length[5]|required');
         $this->form_validation->set_rules('Message', 'Message', 'trim|required');
