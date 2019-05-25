@@ -9,6 +9,7 @@
 */cache/*
 !*/cache/index.html
 !*/cache/.htaccess
+user_guide/*
 
 # Config #
 ##########
