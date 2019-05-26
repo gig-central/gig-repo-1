@@ -17,7 +17,7 @@
 ?>
 
 <?php $this->load->view($this->config->item('theme') . 'header'); ?>
-<?php if(isset($_POST['submit'])) {
+<?php i<?php if(isset($_POST['submit'])) {
     $retrived_result = $gig->filter($_POST);
 }?>
 
