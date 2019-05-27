@@ -13,8 +13,7 @@
 * @see Venues.php
 * @todo none
 */
-
-$this->load->view($this->config->item('theme') . 'headerjqueryui'); 
+ 
 $this->load->view($this->config->item('theme').'header');
 $attributes = array('class'=>'form-horizontal', 'role'=>'form');
 //$this->load->library('passphraseclass');
@@ -217,4 +216,4 @@ $attributes = array('class'=>'form-horizontal', 'role'=>'form');
       </fieldset>
     </div>
 </div>
-<?php $this->load->view($this->config->item('theme') . 'footerjqueryui'); 
+<?php $this->load->view($this->config->item('theme') . 'footer'); 

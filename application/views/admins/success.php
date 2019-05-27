@@ -12,5 +12,5 @@ echo $success_message;
 </div>
 
 
-<?php $this->load->view($this->config->item('theme') . 'header'); //Loads Bootswatch theme and footer
+<?php $this->load->view($this->config->item('theme') . 'footer'); //Loads Bootswatch theme and footer
 ?>
