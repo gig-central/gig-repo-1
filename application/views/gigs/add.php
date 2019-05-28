@@ -19,7 +19,7 @@
 ?>
 
 
-<?php $this->load->view($this->config->item('theme') . 'headerjqueryui'); ?>
+<?php $this->load->view($this->config->item('theme') . 'header'); ?>
 
 <h1>Please note, if you do not login or create an account before posting a gig, you will be unable to make changes to or delete it after it has been posted</h1>
 
@@ -190,4 +190,4 @@
         </form>
     </div>
 </div>
-<?php $this->load->view($this->config->item('theme') . 'footerjqueryui'); ?>
+<?php $this->load->view($this->config->item('theme') . 'footer'); ?>

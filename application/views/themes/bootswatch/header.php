@@ -22,6 +22,9 @@
     <!--Forms Style sheet -->
     <link rel="stylesheet" href="<?=base_url()?>public/css/custom_styles_forms.css" media="screen">
     <link rel="stylesheet" href="<?=base_url()?>public/css/custom_styles_media.css" media="screen">
+    
+        <!--link jquery ui css-->
+    <link type="text/css" rel="stylesheet" href="<?=base_url()?>public/js/jquery-ui-1.12.1/jquery-ui.css">
 </head>
 
 <body>
