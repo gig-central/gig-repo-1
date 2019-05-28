@@ -17,7 +17,7 @@
 */
 define('BASEPATH', "placeholder");
 
-include_once('../application/config/development/database.php');
+include_once('../application/config/database.php');
 
 function parseToXML($htmlStr)
 {
@@ -34,7 +34,7 @@ $db=$db['default'];
 $mysqli = new mysqli($db['hostname'], $db['username'], $db['password'], $db['database']);
 
 /* check connection */
-if ($mysqli->connect_errno) {
+if ($mysqli->connect_error) {
     printf("Connect failed: %s\n", $mysqli->connect_error);
     exit();
 }
