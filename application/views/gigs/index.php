@@ -60,7 +60,7 @@
             <?php endforeach ?>
             </select></label>
             </div>
-        </form>
+
 
 
 
