@@ -17,7 +17,9 @@
 ?>
 
 <?php $this->load->view($this->config->item('theme') . 'header'); ?>
-
+<?php if(isset($_POST['submit'])) {
+    $retrived_result = $gig->filter($_POST);
+}?>
 
 <ul class="breadcrumb">
   <li><a href="<?=base_url()?>">Home</a></li>
@@ -37,7 +39,7 @@
 <div class="container-fluid">
 <h1>&nbsp;</h1>
   <div class="row">
-      
+
     <div class="col-sm-6">
         <?php foreach ($gigs as $gig): ?>
         <h3><?php echo $gig['Name'] ?></h3>
@@ -46,43 +48,43 @@
         <p><?php echo anchor('gig/'.$gig['GigID'] , 'Read More');?></p>
         <?php endforeach ?>
       </div>
-      
+
     <div class="col-sm-6">
         <h2>Filter</h2>
         <form role="filter" method="post" action="gig/filter">
         <div class="form-group">
-        <label>Type of Job: </label>
+        <label>Type of Job:
           <select name="GigOutline">
             <?php foreach ($gigs as $gig): ?>
               <option value="<?=$gig['GigOutline']?>"><?=$gig['GigOutline']?></option>
             <?php endforeach ?>
-            </select>        
+            </select></label>
             </div>
-        </form>
 
 
-        <form role="filter" method="post" action="gig/filter">
+
+
         <div class="form-group">
-        <label>City: </label>
+        <label>City:
           <select name="CompanyCity">
             <?php foreach ($gigs as $gig): ?>
               <option value="<?=$gig['CompanyCity']?>"><?=$gig['CompanyCity']?></option>
             <?php endforeach ?>
-            </select>
+            </select></label>
             </div>
-        </form>
 
-        <form role="filter" method="post" action="gig/filter">
+
+
         <div class="form-group">
-        <label>Company Name: </label>
-          <select name="Name"> 
+        <label>Company Name:
+          <select name="Name">
             <?php foreach ($gigs as $gig): ?>
               <option value="<?=$gig['Name']?>"><?=$gig['Name']?></option>
             <?php endforeach ?>
-            </select>
+            </select></label>
             </div>
             <div>
-               <button type="submit" class="btn-gigs-list">Go</button>  
+               <button type="submit" class="btn-gigs-list">Go</button>
             </div>
         </form>
       </div>

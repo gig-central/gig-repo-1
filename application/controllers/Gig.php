@@ -75,7 +75,7 @@ class Gig extends CI_Controller
 
         $this->load->view('gigs/view', $data);
     }#end function view
-    
+
     public function edit(){
         $data['title'] = 'Edit Gigs';
 
@@ -111,7 +111,7 @@ class Gig extends CI_Controller
                         'CompanyPhone' => $this->input->post('CompanyPhone'),
                         'Website' => $this->input->post('Website'),
                         );
-                    
+
                     $data3= array(
                         'FirstName' => $this->input->post('FirstName'),
                         'LastName' => $this->input->post('LastName'),
@@ -231,5 +231,26 @@ class Gig extends CI_Controller
         return $post_dropdown == '0' ? FALSE : TRUE;
     }
 
+    //search with filtering for gigs
+        public function filter() {
+
+            $GigOutline = $_POST['GigOutline'];
+            $CompanyCity = $_POST['CompanyCity'];
+            $Name = $_POST['Name'];
+
+            $result = $this->gig_model->filter_search($GigOutline, $CompanyCity, $Name);
+
+            if (!empty($result)){
+                //if we have results, then post them here
+                $data['title'] = 'Success!';
+                $data['gigs'] = $result;
+                $this->load->view('gigs/search', $data);
+            } else {
+                $data['title'] = 'Success!';
+                $data['gigs'] = null;
+                $this->load->view('gigs/search', $data);
+            }
+        }
+        
 
 }#end Gigs class/controller
