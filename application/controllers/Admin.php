@@ -43,9 +43,7 @@ class Admin extends CI_Controller
     {
         $data['title'] ="Admin dashboard";
         if ($this->session->logged_in == TRUE){
-            var_dump($this->session->first_name);
-            die();
-            //$data['logged'] = 'Welcome to GigCentral website!';
+            $data['logged'] = 'Welcome to GigCentral website!';
             $data['first_name'] = $this->session->first_name; 
         }else{
             $data['logged'] = 'You are logged out. Please come back soon!';
