@@ -163,7 +163,7 @@ $this->load->view($this->config->item('theme') . 'header');
                 label: icon.icon
               });
 	   
-	marker.addListener(marker, 'click', function() {
+	marker.addListener('click', function() {
     infoWindow.setContent(infowincontent);
     infoWindow.open(map, marker);
   });
