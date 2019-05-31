@@ -40,6 +40,7 @@ $this->load->view($this->config->item('theme') . 'header');
         </div></div>
     </a>
     
+    <!-- comments out non-mvp features for possible reintegration at later date
     <a href="<?=base_url()?>venues">
         <div id="post-venue" class="main-box col-lg-3 col-sm-6 col-xs-12">
         <div class="inner-box">
@@ -59,12 +60,14 @@ $this->load->view($this->config->item('theme') . 'header');
             <p>Do you know a good place for startups? Please share.</p>
             </div></div>
     </a>
+    -->
     
 </div>
 
 <div class="clear-both"></div>
 
-<!-- this is for the 'Profile Pictures section on the page' -->
+<!-- comments out non-mvp features for possible reintegration at later date
+<!-- this is for the 'Profile Pictures section on the page' 
 <div class="profile-container">
 
     <div class="container col-lg-6 profile-ctnr-rm-pad">
@@ -90,7 +93,7 @@ $this->load->view($this->config->item('theme') . 'header');
 
 </div>
 
-
+-->
 <!-- this is for the 'Recent Posts section on the page' -->
 <div id="data-example" class="main-box-container">
 <div class="column col-lg-8 col-sm-12 col-xs-12">
@@ -108,7 +111,8 @@ $this->load->view($this->config->item('theme') . 'header');
         </div>
     </div>
   
-<!-- everything below this point is for the google map on the page -->
+  <!-- comments out non-mvp features for possible reintegration at later date
+<!-- everything below this point is for the google map on the page 
     <div class="column col-lg-4 col-sm-12 col-xs-12">
         <div class="inner-column">
              <h2>Startup Venues near you</h2>
@@ -117,6 +121,7 @@ $this->load->view($this->config->item('theme') . 'header');
         </div>
     </div>
 </div>
+-->
 
 <div class="clear-both"></div>
 
