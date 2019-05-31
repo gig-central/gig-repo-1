@@ -28,35 +28,48 @@ class Admin_model extends CI_Model {
                 $this->load->library('email');
                 $this->load->library('encryption');
         }
+
         
-        public function getInfor($data)
+        /**
+         * authenticate method for Admin_model class. 
+         *
+         * @param string 
+         * @param $data will be checked against existing DB user data 
+         * @return boolean 
+         * @todo none
+         */ 
+        
+        public function authenticate($data)
         {
-           if ($data == ""){
-            return FALSE;
-            } else {
-            $query = $this->db->get_where('Profile', array('email' => $data['email']));
-            $row = $query->row();    
+           if (is_null($data)){
+                return FALSE;
+            } else 
+            {
+                $query = $this->db->get_where('Profile', array('email' => $data['email']));
+                $row = $query->row();    
+
                 if (isset($row))
                 {
                     if(password_verify($data['pass'], $row->password))
-                    {
-                    
-                    $newdata = array(
-                        'email' => $row->email,
-                        'id' => $row->id,
-                        'status'=> $row->i_am_a,
-                        'first_name'=> $row->first_name,
-                        'last_name'=> $row->last_name,
-                        'picture'=> $row->picture, 
-                        'logged_in' => TRUE,
-                        'bio'     => $row->bio,
-                    );
+                    {                   
+                        $newdata = array(
+                            'email' => $row->email,
+                            'id' => $row->id,
+                            'status'=> $row->i_am_a,
+                            'first_name'=> $row->first_name,
+                            'last_name'=> $row->last_name,
+                            'picture'=> $row->picture, 
+                            'logged_in' => TRUE,
+                            'bio'     => $row->bio,
+                        );
+        
                         $this->load->library('session');
-                        $this->session->set_userdata($newdata); 
-                        redirect('admin/');
-                    }else{
-                        $error = 'The password and email is not match';
-                        return $error;
+                        $this->session->set_userdata($newdata);
+                         
+                        return TRUE;
+                    }else
+                    {
+                        return FALSE;
                     
                     }
                 }

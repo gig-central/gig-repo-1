@@ -39,7 +39,6 @@
                 <input type="password" class="form-control" id="Pass" name="pass" placeholder="Password">
             </div>
             <?php echo form_error('pass'); ?>
-            <?php echo $error; ?>
 
             <a href="<?=base_url()?>admin/reset">Forgot Password?</a><br>
 
