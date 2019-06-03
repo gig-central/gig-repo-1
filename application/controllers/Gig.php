@@ -76,6 +76,8 @@ class Gig extends CI_Controller
         $this->form_validation->set_rules('GigOutline', 'GigOutline', 'trim|alpha|max_length[255]|required');
         $this->form_validation->set_rules('SpInstructions', 'SpInstructions', 'trim|alpha|max_length[255]|');
         $this->form_validation->set_rules('PayRate', 'PayRate', 'trim|alpha_numeric|max_length[50]|'); 
+        $this->form_validation->set_rules('GigCloseDate', 'GigCloseDate', 'trim|numeric|max_length[50]|'); 
+        
           
     }#end constructor
 

@@ -145,7 +145,7 @@
                     <div class="col-md-6">
                         <?php
                             echo form_error('GigCloseDate');
-                            $attributes = 'id="GigCloseDate" placeholder="Gig close date"';
+                            $attributes = 'id="GigCloseDate" name="GigCloseDate" placeholder="Gig close date"';
                             echo form_input('GigCloseDate', set_value('GigCloseDate'), $attributes);
                         ?>
                     </div>
