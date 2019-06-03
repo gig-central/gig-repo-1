@@ -58,15 +58,19 @@
                 <div class="form-group">
                     <label for="CompanyState" class="col-lg-3 control-label"><em>State</em></label>
                     <div class="col-md-6">
-                        <!--erro with the drop down: replaced with a input box for now...Tran Duong -->
                         <?php echo form_error('CompanyState'); ?>
-                        <input type="text" class="form-control" id="CompanyState" name="CompanyState" placeholder="State" value="<?php echo set_value('CompanyState'); ?>">
+                        <!--php tag with eco starts here to avoid having echo in the middle of the makeDropdownSelect() function -->
+                        <?php echo '
+                        <select class="form-control" id="CompanyState" name="CompanyState">
+                            <option value="0">Select State</option>' .
+                            //insert <option> elements
+                            makeDropdownSelect($this->config->item("stateSelect")) . '
+                        </select>'; ?>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="ZipCode" class="col-lg-3 control-label"><em>Zip Code</em></label>
                     <div class="col-md-6">
-                        <?php echo form_error('ZipCode'); ?>
                         <input type="text" class="form-control" id="ZipCode" name="ZipCode" placeholder="Zip Code" value="<?php echo set_value('ZipCode'); ?>">
                     </div>
                 </div>
@@ -74,7 +78,7 @@
                     <label for="CompanyPhone" class="col-lg-3 control-label"><em>Company Phone</em></label>
                     <div class="col-md-6">
                         <?php echo form_error('CompanyPhone'); ?>
-                        <input type="text" class="form-control" id="CompanyPhone" name="CompanyPhone" placeholder="Phone Number (No Spaces or Dash)" value="<?php echo set_value('CompanyPhone'); ?>">
+                        <input type="text" class="form-control" id="CompanyPhone" name="CompanyPhone" placeholder="Phone Number" value="<?php echo set_value('CompanyPhone'); ?>">
                     </div>
                 </div>
                 <div class="form-group">

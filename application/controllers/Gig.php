@@ -52,32 +52,7 @@ class Gig extends CI_Controller
         $this->config->set_item('nav-active', 'Gigs');//sets active class on all gig children
         $this->load->helper('form');
         $this->load->library('form_validation');
-         //customer message for droopdown fields
-        $this->form_validation->set_message('check_dropdown', 'The {field} must be selected.'); 
-        
-        //set validation rules for data input on form in the format(field, labels, rules)
-        //set validation rules for $data
-        $this->form_validation->set_rules('Name', 'Name', 'trim|alpha_numeric|max_length[255]|required');
-        $this->form_validation->set_rules('Address', 'Address', 'trim|min_length[5]|max_length[200]|required');
-        $this->form_validation->set_rules('CompanyCity', 'CompanyCity', 'trim|alpha|min_length[3]|max_length[100]|required');
-        $this->form_validation->set_rules('CompanyState', 'CompanyState', 'trim|alpha|max_length[2]|required');
-        $this->form_validation->set_rules('ZipCode', 'ZipCode', 'trim|numeric|max_length[5]|required');
-        $this->form_validation->set_rules('CompanyPhone', 'CompanyPhone', 'trim|numeric|max_length[50]|required');
-        $this->form_validation->set_rules('Website', 'Website', 'trim|alpha_numeric|valid_url|max_length[100]');
-        
-        //set validation rules for $data3
-        $this->form_validation->set_rules('FirstName', 'FirstName', 'trim|alpha|max_length[255]|required');
-        $this->form_validation->set_rules('LastName', 'LastName', 'trim|alpha|min_length[2]|max_length[200]|required');
-        $this->form_validation->set_rules('Email', 'Email', 'trim|valid_email|min_length[2]|max_length[100]|required');
-        $this->form_validation->set_rules('Phone', 'Phone', 'trim|numeric|max_length[50]|');
-        
-        //set validation rules for $data2
-        $this->form_validation->set_rules('GigQualify', 'GigQualify', 'trim|alpha|max_length[255]|required');
-        $this->form_validation->set_rules('EmploymentType', 'EmploymentType', 'callback_check_dropdown');
-        $this->form_validation->set_rules('GigOutline', 'GigOutline', 'trim|alpha|max_length[255]|required');
-        $this->form_validation->set_rules('SpInstructions', 'SpInstructions', 'trim|alpha|max_length[255]|');
-        $this->form_validation->set_rules('PayRate', 'PayRate', 'trim|alpha_numeric|max_length[50]|'); 
-          
+        $this->form_validation->set_message('check_dropdown', 'The {field} must be selected.'); //customer message for droopdown fields
     }#end constructor
 
     public function index()
@@ -131,7 +106,7 @@ class Gig extends CI_Controller
                         'Name' => $this->input->post('Name'),
                         'Address' => $this->input->post('Address'),
                         'CompanyCity' => $this->input->post('CompanyCity'),
-                        'CompanyState' => $this->input->post('CompanyState'),
+                        'State' => $this->input->post('State'),
                         'ZipCode' => $this->input->post('ZipCode'),
                         'CompanyPhone' => $this->input->post('CompanyPhone'),
                         'Website' => $this->input->post('Website'),
