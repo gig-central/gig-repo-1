@@ -1,3 +1,21 @@
+/**
+ * public/css/custom_styles.css
+ *
+ * css styles for forms
+ *
+ * @package GigCentral
+ * @subpackage Home
+ * @author Elizabeth Jones, Craig Peterson <craig.peterson@seattlecentral.edu>
+ * @version 1.1 2019/06/03
+ * @link
+ * @license http://www.apache.org/licenses/LICENSE-2.0
+ * @see application/view/themes/bootswatch/header.php
+ * @todo none
+ */
+
+h2 {
+    padding-bottom:2rem;
+}
 
 .text-xs-center {
         text-align: center;
@@ -15,11 +33,12 @@ input#userfile {
     height: auto;
 }
 
-/*-------FAQ Accordian CSS------- */
+/*-------FAQ Accordian CSS-------*/
 .FAQ-wrapper {
 	margin: auto;
 	width: 75%;
 }
+
 .half {
 	float: left;
 	width: 100%;
@@ -27,30 +46,65 @@ input#userfile {
 }
 
   /* Accordian styles */
-  .tab {
+.tab {
 	position: relative;
 	margin-bottom: 1px;
 	width: 100%;
 	color: #fff;
 	overflow: hidden;
-  }
+}
 
-  .blue label {
+.blue label {
 	background: #2980b9;
-  }
-  .tab-content {
+}
+
+.tab-content {
 	max-height: 0;
 	overflow: hidden;
 	background: #1abc9c;
 	-webkit-transition: max-height .35s;
 	-o-transition: max-height .35s;
 	transition: max-height .35s;
-  }
-  .blue .tab-content {
+}
+
+.blue .tab-content {
 	background: #3498db;
-  }
-  .tab-content p {
+}
+
+.tab-content p {
 	margin: 1em;
 	  height: auto;
-  }
+}
 
+
+/*-------GIG LIST STYLES-------*/
+.gig-search form {
+    margin-top: 2rem;
+}
+
+.gig-search form:first-of-type {
+    margin-top:0;
+    padding-top:0;
+}
+
+.gig-search h4 {
+    margin-top:0;
+}
+
+.gig-list {
+    border-left: 2px solid #2c3e4f;
+}
+
+.gig-list h3:first-of-type {
+    margin-top:0;
+}
+
+.gig-list-item {
+    padding: 1rem;
+    background: #fff;
+    margin: 1rem 0;
+}
+
+.gig-list-item:first-of-type {
+    margin-top:0;
+}
