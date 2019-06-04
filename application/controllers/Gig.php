@@ -90,16 +90,32 @@ class Gig extends CI_Controller
     }#end function index
 
     public function view($slug = NULL)
-    {//begin function index
-        $data['userId'] = $this->gig_model->get_session_id();
-        $data['gig'] = $this->gig_model->getGigs($slug);
-        if (empty($data['gig']))
-        {
-            show_404();
-        }
+    {//begin function view
+        $this->load->model('admin_model');
+        $this->load->database();
         $data['title']= 'Gig';
 
-        $this->load->view('gigs/view', $data);
+        if($this->session->logged_in === TRUE)
+        {//if logged get data of the gig(s) that matches userId from db)
+            $data['userId'] = $this->gig_model->get_session_id();
+            $data['gig'] = $this->gig_model->getGigs($slug);
+            if (empty($data['gig']))
+            {
+                show_404();
+            }
+
+            $this->load->view('gigs/view', $data);
+        }else
+        {
+            feedback(
+                '<p class="text-primary">Please log in to see gig details</p>'
+                , 'warning'
+            ); //set feedback
+            $data['gigs'] = $this->gig_model->getGigs();
+            $data['title']= 'Gigs';
+
+            $this->load->view('gigs/index', $data);
+        }
     }#end function view
 
     public function edit(){
