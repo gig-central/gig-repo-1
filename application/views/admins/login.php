@@ -42,9 +42,6 @@
 
             <a href="<?=base_url()?>admin/reset">Forgot Password?</a><br>
 
-            <h2 class="member">Not A Member?</h2><br>
-            <a href="<?=base_url()?>profiles/add">Register</a>
-
             <div class="form-group">
                 <button type="submit" class="btn btn-default btn-block" name="Submit">Submit</button>
             </div>
