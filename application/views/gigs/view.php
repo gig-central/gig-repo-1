@@ -12,7 +12,7 @@
 * @license http://www.apache.org/licenses/LICENSE-2.0
 * @see Gig_model.php
 * @see Gig.php
-* @todo none
+* @todo limit this view to authenticated students only. 
 */
 ?>
     <?php $this->load->view($this->config->item('theme') . 'header'); ?>
