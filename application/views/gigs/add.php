@@ -59,18 +59,14 @@
                     <label for="CompanyState" class="col-lg-3 control-label"><em>State</em></label>
                     <div class="col-md-6">
                         <?php echo form_error('CompanyState'); ?>
-                        <!--php tag with eco starts here to avoid having echo in the middle of the makeDropdownSelect() function -->
-                        <?php echo '
-                        <select class="form-control" id="CompanyState" name="CompanyState">
-                            <option value="0">Select State</option>' .
-                            //insert <option> elements
-                            makeDropdownSelect($this->config->item("stateSelect")) . '
-                        </select>'; ?>
+                        <!--erro with drop down - changed this to text input Tran Duong -->
+                       <input type="text" class="form-control" id="CompanyState" name="CompanyState" placeholder="State" value="<?php echo set_value('CompanyState'); ?>">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="ZipCode" class="col-lg-3 control-label"><em>Zip Code</em></label>
                     <div class="col-md-6">
+                        <?php echo form_error('ZipCode'); ?>
                         <input type="text" class="form-control" id="ZipCode" name="ZipCode" placeholder="Zip Code" value="<?php echo set_value('ZipCode'); ?>">
                     </div>
                 </div>
@@ -149,7 +145,7 @@
                     <div class="col-md-6">
                         <?php
                             echo form_error('GigCloseDate');
-                            $attributes = 'id="GigCloseDate" placeholder="Gig close date"';
+                            $attributes = 'id="GigCloseDate" name="GigCloseDate" placeholder="Gig close date"';
                             echo form_input('GigCloseDate', set_value('GigCloseDate'), $attributes);
                         ?>
                     </div>
