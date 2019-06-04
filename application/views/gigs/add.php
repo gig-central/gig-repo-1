@@ -58,9 +58,16 @@
                 <div class="form-group">
                     <label for="CompanyState" class="col-lg-3 control-label"><em>State</em></label>
                     <div class="col-md-6">
+<!--
+                        See implmentaion instructions in the makeDropdownSelect() function documention in helpers/common_helpers.php
+                        Also, be sure the state key/value array is in the custom_config.php file as shoule in custom_config_sample.php
+-->
                         <?php echo form_error('CompanyState'); ?>
-                        <!--erro with drop down - changed this to text input Tran Duong -->
-                       <input type="text" class="form-control" id="CompanyState" name="CompanyState" placeholder="State" value="<?php echo set_value('CompanyState'); ?>">
+                        <?php echo '
+                        <select class="form-control" id="CompanyState" name="CompanyState">
+                            <option value="0">Select State</option>' . 
+                            makeDropdownSelect($this->config->item("stateSelect")) . ' 
+                        </select>'; ?>
                     </div>
                 </div>
                 <div class="form-group">
