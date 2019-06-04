@@ -21,7 +21,7 @@ $this->load->view($this->config->item('theme') . 'header');
 <div id="instruction" class="main-box-container">
     
     <a href="<?php echo base_url().'gig'; ?>">
-        <div id="find-gig" class="main-box col-lg-3 col-sm-6 col-xs-12">
+        <div id="find-gig" class="main-box col-lg-6 col-sm-6 col-xs-12">
         <div class="inner-box">
             <h1><i class="fa fa-search"></i></h1>
             <h3>Find a gig</h3>
@@ -31,7 +31,7 @@ $this->load->view($this->config->item('theme') . 'header');
     </a>
     
     <a href="<?php echo base_url().'gig/add'; ?>">
-        <div id="post-gig" class="main-box col-lg-3 col-sm-6 col-xs-12">
+        <div id="post-gig" class="main-box col-lg-6 col-sm-6 col-xs-12">
         <div class="inner-box">
             <h1><i class="fa fa-briefcase"></i></h1>
             <h3>Post a gig</h3>
@@ -96,7 +96,7 @@ $this->load->view($this->config->item('theme') . 'header');
 -->
 <!-- this is for the 'Recent Posts section on the page' -->
 <div id="data-example" class="main-box-container">
-<div class="column col-lg-8 col-sm-12 col-xs-12">
+<div class="column col-lg-12 col-sm-12 col-xs-12">
          <div class="inner-column">
              <h2>Recent Gig Posts</h2>
              <div class="post">
