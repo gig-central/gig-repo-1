@@ -21,8 +21,6 @@
 
 <?php $this->load->view($this->config->item('theme') . 'header'); ?>
 
-<h1>Please note, if you do not login or create an account before posting a gig, you will be unable to make changes to or delete it after it has been posted</h1>
-
 <div class="container">
     <div class="col-lg-10">
         <form class="form-horizontal" role="form" method="post" action="add">
@@ -59,20 +57,16 @@
                 </div>
                 <div class="form-group">
                     <label for="CompanyState" class="col-lg-3 control-label"><em>State</em></label>
-                    <div class="col-md-6"> 
+                    <div class="col-md-6">
                         <?php echo form_error('CompanyState'); ?>
-                        <!--php tag with eco starts here to avoid having echo in the middle of the makeDropdownSelect() function -->
-                        <?php echo '
-                        <select class="form-control" id="CompanyState" name="CompanyState">
-                            <option value="0">Select State</option>' .
-                            //insert <option> elements
-                            makeDropdownSelect($this->config->item("stateSelect")) . ' 
-                        </select>'; ?>
+                        <!--erro with drop down - changed this to text input Tran Duong -->
+                       <input type="text" class="form-control" id="CompanyState" name="CompanyState" placeholder="State" value="<?php echo set_value('CompanyState'); ?>">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="ZipCode" class="col-lg-3 control-label"><em>Zip Code</em></label>
                     <div class="col-md-6">
+                        <?php echo form_error('ZipCode'); ?>
                         <input type="text" class="form-control" id="ZipCode" name="ZipCode" placeholder="Zip Code" value="<?php echo set_value('ZipCode'); ?>">
                     </div>
                 </div>
@@ -146,32 +140,32 @@
                 </div>
                 <div class="form-group">
                     <label for="GigCloseDate"class="col-lg-3 control-label hidden-label">
-                        <em>Gig Close Date</em>
+                        <em>Close Date</em>
                     </label>
                     <div class="col-md-6">
                         <?php
                             echo form_error('GigCloseDate');
-                            $attributes = 'id="GigCloseDate" placeholder="Gig close date"';
+                            $attributes = 'id="GigCloseDate" name="GigCloseDate" placeholder="Gig close date"';
                             echo form_input('GigCloseDate', set_value('GigCloseDate'), $attributes);
                         ?>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="GigOutline" class="col-lg-3 control-label hidden-label"><em>Gig Description</em></label>
+                    <label for="GigOutline" class="col-lg-3 control-label hidden-label"><em>Description</em></label>
                     <div class="col-md-6">
                         <?php echo form_error('GigOutline'); ?>
                         <textarea class="form-control" rows="15" cols="25" id="GigOutline" name="GigOutline" placeholder="Project/Gig Description"><?php echo set_value('GigOutline'); ?></textarea>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="GigQualify" class="col-lg-3 control-label hidden-label"><em>Gig Qualifications</em></label>
+                    <label for="GigQualify" class="col-lg-3 control-label hidden-label"><em>Qualifications</em></label>
                     <div class="col-md-6">
                         <?php echo form_error('GigQualify'); ?>
                         <textarea  rows="15" cols="25" class="form-control" id="GigQualify" name="GigQualify" placeholder="Qualifications"><?php echo set_value('GigQualify'); ?></textarea>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="SpInstructions" class="col-lg-3 control-label hidden-label"><em>Gig Special Instructions</em></label>
+                    <label for="SpInstructions" class="col-lg-3 control-label hidden-label"><em>Special Instructions</em></label>
                     <div class="col-md-6">
                         <?php echo form_error('SpInstructions'); ?>
                         <textarea rows="15" cols="25" class="form-control" id="SpInstructions" name="SpInstructions" placeholder="Special Instructions"><?php echo set_value('SpInstructions'); ?></textarea>

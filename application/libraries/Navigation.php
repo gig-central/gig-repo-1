@@ -65,7 +65,8 @@ class Navigation
                 'show_condition'=>	1,
                 'parent'	    =>	2
             ),
-            5 => array(
+            //links commented out(deemed non-essential to MVP) for possible reintigration in future iterations
+            /*5 => array(
                 'text'		    => 	'Venues',
                 'link'		    => 	base_url() . 'venues',
                 'show_condition'=>	1,
@@ -124,6 +125,8 @@ class Navigation
 
         if ($codeIgniter->session->logged_in == TRUE)
         {
+        //links commented out(deemed non-essential to MVP) for possible reintigration in future iterations
+        /*
             $editProfile = array(
                 'text'		     => 	'Edit Profile',
                 'link'		     => 	base_url() . 'profiles/edit',
@@ -144,7 +147,7 @@ class Navigation
                 //'Edit' menu is hidden
                 'show_condition' =>	    0,
                 'parent'	     =>	    2
-            );
+            );*/
             
             //If user id matches id stored in a post, 
             //change the value in 'show_condition' for $editGig to show 'Edit' menu
