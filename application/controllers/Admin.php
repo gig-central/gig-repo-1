@@ -21,70 +21,79 @@
  * @todo
  */
  
-class Admin extends CI_Controller {
-         public function __construct()
-        {//begin constructor
-            parent::__construct();
-            $this->load->model('admin_model');
-            $this->load->library('form_validation');
-            $this->load->database();
-            $this->load->helper('form');
-            $this->load->library('email');
-		    //$this->load->helper('email');
-            //$this->load->library('session'); this will regenerate a new session everytime the constructor is called
-            // which will destroy the userData that is set when logging in!
-            //$this->load->library('recaptcha');
-            
-            $this->config->set_item('nav-active', 'Login');//sets active class on current nav item
-        }#end constructor
+class Admin extends CI_Controller 
+{
+    public function __construct()
+    {//begin constructor
+        parent::__construct();
+        $this->load->model('admin_model');
+        $this->load->library('form_validation');
+        $this->load->database();
+        $this->load->helper('form');
+        $this->load->library('email');
+        //$this->load->helper('email');
+        //$this->load->library('session'); //this will regenerate a new session everytime the constructor is called
+        // which will destroy the userData that is set when logging in!
+        //$this->load->library('recaptcha');
         
-        public function index(){
-            $data['title'] ="Admin dashboard";
-            if ($this->session->logged_in == TRUE){
-                $logged = 'Welcome to GigCentral website!';
-            }else{
-                $logged = 'You are logged out. Please come back soon!';
-            }
-            if (isset($this->session->first_name)){
-                $data['first_name'] = $this->session->first_name;   
-            }else{
-                $data['first_name'] = "";
-            }
-            
-            $data['logged'] = $logged;
-            $this->load->view('admins/index',$data);
+        $this->config->set_item('nav-active', 'Login');//sets active class on current nav item
+    }#end constructor
+        
+    public function index()
+    {
+        $data['title'] ="Admin dashboard";
+        if ($this->session->logged_in == TRUE){
+            $data['logged'] = 'Welcome to GigCentral website!';
+            $data['first_name'] = $this->session->first_name; 
+        }else{
+            $data['logged'] = 'You are logged out. Please come back soon!';
+            $data['first_name'] = "";
         }
-        public function login()
+
+        $this->load->view('admins/index',$data);
+    }
+
+    public function login()
+    {
+        $data['title'] = "Login page";        
+
+        //set validation rules
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+        $this->form_validation->set_rules('pass', 'Pass', 'trim|required');
+
+        if ($this->form_validation->run() === FALSE) 
+        { //no data yet, show form!
+            $this->load->view('admins/login',$data);    
+            
+            //set form data to NULL
+            $form_data = NULL;             
+        }else
         {
-            $data['title'] = "Login page";
-            if(!isset($_POST['Submit'])){
-                $data['error']='';
+        //form validation passed
+
+            //grab post data and insert into array
+            $form_data = array(
+            'email' => $this->input->post('email'),
+            'pass' => $this->input->post('pass')
+            );
+
+            if($this->admin_model->authenticate($form_data) === TRUE)
+            {//pasword is authenticated
+                //var_dump($this->session->first_name);
+                //die();
+                $data['logged'] = 'Welcome to GigCentral website!';
+                $data['first_name'] = $this->session->first_name; 
+
+                $this->load->view('admins/index',$data); 
+            }else
+            {//provide feedback and reload form
+                feedback('Invalid credentials', 'error'); 
+
                 $this->load->view('admins/login',$data);    
-            }else{
-                $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
-                $this->form_validation->set_rules('pass', 'Pass', 'trim|required',array(
-                    'required' => 'The password field is required'
-                ));
-                if ($this->form_validation->run() == FALSE) // validation hasn't been passed
-                { 
-                    $this->load->view('admins/login',$data);
-                    
-                }else{
-                    $form_data = array(
-                    'email' => set_value('email'),
-                    'pass' => set_value('pass')
-                    );
-                 if ($this->admin_model->getInfor($form_data)){
-                  $data['error'] = $this->admin_model->getInfor($form_data);   
-                 }else{
-                   $data['error']='';
-                 }
-                 $this->load->view('admins/login',$data);    
-                }
-                
-            }
-            
+            }   
         }
+    }            
+
 
         /**
          * requestReset method for Admin controller class. 
