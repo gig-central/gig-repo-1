@@ -43,7 +43,7 @@
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Enter a Keyword..." name="keyword">
                 </div>
-                <button type="submit" class="btn">Search</button>
+                <button type="submit" class="btn small-btn">Search</button>
             </form>
 
             <!-- gig filter form -->
@@ -79,7 +79,7 @@
                     </label>
                 </div>
 
-                <button type="submit" class="btn">Filter</button>
+                <button type="submit" class="btn small-btn">Filter</button>
 
             </form>
         </div><!-- .col-sm-6 -->

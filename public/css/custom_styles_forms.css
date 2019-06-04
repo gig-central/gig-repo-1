@@ -20,20 +20,19 @@
 }
 
 /* .container .btn - general button styles */
-.container .btn {
+.btn {
     background-color: #2c3e50;
     color: #fff;
     font-size: 1.5em;
     border: none;
 }
 
-.container .btn:hover {
+.btn:hover {
     background-color: #000;
 }
 
-/* gig-search and gig-filter buttons styles */
-.gig-search .btn,
-.gig-filter .btn {
+/* for when a slightly smaller button is desired */
+.small-btn {
     font-size: 1.2em;
     padding: 8px 12px;
 }
@@ -42,7 +41,7 @@
     margin-top:-10px; /* reduces space between last form field and submit button */
 }
 
-/* lines up a link that is above/below a form input field
+/* aligns text/links that are above/below a form input field
    with the text in the input field */
 .form-group a {
     margin-left:15px;

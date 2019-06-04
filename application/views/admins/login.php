@@ -42,7 +42,7 @@
             </div>
 
             <div class="custom-info-box">
-                <h2 class="h4">Not A Member?</h2><!-- bootstrap h4 class reduces font-size -->
+                <h4>Not A Member?</h4>
                 <a href="<?=base_url()?>profiles/add">Register</a>
             </div>
         </form>
