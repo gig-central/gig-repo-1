@@ -35,6 +35,11 @@ input#userfile {
 	overflow: hidden;
   }
 
+/*Hide the checkboxes on the FAQ page*/
+.faq-checkbox {
+	display: none;
+}
+
   .blue label {
 	background: #2980b9;
   }
