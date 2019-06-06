@@ -13,66 +13,58 @@
  * @todo consolidate @media styles
  */
 
+/********** Media Queries 425px ***********/
+@media (max-width: 425px) {
+	.g-recaptcha{
+		transform:scale(0.77);
+		-webkit-transform:scale(0.77);
+		transform-origin:0 0;
+		-webkit-transform-origin:0 0;
+		margin: 0;
+	}
+}
+/********** End Media Queries 425px ***********/
+
+/********** Media Queries 580px ***********/
+
 @media (min-width: 580px){
     .main-box{
         padding-bottom: 35%;
     }
 }
+/********** End Media Queries 580px ***********/
+
+/********** Media Queries 768px ***********/
 
 @media (min-width: 768px){
     .main-box{
         padding-bottom: 30%;
     }
-}
-
-@media (min-width: 992px) {
-    .main-box{
-        padding-bottom: 30%;
-    }
-}
-@media (min-width: 1200px) {
-    .main-box{
-        padding-bottom: 25%;
-    }
-}
-
-@media (min-width: 768px){
-    .inner-box h1{
-        font-size: 2em;
-    }
-
+    
     .inner-box:hover h1{
     font-size: 2em;
     }
-}
-
-@media (min-width: 992px) {
-    .inner-box h1{
-        font-size: 3em;
-    }
-}
-@media (min-width: 1200px) {
-    .inner-box h1{
-        font-size: 5em;
-    }
-}
-
-@media (min-width: 768px) {
+    
     .inner-box:hover .bar{
         display: block;
     }
 }
+/********** End Media Queries 768px ***********/
 
-/** ReCaptcha Div, Contact Button Alignment **/
-@media (min-width: 1200px) {
-    .g-recaptcha {
-        /*margin-left: 27%;*/
+/********** Media Queries 992px ***********/
+
+@media (min-width: 992px) {
+    .main-box{
+        padding-bottom: 30%;
     }
-    .contact-btn {
-        margin-left: 34%;
+    
+    .inner-box h1{
+        font-size: 3em;
     }
 }
+/********** End Media Queries 992px ***********/
 
+/********** Media Queries 1199px ***********/
 @media (max-width: 1199px) {
     .g-recaptcha {
         margin-left: 15px;
@@ -81,4 +73,22 @@
         margin-left: -15px;
     }
 }
+/********** End Media Queries 992px ***********/
+
+/********** Media Queries 1200px ***********/
+
+@media (min-width: 1200px) {
+    .main-box{
+        padding-bottom: 25%;
+    }
+    
+    .inner-box h1{
+        font-size: 5em;
+    }
+    
+    .contact-btn {
+        margin-left: 34%;
+    }
+}
+
 

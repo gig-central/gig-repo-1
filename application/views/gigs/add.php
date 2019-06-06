@@ -58,19 +58,22 @@
                 <div class="form-group">
                     <label for="CompanyState" class="col-lg-3 control-label"><em>State</em></label>
                     <div class="col-md-6">
+<!--
+                        See implmentaion instructions in the makeDropdownSelect() function documention in helpers/common_helpers.php
+                        Also, be sure the state key/value array is in the custom_config.php file as shoule in custom_config_sample.php
+-->
                         <?php echo form_error('CompanyState'); ?>
-                        <!--php tag with eco starts here to avoid having echo in the middle of the makeDropdownSelect() function -->
                         <?php echo '
                         <select class="form-control" id="CompanyState" name="CompanyState">
-                            <option value="0">Select State</option>' .
-                            //insert <option> elements
-                            makeDropdownSelect($this->config->item("stateSelect")) . '
+                            <option value="0">Select State</option>' . 
+                            makeDropdownSelect($this->config->item("stateSelect")) . ' 
                         </select>'; ?>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="ZipCode" class="col-lg-3 control-label"><em>Zip Code</em></label>
                     <div class="col-md-6">
+                        <?php echo form_error('ZipCode'); ?>
                         <input type="text" class="form-control" id="ZipCode" name="ZipCode" placeholder="Zip Code" value="<?php echo set_value('ZipCode'); ?>">
                     </div>
                 </div>
@@ -149,7 +152,7 @@
                     <div class="col-md-6">
                         <?php
                             echo form_error('GigCloseDate');
-                            $attributes = 'id="GigCloseDate" placeholder="Gig close date"';
+                            $attributes = 'id="GigCloseDate" name="GigCloseDate" placeholder="Gig close date"';
                             echo form_input('GigCloseDate', set_value('GigCloseDate'), $attributes);
                         ?>
                     </div>

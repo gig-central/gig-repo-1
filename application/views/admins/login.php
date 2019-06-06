@@ -35,15 +35,11 @@
                 <a href="<?=base_url()?>admin/reset">Forgot Password?</a>
             </div>
             <?php echo form_error('pass'); ?>
-            <?php echo $error; ?>
 
-            <div class="form-group text-center">
+            <a href="<?=base_url()?>admin/reset">Forgot Password?</a><br>
+
+            <div class="form-group">
                 <button type="submit" class="btn" name="Submit">Submit</button>
-            </div>
-
-            <div class="custom-info-box">
-                <h4>Not A Member?</h4>
-                <a href="<?=base_url()?>profiles/add">Register</a>
             </div>
         </form>
     </div><!-- end row form -->
