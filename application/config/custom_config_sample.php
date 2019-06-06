@@ -124,3 +124,11 @@ $config['stateSelect'] = array(
     'WV' => 'West Virginia',
     'WY' => 'Wyoming',
 );
+
+// dropdown employment type selection used with makeDropdownSelect() for employment type selection
+$config['employmentTypeSelect'] = array(
+    'contract'  => 'Contract',
+    'intern'    => 'Intern',
+    'temporary' => 'Temporary',
+    'permanent' => 'Permanent',
+);

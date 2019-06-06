@@ -60,13 +60,13 @@
                     <div class="col-md-6">
 <!--
                         See implmentaion instructions in the makeDropdownSelect() function documention in helpers/common_helpers.php
-                        Also, be sure the state key/value array is in the custom_config.php file as shoule in custom_config_sample.php
+                        Also, be sure the stateSelect key/value array is in the custom_config.php file as shown in custom_config_sample.php
 -->
                         <?php echo form_error('CompanyState'); ?>
                         <?php echo '
                         <select class="form-control" id="CompanyState" name="CompanyState">
                             <option value="0">Select State</option>' .
-                            makeDropdownSelect($this->config->item("stateSelect")) . '
+                            makeDropdownSelect($this->config->item("stateSelect"), "CompanyState") . '
                         </select>'; ?>
                     </div>
                 </div>
@@ -125,17 +125,20 @@
                 <div class="form-group">
                     <legend><h3><strong>Gig Information</strong></h3></legend>
                 </div>
+<!--
+                See implmentaion instructions in the makeDropdownSelect() function documention in helpers/common_helpers.php
+                Also, be sure the empolymentType key/value array is in the custom_config.php file as shown in custom_config_sample.php
+-->
                 <div class="form-group">
                     <label for="EmploymentType" class="col-lg-3 control-label"><em>Employment Type</em></label>
                     <div class="col-md-6">
                         <?php echo form_error('EmploymentType'); ?>
-                        <select class="form-control" id="EmploymentType" name="EmploymentType">
-                            <option value="0">Select One</option>
-                            <option value="contract" <?php echo set_select('EmploymentType', 'contract'); ?>>Contract</option>
-                            <option value="intern" <?php echo set_select('EmploymentType', 'intern'); ?>>Intern</option>
-                            <option value="temporary" <?php echo set_select('EmploymentType', 'temporary'); ?>>Temporary</option>
-                            <option value="permanent" <?php echo set_select('EmploymentType', 'permanent'); ?>>Permanent</option>
-                        </select>
+                        <?php echo '
+                            <select class="form-control" id="EmploymentType" name="EmploymentType">
+                                <option value="0">Select One</option>' .
+                                 makeDropdownSelect($this->config->item("employmentTypeSelect"),"EmploymentType") . '
+                            </select>';
+                        ?>
                     </div>
                 </div>
                 <div class="form-group">
