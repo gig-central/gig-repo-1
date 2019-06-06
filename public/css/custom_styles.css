@@ -61,6 +61,7 @@ input#userfile {
 
 .blue label {
 	background: #2980b9;
+    margin-bottom: 0;
 }
 
 .tab-content {
@@ -74,6 +75,7 @@ input#userfile {
 
 .blue .tab-content {
 	background: #3498db;
+    margin-bottom: 1rem;
 }
 
 .tab-content p {
