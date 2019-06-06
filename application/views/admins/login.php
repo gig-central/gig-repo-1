@@ -36,9 +36,7 @@
             </div>
             <?php echo form_error('pass'); ?>
 
-            <a href="<?=base_url()?>admin/reset">Forgot Password?</a><br>
-
-            <div class="form-group">
+            <div class="form-group text-center">
                 <button type="submit" class="btn" name="Submit">Submit</button>
             </div>
         </form>
