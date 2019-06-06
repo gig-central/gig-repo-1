@@ -65,8 +65,8 @@
                         <?php echo form_error('CompanyState'); ?>
                         <?php echo '
                         <select class="form-control" id="CompanyState" name="CompanyState">
-                            <option value="0">Select State</option>' . 
-                            makeDropdownSelect($this->config->item("stateSelect")) . ' 
+                            <option value="0">Select State</option>' .
+                            makeDropdownSelect($this->config->item("stateSelect")) . '
                         </select>'; ?>
                     </div>
                 </div>
@@ -181,7 +181,7 @@
                 <div class="form-group text-right">
                     <div class="col-lg-3"></div>
                     <div class="col-lg-6">
-                        <?php echo form_submit('Submit', 'Add',"class='btn btn-success'"); ?>
+                        <?php echo form_submit('Submit', 'Add',"class='btn'"); ?>
                     </div>
                 </div>
 
