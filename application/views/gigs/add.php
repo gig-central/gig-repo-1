@@ -65,8 +65,8 @@
                         <?php echo form_error('CompanyState'); ?>
                         <?php echo '
                         <select class="form-control" id="CompanyState" name="CompanyState">
-                            <option value="0">Select State</option>' . 
-                            makeDropdownSelect($this->config->item("stateSelect"), "CompanyState") . ' 
+                            <option value="0">Select State</option>' .
+                            makeDropdownSelect($this->config->item("stateSelect"), "CompanyState") . '
                         </select>'; ?>
                     </div>
                 </div>
@@ -128,7 +128,7 @@
 <!--
                 See implmentaion instructions in the makeDropdownSelect() function documention in helpers/common_helpers.php
                 Also, be sure the empolymentType key/value array is in the custom_config.php file as shown in custom_config_sample.php
--->    
+-->
                 <div class="form-group">
                     <label for="EmploymentType" class="col-lg-3 control-label"><em>Employment Type</em></label>
                     <div class="col-md-6">
@@ -136,8 +136,8 @@
                         <?php echo '
                             <select class="form-control" id="EmploymentType" name="EmploymentType">
                                 <option value="0">Select One</option>' .
-                                 makeDropdownSelect($this->config->item("employmentTypeSelect"),"EmploymentType") . ' 
-                            </select>'; 
+                                 makeDropdownSelect($this->config->item("employmentTypeSelect"),"EmploymentType") . '
+                            </select>';
                         ?>
                     </div>
                 </div>
@@ -184,7 +184,7 @@
                 <div class="form-group text-right">
                     <div class="col-lg-3"></div>
                     <div class="col-lg-6">
-                        <?php echo form_submit('Submit', 'Add',"class='btn btn-success'"); ?>
+                        <?php echo form_submit('Submit', 'Add',"class='btn'"); ?>
                     </div>
                 </div>
 
