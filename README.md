@@ -1,4 +1,12 @@
 
+       MAIN PROJECT DOCUMENT URL AT:
+
+TINY URL ADDRESS:  https://tinyurl.com/gig-central
+
+FULL URL ADDRESS:  https://docs.google.com/document/d/1iylNjfON949K-K1fXOfzn09hAe5EoGhSEkFmECPvxMI
+
+
+
 
 [![N|Solid](http://www.dylanwilkinson.me/images/gigCentral2.png)](https://nodesource.com/products/nsolid)
 
