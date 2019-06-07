@@ -5,8 +5,8 @@
 * @package ITC 260 Gig Central CodeIgnitor
 * @subpackage Gig Controller
 * @author Patricia Barker, Mitchell Thompson, Spencer Echon, Turner Tackitt
-* @author Mike Archambault, Thom Harrington
-* @version 2.6 2019/05/18
+* @author Mike Archambault, Thom Harrington, Craig Peterson
+* @version 2.7 2019/06/06
 * @license http://www.apache.org/licenses/LICENSE-2.0
 * @see Gig_model.php
 * @see view/gigs/index.php
@@ -53,7 +53,7 @@ class Gig extends CI_Controller
         $this->load->helper('form');
         $this->load->library('form_validation');
         $this->form_validation->set_message('check_dropdown', 'The {field} must be selected.'); //customer message for droopdown fields
-        
+
         //set validation rules for data input on form in the format(field, labels, rules)
         //set validation rules for $data
         $this->form_validation->set_rules('Name', 'Name', 'trim|alpha_numeric|max_length[255]|required');
@@ -63,22 +63,22 @@ class Gig extends CI_Controller
         $this->form_validation->set_rules('ZipCode', 'ZipCode', 'trim|numeric|max_length[5]|required');
         $this->form_validation->set_rules('CompanyPhone', 'CompanyPhone', 'trim|numeric|max_length[50]|required');
         $this->form_validation->set_rules('Website', 'Website', 'trim|alpha_numeric|valid_url|max_length[100]');
-        
+
         //set validation rules for $data3
         $this->form_validation->set_rules('FirstName', 'FirstName', 'trim|alpha|max_length[255]|required');
         $this->form_validation->set_rules('LastName', 'LastName', 'trim|alpha|min_length[2]|max_length[200]|required');
         $this->form_validation->set_rules('Email', 'Email', 'trim|valid_email|min_length[2]|max_length[100]|required');
         $this->form_validation->set_rules('Phone', 'Phone', 'trim|numeric|max_length[50]|');
-        
+
         //set validation rules for $data2
         $this->form_validation->set_rules('GigQualify', 'GigQualify', 'trim|alpha|max_length[255]|required');
         $this->form_validation->set_rules('EmploymentType', 'EmploymentType', 'callback_check_dropdown');
         $this->form_validation->set_rules('GigOutline', 'GigOutline', 'trim|alpha|max_length[255]|required');
         $this->form_validation->set_rules('SpInstructions', 'SpInstructions', 'trim|alpha|max_length[255]|');
-        $this->form_validation->set_rules('PayRate', 'PayRate', 'trim|alpha_numeric|max_length[50]|'); 
-        $this->form_validation->set_rules('GigCloseDate', 'GigCloseDate', 'trim|numeric|max_length[50]|'); 
-        
-          
+        $this->form_validation->set_rules('PayRate', 'PayRate', 'trim|alpha_numeric|max_length[50]|');
+        $this->form_validation->set_rules('GigCloseDate', 'GigCloseDate', 'trim|numeric|max_length[50]|');
+
+
     }#end constructor
 
     public function index()
@@ -187,6 +187,7 @@ class Gig extends CI_Controller
                 redirect("admin/login");
         }
     }#end of function edit
+
     public function delete($id)
     {
         $userId = $this->gig_model->get_session_id();
@@ -274,25 +275,39 @@ class Gig extends CI_Controller
     }
 
     //search with filtering for gigs
-        public function filter() {
+    public function filter() {
 
-            $GigOutline = $_POST['GigOutline'];
-            $CompanyCity = $_POST['CompanyCity'];
-            $Name = $_POST['Name'];
+        $GigOutline = $_POST['GigOutline'];
+        $CompanyCity = $_POST['CompanyCity'];
+        $Name = $_POST['Name'];
 
-            $result = $this->gig_model->filter_search($GigOutline, $CompanyCity, $Name);
+        $result = $this->gig_model->filter_search($GigOutline, $CompanyCity, $Name);
 
-            if (!empty($result)){
-                //if we have results, then post them here
-                $data['title'] = 'Success!';
-                $data['gigs'] = $result;
-                $this->load->view('gigs/search', $data);
-            } else {
-                $data['title'] = 'Success!';
-                $data['gigs'] = null;
-                $this->load->view('gigs/search', $data);
-            }
+        if (!empty($result)){
+            //if we have results, then post them here
+            $data['title'] = 'Success!';
+            $data['gigs'] = $result;
+            $this->load->view('gigs/search', $data);
+        } else {
+            $data['title'] = 'Success!';
+            $data['gigs'] = null;
+            $this->load->view('gigs/search', $data);
         }
+    }
+
+    //get data for dashboard component
+    public function dashboard() {
+
+        $this->load->database();
+        $query = 'SELECT count(CompanyCity) as GigsInCity, EmploymentType, CompanyCity FROM Company c LEFT JOIN Gigs g ON c.CompanyID = g.CompanyID GROUP BY EmploymentType ORDER BY CompanyCity asc';
         
+
+        echo '<pre>';
+        echo var_dump($result);
+        echo '</pre>';
+        die;
+
+    }
+
 
 }#end Gigs class/controller
