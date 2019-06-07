@@ -80,6 +80,7 @@ CREATE TABLE `Gigs` (
   `GigID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `CompanyID` int(10) unsigned NOT NULL,
   `GigQualify` varchar(500) DEFAULT '',
+  `GigDuration` varchar(500) DEFAULT '',
   `EmploymentType` varchar(255) DEFAULT '',
   `GigOutline` varchar(500) DEFAULT '',
   `SpInstructions` varchar(350) DEFAULT '',

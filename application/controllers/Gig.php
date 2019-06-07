@@ -108,12 +108,12 @@ class Gig extends CI_Controller
         }else
         {
             feedback(
-                '<p class="text-primary">Please log in to see gig details</p>'
-                , 'warning'
+                '<strong>Heads up!</strong>
+                <p class="mb-0">Please ' . anchor('admin/login', 'log in') . ' to see gig details.</p>'
+                , 'danger'
             ); //set feedback
             $data['gigs'] = $this->gig_model->getGigs();
             $data['title']= 'Gigs';
-
             $this->load->view('gigs/index', $data);
         }
     }#end function view

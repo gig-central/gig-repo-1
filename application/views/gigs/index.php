@@ -35,7 +35,7 @@
     -->
     <div class="row">
 
-        <!-- right column: search form and filter form -->
+        <!-- left column: search form and filter form -->
         <div class="col-sm-3 gig-search">
             <!-- gig search field -->
             <form role="search" method="post" action="gig/search">
@@ -83,15 +83,17 @@
 
             </form>
         </div><!-- .col-sm-6 -->
-        <!-- END right column: search form and filter form -->
+        <!-- END left column: search form and filter form -->
 
-        <!-- left column: lists all gigs -->
+        <!-- right column: lists all gigs -->
         <div class="col-sm-9 gig-list">
             <?php foreach ($gigs as $gig): ?>
                 <div class="gig-list-item">
-                    <h3><?php echo $gig['Name'] ?></h3>
-                    <p><?php echo $gig['CompanyCity'] . ", " . $gig['State'] ?></p>
-                    <p><?php echo $gig['GigOutline'] ?></p>
+                    <p class="text-info">Company Name: </p><h3><?php echo $gig['Name'] ?></h3>
+                    <p class="text-info">Location: </p><p><?php echo $gig['CompanyCity'] . ", " . $gig['State'] ?></p>
+                    <p class="text-info">Description: </p><p><?php echo $gig['GigOutline'] ?></p>
+                    <p class="text-info">Technologies: </p><p><?php echo $gig['GigQualify'] ?></p>
+                    <p class="text-info">Duration: </p><p><?php echo $gig['GigDuration'] ?></p>
                     <p><?php echo anchor('gig/'.$gig['GigID'] , 'Read More');?></p>
                 </div>
             <?php endforeach ?>
