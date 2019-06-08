@@ -65,7 +65,7 @@
                         <?php echo form_error('CompanyState'); ?>
                         <?php echo '
                         <select class="form-control" id="CompanyState" name="CompanyState">
-                            <option value="0">Select State</option>' .
+                            <option value="" disabled selected>Select State</option>' .
                             makeDropdownSelect($this->config->item("stateSelect"), "CompanyState") . '
                         </select>'; ?>
                     </div>
@@ -122,6 +122,7 @@
                         <input type="text" class="form-control" id="Phone" name="Phone" placeholder="Gig Contact Phone" value="<?php echo set_value('Phone'); ?>">
                     </div>
                 </div>
+
                 <div class="form-group">
                     <legend><h3><strong>Gig Information</strong></h3></legend>
                 </div>
@@ -135,7 +136,7 @@
                         <?php echo form_error('EmploymentType'); ?>
                         <?php echo '
                             <select class="form-control" id="EmploymentType" name="EmploymentType">
-                                <option value="0">Select One</option>' .
+                                <option value="0" disabled selected>Select One</option>' .
                                  makeDropdownSelect($this->config->item("employmentTypeSelect"),"EmploymentType") . '
                             </select>';
                         ?>
@@ -148,6 +149,15 @@
                             <input type="text" class="form-control" id="PayRate" name="PayRate" placeholder="Pay rate" value="<?php echo set_value('PayRate'); ?>">
                         </div>
                 </div>
+
+                <div class="form-group">
+                    <label for="GigDuration" class="col-lg-3 control-label"><em>Employment Duration</em></label>
+                        <div class="col-md-6">
+                            <?php echo form_error('GigDuration'); ?>
+                            <input type="text" class="form-control" id="GigDuration" name="GigDuration" placeholder="Employment Duration" value="<?php echo set_value('GigDuration'); ?>">
+                        </div>
+                </div>
+
                 <div class="form-group">
                     <label for="GigCloseDate"class="col-lg-3 control-label hidden-label">
                         <em>Close Date</em>
@@ -155,7 +165,11 @@
                     <div class="col-md-6">
                         <?php
                             echo form_error('GigCloseDate');
-                            $attributes = 'id="GigCloseDate" name="GigCloseDate" placeholder="Gig close date"';
+                            $attributes = '
+                                id="GigCloseDate" 
+                                class="form-control" 
+                                name="GigCloseDate" 
+                                placeholder="YYYY-MM-DD"';
                             echo form_input('GigCloseDate', set_value('GigCloseDate'), $attributes);
                         ?>
                     </div>

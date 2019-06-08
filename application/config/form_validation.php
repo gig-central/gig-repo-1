@@ -18,63 +18,129 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 
 // Set form validation rules here.
+
+/*form fileds:
+                //build company info array for model
+                $company_data = array(
+                    'Name' => set_value('Name'), //name should be CompanyName in DB
+                    'Address' => set_value('CompanyAddress'),
+                    'CompanyCity' => set_value('CompanyCity'),
+                    'CompanyState' => set_value('CompanyState'),
+                    'ZipCode' => set_value('ZipCode'),
+                    'CompanyPhone' => set_value('CompanyPhone'),
+                    'Website' => set_value('CompanyWebsite')
+                );
+    
+                $contact_data = array(
+                    'FirstName' => set_value('FirstName'),
+                    'LastName'  => set_value('LastName'),
+                    'Email'   => set_value('Email'),
+                    'Phone' => set_value('Phone')
+                );
+    
+                // build gig array for the model
+                $gig_data = array(
+                    'EmploymentType' => set_value('EmploymentType'),
+                    'PayRate' => set_value('PayRate'),
+                    'GigCloseDate' => set_value(strip_tags('GigCloseDate','<p>')),
+                    'GigOutline' => set_value('GigOutline'),
+                    'GigQualify' => set_value(strip_tags('GigQualify','<p>')),
+                    'SpInstructions' => set_value(strip_tags('SpInstructions','<p>'))
+                    );
+                    */
 $config = array(
         // Sets validation rules for the 'Add a Gig' form
+                //establish form validation rules
         'gig/add' => array(
             array(
                 'field' => 'Name',
-                'label' => 'Company Name',
-                'rules' => 'required'
+                'label' => 'Name',
+                'rules' => 'trim|min_length[2]|max_length[30]|required'
             ),
             array(
                 'field' => 'CompanyAddress',
-                'label' => 'Company Address',
-                'rules' => 'required'
+                'label' => 'Address',
+                'rules' => 'trim|alpha_numeric_spaces|min_length[2]|max_length[30]|required'
             ),
             array(
                 'field' => 'CompanyCity',
-                'label' => 'Company City',
-                'rules' => 'required'
+                'label' => 'City',
+                'rules' => 'trim|min_length[3]|max_length[30]|required'
             ),
             array(
                 'field' => 'CompanyState',
-                'label' => 'Company State',
-                'rules' => 'required|callback_check_dropdown'
+                'label' => 'State',
+                'rules' => 'required|trim|max_length[30]'
             ),
             array(
                 'field' => 'ZipCode',
-                'label' => 'Zip Code',
-                'rules' => 'required'
+                'label' => 'ZipCode',
+                'rules' => 'trim|numeric|min_length[5]|max_length[5]|required'
+            ),
+            array(
+                'field' => 'CompanyPhone',
+                'label' => 'Phone',
+                'rules' => 'trim|numeric|min_length[10]|max_length[15]|required'
+            ),
+            array(
+                'field' => 'CompanyWebsite',
+                'label' => 'Website',
+                'rules' => 'trim|min_length[4]|valid_url'
             ),
             array(
                 'field' => 'FirstName',
-                'label' => 'Contact first name',
-                'rules' => 'required'
+                'label' => 'First Name',
+                'rules' => 'trim|alpha|min_length[2]|max_length[30]|required'
             ),
             array(
                 'field' => 'LastName',
-                'label' => 'Contact last name',
-                'rules' => 'required'
+                'label' => 'Last Name',
+                'rules' => 'trim|alpha|min_length[2]|max_length[30]|required'
             ),
             array(
                 'field' => 'Email',
-                'label' => 'Contact email',
-                'rules' => 'required|valid_email'
+                'label' => 'Email',
+                'rules' => 'trim|required|min_length[4]|max_length[30]|valid_email'
             ),
             array(
-                'field' => 'GigCloseDate',
-                'label' => 'Gig Close Date',
-                'rules' => 'required'
-            ),
-            array(
-                'field' => 'GigOutline',
-                'label' => 'Gig description',
-                'rules' => 'required'
+                'field' => 'Phone',
+                'label' => 'Phone',
+                'rules' => 'trim|numeric|min_length[10]|max_length[10]|required'
             ),
             array(
                 'field' => 'EmploymentType',
                 'label' => 'Employment type',
                 'rules' => 'required|callback_check_dropdown'
+            ),
+            array(
+                'field' => 'PayRate',
+                'label' => 'Pay Rate',
+                'rules' => 'trim|required|min_length[3]|max_length[50]'
+            ),
+            array(
+                'field' => 'GigDuration',
+                'label' => 'Employment Duration',
+                'rules' => 'trim|required|min_length[3]|max_length[50]'
+            ),
+            array(
+                'field' => 'GigCloseDate',
+                'label' => 'Close Date',
+                'rules' => 'required'
+            ),
+            array(
+                'field' => 'GigOutline',
+                'label' => 'Description',
+                'rules' => 'trim|max_length[255]'
+            ),
+            array(
+                'field' => 'GigQualify',
+                'label' => 'Qualifications',
+                'rules' => 'trim|max_length[255]'
+            ),
+            array(
+                'field' => 'SpInstructions',
+                'label' => 'Special Instructions',
+                'rules' => 'trim|max_length[255]'
             )
         ),
         'venues/add' => array(
@@ -192,5 +258,5 @@ $config = array(
 
 // Sets custom delimeters for error messages on forms.
 // These settings MAY not work if they are above custom validation rules.
-$config['error_prefix'] = '<div class="text-danger">';
-$config['error_suffix'] = '</div>';
+$config['error_prefix'] = '<span class="badge badge-warning">';
+$config['error_suffix'] = '</span>';

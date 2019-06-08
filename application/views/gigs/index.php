@@ -90,7 +90,7 @@
             <?php foreach ($gigs as $gig): ?>
                 <div class="gig-list-item">
                     <p class="text-info">Company Name: </p><h3><?php echo $gig['Name'] ?></h3>
-                    <p class="text-info">Location: </p><p><?php echo $gig['CompanyCity'] . ", " . $gig['State'] ?></p>
+                    <p class="text-info">Location: </p><p><?php echo $gig['CompanyCity'] . ", " . $gig['CompanyState'] ?></p>
                     <p class="text-info">Description: </p><p><?php echo $gig['GigOutline'] ?></p>
                     <p class="text-info">Technologies: </p><p><?php echo $gig['GigQualify'] ?></p>
                     <p class="text-info">Duration: </p><p><?php echo $gig['GigDuration'] ?></p>
