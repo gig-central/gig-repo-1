@@ -70,7 +70,7 @@ $config = array(
             array(
                 'field' => 'CompanyState',
                 'label' => 'State',
-                'rules' => 'callback_check_dropdown|required|'
+                'rules' => 'callback_check_dropdown|required'
             ),
             array(
                 'field' => 'ZipCode',
