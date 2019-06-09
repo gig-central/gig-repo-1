@@ -12,6 +12,9 @@
  * @see application/view/themes/bootswatch/header.php
  * @todo none
  */
+body {
+    min-width: 500px;
+}
 
 h2 {
     padding-bottom:2rem;
@@ -114,4 +117,23 @@ input#userfile {
 
 .gig-list-item:first-of-type {
     margin-top:0;
+}
+
+@media only screen and (max-width: 730px) {
+    
+.gig-search form {
+    margin-top: 0;
+    padding-top: 0;
+    max-width: 45%;
+    min-width: 235px;
+    float: right;
+    padding-right: 20px;
+    }
+    
+.gig-list {
+    border-left: none;
+    border-top: 2px solid #2c3e4f;
+    padding-top: 10px;
+    margin-top: 340px;
+    }    
 }
