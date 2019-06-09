@@ -52,9 +52,18 @@ class Gig extends CI_Controller
         $this->config->set_item('nav-active', 'Gigs');//sets active class on all gig children
         $this->load->helper('form');
         $this->load->library('form_validation');
-        $this->form_validation->set_message('check_dropdown', 'The {field} must be selected.'); //customer message for droopdown fields
+
+        /**
+        *$this->form_validation->set_message below is a customer message for dropdown fields. This is basically 
+        * saying apply this message to the custom rule 
+        *"check_dropdown". check_dropdown is a method in this controller.
+        */
+        $this->form_validation->set_message('check_dropdown', '{field} must be selected.'); 
+        /**
+         */
 
         //Form validation is handled in the form_validation.php in the cofig folder. It will automaticly be called when validation runs 
+        
     }#end constructor
 
     public function index()

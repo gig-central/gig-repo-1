@@ -5,10 +5,6 @@ SET time_zone = '+00:00';
 SET foreign_key_checks = 0;
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
-DROP DATABASE IF EXISTS `tegs_tech_gig_central`;
-CREATE DATABASE `tegs_tech_gig_central` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `tegs_tech_gig_central`;
-
 DROP TABLE IF EXISTS `Amenity`;
 CREATE TABLE `Amenity` (
   `AmenityKey` int(11) NOT NULL AUTO_INCREMENT,

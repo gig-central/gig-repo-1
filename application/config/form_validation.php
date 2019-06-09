@@ -70,7 +70,7 @@ $config = array(
             array(
                 'field' => 'CompanyState',
                 'label' => 'State',
-                'rules' => 'required|trim|max_length[30]'
+                'rules' => 'callback_check_dropdown|required|'
             ),
             array(
                 'field' => 'ZipCode',
@@ -110,7 +110,7 @@ $config = array(
             array(
                 'field' => 'EmploymentType',
                 'label' => 'Employment type',
-                'rules' => 'required|callback_check_dropdown'
+                'rules' => 'callback_check_dropdown|required'
             ),
             array(
                 'field' => 'PayRate',
@@ -256,7 +256,8 @@ $config = array(
         )
 );
 
-// Sets custom delimeters for error messages on forms.
+// Sets custom html wrappers for error messages on forms to change their style globally.
+//https://www.codeigniter.com/user_guide/libraries/form_validation.html#changing-the-error-delimiters
 // These settings MAY not work if they are above custom validation rules.
-$config['error_prefix'] = '<span class="badge badge-warning">';
-$config['error_suffix'] = '</span>';
+$config['error_prefix'] = '<div class="text-danger">';
+$config['error_suffix'] = '</div>';

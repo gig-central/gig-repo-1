@@ -7784,33 +7784,3 @@ form {
     margin: 5%;
     float: left;
 }
-.badge-danger {
-  color: #fff;
-  background-color: #E74C3C;
-}
-
-a.badge-danger:hover, a.badge-danger:focus {
-  color: #fff;
-  background-color: #d62c1a;
-}
-
-a.badge-danger:focus, a.badge-danger.focus {
-  outline: 0;
-  -webkit-box-shadow: 0 0 0 0.2rem rgba(231, 76, 60, 0.5);
-          box-shadow: 0 0 0 0.2rem rgba(231, 76, 60, 0.5);
-}
-.badge-warning {
-  color: #fff;
-  background-color: #F39C12;
-}
-
-a.badge-warning:hover, a.badge-warning:focus {
-  color: #fff;
-  background-color: #c87f0a;
-}
-
-a.badge-warning:focus, a.badge-warning.focus {
-  outline: 0;
-  -webkit-box-shadow: 0 0 0 0.2rem rgba(243, 156, 18, 0.5);
-          box-shadow: 0 0 0 0.2rem rgba(243, 156, 18, 0.5);
-}

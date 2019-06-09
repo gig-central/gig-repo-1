@@ -102,7 +102,7 @@ $this->load->view($this->config->item('theme') . 'header');
              <div class="post">
                 <?php foreach (array_slice($gigs, -3, 3) as $gig): //maybe use something other than array_slice?>
 				<h3><?php echo $gig['Name'] ?><span><?php echo date('Y-m-d', strtotime($gig['GigPosted'])); ?></span></h3>
-			    <p><?php echo $gig['CompanyCity'] . ", " . $gig['State']?></p>
+			    <p><?php echo $gig['CompanyCity'] . ", " . $gig['CompanyState']?></p>
 				<p><?php echo $gig['GigOutline'] ?></p>
 				<p><?php echo anchor('gig/'.$gig['GigID'] , 'Read More');?></p>
                 <hr/> 

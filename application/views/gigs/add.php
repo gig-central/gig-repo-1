@@ -65,7 +65,7 @@
                         <?php echo form_error('CompanyState'); ?>
                         <?php echo '
                         <select class="form-control" id="CompanyState" name="CompanyState">
-                            <option value="" disabled selected>Select State</option>' .
+                            <option value="0" selected>Select State</option>' .
                             makeDropdownSelect($this->config->item("stateSelect"), "CompanyState") . '
                         </select>'; ?>
                     </div>
@@ -136,7 +136,7 @@
                         <?php echo form_error('EmploymentType'); ?>
                         <?php echo '
                             <select class="form-control" id="EmploymentType" name="EmploymentType">
-                                <option value="0" disabled selected>Select One</option>' .
+                                <option value="0" selected>Select One</option>' .
                                  makeDropdownSelect($this->config->item("employmentTypeSelect"),"EmploymentType") . '
                             </select>';
                         ?>
