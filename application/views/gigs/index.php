@@ -69,14 +69,6 @@
                     </select>
                 </div>
 
-                <div class="form-group">
-                    <label>Company Name:</label>
-                    <select name="Name">
-                        <?php foreach ($gigs as $gig): ?>
-                        <option value="<?=$gig['Name']?>"><?=$gig['Name']?></option>
-                        <?php endforeach ?>
-                    </select>
-                </div>
                 <div class="form-group button-container">
                     <button type="submit" class="btn small-btn">Apply Filter</button>
                 </div>
@@ -88,23 +80,9 @@
         <!-- right column: lists all gigs -->
         <div class="col-sm-9 gig-list">
             <?php foreach ($gigs as $gig): ?>
-            <!--
-
-                -= Old Format =-
-
-                <div class="gig-list-item">
-                    <p class="text-info">Company Name: </p><h3><?php echo $gig['Name'] ?></h3>
-                    <p class="text-info">Location: </p><p><?php echo $gig['CompanyCity'] . ", " . $gig['CompanyState'] ?></p>
-                    <p class="text-info">Description: </p><p><?php echo $gig['GigOutline'] ?></p>
-                    <p class="text-info">Technologies: </p><p><?php echo $gig['GigQualify'] ?></p>
-                    <p class="text-info">Duration: </p><p><?php echo $gig['GigDuration'] ?></p>
-                    <p><?php echo anchor('gig/'.$gig['GigID'] , 'Read More');?></p>
-                </div>
-
-            -->
                 
                 <div class="gig-list-header">
-                        <h3 class="gig-list-title"><?php echo $gig['EmploymentType'] ?> at <?php echo $gig['Name'] ?></h3>
+                        <h3 class="gig-list-title"><?php echo $gig['EmploymentType'] ?></h3>
                         <p class="gig-list-subtitle"><?php echo $gig['CompanyCity'] . ", " . $gig['CompanyState'] ?></p>
                 </div>
                 <div class="gig-list-item">
