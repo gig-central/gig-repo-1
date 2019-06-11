@@ -113,18 +113,20 @@ INSERT INTO `Gigs` (`GigID`, `CompanyID`, `GigQualify`, `GigDuration`, `Employme
 DROP TABLE IF EXISTS `Markers`;
 CREATE TABLE `Markers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `VenueKey` int(10) unsigned DEFAULT '0',
   `lat` float(10,6) NOT NULL,
   `lng` float(10,6) NOT NULL,
+  `GigID` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `VenueKey` (`VenueKey`),
-  CONSTRAINT `Markers_ibfk_1` FOREIGN KEY (`VenueKey`) REFERENCES `Venue` (`VenueKey`) ON DELETE CASCADE
+  KEY `GigID` (`GigID`),
+  CONSTRAINT `Markers_ibfk_3` FOREIGN KEY (`GigID`) REFERENCES `Gigs` (`GigID`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `Markers` (`id`, `VenueKey`, `lat`, `lng`) VALUES
-(1,	1,	47.614662,	-122.322037),
-(2,	2,	47.613953,	-122.321220),
-(3,	3,	47.604340,	-122.325890);
+INSERT INTO `Markers` (`id`, `lat`, `lng`, `GigID`) VALUES
+(1,	47.615856,	-122.339966,	1),
+(2,	47.614998,	-122.193939,	2),
+(3,	47.649269,	-122.350624,	3),
+(4,	47.663166,	-122.313095,	4),
+(5,	47.502205,	-122.169411,	5);
 
 DROP TABLE IF EXISTS `Profile`;
 CREATE TABLE `Profile` (

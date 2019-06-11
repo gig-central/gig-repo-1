@@ -62,6 +62,19 @@
 
 <div class="clear-both"></div>
 
+<!-- Start Google Map -->
+    <div class="column col-lg-12 col-sm-12 col-xs-12">
+        <div class="inner-column">
+             <h2>Gigs Near You</h2>
+            <p><a href="<?=base_url()?>gig"> View More &raquo;</a> </p>
+            <div id="map" style="width: 100%; height: 300px"  onload="load()"></div>
+            <p>Location will be revealed once you login</p>
+        </div>
+    </div>
+
+<div class="clear-both"></div>
+<!--End Google Maps --> 
+
 <!-- comments out non-mvp features for possible reintegration at later date
 <!-- this is for the 'Profile Pictures section on the page'
 <div class="profile-container">
@@ -127,55 +140,89 @@
 
 <div class="clear-both"></div>
 
-<!--begin Javascript-->
+<!--begin Javascript for Google Maps-->
 <script>
 
-	//pulled from:	//https://developers.google.com/maps/documentation/javascript/mysql-to-maps
+    //pulled from:	//https://developers.google.com/maps/documentation/javascript/mysql-to-maps
     function initMap(){
     var map = new google.maps.Map(document.getElementById("map"), {
-    center: new google.maps.LatLng(47.6145, -122.3418),
-    //center: new google.maps.LatLng(lat, lng),
-    zoom: 13
-    });
+        center: new google.maps.LatLng(47.639898, -122.255396),
+        //center: new google.maps.LatLng(lat, lng),
+        zoom: 11,
+        minZoom: 10,
+        maxZoom: 11.3,
+        gestureHandling: 'cooperative'
+        //limit the maxZoom ability -  will prevent users from zooming into exact location
+    }); 
+        
     var infoWindow = new google.maps.InfoWindow;
+        
   //base path
 	var base_url = "<?php echo base_url()?>";
 	var ajax = "public/phpsqlajax_genxml.php";
 	var url = base_url.concat(ajax);
   downloadUrl(url , function(data) {
-    var xml = data.responseXML;
-    var markers = xml.documentElement.getElementsByTagName("marker");
-    Array.prototype.forEach.call(markers, function(markerElem) {
-         var name = 			markerElem.getAttribute('name');
-         var address = markerElem.getAttribute('address');
-         var type = markerElem.getAttribute('type');
-	    var point = new google.maps.LatLng(
-                  parseFloat(markerElem.getAttribute('lat')),
-                  parseFloat(markerElem.getAttribute('lng')));
+        var xml = data.responseXML;
+        var markers = xml.documentElement.getElementsByTagName("marker");
+        Array.prototype.forEach.call(markers, function(markerElem) {
+            var name = markerElem.getAttribute('name');
+            var address = markerElem.getAttribute('address');
+            var type = markerElem.getAttribute('type');    
+            var point = new google.maps.LatLng(
+              parseFloat(markerElem.getAttribute('lat')),
+              parseFloat(markerElem.getAttribute('lng'))
+            );
 
-	    var infowincontent = document.createElement('div');
-         var strong = document.createElement('strong');
-              strong.textContent = name
-              infowincontent.appendChild(strong);
-              infowincontent.appendChild(document.createElement('br'));
+            var infowincontent = document.createElement('div');
+            var strong = document.createElement('strong');
+                strong.textContent = name
+                infowincontent.appendChild(strong);
+                infowincontent.appendChild(document.createElement('br'));
 
-         var text = document.createElement('text');
-              text.textContent = address
-              infowincontent.appendChild(text);
+            var text = document.createElement('text');
+                text.textContent = address
+                infowincontent.appendChild(text);
 
-	    var icon = {};
-              var marker = new google.maps.Marker({
-                map: map,
+            var icon = {};
+
+            var marker = new google.maps.Marker({
+                map: map, 
                 position: point,
+                //create a symbol in the shape of circle as the icon
+                icon: {
+                          path: google.maps.SymbolPath.CIRCLE,
+                          scale: 33,
+                          strokeColor: '#FF0000',
+                          strokeOpacity: 0.8,
+                          strokeWeight: 2,
+                          fillColor: '#FF0000',
+                          fillOpacity: 0.35
+                        },
                 label: icon.icon
-              });
+            });
 
-	marker.addListener('click', function() {
-    infoWindow.setContent(infowincontent);
-    infoWindow.open(map, marker);
-  });
-});
-  });
+            //draws a circle where the the center of the pins are and set a radius of 250 from it - use this if a radius is needed - more precise location from center point
+            /*
+            marker.Circle = new google.maps.Circle({
+            center:marker.getPosition(),
+            radius: 250,
+            map: map,
+            strokeColor: '#FF0000',
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: '#FF0000',
+            fillOpacity: 0.35
+            });
+            */
+            
+            /* Event Listener - once area/pins is clicked, data will be revealed
+            marker.addListener('click', function() {
+                infoWindow.setContent(infowincontent);
+                infoWindow.open(map, marker);
+            }); 
+            */
+        });
+    });
 }
 
 function downloadUrl(url, callback) {
@@ -191,12 +238,12 @@ function downloadUrl(url, callback) {
   request.open('GET', url, true);
   request.send(null);
 }
-
+    
 function doNothing() {}
-
 </script>
-
+<!--End Script for Google Map -->
+    
 <!--api below, after "key=" is from google on 2017/05/09. Limited use.-->
 <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=<?php echo $api;?>&callback=initMap">
-</script>
+    </script>

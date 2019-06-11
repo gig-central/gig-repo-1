@@ -39,8 +39,12 @@ if ($mysqli->connect_error) {
     exit();
 }
 
-//join tables
-$query = "SELECT * FROM Markers m, Venue v WHERE m.VenueKey = v.VenueKey";
+//join tables - use inner joins to link all 3 tables (Gigs, Markers, Company)
+$query = 
+    "SELECT lat, lng, EmploymentType, Name, Address
+    FROM Gigs g
+    Inner Join Markers m on m.GigID = g.GigID
+    Inner join Company c on c.CompanyID = g.CompanyID";
 
 /* Select queries return a resultset */
 if ($result = $mysqli->query($query)) {
@@ -56,11 +60,11 @@ if ($result = $mysqli->query($query)) {
 	//{
 	  // ADD TO XML DOCUMENT NODE
 	  echo '<marker ';
-	  echo 'name="' . parseToXML($row['VenueName']) . '" ';
-	  echo 'address="' . parseToXML($row['VenueAddress']) . '" ';
+	  echo 'name="' . parseToXML($row['Name']) . '" ';
+	  echo 'address="' . parseToXML($row['Address']) . '" ';
 	  echo 'lat="' . $row['lat'] . '" ';
 	  echo 'lng="' . $row['lng'] . '" ';
-	  echo 'type="' . $row['VenueTypeKey'] . '" ';
+	  echo 'type="' . $row['EmploymentType'] . '" ';
 	  echo '/>';
 //}
    
