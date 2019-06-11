@@ -247,9 +247,9 @@ class Gig_model extends CI_Model {
         return FALSE;
     }//end function SaveForm
 
-    public function filter_search ($GigOutline, $CompanyCity, $Name){
+    public function filter_search ($GigOutline, $CompanyCity){
 
-       $conditions = array('GigOutline' => $GigOutline, 'CompanyCity' => $CompanyCity, 'Name' => $Name);
+       $conditions = array('GigOutline' => $GigOutline, 'CompanyCity' => $CompanyCity);
 
        $this->db->select('*');
        $this->db->from('Gigs');
