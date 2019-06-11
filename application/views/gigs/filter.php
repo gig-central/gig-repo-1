@@ -39,7 +39,7 @@
 	<h3><strong>Results found:</strong></h3>
 	<hr/>
 	<?php foreach ($gigs as $gig): ?>
-	<h3><?php echo $gig['Name'] ?></h3>
+	<h3><?php echo $gig['EnploymentType'] ?></h3>
 	<p><?php echo $gig['CompanyCity'] . ", " . $gig['State'] ?></p>
 	<p><?php echo $gig['GigOutline'] ?></p>
 	<p><?php echo anchor('gig/'.$gig['GigID'] , 'Read More');?></p>
