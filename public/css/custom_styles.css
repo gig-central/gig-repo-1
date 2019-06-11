@@ -13,7 +13,7 @@
  * @todo none
  */
 body {
-    min-width: 500px;
+    /* min-width: 500px; /* this rule breaks responsiveness... */
 }
 
 h2 {
