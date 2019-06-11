@@ -47,6 +47,10 @@
     margin-left:15px;
 }
 
+.gig-list-form select {
+    width:100%; /* prevents dropdown menus from appearing wider than their parent element */
+}
+
 /* styles a custom-info-box that is inside a form */
 form .custom-info-box {
     margin-top: 30px; /* doubles standard form-group spacing */
@@ -106,5 +110,3 @@ input[type=radio]:checked + label::after {
 input:checked ~ .tab-content {
     max-height: 15em;
 }
-
-

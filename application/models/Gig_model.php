@@ -151,6 +151,7 @@ class Gig_model extends CI_Model {
         $this->db->join('Gigs', 'Gigs.CompanyID = Company.CompanyID');
         $this->db->join('CompanyContact', 'Gigs.CompanyID = CompanyContact.CompanyID');
         $this->db->like('Gigs.GigOutline', $keyword);
+        $this->db->or_like('Gigs.EmploymentType', $keyword);
         $this->db->or_like('Company.CompanyCity', $keyword);
         $this->db->or_like('Company.Name', $keyword);
         $query = $this->db->get();
@@ -247,7 +248,7 @@ class Gig_model extends CI_Model {
         return FALSE;
     }//end function SaveForm
 
-    public function filter_search ($GigOutline, $CompanyCity){
+    public function filter_search($GigOutline, $CompanyCity){
 
        $conditions = array('GigOutline' => $GigOutline, 'CompanyCity' => $CompanyCity);
 
@@ -259,6 +260,13 @@ class Gig_model extends CI_Model {
 
        return $result->result_array();
 
-   }//end of the filter_search form
+    }//end of the filter_search form
+
+    //get data for dashboard component
+    public function dashboard() {
+
+        $result = $this->db->query('SELECT count(EmploymentType) as NumberOfGigs, EmploymentType FROM Gigs GROUP BY EmploymentType ORDER BY NumberOfGigs desc');
+        return $result->result_array();
+    }
 
 }#end of the Gig_model

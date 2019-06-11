@@ -5,8 +5,8 @@
 * @package ITC 260 Gig Central CodeIgnitor
 * @subpackage Gig Controller
 * @author Patricia Barker, Mitchell Thompson, Spencer Echon, Turner Tackitt
-* @author Mike Archambault, Thom Harrington
-* @version 2.6 2019/05/18
+* @author Mike Archambault, Thom Harrington, Craig Peterson
+* @version 2.7 2019/06/06
 * @license http://www.apache.org/licenses/LICENSE-2.0
 * @see Gig_model.php
 * @see view/gigs/index.php
@@ -36,7 +36,7 @@ class Gig extends CI_Controller
  * The view($slug) method of the gig object created will get  the data of that slug from Gig_model and load them into the view gigs/view
  *
  * The add() method of the gig object created will load a form , validate it and add gigs.
- *Form validation is handled in the form_validation.php in the cofig folder. It will automaticly be called when validation runs 
+ *Form validation is handled in the form_validation.php in the cofig folder. It will automaticly be called when validation runs
  *
  * @see Gig_model
  * @return void
@@ -54,16 +54,16 @@ class Gig extends CI_Controller
         $this->load->library('form_validation');
 
         /**
-        *$this->form_validation->set_message below is a customer message for dropdown fields. This is basically 
-        * saying apply this message to the custom rule 
+        *$this->form_validation->set_message below is a customer message for dropdown fields. This is basically
+        * saying apply this message to the custom rule
         *"check_dropdown". check_dropdown is a method in this controller.
         */
-        $this->form_validation->set_message('check_dropdown', '{field} must be selected.'); 
+        $this->form_validation->set_message('check_dropdown', '{field} must be selected.');
         /**
          */
 
-        //Form validation is handled in the form_validation.php in the cofig folder. It will automaticly be called when validation runs 
-        
+        //Form validation is handled in the form_validation.php in the cofig folder. It will automaticly be called when validation runs
+
     }#end constructor
 
     public function index()
@@ -172,6 +172,7 @@ class Gig extends CI_Controller
                 redirect("admin/login");
         }
     }#end of function edit
+
     public function delete($id)
     {
         $userId = $this->gig_model->get_session_id();
@@ -199,7 +200,7 @@ class Gig extends CI_Controller
         {// validation not passed, re-load form to add gig
             $this->load->view('gigs/add', $data);
         }
-        else 
+        else
         {//passed validation, proceed to post Success logic
 
             //build company info array for model
@@ -245,15 +246,22 @@ class Gig extends CI_Controller
                 // Or whatever error handling is necessary
             }
         }
-    
+
         /*else {
             //load the blank form if the form is not a submit
                 $this->load->view('gigs/add', $data);*/
     }#end function add()
 
-    public function search()
+    public function search($keyword = NULL)
     {
-        $keyword = $this->input->post('keyword');
+        if($keyword != NULL) {
+            $keyword = str_replace('%20', ' ', $keyword); //fixes query string space formatting
+        }
+
+        if(!empty($_POST)) { //check if search submitted via POST form
+            $keyword = $this->input->post('keyword');
+        }
+
         $data['gigs'] = $this->gig_model->searchGigs($keyword);
         $data['title']= 'Searching for: '.$keyword;
 
@@ -282,6 +290,5 @@ class Gig extends CI_Controller
                 $this->load->view('gigs/search', $data);
             }
         }
-        
 
 }#end Gigs class/controller
