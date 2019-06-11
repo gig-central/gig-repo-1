@@ -30,9 +30,9 @@
 <script type="text/javascript">
 $(function() {
     $("#GigCloseDate").datepicker(
-        {
-            dateFormat: 'yy-mm-dd'
-        }
+        //{
+           // dateFormat: 'yy-mm-dd'
+        //}
     );
 });
 

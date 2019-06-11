@@ -12,6 +12,9 @@
  * @see application/view/themes/bootswatch/header.php
  * @todo none
  */
+body {
+    min-width: 500px;
+}
 
 h2 {
     padding-bottom:2rem;
@@ -99,7 +102,7 @@ input#userfile {
 }
 
 .gig-list {
-    border-left: 2px solid #2c3e4f;
+    border-left: 1px solid #18bc9c;
 }
 
 .gig-list h3:first-of-type {
@@ -110,8 +113,66 @@ input#userfile {
     padding: 1rem;
     background: #fff;
     margin: 1rem 0;
+    margin-top: 0px;
 }
 
+/* gig-list items */
 .gig-list-item:first-of-type {
     margin-top:0;
+}
+.gig-list-header{
+    background-color: #18bc9c;
+    padding: 1rem;
+}
+.gig-list-title{
+    margin: 0px;
+}
+.gig-list-subtitle{
+    font-style: italic;
+}
+.gig-list-subheader.text-info{
+    margin: 0px;
+}
+/* gig-list forms */
+.gig-list-form h4{
+    background-color: #18bc9c;
+    padding: 1rem;
+    margin: 0;
+}
+.gig-list-form .form-group{
+    background-color: white;
+    margin: 0;
+}
+.gig-list-form label{
+    background-color: rgba(0,0,0,0);
+    margin: 0;
+    padding: 0;
+}
+.gig-list-form .form-group{
+    padding: 1rem;
+    padding-top: 0rem;
+}
+.gig-list-form .form-group.input-container{
+    padding-top: 1rem;
+}
+.gig-list-form .button-container{
+    padding-top: 1rem;
+}
+@media only screen and (max-width: 730px) {
+    
+.gig-search form {
+    margin-top: 0;
+    padding-top: 0;
+    max-width: 45%;
+    min-width: 235px;
+    float: right;
+    padding-right: 20px;
+    }
+    
+.gig-list {
+    border-left: none;
+    border-top: 2px solid #2c3e4f;
+    padding-top: 10px;
+    margin-top: 340px;
+    }    
 }

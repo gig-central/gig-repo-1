@@ -35,63 +35,69 @@
     -->
     <div class="row">
 
-        <!-- right column: search form and filter form -->
+        <!-- left column: search form and filter form -->
         <div class="col-sm-3 gig-search">
             <!-- gig search field -->
-            <form role="search" method="post" action="gig/search">
+            <form role="search" method="post" action="gig/search" class="gig-list-form" id="gig-search-form">
                 <h4>Search by Keyword</h4>
-                <div class="form-group">
+                <div class="form-group input-container">
                     <input type="text" class="form-control" placeholder="Enter a Keyword..." name="keyword">
                 </div>
-                <button type="submit" class="btn small-btn">Search</button>
+                <div class="form-group button-container">
+                    <button type="submit" class="btn small-btn">Search</button>
+                </div>
             </form>
 
             <!-- gig filter form -->
-            <form role="filter" method="post" action="gig/filter">
+            <form role="filter" method="post" action="gig/filter" class="gig-list-form">
                 <h4>Filter</h4>
                 <div class="form-group">
-                    <label>Type of Job:<br />
-                        <select name="GigOutline">
-                            <?php foreach ($gigs as $gig): ?>
-                            <option value="<?=$gig['GigOutline']?>"><?=$gig['GigOutline']?></option>
-                            <?php endforeach ?>
-                        </select>
-                    </label>
+                    <label>Type of Job:</label>
+                    <select name="GigOutline">
+                        <?php foreach ($gigs as $gig): ?>
+                        <option value="<?=$gig['GigOutline']?>"><?=$gig['GigOutline']?></option>
+                        <?php endforeach ?>
+                    </select>
                 </div>
 
                 <div class="form-group">
-                    <label>City:<br />
-                        <select name="CompanyCity">
-                            <?php foreach ($gigs as $gig): ?>
-                            <option value="<?=$gig['CompanyCity']?>"><?=$gig['CompanyCity']?></option>
-                            <?php endforeach ?>
-                        </select>
-                    </label>
+                    <label>City:</label>
+                    <select name="CompanyCity">
+                        <?php foreach ($gigs as $gig): ?>
+                        <option value="<?=$gig['CompanyCity']?>"><?=$gig['CompanyCity']?></option>
+                        <?php endforeach ?>
+                    </select>
                 </div>
 
-                <div class="form-group">
-                    <label>Company Name:<br />
-                        <select name="Name">
-                            <?php foreach ($gigs as $gig): ?>
-                            <option value="<?=$gig['Name']?>"><?=$gig['Name']?></option>
-                            <?php endforeach ?>
-                        </select>
-                    </label>
+                <div class="form-group button-container">
+                    <button type="submit" class="btn small-btn">Apply Filter</button>
                 </div>
-
-                <button type="submit" class="btn small-btn">Filter</button>
 
             </form>
         </div><!-- .col-sm-6 -->
-        <!-- END right column: search form and filter form -->
+        <!-- END left column: search form and filter form -->
 
-        <!-- left column: lists all gigs -->
+        <!-- right column: lists all gigs -->
         <div class="col-sm-9 gig-list">
             <?php foreach ($gigs as $gig): ?>
+                
+                <div class="gig-list-header">
+                        <h3 class="gig-list-title"><?php echo $gig['EmploymentType'] ?></h3>
+                        <p class="gig-list-subtitle"><?php echo $gig['CompanyCity'] . ", " . $gig['CompanyState'] ?></p>
+                </div>
                 <div class="gig-list-item">
-                    <h3><?php echo $gig['Name'] ?></h3>
-                    <p><?php echo $gig['CompanyCity'] . ", " . $gig['State'] ?></p>
-                    <p><?php echo $gig['GigOutline'] ?></p>
+                    <p class="gig-list-subheader text-info">Description: </p><p><?php 
+                        if($gig['GigOutline']){echo $gig['GigOutline'];}
+                        else{echo 'N/A';}?>
+                        </p>
+                    <p class="gig-list-subheader text-info">Technologies: </p><p><?php 
+                        if($gig['GigQualify']){echo $gig['GigQualify'];}
+                        else{echo 'N/A';}?>
+                    </p>
+                    <p class="gig-list-subheader text-info">Duration: </p><p><?php 
+                        if($gig['GigDuration']){echo $gig['GigDuration'];}
+                        else{echo 'N/A';}?>
+                    </p>
                     <p><?php echo anchor('gig/'.$gig['GigID'] , 'Read More');?></p>
                 </div>
             <?php endforeach ?>

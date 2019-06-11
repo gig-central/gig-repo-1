@@ -1,5 +1,4 @@
--- Adminer 4.2.5 MySQL dump
--- database05212019.sql
+-- Adminer 4.6.3 MySQL dump
 
 SET NAMES utf8;
 SET time_zone = '+00:00';
@@ -21,8 +20,7 @@ INSERT INTO `Amenity` (`AmenityKey`, `AmenityName`) VALUES
 (5,	'Food'),
 (6,	'Outdoor Seating'),
 (7,	'Parking'),
-(8,	'Wheelchair Accessable')
-ON DUPLICATE KEY UPDATE `AmenityKey` = VALUES(`AmenityKey`), `AmenityName` = VALUES(`AmenityName`);
+(8,	'Wheelchair Accessable');
 
 DROP TABLE IF EXISTS `Company`;
 CREATE TABLE `Company` (
@@ -30,7 +28,7 @@ CREATE TABLE `Company` (
   `Name` varchar(100) DEFAULT '',
   `Address` varchar(85) DEFAULT '',
   `CompanyCity` varchar(40) DEFAULT '',
-  `State` varchar(25) DEFAULT 'WA',
+  `CompanyState` varchar(25) DEFAULT 'WA',
   `ZipCode` varchar(25) DEFAULT '',
   `CompanyPhone` varchar(25) DEFAULT '',
   `Website` varchar(100) DEFAULT '',
@@ -38,11 +36,12 @@ CREATE TABLE `Company` (
   PRIMARY KEY (`CompanyID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `Company` (`CompanyID`, `Name`, `Address`, `CompanyCity`, `State`, `ZipCode`, `CompanyPhone`, `Website`, `CompanyContactID`) VALUES
+INSERT INTO `Company` (`CompanyID`, `Name`, `Address`, `CompanyCity`, `CompanyState`, `ZipCode`, `CompanyPhone`, `Website`, `CompanyContactID`) VALUES
 (1,	'Amazon',	'440 Terry Ave N',	'Seattle',	'WA',	'98109',	'(206) 266-1000',	'https://amazon.com',	1),
 (2,	'Microsoft',	'Microsoft Headquarters One Microsoft Way',	'Redmond',	'WA',	'98052',	'(206) 123-4567',	'https://microsoft.com',	2),
-(3,	'Google',	'601 N 34th St',	'Seattle',	'WA',	'98103',	'(206) 123-1000',	'https://google.com',	3)
-ON DUPLICATE KEY UPDATE `CompanyID` = VALUES(`CompanyID`), `Name` = VALUES(`Name`), `Address` = VALUES(`Address`), `CompanyCity` = VALUES(`CompanyCity`), `State` = VALUES(`State`), `ZipCode` = VALUES(`ZipCode`), `CompanyPhone` = VALUES(`CompanyPhone`), `Website` = VALUES(`Website`), `CompanyContactID` = VALUES(`CompanyContactID`);
+(3,	'Google',	'601 N 34th St',	'Seattle',	'WA',	'98103',	'(206) 123-1000',	'https://google.com',	3),
+(4,	'The Crocodile',	'1234 West Ave St',	'Seattle',	'WA',	'98126',	'1231234444',	'thecrocodile.com',	NULL),
+(5,	'XYZ corporation',	'123 Redmond Ave s Suite 768',	'Bellevue',	'WA',	'98123',	'2062899988',	'amazon.com',	NULL);
 
 DROP TABLE IF EXISTS `CompanyContact`;
 CREATE TABLE `CompanyContact` (
@@ -60,8 +59,9 @@ CREATE TABLE `CompanyContact` (
 INSERT INTO `CompanyContact` (`CompanyContactID`, `FirstName`, `LastName`, `Email`, `Phone`, `CompanyID`) VALUES
 (1,	'Jeff',	'Bezos',	'jeff.bezos@amazon.com',	'(206) 266-1000',	1),
 (2,	'Satya',	'Nadella',	'satya.nadella@microsoft.com',	'(206) 123-4567',	2),
-(3,	'Sundar',	'Pichai',	'sundar.pichai@amazon.com',	'(206) 123-1000',	3)
-ON DUPLICATE KEY UPDATE `CompanyContactID` = VALUES(`CompanyContactID`), `FirstName` = VALUES(`FirstName`), `LastName` = VALUES(`LastName`), `Email` = VALUES(`Email`), `Phone` = VALUES(`Phone`), `CompanyID` = VALUES(`CompanyID`);
+(3,	'Sundar',	'Pichai',	'sundar.pichai@amazon.com',	'(206) 123-1000',	3),
+(4,	'Crocker',	'Diles',	'crocker.diles@example.com',	'1231231234',	4),
+(5,	'Peter',	'Parker',	'peter@gmail.com',	'1231231234',	5);
 
 DROP TABLE IF EXISTS `Contact`;
 CREATE TABLE `Contact` (
@@ -80,6 +80,7 @@ CREATE TABLE `Gigs` (
   `GigID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `CompanyID` int(10) unsigned NOT NULL,
   `GigQualify` varchar(500) DEFAULT '',
+  `GigDuration` varchar(500) DEFAULT '',
   `EmploymentType` varchar(255) DEFAULT '',
   `GigOutline` varchar(500) DEFAULT '',
   `SpInstructions` varchar(350) DEFAULT '',
@@ -87,17 +88,16 @@ CREATE TABLE `Gigs` (
   `GigPosted` datetime DEFAULT NULL,
   `LastUpdated` timestamp NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   `id` int(10) unsigned NOT NULL,
-  `GigCloseDate` varchar(10) DEFAULT '',
+  `GigCloseDate` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`GigID`),
   KEY `CompanyID` (`CompanyID`),
   CONSTRAINT `Gigs_ibfk_1` FOREIGN KEY (`CompanyID`) REFERENCES `Company` (`CompanyID`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `Gigs` (`GigID`, `CompanyID`, `GigQualify`, `EmploymentType`, `GigOutline`, `SpInstructions`, `PayRate`, `GigPosted`, `LastUpdated`, `id`, `GigCloseDate`) VALUES
-(1,	1,	'HTML/CSS',	'Web Developer',	'Web maintenance',	'Email me your resume',	'None',	'2017-05-20 14:30:35',	'2017-05-20 21:30:35',	0,	''),
-(2,	2,	'C#/.NET',	'Computer Engineer',	'Development of web apps',	'Email me your resume',	'None',	'2017-05-20 14:30:35',	'2017-05-20 21:30:35',	0,	''),
-(3,	3,	'Photoshop',	'Graphic Designer',	'Designing site mockups',	'Email me your resume',	'None',	'2017-05-20 14:30:35',	'2017-05-20 21:30:35',	0,	'')
-ON DUPLICATE KEY UPDATE `GigID` = VALUES(`GigID`), `CompanyID` = VALUES(`CompanyID`), `GigQualify` = VALUES(`GigQualify`), `EmploymentType` = VALUES(`EmploymentType`), `GigOutline` = VALUES(`GigOutline`), `SpInstructions` = VALUES(`SpInstructions`), `PayRate` = VALUES(`PayRate`), `GigPosted` = VALUES(`GigPosted`), `LastUpdated` = VALUES(`LastUpdated`), `id` = VALUES(`id`), `GigCloseDate` = VALUES(`GigCloseDate`);
+INSERT INTO `Gigs` (`GigID`, `CompanyID`, `GigQualify`, `GigDuration`, `EmploymentType`, `GigOutline`, `SpInstructions`, `PayRate`, `GigPosted`, `LastUpdated`, `id`, `GigCloseDate`) VALUES
+(1,	1,	'HTML/CSS',	'',	'Web Developer',	'Web maintenance',	'Email me your resume',	'None',	'2017-05-20 14:30:35',	'2019-06-08 07:13:47',	0,	''),
+(2,	2,	'C#/.NET',	'',	'Computer Engineer',	'Development of web apps',	'Email me your resume',	'None',	'2017-05-20 14:30:35',	'2019-06-08 07:13:47',	0,	''),
+(3,	3,	'Photoshop',	'',	'Graphic Designer',	'Designing site mockups',	'Email me your resume',	'None',	'2017-05-20 14:30:35',	'2019-06-08 07:13:47',	0,	'');
 
 DROP TABLE IF EXISTS `Markers`;
 CREATE TABLE `Markers` (
@@ -113,8 +113,7 @@ CREATE TABLE `Markers` (
 INSERT INTO `Markers` (`id`, `VenueKey`, `lat`, `lng`) VALUES
 (1,	1,	47.614662,	-122.322037),
 (2,	2,	47.613953,	-122.321220),
-(3,	3,	47.604340,	-122.325890)
-ON DUPLICATE KEY UPDATE `id` = VALUES(`id`), `VenueKey` = VALUES(`VenueKey`), `lat` = VALUES(`lat`), `lng` = VALUES(`lng`);
+(3,	3,	47.604340,	-122.325890);
 
 DROP TABLE IF EXISTS `Profile`;
 CREATE TABLE `Profile` (
@@ -146,8 +145,7 @@ INSERT INTO `test_Customers` (`CustomerID`, `LastName`, `FirstName`, `Email`) VA
 (1,	'Smith',	'Bob',	'bob@example.com'),
 (2,	'Jones',	'Bll',	'bill@example.com'),
 (3,	'Doe',	'John',	'john@example.com'),
-(4,	'Rules',	'Ann',	'ann@example.com')
-ON DUPLICATE KEY UPDATE `CustomerID` = VALUES(`CustomerID`), `LastName` = VALUES(`LastName`), `FirstName` = VALUES(`FirstName`), `Email` = VALUES(`Email`);
+(4,	'Rules',	'Ann',	'ann@example.com');
 
 DROP TABLE IF EXISTS `Venue`;
 CREATE TABLE `Venue` (
@@ -177,11 +175,10 @@ CREATE TABLE `Venue` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `Venue` (`VenueKey`, `VenueName`, `VenueTypeKey`, `VenueAddress`, `City`, `State`, `ZipCode`, `VenuePhone`, `VenueWebsite`, `VenueHours`, `Food`, `Bar`, `Outlets`, `WiFi`, `Outdoor`, `Wheelchair`, `Parking`, `VenuePostDate`, `VenueExpirationDate`) VALUES
-(1, 'Elliott Bay Book Company', 1, '1521 10th Ave', 'Seattle', 'WA', '98122', '2066246600', 'http://www.elliottbaybook.com', 'M-Th 10am-10pm, F-S 10am-11pm, Sun', 'No', 'No', 'Yes', 'Yes', 'No', 'Yes', 'No', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(2, 'Caffe Vita', 2, '1005 E Pike St', 'Seattle', 'WA', '98122', '2067094440', 'http://www.caffevita.com/locations/wa/capitol-hill', 'M-F 6am-11pm, S-Sun 7am-11pm', 'Yes', 'No', 'Yes', 'Yes', 'Yes', 'Yes', 'No', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(3, 'Seattle Public Library - Capitol Hill Branch', 3, '425 Harvard Ave E', 'Seattle', 'WA', '98102', '2066844715', 'http://www.spl.org/locations/capitol-hill-branch', 'M-Th 10am-8pm, F-S 10am-6pm, Sun 1pm-5pm', 'No', 'No', 'Yes', 'Yes', 'No', 'Yes', 'No', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(4, 'Seattle Hotel', 5, '12345 example st', 'Seattle', 'WA', '98000', '1234456789', 'http://www.website.com', 'M-Th 10am-8pm, F-S 10am-6pm, Sun 1pm-5pm', 'Yes', 'Yes', 'Yes', 'Yes', 'Yes', 'Yes', 'Yes', '0000-00-00 00:00:00', '0000-00-00 00:00:00')
-ON DUPLICATE KEY UPDATE `VenueKey` = VALUES(`VenueKey`), `VenueName` = VALUES(`VenueName`), `VenueTypeKey` = VALUES(`VenueTypeKey`), `VenueAddress` = VALUES(`VenueAddress`), `City` = VALUES(`City`), `State` = VALUES(`State`), `ZipCode` = VALUES(`ZipCode`), `VenuePhone` = VALUES(`VenuePhone`), `VenueWebsite` = VALUES(`VenueWebsite`), `VenueHours` = VALUES(`VenueHours`), `Food` = VALUES(`Food`), `Bar` = VALUES(`Bar`), `Outlets` = VALUES(`Outlets`), `WiFi` = VALUES(`WiFi`), `Outdoor` = VALUES(`Outdoor`), `Wheelchair` = VALUES(`Wheelchair`), `Parking` = VALUES(`Parking`), `VenuePostDate` = VALUES(`VenuePostDate`), `VenueExpirationDate` = VALUES(`VenueExpirationDate`);
+(1,	'Elliott Bay Book Company',	1,	'1521 10th Ave',	'Seattle',	'WA',	'98122',	'2066246600',	'http://www.elliottbaybook.com',	'M-Th 10am-10pm, F-S 10am-11pm, Sun',	'No',	'No',	'Yes',	'Yes',	'No',	'Yes',	'No',	'0000-00-00 00:00:00',	'0000-00-00 00:00:00'),
+(2,	'Caffe Vita',	2,	'1005 E Pike St',	'Seattle',	'WA',	'98122',	'2067094440',	'http://www.caffevita.com/locations/wa/capitol-hill',	'M-F 6am-11pm, S-Sun 7am-11pm',	'Yes',	'No',	'Yes',	'Yes',	'Yes',	'Yes',	'No',	'0000-00-00 00:00:00',	'0000-00-00 00:00:00'),
+(3,	'Seattle Public Library - Capitol Hill Branch',	3,	'425 Harvard Ave E',	'Seattle',	'WA',	'98102',	'2066844715',	'http://www.spl.org/locations/capitol-hill-branch',	'M-Th 10am-8pm, F-S 10am-6pm, Sun 1pm-5pm',	'No',	'No',	'Yes',	'Yes',	'No',	'Yes',	'No',	'0000-00-00 00:00:00',	'0000-00-00 00:00:00'),
+(4,	'Seattle Hotel',	5,	'12345 example st',	'Seattle',	'WA',	'98000',	'1234456789',	'http://www.website.com',	'M-Th 10am-8pm, F-S 10am-6pm, Sun 1pm-5pm',	'Yes',	'Yes',	'Yes',	'Yes',	'Yes',	'Yes',	'Yes',	'0000-00-00 00:00:00',	'0000-00-00 00:00:00');
 
 DROP TABLE IF EXISTS `VenueAmenity`;
 CREATE TABLE `VenueAmenity` (
@@ -202,8 +199,7 @@ INSERT INTO `VenueAmenity` (`VenueAmenityKey`, `AmenityKey`, `VenueKey`) VALUES
 (4,	1,	2),
 (5,	4,	2),
 (6,	1,	3),
-(7,	4,	3)
-ON DUPLICATE KEY UPDATE `VenueAmenityKey` = VALUES(`VenueAmenityKey`), `AmenityKey` = VALUES(`AmenityKey`), `VenueKey` = VALUES(`VenueKey`);
+(7,	4,	3);
 
 DROP TABLE IF EXISTS `VenueType`;
 CREATE TABLE `VenueType` (
@@ -218,7 +214,6 @@ INSERT INTO `VenueType` (`VenueTypeKey`, `VenuetypeName`) VALUES
 (2,	'Library'),
 (3,	'School'),
 (4,	'Community Center'),
-(5,	'Other')
-ON DUPLICATE KEY UPDATE `VenueTypeKey` = VALUES(`VenueTypeKey`), `VenuetypeName` = VALUES(`VenuetypeName`);
+(5,	'Other');
 
--- 2017-06-07 01:05:31
+-- 2019-06-08 08:33:38

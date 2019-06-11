@@ -36,7 +36,7 @@ class Gig extends CI_Controller
  * The view($slug) method of the gig object created will get  the data of that slug from Gig_model and load them into the view gigs/view
  *
  * The add() method of the gig object created will load a form , validate it and add gigs.
- *
+ *Form validation is handled in the form_validation.php in the cofig folder. It will automaticly be called when validation runs
  *
  * @see Gig_model
  * @return void
@@ -52,32 +52,17 @@ class Gig extends CI_Controller
         $this->config->set_item('nav-active', 'Gigs');//sets active class on all gig children
         $this->load->helper('form');
         $this->load->library('form_validation');
-        $this->form_validation->set_message('check_dropdown', 'The {field} must be selected.'); //customer message for droopdown fields
 
-        //set validation rules for data input on form in the format(field, labels, rules)
-        //set validation rules for $data
-        $this->form_validation->set_rules('Name', 'Name', 'trim|alpha_numeric|max_length[255]|required');
-        $this->form_validation->set_rules('Address', 'Address', 'trim|min_length[5]|max_length[200]|required');
-        $this->form_validation->set_rules('CompanyCity', 'CompanyCity', 'trim|alpha|min_length[3]|max_length[100]|required');
-        $this->form_validation->set_rules('CompanyState', 'CompanyState', 'trim|alpha|max_length[2]|required');
-        $this->form_validation->set_rules('ZipCode', 'ZipCode', 'trim|numeric|max_length[5]|required');
-        $this->form_validation->set_rules('CompanyPhone', 'CompanyPhone', 'trim|numeric|max_length[50]|required');
-        $this->form_validation->set_rules('Website', 'Website', 'trim|alpha_numeric|valid_url|max_length[100]');
+        /**
+        *$this->form_validation->set_message below is a customer message for dropdown fields. This is basically
+        * saying apply this message to the custom rule
+        *"check_dropdown". check_dropdown is a method in this controller.
+        */
+        $this->form_validation->set_message('check_dropdown', '{field} must be selected.');
+        /**
+         */
 
-        //set validation rules for $data3
-        $this->form_validation->set_rules('FirstName', 'FirstName', 'trim|alpha|max_length[255]|required');
-        $this->form_validation->set_rules('LastName', 'LastName', 'trim|alpha|min_length[2]|max_length[200]|required');
-        $this->form_validation->set_rules('Email', 'Email', 'trim|valid_email|min_length[2]|max_length[100]|required');
-        $this->form_validation->set_rules('Phone', 'Phone', 'trim|numeric|max_length[50]|');
-
-        //set validation rules for $data2
-        $this->form_validation->set_rules('GigQualify', 'GigQualify', 'trim|alpha|max_length[255]|required');
-        $this->form_validation->set_rules('EmploymentType', 'EmploymentType', 'callback_check_dropdown');
-        $this->form_validation->set_rules('GigOutline', 'GigOutline', 'trim|alpha|max_length[255]|required');
-        $this->form_validation->set_rules('SpInstructions', 'SpInstructions', 'trim|alpha|max_length[255]|');
-        $this->form_validation->set_rules('PayRate', 'PayRate', 'trim|alpha_numeric|max_length[50]|');
-        $this->form_validation->set_rules('GigCloseDate', 'GigCloseDate', 'trim|numeric|max_length[50]|');
-
+        //Form validation is handled in the form_validation.php in the cofig folder. It will automaticly be called when validation runs
 
     }#end constructor
 
@@ -108,12 +93,12 @@ class Gig extends CI_Controller
         }else
         {
             feedback(
-                '<p class="text-primary">Please log in to see gig details</p>'
-                , 'warning'
+                '<strong>Heads up!</strong>
+                <p class="mb-0">Please ' . anchor('admin/login', 'log in') . ' to see gig details.</p>'
+                , 'danger'
             ); //set feedback
             $data['gigs'] = $this->gig_model->getGigs();
             $data['title']= 'Gigs';
-
             $this->load->view('gigs/index', $data);
         }
     }#end function view
@@ -200,66 +185,71 @@ class Gig extends CI_Controller
 
     }#end function delete()
 
+        /**
+    * @author Patricia Barker, Mitchell Thompson, Spencer Echon, Turner Tackitt, esteban Ginocchio Silva
+    * @todo 'Name' should be CompanyName in DB
+    */
+
     public function add()
     {
-        $data['title'] = 'Add a New Gig';
+        $data['title'] = 'Add a New Gig'; //set values to be passed to view
 
-        if (isset($_POST['Submit']))
-        {
-            if ($this->form_validation->run() == FALSE)
-            {// validation not passed, re-load form to add gig
-                $this->load->view('gigs/add', $data);
-            }
-            else //passed validation, proceed to post Success logic
+        //establish form validation rules is handled in config/form_validation.php
+
+        if ($this->form_validation->run() == FALSE)
+        {// validation not passed, re-load form to add gig
+            $this->load->view('gigs/add', $data);
+        }
+        else
+        {//passed validation, proceed to post Success logic
+
+            //build company info array for model
+            $company_data = array(
+                'Name' => set_value('Name'), //name should be CompanyName in DB
+                'Address' => set_value('CompanyAddress'),
+                'CompanyCity' => set_value('CompanyCity'),
+                'CompanyState' => set_value('CompanyState'),
+                'ZipCode' => set_value('ZipCode'),
+                'CompanyPhone' => set_value('CompanyPhone'),
+                'Website' => set_value('CompanyWebsite')
+            );
+
+            $contact_data = array(
+                'FirstName' => set_value('FirstName'),
+                'LastName'  => set_value('LastName'),
+                'Email'   => set_value('Email'),
+                'Phone' => set_value('Phone')
+            );
+
+            // build gig array for the model
+            $gig_data = array(
+                'EmploymentType' => set_value('EmploymentType'),
+                'PayRate' => set_value('PayRate'),
+                'PayRate' => set_value('GigDuration'),
+                'GigCloseDate' => set_value(strip_tags('GigCloseDate','<p>')),
+                'GigOutline' => set_value('GigOutline'),
+                'GigQualify' => set_value(strip_tags('GigQualify','<p>')),
+                'SpInstructions' => set_value(strip_tags('SpInstructions','<p>'))
+                );
+
+            if ($this->gig_model->addGig($company_data, $contact_data, $gig_data) == TRUE)
             {
-
-                //build company info array for model
-                $company_data = array(
-                    'Name' => set_value('Name'),
-                    'Address' => set_value('CompanyAddress'),
-                    'CompanyCity' => set_value('CompanyCity'),
-                    'CompanyState' => set_value('CompanyState'),
-                    'ZipCode' => set_value('ZipCode'),
-                    'CompanyPhone' => set_value('CompanyPhone'),
-                    'Website' => set_value('CompanyWebsite')
-                );
-
-                $contact_data = array(
-                    'FirstName' => set_value('FirstName'),
-                    'LastName'  => set_value('LastName'),
-                    'Email'   => set_value('Email'),
-                    'Phone' => set_value('Phone')
-                );
-
-                // build gig array for the model
-                $gig_data = array(
-                    'EmploymentType' => set_value('EmploymentType'),
-                    'PayRate' => set_value('PayRate'),
-                    'GigCloseDate' => set_value(strip_tags('GigCloseDate','<p>')),
-                    'GigOutline' => set_value('GigOutline'),
-                    'GigQualify' => set_value(strip_tags('GigQualify','<p>')),
-                    'SpInstructions' => set_value(strip_tags('SpInstructions','<p>'))
-                 );
-
-                if ($this->gig_model->addGig($company_data, $contact_data, $gig_data) == TRUE)
-                {
-                    // gig information has been successfully saved in the db
-                    // $data['gigs'] = $this->gig_model->getGigs();
-                    $data['success'] = 'created';
-                    $data['title'] = 'Success!';
-                    $this->load->view('gigs/success', $data);
-                }
-                else
-                {
-                    echo 'An error occurred saving your information. Please try again later';
-                    // Or whatever error handling is necessary
-                }
+                // gig information has been successfully saved in the db
+                // $data['gigs'] = $this->gig_model->getGigs();
+                $data['success'] = 'created';
+                $data['title'] = 'Success!';
+                $this->load->view('gigs/success', $data);
+            }
+            else
+            {
+                echo 'An error occurred saving your information. Please try again later';
+                // Or whatever error handling is necessary
             }
         }
-        else {
+
+        /*else {
             //load the blank form if the form is not a submit
-             $this->load->view('gigs/add', $data);
-        }
+                $this->load->view('gigs/add', $data);*/
     }#end function add()
 
     public function search()
@@ -275,23 +265,23 @@ class Gig extends CI_Controller
     }
 
     //search with filtering for gigs
-    public function filter() {
+        public function filter() {
 
-        $GigOutline = $_POST['GigOutline'];
-        $CompanyCity = $_POST['CompanyCity'];
-        $Name = $_POST['Name'];
+            $GigOutline = $_POST['GigOutline'];
+            $CompanyCity = $_POST['CompanyCity'];
 
-        $result = $this->gig_model->filter_search($GigOutline, $CompanyCity, $Name);
+            $result = $this->gig_model->filter_search($GigOutline, $CompanyCity);
 
-        if (!empty($result)){
-            //if we have results, then post them here
-            $data['title'] = 'Success!';
-            $data['gigs'] = $result;
-            $this->load->view('gigs/search', $data);
-        } else {
-            $data['title'] = 'Success!';
-            $data['gigs'] = null;
-            $this->load->view('gigs/search', $data);
+            if (!empty($result)){
+                //if we have results, then post them here
+                $data['title'] = 'Success!';
+                $data['gigs'] = $result;
+                $this->load->view('gigs/search', $data);
+            } else {
+                $data['title'] = 'Success!';
+                $data['gigs'] = null;
+                $this->load->view('gigs/search', $data);
+            }
         }
     }
 
@@ -300,7 +290,7 @@ class Gig extends CI_Controller
 
         $this->load->database();
         $query = 'SELECT count(CompanyCity) as GigsInCity, EmploymentType, CompanyCity FROM Company c LEFT JOIN Gigs g ON c.CompanyID = g.CompanyID GROUP BY EmploymentType ORDER BY CompanyCity asc';
-        
+
 
         echo '<pre>';
         echo var_dump($result);
