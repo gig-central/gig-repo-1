@@ -1,6 +1,6 @@
 <?php
 /**
-* dashboard.php is the view component/page that summarizes the top three job types available
+* dashboard.php is the view component/page that summarizes the top four job types available
 *
 * views/gigs/dashboard.php
 *
