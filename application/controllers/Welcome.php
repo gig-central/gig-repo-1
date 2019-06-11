@@ -48,9 +48,9 @@ class Welcome extends CI_Controller {
         $data['title'] = 'Gig Central';
 		$data['api'] = $this->config->item('googleMapsKey');
         $data['gigTypes'] = $this->gig_model->dashboard();
+        $this->load->view($this->config->item('theme') . 'header', $data);
 		$this->load->view('welcome_page', $data);
-        $this->load->view($this->config->item('theme') . 'header');
-        $this->load->view($this->config->item('theme') . 'footer');
+        $this->load->view($this->config->item('theme') . 'footer', $data);
 
 	}
 }

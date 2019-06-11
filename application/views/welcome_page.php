@@ -11,13 +11,9 @@
  * @todo Make recent gigs display most recent on top
  * @todo Use database.php info to make mapsp request call, simpler pass, credentials not in public folder
  */
-$this->load->view($this->config->item('theme') . 'header');
 ?>
 
-<div class="row">
-    <div class="box col " style="background-color: red"> </div>
-</div>
-<!-- the 4 clickable boxes at the top of the page -->
+<!-- the 2 clickable boxes at the top of the page -->
 <div id="instruction" class="main-box-container">
 
     <a href="<?php echo base_url().'gig'; ?>">

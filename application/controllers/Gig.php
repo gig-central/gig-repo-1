@@ -252,9 +252,16 @@ class Gig extends CI_Controller
                 $this->load->view('gigs/add', $data);*/
     }#end function add()
 
-    public function search()
+    public function search($keyword = NULL)
     {
-        $keyword = $this->input->post('keyword');
+        if($keyword != NULL) {
+            $keyword = str_replace('%20', ' ', $keyword); //fixes query string space formatting
+        }
+
+        if(!empty($_POST)) { //check if search submitted via POST form
+            $keyword = $this->input->post('keyword');
+        }
+
         $data['gigs'] = $this->gig_model->searchGigs($keyword);
         $data['title']= 'Searching for: '.$keyword;
 
@@ -283,5 +290,5 @@ class Gig extends CI_Controller
                 $this->load->view('gigs/search', $data);
             }
         }
-        
+
 }#end Gigs class/controller

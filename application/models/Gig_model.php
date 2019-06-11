@@ -151,6 +151,7 @@ class Gig_model extends CI_Model {
         $this->db->join('Gigs', 'Gigs.CompanyID = Company.CompanyID');
         $this->db->join('CompanyContact', 'Gigs.CompanyID = CompanyContact.CompanyID');
         $this->db->like('Gigs.GigOutline', $keyword);
+        $this->db->or_like('Gigs.EmploymentType', $keyword);
         $this->db->or_like('Company.CompanyCity', $keyword);
         $this->db->or_like('Company.Name', $keyword);
         $query = $this->db->get();
