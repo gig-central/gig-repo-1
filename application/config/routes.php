@@ -74,7 +74,6 @@ $route['gig/search'] = 'gig/search';
 $route['gig/filter'] = 'gig/filter';
 $route['gig/edit'] = 'gig/edit';
 $route['gig/sendnewsletter'] = 'gig/sendnewsletter';
-$route['gig/dashboard'] = 'gig/dashboard';
 $route['gig/(:any)'] = 'gig/view/$1';
 
 //venues routes
