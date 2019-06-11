@@ -25,15 +25,17 @@
                 $gigsFormat = 'Gigs'; //set format for word 'Gigs' when plural
 
                 for ($i = 0; $i <= 3; $i++) { //only show top four gig types
+                    //calculate a percentage to be used to style the "bar graph" part of the dashboard
                     $percentOfGigs = ($gigTypes[$i]['NumberOfGigs'] / $mostGigs) * 100;
 
                     if ($gigTypes[$i]['NumberOfGigs'] === '1') {
                         $gigsFormat = 'Gig'; //set format for word 'Gig' when singular
                     }
             ?>
-            <div class="gig-type" style="width: <?php echo $percentOfGigs?>%">
+            <div class="gig-type" style="width: <?php echo $percentOfGigs?>%"> <!-- bar graph effect created by this inline style -->
                 <h3><?=$gigTypes[$i]['NumberOfGigs']?> <?=$gigTypes[$i]['EmploymentType']?> <?=$gigsFormat?></h3>
             </div>
+            <!-- creates a query string search request string -->
             <p><?php echo anchor('gig/search/' . $gigTypes[$i]['EmploymentType'], 'View All ' . $gigTypes[$i]['EmploymentType'] . ' Gigs');?></p>
             <?php } //end for loop ?>
         </div>
