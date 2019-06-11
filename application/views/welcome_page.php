@@ -5,21 +5,21 @@
  * @package GIG_CENTRAL
  * @subpackage GIG
  * @author Alexandre Daniels, <adanie04@seattlecentral.edu>, Spencer Echon, John Gilmer
- * @version 2.0 2017/05/09 
- * @link http://newmanix.com/ 
+ * @version 2.0 2017/05/09
+ * @link http://newmanix.com/
  * @license http://www.apache.org/licenses/LICENSE-2.0
  * @todo Make recent gigs display most recent on top
  * @todo Use database.php info to make mapsp request call, simpler pass, credentials not in public folder
  */
 $this->load->view($this->config->item('theme') . 'header');
 ?>
- 
+
 <div class="row">
     <div class="box col " style="background-color: red"> </div>
 </div>
 <!-- the 4 clickable boxes at the top of the page -->
 <div id="instruction" class="main-box-container">
-    
+
     <a href="<?php echo base_url().'gig'; ?>">
         <div id="find-gig" class="main-box col-lg-6 col-sm-6 col-xs-12">
         <div class="inner-box">
@@ -29,7 +29,7 @@ $this->load->view($this->config->item('theme') . 'header');
             <p>Are you looking for a work that you can sharpen your dev skills? Find who is looking for you.</p>
         </div></div>
     </a>
-    
+
     <a href="<?php echo base_url().'gig/add'; ?>">
         <div id="post-gig" class="main-box col-lg-6 col-sm-6 col-xs-12">
         <div class="inner-box">
@@ -39,7 +39,7 @@ $this->load->view($this->config->item('theme') . 'header');
             <p>Are you hiring a developer who can help your website building? Share with us</p>
         </div></div>
     </a>
-    
+
     <!-- comments out non-mvp features for possible reintegration at later date
     <a href="<?=base_url()?>venues">
         <div id="post-venue" class="main-box col-lg-3 col-sm-6 col-xs-12">
@@ -50,7 +50,7 @@ $this->load->view($this->config->item('theme') . 'header');
             <p>Are you a start up looking for a place to gather and work? See our list</p>
         </div></div>
     </a>
-    
+
     <a href="<?=base_url()?>venues/add">
         <div id="post-gig" class="main-box col-lg-3 col-sm-6 col-xs-12">
         <div class="inner-box">
@@ -61,13 +61,13 @@ $this->load->view($this->config->item('theme') . 'header');
             </div></div>
     </a>
     -->
-    
+
 </div>
 
 <div class="clear-both"></div>
 
 <!-- comments out non-mvp features for possible reintegration at later date
-<!-- this is for the 'Profile Pictures section on the page' 
+<!-- this is for the 'Profile Pictures section on the page'
 <div class="profile-container">
 
     <div class="container col-lg-6 profile-ctnr-rm-pad">
@@ -79,8 +79,8 @@ $this->load->view($this->config->item('theme') . 'header');
             <button class="btn profile-btn">Create Profile</button>
         </a>
     </div>
-    
-   
+
+
     <div class="container col-lg-6 profile-ctnr-rm-pad">
         <a href="<?=base_url()?>profiles">
             <img class="profile-pics" src="img/profile-view.jpg">
@@ -105,14 +105,15 @@ $this->load->view($this->config->item('theme') . 'header');
 			    <p><?php echo $gig['CompanyCity'] . ", " . $gig['CompanyState']?></p>
 				<p><?php echo $gig['GigOutline'] ?></p>
 				<p><?php echo anchor('gig/'.$gig['GigID'] , 'Read More');?></p>
-                <hr/> 
+                <hr/>
 				<?php endforeach ?>
             </div>
         </div>
     </div>
-  
+</div>
+
   <!-- comments out non-mvp features for possible reintegration at later date
-<!-- everything below this point is for the google map on the page 
+<!-- everything below this point is for the google map on the page
     <div class="column col-lg-4 col-sm-12 col-xs-12">
         <div class="inner-column">
              <h2>Startup Venues near you</h2>
@@ -125,6 +126,11 @@ $this->load->view($this->config->item('theme') . 'header');
 
 <div class="clear-both"></div>
 
+<!-- load the dashboard component -->
+<?php $this->load->view('gigs/dashboard'); ?>
+
+<div class="clear-both"></div>
+
 <!--begin Javascript-->
 <script>
 
@@ -134,7 +140,7 @@ $this->load->view($this->config->item('theme') . 'header');
     center: new google.maps.LatLng(47.6145, -122.3418),
     //center: new google.maps.LatLng(lat, lng),
     zoom: 13
-    }); 
+    });
     var infoWindow = new google.maps.InfoWindow;
   //base path
 	var base_url = "<?php echo base_url()?>";
@@ -146,11 +152,11 @@ $this->load->view($this->config->item('theme') . 'header');
     Array.prototype.forEach.call(markers, function(markerElem) {
          var name = 			markerElem.getAttribute('name');
          var address = markerElem.getAttribute('address');
-         var type = markerElem.getAttribute('type');    
+         var type = markerElem.getAttribute('type');
 	    var point = new google.maps.LatLng(
                   parseFloat(markerElem.getAttribute('lat')),
                   parseFloat(markerElem.getAttribute('lng')));
-	    
+
 	    var infowincontent = document.createElement('div');
          var strong = document.createElement('strong');
               strong.textContent = name
@@ -160,14 +166,14 @@ $this->load->view($this->config->item('theme') . 'header');
          var text = document.createElement('text');
               text.textContent = address
               infowincontent.appendChild(text);
-	    
+
 	    var icon = {};
               var marker = new google.maps.Marker({
                 map: map,
                 position: point,
                 label: icon.icon
               });
-	   
+
 	marker.addListener('click', function() {
     infoWindow.setContent(infowincontent);
     infoWindow.open(map, marker);
@@ -175,7 +181,7 @@ $this->load->view($this->config->item('theme') . 'header');
 });
   });
 }
-	
+
 function downloadUrl(url, callback) {
   var request = window.ActiveXObject ?
       new ActiveXObject('Microsoft.XMLHTTP') :
@@ -189,7 +195,7 @@ function downloadUrl(url, callback) {
   request.open('GET', url, true);
   request.send(null);
 }
-    
+
 function doNothing() {}
 
 </script>
@@ -197,4 +203,4 @@ function doNothing() {}
 <!--api below, after "key=" is from google on 2017/05/09. Limited use.-->
 <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=<?php echo $api;?>&callback=initMap">
-    </script>
+</script>

@@ -283,21 +283,5 @@ class Gig extends CI_Controller
                 $this->load->view('gigs/search', $data);
             }
         }
-    }
-
-    //get data for dashboard component
-    public function dashboard() {
-
-        $this->load->database();
-        $query = 'SELECT count(CompanyCity) as GigsInCity, EmploymentType, CompanyCity FROM Company c LEFT JOIN Gigs g ON c.CompanyID = g.CompanyID GROUP BY EmploymentType ORDER BY CompanyCity asc';
-
-
-        echo '<pre>';
-        echo var_dump($result);
-        echo '</pre>';
-        die;
-
-    }
-
-
+        
 }#end Gigs class/controller

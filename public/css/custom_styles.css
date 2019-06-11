@@ -158,8 +158,29 @@ input#userfile {
 .gig-list-form .button-container{
     padding-top: 1rem;
 }
+
+/* ============================ */
+/* Gig Dashboard Styles         */
+/* see views/gigs/dashboard.php */
+/* ============================ */
+.dashboard .gig-type {
+    background-color: #1bbc9c;
+    padding: 10px;
+}
+
+.dashboard .gig-type h3 {
+    margin: 0;
+    white-space:nowrap;
+    overflow:visible;
+}
+
+.dashboard p {
+    margin-bottom:2rem;
+}
+
+
 @media only screen and (max-width: 730px) {
-    
+
 .gig-search form {
     margin-top: 0;
     padding-top: 0;
@@ -168,11 +189,11 @@ input#userfile {
     float: right;
     padding-right: 20px;
     }
-    
+
 .gig-list {
     border-left: none;
     border-top: 2px solid #2c3e4f;
     padding-top: 10px;
     margin-top: 340px;
-    }    
+    }
 }

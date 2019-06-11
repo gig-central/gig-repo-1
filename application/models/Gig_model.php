@@ -247,7 +247,7 @@ class Gig_model extends CI_Model {
         return FALSE;
     }//end function SaveForm
 
-    public function filter_search ($GigOutline, $CompanyCity){
+    public function filter_search($GigOutline, $CompanyCity){
 
        $conditions = array('GigOutline' => $GigOutline, 'CompanyCity' => $CompanyCity);
 
@@ -259,6 +259,13 @@ class Gig_model extends CI_Model {
 
        return $result->result_array();
 
-   }//end of the filter_search form
+    }//end of the filter_search form
+
+    //get data for dashboard component
+    public function dashboard() {
+
+        $result = $this->db->query('SELECT count(EmploymentType) as NumberOfGigs, EmploymentType FROM Gigs GROUP BY EmploymentType ORDER BY NumberOfGigs desc');
+        return $result->result_array();
+    }
 
 }#end of the Gig_model
