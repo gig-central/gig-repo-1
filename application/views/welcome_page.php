@@ -22,7 +22,7 @@
             <h1><i class="fa fa-search"></i></h1>
             <h3>Find a gig</h3>
             <div class="bar"></div>
-            <p>Are you looking for a work that you can sharpen your dev skills? Find who is looking for you.</p>
+            <p>Are you looking for a gig that you can sharpen your dev skills? Find who is looking for you.</p>
         </div></div>
     </a>
 
