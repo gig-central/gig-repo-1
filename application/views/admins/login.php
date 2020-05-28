@@ -24,20 +24,20 @@
             <div class="form-group">
                 <h1 class="text-center">Log In</h1>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="padding:0 15px;">
                 <label for="Email" class="col-lg-3 control-label hidden">Email address:</label>
                 <input type="email" class="form-control" id="Email" name="email" placeholder="Email">
+                <?php echo form_error('email'); ?>
             </div>
-            <?php echo form_error('email'); ?>
-            <div class="form-group">
+            
+            <div class="form-group" style="padding:0 15px;">
                 <label for="Pass" class="col-lg-3 control-label hidden">Password:</label>
                 <input type="password" class="form-control" id="Pass" name="pass" placeholder="Password">
-                <a href="<?=base_url()?>admin/reset">Forgot Password?</a>
+                <?php echo form_error('pass'); ?>
             </div>
-            <?php echo form_error('pass'); ?>
-
+            <a href="<?=base_url()?>admin/reset">Forgot Password?</a>
             <div class="form-group text-center">
-                <button type="submit" class="btn" name="Submit">Submit</button>
+                <button type="submit" class="btn" style="font-size:1em;" name="Submit">Submit</button>
             </div>
         </form>
     </div><!-- end row form -->
