@@ -24,17 +24,17 @@ $this->load->view($this->config->item('theme') . 'header');
       <div class="form-group">
         <h1 class="text-center">Contact Us</h1>
       </div>
-      <div class="form-group">
+      <div class="form-group custom-box-margin">
         <label for="name" class="col-lg-3 control-label hidden">Name</label>
           <?php echo form_error('Name'); ?>
         <input name="Name" class="form-control" type="text" id="name" placeholder="Name" value="<?php echo set_value('Name'); ?>">
       </div>
-      <div class="form-group">
+      <div class="form-group custom-box-margin">
         <label for="email" class="col-lg-3 control-label hidden">Email</label>
           <?php echo form_error('Email'); ?>
         <input name="Email" class="form-control" type="email" placeholder="Email" value="<?php echo set_value('Email'); ?>">
       </div>
-      <div class="form-group">
+      <div class="form-group custom-box-margin">
         <label for="subject" class="col-lg-3 control-label hidden">Subject</label>
         <select name="Subject" class="form-control inputstl">
           <option value="General Help & Feedback" selected="selected">General Help & Feedback</option>
@@ -46,7 +46,7 @@ $this->load->view($this->config->item('theme') . 'header');
           <option value="Advertising">Advertising</option>
         </select>
       </div>  
-    <div class="form-group">
+    <div class="form-group custom-box-margin">
       <label for="message" class="col-lg-3 control-label hidden">Message</label>
         <?php echo form_error('Message'); ?>
       <textarea name="Message" class="form-control" cols="40" rows="5" placeholder="Message"><?php echo set_value('Message'); ?></textarea>
@@ -55,7 +55,7 @@ $this->load->view($this->config->item('theme') . 'header');
       <?php echo $this->recaptcha->render(); ?>
     </div>
     
-      <div class="form-group">
+      <div class="form-group custom-box-margin">
         <input name="submit" class="btn btn-default btn-block" type="submit" value="Submit Message" />
       </div>
   </form>
