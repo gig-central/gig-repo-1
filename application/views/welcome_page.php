@@ -22,7 +22,8 @@
             <h1><i class="fa fa-search"></i></h1>
             <h3>Find a gig</h3>
             <div class="bar"></div>
-            <p>Are you looking for a gig that can help you sharpen your dev skills? Find out who has a gig available.</p>
+            <p>Are you looking for a gig that can help you sharpen your dev skills?</p>
+            <p>Find out who has a gig available.</p>
         </div></div>
     </a>
 
@@ -32,7 +33,8 @@
             <h1><i class="fa fa-briefcase"></i></h1>
             <h3>Post a gig</h3>
             <div class="bar"></div>
-            <p>Are you looking to hire a developer to help you build your website? Post your gig with us.</p>
+            <p>Are you looking to hire a developer to help you build your website? </p>
+            <p>Post your gig with us.</p>
         </div></div>
     </a>
 
