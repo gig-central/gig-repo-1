@@ -59,6 +59,7 @@ class Gig extends CI_Controller
         *"check_dropdown". check_dropdown is a method in this controller.
         */
         $this->form_validation->set_message('check_dropdown', '{field} must be selected.');
+       
         /**
          */
 
@@ -68,7 +69,21 @@ class Gig extends CI_Controller
 
     public function index()
     {//begin function index
-        $data['gigs'] = $this->gig_model->getGigs();
+        
+        $this->load->library('pagination'); 
+        $config['base_url'] = base_url(). '/gig/index';
+        $config['total_rows'] = 180;  // change as needed.
+        $config['per_page'] = 10;
+        $config['uri_segment'] = 3;
+        $config['first_url'] = base_url(). '/gig/index/1'; 
+
+        $this->pagination->initialize($config);
+        $page = $this->uri->segment(3,0);
+        $data['pagination'] = $this->pagination->create_links();
+
+        
+
+        $data['gigs'] = $this->gig_model->getGigs(False,False, $config['per_page'] , $config['uri_segment']);
         $data['title']= 'Gigs';
 
         $this->load->view('gigs/index', $data);
@@ -291,4 +306,4 @@ class Gig extends CI_Controller
             }
         }
 
-}#end Gigs class/controller
+}

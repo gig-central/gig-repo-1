@@ -22,12 +22,16 @@
     $retrived_result = $gig->filter($_POST);
 }?>
 
+<<<<<<< Updated upstream
 <ul class="breadcrumb">
   <li><a href="<?=base_url()?>">Home</a></li>
   <li class="active">Gigs</li>
 </ul>
 
 <h2 class="page-title">Gigs List</h2>
+=======
+
+>>>>>>> Stashed changes
 
 <div class="container-fluid">
     <!-- why is this here?
@@ -101,9 +105,11 @@
                     <p><?php echo anchor('gig/'.$gig['GigID'] , 'Read More');?></p>
                 </div>
             <?php endforeach ?>
+            <?php echo $pagination; ?>
         </div>
 
     </div><!-- .row -->
 </div><!-- .container-fluid -->
 
-<?php $this->load->view($this->config->item('theme') . 'footer'); ?>
+<?php $this->load->view($this->config->item('theme') . 'footer'); 
+?>
