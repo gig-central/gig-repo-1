@@ -45,7 +45,7 @@ class Gig_model extends CI_Model {
      * @return array(GigID, CompanyID, GigQualify, EmploymentType, GigOutline, SpInstructions, PayRate, GigPosted, LastUpdated, Name, Address, CompanyCity, State, ZipCode, CompanyPhone, Website, FirstName, LastName, Email, Phone)
      * @todo order query by date posted
      */
-    public function getGigs($slug = FALSE, $sinceDate = FALSE, $numPerPage = False , $page = 0) 
+    public function getGigs($slug = FALSE, $sinceDate = FALSE, $numPerPage = 5 , $page = 0) 
     {
         if ($slug === FALSE)
         {
