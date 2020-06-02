@@ -49,9 +49,9 @@ class Gig extends CI_Controller
         parent::__construct();
         $this->load->model('Gig_model');
         $this->config->set_item('banner', 'Global News Banner');
-        $this->config->set_item('nav-active', 'Gigs');//sets active class on all gig children
         $this->load->helper('form');
         $this->load->library('form_validation');
+   
 
         /**
         *$this->form_validation->set_message below is a customer message for dropdown fields. This is basically
@@ -71,6 +71,7 @@ class Gig extends CI_Controller
         $data['gigs'] = $this->gig_model->getGigs();
         $data['title']= 'Gigs';
 
+        $this->config->set_item('nav-active', 'Find a Gig');
         $this->load->view('gigs/index', $data);
     }#end function index
 
@@ -192,6 +193,7 @@ class Gig extends CI_Controller
 
     public function add()
     {
+        $this->config->set_item('nav-active', 'Post a Gig');
         $data['title'] = 'Add a New Gig'; //set values to be passed to view
 
         //establish form validation rules is handled in config/form_validation.php

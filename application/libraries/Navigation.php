@@ -47,23 +47,18 @@ class Navigation
                 'show_condition'=>	1,
                 'parent'	    =>	0
             ),
-            2 => array(
-                'text'		    => 	'Gigs',
-                'link'		    => 	base_url() . 'gig',
-                'show_condition'=> 1,
-                'parent'	    =>	0
-            ),
+
             3 => array(
                 'text'		    => 	'Find a Gig',
                 'link'		    => 	base_url() . 'gig',
                 'show_condition'=> 1,
-                'parent'	    =>	2
+                'parent'	    =>	0
             ),
             4 => array(
                 'text'		    => 	'Post a Gig',
                 'link'		    => 	base_url() . 'gig/add',
                 'show_condition'=>	1,
-                'parent'	    =>	2
+                'parent'	    =>	0
             ),
             //links commented out(deemed non-essential to MVP) for possible reintigration in future iterations
             /*5 => array(
@@ -269,7 +264,7 @@ class Navigation
                     (strcasecmp($this->headerMenu[ $iterator ] [ 'text' ], $selected) == 0 ) ? $class = "active" : $class = "";
                     if($this->hasChildren($iterator))
                     {
-                        $class .= "dropdown";
+                        $class .= " dropdown";
                         $interfacePart .= "<li class=\"" . $class . "\">";
                         $interfacePart .= "<a href=\"" . $this->headerMenu [ $iterator ] [ 'link' ] . "\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">";
                         $interfacePart .= $this->headerMenu [ $iterator ] [ 'text' ];
@@ -290,7 +285,8 @@ class Navigation
                         $interfacePart .= '</li>' . "\n";
                     }
                 }
-            } else {
+            } 
+            else {
                 die ( sprintf ( 'menu nr %s must be an array', $iterator ) );
             }
         }//end foreach
