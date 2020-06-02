@@ -198,7 +198,11 @@ class Gig extends CI_Controller
 
         //establish form validation rules is handled in config/form_validation.php
 
-        if ($this->form_validation->run() == FALSE)
+        //if the user is logged in then send him to gigs/add page, 
+        //else send him to welcome_page
+        if($this->session->logged_in === TRUE)
+        {
+            if ($this->form_validation->run() == FALSE)
         {// validation not passed, re-load form to add gig
             $this->load->view('gigs/add', $data);
         }
@@ -247,6 +251,23 @@ class Gig extends CI_Controller
                 echo 'An error occurred saving your information. Please try again later';
                 // Or whatever error handling is necessary
             }
+        }
+        }else//else show snackbar
+        {
+            feedback(
+                '<strong>Heads up!</strong>
+                <p class="mb-0">Please ' . anchor('admin/login', 'log in') . ' to post a gig.</p>'
+                , 'danger'
+            ); //set feedback
+
+            //if the user is not logged in then send him to welcome_page
+            $data['gigs'] = $this->gig_model->getGigs();
+            $data['title'] = 'Gig Central';
+		    $data['api'] = $this->config->item('googleMapsKey');
+            $data['gigTypes'] = $this->gig_model->dashboard();
+            $this->load->view($this->config->item('theme') . 'header', $data);
+		    $this->load->view('welcome_page', $data);
+        
         }
 
         /*else {
