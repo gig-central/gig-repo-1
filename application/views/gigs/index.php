@@ -22,16 +22,13 @@
     $retrived_result = $gig->filter($_POST);
 }?>
 
-<<<<<<< Updated upstream
+
 <ul class="breadcrumb">
   <li><a href="<?=base_url()?>">Home</a></li>
   <li class="active">Gigs</li>
 </ul>
 
 <h2 class="page-title">Gigs List</h2>
-=======
-
->>>>>>> Stashed changes
 
 <div class="container-fluid">
     <!-- why is this here?
