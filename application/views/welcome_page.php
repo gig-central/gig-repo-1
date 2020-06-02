@@ -62,15 +62,36 @@
 
 <div class="clear-both"></div>
 
-<!-- Start Google Map -->
-    <div class="column col-lg-12 col-sm-12 col-xs-12">
+<!-- this is for the 'Recent Posts section on the page' -->
+<div id="data-example" class="main-box-container">
+    
+    <div class="column col-lg-6 col-sm-6 col-xs-12">
         <div class="inner-column">
-             <h2>Gigs Near You</h2>
+            <h2>Recent Gig Posts</h2>
+            <div class="post">
+                <?php foreach (array_slice($gigs, -3, 2) as $gig): //maybe use something other than array_slice?>
+                <h3><?php echo $gig['Name'] ?><span><?php echo date('Y-m-d', strtotime($gig['GigPosted'])); ?></span></h3>
+                <p><?php echo $gig['CompanyCity'] . ", " . $gig['CompanyState']?></p>
+                <p><?php echo $gig['GigOutline'] ?></p>
+                <p><?php echo anchor('gig/'.$gig['GigID'] , 'Read More');?></p>
+                <hr/>
+                <?php endforeach ?>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Start Google Map -->
+    <div class="column col-lg-6 col-sm-6 col-xs-12">
+        <div class="inner-column">
+            <h2>Gigs Near You</h2>
             <p><a href="<?=base_url()?>gig"> View More &raquo;</a> </p>
             <div id="map" style="width: 100%; height: 300px"  onload="load()"></div>
             <p>Location will be revealed once you login</p>
         </div>
     </div>
+
+</div>
 
 <div class="clear-both"></div>
 <!--End Google Maps --> 
@@ -103,23 +124,7 @@
 </div>
 
 -->
-<!-- this is for the 'Recent Posts section on the page' -->
-<div id="data-example" class="main-box-container">
-<div class="column col-lg-12 col-sm-12 col-xs-12">
-         <div class="inner-column">
-             <h2>Recent Gig Posts</h2>
-             <div class="post">
-                <?php foreach (array_slice($gigs, -3, 3) as $gig): //maybe use something other than array_slice?>
-				<h3><?php echo $gig['Name'] ?><span><?php echo date('Y-m-d', strtotime($gig['GigPosted'])); ?></span></h3>
-			    <p><?php echo $gig['CompanyCity'] . ", " . $gig['CompanyState']?></p>
-				<p><?php echo $gig['GigOutline'] ?></p>
-				<p><?php echo anchor('gig/'.$gig['GigID'] , 'Read More');?></p>
-                <hr/>
-				<?php endforeach ?>
-            </div>
-        </div>
-    </div>
-</div>
+
 
   <!-- comments out non-mvp features for possible reintegration at later date
 <!-- everything below this point is for the google map on the page
@@ -132,8 +137,6 @@
     </div>
 </div>
 -->
-
-<div class="clear-both"></div>
 
 <!-- load the dashboard component -->
 <?php $this->load->view('gigs/dashboard'); ?>
