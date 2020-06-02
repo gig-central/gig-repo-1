@@ -49,9 +49,9 @@ class Gig extends CI_Controller
         parent::__construct();
         $this->load->model('Gig_model');
         $this->config->set_item('banner', 'Global News Banner');
-        $this->config->set_item('nav-active', 'Gigs');//sets active class on all gig children
         $this->load->helper('form');
         $this->load->library('form_validation');
+   
 
         /**
         *$this->form_validation->set_message below is a customer message for dropdown fields. This is basically
@@ -86,6 +86,7 @@ class Gig extends CI_Controller
         $data['gigs'] = $this->gig_model->getGigs(False,False, $config['per_page'] , $config['uri_segment']);
         $data['title']= 'Gigs';
 
+        $this->config->set_item('nav-active', 'Find a Gig');
         $this->load->view('gigs/index', $data);
     }#end function index
 
@@ -207,11 +208,16 @@ class Gig extends CI_Controller
 
     public function add()
     {
+        $this->config->set_item('nav-active', 'Post a Gig');
         $data['title'] = 'Add a New Gig'; //set values to be passed to view
 
         //establish form validation rules is handled in config/form_validation.php
 
-        if ($this->form_validation->run() == FALSE)
+        //if the user is logged in then send him to gigs/add page, 
+        //else send him to welcome_page
+        if($this->session->logged_in === TRUE)
+        {
+            if ($this->form_validation->run() == FALSE)
         {// validation not passed, re-load form to add gig
             $this->load->view('gigs/add', $data);
         }
@@ -260,6 +266,23 @@ class Gig extends CI_Controller
                 echo 'An error occurred saving your information. Please try again later';
                 // Or whatever error handling is necessary
             }
+        }
+        }else//else show snackbar
+        {
+            feedback(
+                '<strong>Heads up!</strong>
+                <p class="mb-0">Please ' . anchor('admin/login', 'log in') . ' to post a gig.</p>'
+                , 'danger'
+            ); //set feedback
+
+            //if the user is not logged in then send him to welcome_page
+            $data['gigs'] = $this->gig_model->getGigs();
+            $data['title'] = 'Gig Central';
+		    $data['api'] = $this->config->item('googleMapsKey');
+            $data['gigTypes'] = $this->gig_model->dashboard();
+            $this->load->view($this->config->item('theme') . 'header', $data);
+		    $this->load->view('welcome_page', $data);
+        
         }
 
         /*else {
