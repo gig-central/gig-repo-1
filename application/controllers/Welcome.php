@@ -32,6 +32,7 @@ class Welcome extends CI_Controller {
     {//everything here is global to all methods in the controller
         parent::__construct();
         $this->config->set_item('nav-active', 'Home');//sets active class on Home in the nav
+        $this->load->library('pagination'); 
     }//end constructor
 
 /**
@@ -44,13 +45,14 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		$this->load->model('gig_model');
-		$data['gigs'] = $this->gig_model->getGigs();
+        $data['gigs'] = $this->gig_model->getGigs();
         $data['title'] = 'Gig Central';
 		$data['api'] = $this->config->item('googleMapsKey');
         $data['gigTypes'] = $this->gig_model->dashboard();
         $this->load->view($this->config->item('theme') . 'header', $data);
-		$this->load->view('welcome_page', $data);
+        $this->load->view('welcome_page', $data); 
         $this->load->view($this->config->item('theme') . 'footer', $data);
 
 	}
 }
+
