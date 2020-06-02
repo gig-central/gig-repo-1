@@ -45,7 +45,7 @@ class Gig_model extends CI_Model {
      * @return array(GigID, CompanyID, GigQualify, EmploymentType, GigOutline, SpInstructions, PayRate, GigPosted, LastUpdated, Name, Address, CompanyCity, State, ZipCode, CompanyPhone, Website, FirstName, LastName, Email, Phone)
      * @todo order query by date posted
      */
-    public function getGigs($slug = FALSE, $sinceDate = FALSE)
+    public function getGigs($slug = FALSE, $sinceDate = FALSE, $numPerPage = 5 , $page = 0) 
     {
         if ($slug === FALSE)
         {
@@ -53,7 +53,7 @@ class Gig_model extends CI_Model {
              $this->db->from('Company');
              $this->db->join('Gigs', 'Gigs.CompanyID = Company.CompanyID');
              $this->db->join('CompanyContact', 'Gigs.CompanyID = CompanyContact.CompanyID');
-
+ 
              //get the current date
              $dateNow = date('Y-m-d');
              //GigCloseDate column was set up as VARCHAR(10) instead of DATE, without altering the database we can use
@@ -65,6 +65,9 @@ class Gig_model extends CI_Model {
              // We can use this feature in the future for a more robust search functionality that filters results by date posted.
              // If sinceDate is specified, load it as a PHP timestamp and filter out all listings created BEFORE that date. Time portion of timestamp is ignored.
              if($sinceDate !== FALSE) $this->db->where('GigPosted > ', date( 'Y-m-d 00:00:00', $sinceDate ) );
+
+             // Adding the limt and start for pagination 
+             $this->db->limit($numPerPage , $page);
 
              $query = $this->db->get();
              return $query->result_array();
