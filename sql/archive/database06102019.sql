@@ -144,6 +144,8 @@ CREATE TABLE `Profile` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+INSERT INTO `Profile` (`id`, `i_am_a`, `first_name`, `last_name`, `email`, `github`, `linkedin`, `password`, `picture`, `bio`, `subscribed_to_newsletters`) VALUES
+(1, 'employee', 'this.first', 'this.last', 'this.me@example.com', '', '', '$2y$10$1x8vkIuGHLyrnitybdJIdO2LuvP8NG5nqcbgtW3mo1P4g1.Xr5T8e', 'picID.jpg', 'Bio? I shower daily! I would have you know!', 1);
 
 DROP TABLE IF EXISTS `test_Customers`;
 CREATE TABLE `test_Customers` (
