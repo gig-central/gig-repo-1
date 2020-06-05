@@ -1,0 +1,504 @@
+[33mcommit 28ac723524e33d06af8d4dbfe12d2712b403fb8d[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Merge: a275c20 afa7e27
+Author: MartinFreiwald-GitHub <MartinFreiwald@yahoo.com>
+Date:   Thu May 28 18:43:38 2020 -0700
+
+    Merge branch 'master' of https://github.com/gig-central/gig-repo-1
+
+[33mcommit afa7e27ba20413bb3bdf4f10b827bf454483649c[m
+Merge: 02ac098 0dd3955
+Author: jonathonkindle <46705433+jonathonkindle@users.noreply.github.com>
+Date:   Thu May 28 16:00:50 2020 -0700
+
+    Merge pull request #294 from gig-central/bug-Welcome-welcome_page-text
+    
+    Updates text on welcome page
+
+[33mcommit 0dd3955418fb93d2c9c152c1bd85f25f7d0865f3[m
+Author: Kyrrah Nork <kyrrahnork@gmail.com>
+Date:   Thu May 28 15:55:50 2020 -0700
+
+    Updates text on welcome page
+    
+    Updates text in 'find a gig' section in upper left of welcome_page
+
+[33mcommit a275c200e38044df98fd05f13a95e6b5621e555b[m
+Author: MartinFreiwald-GitHub <MartinFreiwald@yahoo.com>
+Date:   Thu May 28 15:28:03 2020 -0700
+
+    gig-central- Pagination
+    
+    trying to get Pagination started
+
+[33mcommit 02ac0982b01a798aff2bb3592cd7bb824c24c0b1[m
+Merge: c574b2f 8188961
+Author: Kyrrah Nork <kyrrahnork@gmail.com>
+Date:   Thu May 21 16:53:44 2020 -0700
+
+    Merge pull request #287 from gig-central/kyrrah-test
+    
+    changes work to test on welcome page
+
+[33mcommit 81889610ee0bf468e43d022bd023dcda4f7ca379[m
+Author: Kyrrah Nork <kyrrahnork@gmail.com>
+Date:   Thu May 21 16:51:19 2020 -0700
+
+    changes work to test on welcome page
+
+[33mcommit c574b2fe8048516803607745ef8e2853dc38c78a[m
+Merge: 4a2f4b3 05292f0
+Author: Craig Peterson <craig.b.peterson@gmail.com>
+Date:   Wed Jun 12 09:04:48 2019 -0700
+
+    Merge pull request #254 from gig-central/archive-old0migrations
+    
+    archived old migrations
+
+[33mcommit 05292f023b059a92819588b0b5c50b32a2299634[m
+Author: Esteban <26440947+esteban-gs@users.noreply.github.com>
+Date:   Tue Jun 11 16:50:35 2019 -0700
+
+    archived old migrations
+
+[33mcommit 4a2f4b36424babab65752419a48db4bea223c508[m
+Merge: ce1b95d fb8a081
+Author: Andy <38418756+andylwilson@users.noreply.github.com>
+Date:   Tue Jun 11 14:34:09 2019 -0700
+
+    Merge pull request #251 from gig-central/Google-Maps-MVP
+    
+    Google Maps MVP Update
+
+[33mcommit fb8a08129e47e0d9aa3dc77e85cf9a015ed7f120[m
+Author: tranzilla <huynhht@colorado.edu>
+Date:   Tue Jun 11 10:13:56 2019 -0700
+
+    Google Maps MVP Update
+    
+    google maps displaying gigs instead of venue, changed pins to circle, and removed the event listener to hide the locations.
+
+[33mcommit ce1b95d69ac1d085c0e49d4e36a3ac7fd1f87dd7[m
+Merge: e6b951c 7efabb9
+Author: Andy <38418756+andylwilson@users.noreply.github.com>
+Date:   Tue Jun 11 08:07:12 2019 -0700
+
+    Merge pull request #243 from gig-central/gig-dashboard-component
+    
+    Gig dashboard component
+
+[33mcommit 7efabb97809c81313331cc2d591f90ce189e7fe4[m
+Author: Craig Peterson <craig.b.peterson@gmail.com>
+Date:   Tue Jun 11 07:43:14 2019 -0700
+
+    prevents dropdown menus from appearing wider than their parent element
+
+[33mcommit 35ca8777923b53309f837bea4c74ead548215a14[m
+Author: Craig Peterson <craig.b.peterson@gmail.com>
+Date:   Tue Jun 11 01:17:58 2019 -0700
+
+    adds comments for clarity
+
+[33mcommit 87d47f1a14c465276865170f7f3d6437d1d0e6c5[m
+Author: Craig Peterson <craig.b.peterson@gmail.com>
+Date:   Tue Jun 11 00:44:42 2019 -0700
+
+    updated comment
+
+[33mcommit fca94b541f31b30828703b259d175529cc8f3093[m
+Author: Craig Peterson <craig.b.peterson@gmail.com>
+Date:   Tue Jun 11 00:40:28 2019 -0700
+
+    removes dashboard from routes. dashboard is not a standalone view.
+
+[33mcommit 9da639cf55b87874240d3dbcf1b643bab037cb17[m
+Author: Craig Peterson <craig.b.peterson@gmail.com>
+Date:   Tue Jun 11 00:34:32 2019 -0700
+
+    we can't put min-width:500px on the body...
+
+[33mcommit e872d60f2137cddce0cdcca5e67edec4eee4ea50[m
+Author: Craig Peterson <craig.b.peterson@gmail.com>
+Date:   Tue Jun 11 00:27:22 2019 -0700
+
+    fixes header loading twice on home page. add query string func to search
+
+[33mcommit 2be1e9027bd609687f0a9afa24b57b18cebef877[m
+Author: Craig Peterson <craig.b.peterson@gmail.com>
+Date:   Mon Jun 10 23:58:43 2019 -0700
+
+    updates color to match style guide
+
+[33mcommit e38dd299ae5b1b72bbb919d96539dd28c840be79[m
+Author: Craig Peterson <craig.b.peterson@gmail.com>
+Date:   Mon Jun 10 23:55:46 2019 -0700
+
+    adds dashboard view to gigs folder and loads dashboard to welcome page
+
+[33mcommit 27400d5b9fc984f2a3b23194be1ae4940383056d[m
+Merge: acc372d e6b951c
+Author: Craig Peterson <craig.b.peterson@gmail.com>
+Date:   Mon Jun 10 21:13:33 2019 -0700
+
+    Merge branch 'master' into gig-dashboard-component
+
+[33mcommit e6b951c8a388656b0a192802910782f2549400f5[m
+Merge: 45234fc 81ad503
+Author: Thom Harrington <43864992+thomaskise@users.noreply.github.com>
+Date:   Mon Jun 10 20:51:10 2019 -0700
+
+    Merge pull request #242 from ianbeard0159/gig-list-filter-issue
+    
+    Fixed search issue
+
+[33mcommit 45234fcea9eeca0113f16bdf9b7890dcd4f3fc97[m
+Merge: 9f744f6 0654072
+Author: Thom Harrington <43864992+thomaskise@users.noreply.github.com>
+Date:   Mon Jun 10 19:59:28 2019 -0700
+
+    Merge pull request #238 from ianbeard0159/gig-previews-new-format
+    
+    Gig previews new format
+
+[33mcommit 81ad5035d08e64307946950109a6793dfd78a88c[m
+Author: Ian Beard <ianbeard0159@gmail.com>
+Date:   Mon Jun 10 18:05:36 2019 -0700
+
+    Fixed search issue
+
+[33mcommit 0654072f561817fa13bc2ca3cfa232570b430cfc[m
+Author: Ian Beard <ianbeard0159@gmail.com>
+Date:   Mon Jun 10 11:46:36 2019 -0700
+
+    Issue 239
+    
+    I removed the company name from the display and from the search.
+
+[33mcommit 4a0614313520930ad59d3b76d229e43561273d52[m
+Author: Ian Beard <ianbeard0159@gmail.com>
+Date:   Sun Jun 9 15:20:07 2019 -0700
+
+    reformatted gig previews
+
+[33mcommit 4e0d9ef32b661d59cca621f5b02e255c676f0cc6[m
+Author: Ian Beard <ianbeard0159@gmail.com>
+Date:   Sun Jun 9 15:19:19 2019 -0700
+
+    reformatted gig previews
+
+[33mcommit 9f744f651766493a34d01322a9176446471cdfb8[m
+Merge: 944587d 4bebef2
+Author: Thom Harrington <43864992+thomaskise@users.noreply.github.com>
+Date:   Sun Jun 9 01:32:16 2019 -0700
+
+    Merge pull request #237 from gig-central/fix-gig-add
+    
+    fix gig post
+
+[33mcommit 4bebef27d0668df4b81136729e652c64047ec4bf[m
+Author: Esteban <26440947+esteban-gs@users.noreply.github.com>
+Date:   Sun Jun 9 01:13:42 2019 -0700
+
+    fix missing state select error message
+
+[33mcommit 5ad45e953cd2187caf5ac1ebd1ccbd081e0eda1d[m
+Merge: 7a71099 944587d
+Author: Esteban <26440947+esteban-gs@users.noreply.github.com>
+Date:   Sun Jun 9 00:33:27 2019 -0700
+
+    Merge branch 'master' into fix-gig-add
+
+[33mcommit 7a710996a18c2272d6770d98b40d901345c20ad7[m
+Author: Esteban <26440947+esteban-gs@users.noreply.github.com>
+Date:   Sun Jun 9 00:32:43 2019 -0700
+
+    Fixed problems found in review
+    
+    Fixed problems found in review
+
+[33mcommit 944587df06339b211748e294150197d24251c569[m
+Merge: 6033d43 be6706d
+Author: Thom Harrington <43864992+thomaskise@users.noreply.github.com>
+Date:   Sat Jun 8 22:40:07 2019 -0700
+
+    Merge pull request #236 from gig-central/jenevascherr-patch-1
+    
+    JMS - Made "Add a New Gig" formatted for 500px
+
+[33mcommit 7f5aafa145b0fc49aa2592b9401736f964d5524e[m
+Author: Esteban <26440947+esteban-gs@users.noreply.github.com>
+Date:   Sat Jun 8 02:03:20 2019 -0700
+
+    fix gig post
+
+[33mcommit be6706d23bc11a1c7e9a5cc5316719b5f3af5e07[m
+Author: Jeneva Scherr <scherrjeneva@gmail.com>
+Date:   Sat Jun 8 01:49:09 2019 -0700
+
+    JMS - Made Add a New Gig formatted for 500px
+    
+    line 122-139 : @media to re-format the divs for window sizes 730px - 500px.
+
+[33mcommit 6033d434e67ccfbde3d4e139d7dda323c05cd024[m
+Merge: c0acff5 1dd0108
+Author: Aaron-SCC <32554879+Aaron-SCC@users.noreply.github.com>
+Date:   Fri Jun 7 11:13:14 2019 -0700
+
+    Merge pull request #228 from gig-central/enhance-gig-previews
+    
+    Enhance gig previews
+
+[33mcommit acc372d4a976cfffac56937e21b8c4d59f071de5[m
+Author: Craig Peterson <craig.b.peterson@gmail.com>
+Date:   Fri Jun 7 10:32:03 2019 -0700
+
+    getting started - still not working...
+
+[33mcommit 1dd0108b48da3d1e03a8054eaa4327aaf76d60b5[m
+Author: Esteban <26440947+esteban-gs@users.noreply.github.com>
+Date:   Fri Jun 7 00:30:29 2019 -0700
+
+    implement a new gig duration field
+
+[33mcommit 8b59b8592e4b043aed46c66fa3162451beb72174[m
+Author: Esteban <26440947+esteban-gs@users.noreply.github.com>
+Date:   Thu Jun 6 23:38:55 2019 -0700
+
+    enhanced-gig-previews
+
+[33mcommit c0acff595d9e2a3f55e0e64284034ee6a7881f92[m
+Merge: 4f11f01 ee0755e
+Author: Andy <38418756+andylwilson@users.noreply.github.com>
+Date:   Thu Jun 6 17:57:11 2019 -0700
+
+    Merge pull request #227 from gig-central/faq-page-style-improvements
+    
+    Faq page style improvements
+
+[33mcommit ee0755ec7c774041358326c0c453e9f881ef38cb[m
+Merge: 330487b 4f11f01
+Author: Craig Peterson <craig.b.peterson@gmail.com>
+Date:   Thu Jun 6 17:41:26 2019 -0700
+
+    Merge branch 'master' into faq-page-style-improvements
+
+[33mcommit 4f11f01f62778cb44bd0c83490d1895996c4ca69[m
+Merge: e652f99 9fe1ba0
+Author: Andy <38418756+andylwilson@users.noreply.github.com>
+Date:   Thu Jun 6 17:02:47 2019 -0700
+
+    Merge pull request #225 from gig-central/standardize-button-styles
+    
+    Standardize button styles
+
+[33mcommit e652f99000c2e86d467239d64fe3709e11dd56e4[m
+Author: Aaron-SCC <32554879+Aaron-SCC@users.noreply.github.com>
+Date:   Thu Jun 6 11:37:51 2019 -0700
+
+    took out extra white space empty lines
+
+[33mcommit f6a37c9108ac149f9293e0c654953e894e6717be[m
+Author: Aaron-SCC <32554879+Aaron-SCC@users.noreply.github.com>
+Date:   Thu Jun 6 11:37:20 2019 -0700
+
+    further info
+    
+    this doc is to be used in future to enhance the .gitignore file
+    so as not to have extra, messy multiple copy steps in current
+    gig-central local project set up instructions.
+
+[33mcommit 78985e44c5529245709f942a1fa1a9de3e1691b2[m
+Author: Aaron-SCC <32554879+Aaron-SCC@users.noreply.github.com>
+Date:   Thu Jun 6 11:35:13 2019 -0700
+
+    Created DIR_TREE_FILE_LIST doc
+    
+    FOR tracking added, removed, renamed files, directories in project.
+    
+    One can use diff tools, like https://www.diffchecker.com/diff to compare.
+    
+    To generate new DIR_TREE_FILE_LIST for comparisons,
+    make you web browser go to https://github.com/gig-central/gig-repo-1
+    then click on "Find File" button on right hand side of web page, next to green button.
+
+[33mcommit b6976823335d5cebb0410558534d578264277316[m
+Author: Aaron-SCC <32554879+Aaron-SCC@users.noreply.github.com>
+Date:   Thu Jun 6 11:29:12 2019 -0700
+
+    Added google main project doc URL
+
+[33mcommit 330487b0b0d0e35153ac67f4168ab2aacda1c8b7[m
+Author: Craig Peterson <craig.b.peterson@gmail.com>
+Date:   Thu Jun 6 11:16:01 2019 -0700
+
+    fixes problems with html/css that caused unintended white space on page
+
+[33mcommit 9fe1ba07c7d79aa18e709a729d77ce2893d3614e[m
+Merge: 463127f cbb2ef8
+Author: Craig Peterson <craig.b.peterson@gmail.com>
+Date:   Thu Jun 6 10:56:30 2019 -0700
+
+    Merge branch 'master' into standardize-button-styles
+
+[33mcommit cbb2ef875d28805182598b430b038398ca33cf88[m
+Merge: 607532f f0ac6b1
+Author: Craig Peterson <craig.b.peterson@gmail.com>
+Date:   Thu Jun 6 10:48:33 2019 -0700
+
+    Merge pull request #223 from gig-central/makeDropdownSelect-now-generic
+    
+    makeDropdownSelect() is now generic
+
+[33mcommit 607532f04864597533e7cfabf2c5a22e73178635[m
+Merge: d2a1c82 e43903d
+Author: Craig Peterson <craig.b.peterson@gmail.com>
+Date:   Thu Jun 6 09:59:16 2019 -0700
+
+    Merge pull request #222 from gig-central/sue-Hiding-FAQ-checkboxes
+    
+    HIding the checkboxes in FAQ page
+
+[33mcommit 463127fe37a8143fa6f143a9484f8199dff66303[m
+Author: Craig Peterson <craig.b.peterson@gmail.com>
+Date:   Thu Jun 6 09:45:15 2019 -0700
+
+    found one more class name to standardize for MVP
+
+[33mcommit 098d7b1328d91a45f8c499aba5e13d8cf0e94671[m
+Author: Craig Peterson <craig.b.peterson@gmail.com>
+Date:   Thu Jun 6 09:38:00 2019 -0700
+
+    resolves merge conflicts with master
+
+[33mcommit b2078410c960cfcdc455ca6cf45d596d99b365b0[m
+Merge: a10f58c d2a1c82
+Author: Craig Peterson <craig.b.peterson@gmail.com>
+Date:   Thu Jun 6 09:27:58 2019 -0700
+
+    Merge branch 'master' into standardize-button-styles
+
+[33mcommit f0ac6b1592a88fbba125cee92bf2035a4d0bf27e[m
+Author: Thom Harrington <thomas.harrington@seattlecentral.edu>
+Date:   Thu Jun 6 01:55:22 2019 -0700
+
+    makeDropdownSelect() is now generic
+
+[33mcommit d5e9a5c2ff8ac834985a5549166b284ab860a420[m
+Author: Thom Harrington <thomas.harrington@seattlecentral.edu>
+Date:   Thu Jun 6 01:36:48 2019 -0700
+
+    makeDropdownSelect() is now generic
+
+[33mcommit e43903dacc76620cbb29d0c7016ca42131fe46aa[m
+Author: learnerone <Sue.Han@seattlecolleges.edu>
+Date:   Wed Jun 5 11:44:32 2019 -0700
+
+    HIding the checkboxes in FAQ page
+
+[33mcommit a10f58c87775755f3f75dad4e0ef7549a2487930[m
+Author: Craig Peterson <craig.b.peterson@gmail.com>
+Date:   Tue Jun 4 15:30:15 2019 -0700
+
+    improved class names and css styles
+
+[33mcommit d2a1c826096e769020a3b2ef37ce2dcfd1f389bf[m
+Merge: afa788b c7c9add
+Author: Aaron-SCC <32554879+Aaron-SCC@users.noreply.github.com>
+Date:   Tue Jun 4 12:09:00 2019 -0700
+
+    Merge pull request #220 from gig-central/remove-register-link
+    
+    Removes Register link from login page
+
+[33mcommit afa788bd4d0abd3e1b4ad35e94f194c992854ad1[m
+Merge: 808b9ef 7fe3407
+Author: Craig Peterson <craig.b.peterson@gmail.com>
+Date:   Tue Jun 4 11:16:54 2019 -0700
+
+    Merge pull request #221 from gig-central/sue-adjustWelcomepageLayout
+    
+    Adjust welcome page layout
+
+[33mcommit 7fe34075bbf403f876c8e410937fd8183b48ef6f[m
+Author: learnerone <Sue.Han@seattlecolleges.edu>
+Date:   Tue Jun 4 11:01:05 2019 -0700
+
+    Adjust welcome page layout
+    
+    Resized the two gig buttons in order to fill out the 12 Bootstrap columns.
+    Resized the Recent Gig Posts box in order to fill the 12 Bootstrap columns as well.
+
+[33mcommit 1f458b968201fd485d9dec93a43a830005f8ff1b[m
+Author: Craig Peterson <craig.b.peterson@gmail.com>
+Date:   Tue Jun 4 10:23:40 2019 -0700
+
+    button styles and gig list layout changes
+
+[33mcommit c7c9add51f63ea53751acaa69d25fdcf6cd35fd3[m
+Author: andylwilson <andy787@gmail.com>
+Date:   Tue Jun 4 00:53:39 2019 -0700
+
+    Removes Register link from login page
+
+[33mcommit 808b9ef36c894ad364486a8b07521c9d750925f7[m
+Merge: 3eb70ca e704c5a
+Author: Andy <38418756+andylwilson@users.noreply.github.com>
+Date:   Tue Jun 4 00:43:44 2019 -0700
+
+    Merge pull request #219 from gig-central/enhance-gig-details-auth
+    
+    Enhance gig details auth
+
+[33mcommit e704c5a21b32c47ed69df444925e762785f7085d[m
+Merge: 0b5ada8 0ada4e8
+Author: Esteban <26440947+esteban-gs@users.noreply.github.com>
+Date:   Tue Jun 4 00:29:46 2019 -0700
+
+    update branch
+
+[33mcommit 3eb70caf85361ac19744f5357a74c0a982b0e608[m
+Merge: 0ada4e8 532b284
+Author: Andy <38418756+andylwilson@users.noreply.github.com>
+Date:   Tue Jun 4 00:20:40 2019 -0700
+
+    Merge pull request #218 from gig-central/gig-add-fix-state-select
+    
+    fixes state select
+
+[33mcommit 532b28414ef8a5736e784bf8f54d98054ad90484[m
+Author: Thom Harrington <thomas.harrington@seattlecentral.edu>
+Date:   Tue Jun 4 00:10:39 2019 -0700
+
+    fixes state select
+
+[33mcommit 0ada4e8c3bcfc73a32b036bb8e05759f6f07aa97[m
+Merge: 3745faf f4bb120
+Author: Andy <38418756+andylwilson@users.noreply.github.com>
+Date:   Mon Jun 3 23:59:50 2019 -0700
+
+    Merge pull request #217 from gig-central/hide-gig-details
+    
+    gig details removed from public view
+
+[33mcommit f4bb12049284d55ca8cb16af6f26d01608f4d627[m
+Author: Esteban <26440947+esteban-gs@users.noreply.github.com>
+Date:   Mon Jun 3 23:02:26 2019 -0700
+
+    gig details removed from public view
+
+[33mcommit 3745faf1136326816c46d2bf31ba3e684c9c3126[m
+Merge: ba220af fbf5517
+Author: Andy <38418756+andylwilson@users.noreply.github.com>
+Date:   Mon Jun 3 19:58:40 2019 -0700
+
+    Merge pull request #214 from gig-central/PostGig-form-validation
+    
+    Post gig form validation
+
+[33mcommit ba220afa189a412b0aac3d45dc05007c58af4e34[m
+Merge: 6d1d242 7a93b81
+Author: Andy <38418756+andylwilson@users.noreply.github.com>
+Date:   Mon Jun 3 19:51:28 2019 -0700
+
+    Merge pull request #213 from gig-central/consolidate-media-queries
+    
+    combine media query styles
