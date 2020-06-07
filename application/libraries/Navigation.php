@@ -60,6 +60,14 @@ class Navigation
                 'show_condition'=>	1,
                 'parent'	    =>	0
             ),
+
+            5 => array(
+                'text'		    => 	'Contact Us',
+                'link'		    => 	base_url() . 'contact',
+                'show_condition'=>	1,
+                'parent'	    =>	0
+            ),
+
             //links commented out(deemed non-essential to MVP) for possible reintigration in future iterations
             /*5 => array(
                 'text'		    => 	'Venues',
