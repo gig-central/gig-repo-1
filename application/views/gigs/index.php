@@ -99,6 +99,17 @@
                         if($gig['GigDuration']){echo $gig['GigDuration'];}
                         else{echo 'N/A';}?>
                     </p>
+
+                    <!-- To display Date Posted field: -->
+                    <p class="gig-list-subheader text-info">Date Posted: </p><p><?php 
+                        if($gig['GigPosted']){
+                            // To display the date in a pretty print format we use strtotime
+                            $originalDate=$gig['GigPosted'];
+                            $newDate = date("m-d-y", strtotime($originalDate));
+                            echo $newDate ;
+                        }
+                        else{echo 'N/A';}?>
+                    </p>
                     <p><?php echo anchor('gig/'.$gig['GigID'] , 'Read More');?></p>
                 </div>
             <?php endforeach ?>
