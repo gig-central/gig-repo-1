@@ -89,7 +89,7 @@ input#userfile {
 
 /*-------GIG LIST STYLES-------*/
 .gig-search form {
-    margin-top: 2rem;
+    /* margin-top: 2rem; */
 }
 
 .gig-search form:first-of-type {
@@ -99,10 +99,6 @@ input#userfile {
 
 .gig-search h4 {
     margin-top:0;
-}
-
-.gig-list {
-    border-left: 1px solid #18bc9c;
 }
 
 .gig-list h3:first-of-type {
@@ -143,6 +139,9 @@ input#userfile {
     background-color: white;
     margin: 0;
 }
+.gig-list-form {
+    padding:0 0 10px;
+}
 .gig-list-form label{
     background-color: rgba(0,0,0,0);
     margin: 0;
@@ -179,9 +178,9 @@ input#userfile {
 }
 
 
-@media only screen and (max-width: 730px) {
+/* @media only screen and (max-width: 730px) {
 
-.gig-search form {
+/* .gig-search form {
     margin-top: 0;
     padding-top: 0;
     max-width: 45%;
@@ -196,4 +195,4 @@ input#userfile {
     padding-top: 10px;
     margin-top: 340px;
     }
-}
+} */
