@@ -15,13 +15,19 @@
 
 /********** Media Queries 425px ***********/
 @media (max-width: 425px) {
-	.g-recaptcha{
+	.g-recaptcha {
 		transform:scale(0.77);
 		-webkit-transform:scale(0.77);
 		transform-origin:0 0;
 		-webkit-transform-origin:0 0;
 		margin: 0;
-	}
+    }
+    .inner-box {
+        font-size: 13px;
+    }
+    footer li {
+        float: none;
+    }    
 }
 /********** End Media Queries 425px ***********/
 
@@ -35,7 +41,11 @@
 /********** End Media Queries 580px ***********/
 
 /********** Media Queries 768px ***********/
-
+@media (max-width:768px) {
+    .navbar-nav li{
+        margin:0;
+    }
+}
 @media (min-width: 768px){
     .main-box{
         padding-bottom: 30%;
@@ -48,6 +58,11 @@
     .inner-box:hover .bar{
         display: block;
     }
+
+    .gig-list {
+        border-left: 1px solid #18bc9c;
+    }
+    
 }
 /********** End Media Queries 768px ***********/
 
