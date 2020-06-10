@@ -48,20 +48,20 @@ class Navigation
                 'parent'	    =>	0
             ),
 
-            3 => array(
+            2 => array(
                 'text'		    => 	'Find a Gig',
                 'link'		    => 	base_url() . 'gig',
                 'show_condition'=> 1,
                 'parent'	    =>	0
             ),
-            4 => array(
+            3 => array(
                 'text'		    => 	'Post a Gig',
                 'link'		    => 	base_url() . 'gig/add',
                 'show_condition'=>	1,
                 'parent'	    =>	0
             ),
 
-            5 => array(
+            4 => array(
                 'text'		    => 	'Contact Us',
                 'link'		    => 	base_url() . 'contact',
                 'show_condition'=>	1,
@@ -178,7 +178,17 @@ class Navigation
             );   
             array_push($headerNavigation,$login);
         }
-        
+
+        if ($codeIgniter->session->logged_in == FALSE)
+        {
+            $signup = array(
+                'text'		    => 	'Sign Up',
+                'link'		    => 	base_url() . 'profiles/add',
+                'show_condition'=>	1,
+                'parent'	    =>	0
+            );   
+            array_push($headerNavigation,$signup);
+        }
         # FOOTER NAV
         $footerNavigation = array(
             1 => array(
