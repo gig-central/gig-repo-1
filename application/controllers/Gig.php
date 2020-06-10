@@ -72,7 +72,7 @@ class Gig extends CI_Controller
         
         $this->load->library('pagination'); 
         $config['base_url'] = base_url(). '/gig/index';
-        $config['total_rows'] = 180;  // change as needed.
+        $config['total_rows'] = 16;  //change as needed.
         $config['per_page'] = 10;
         $config['uri_segment'] = 3;
         $config['first_url'] = base_url(). '/gig/index/1'; 
@@ -89,10 +89,8 @@ class Gig extends CI_Controller
         $config['first_tag_close'] = '</li>';
         $config['last_tag_open'] = '<li>';
         $config['last_tag_close'] = '</li>';
-        $config['next_tag_open'] = '<li><i class="fa fa-long-arrow-right"></i>';
+        $config['next_tag_open'] = '<li>';
         $config['next_tag_close'] = '</li>';
-        $config['prev_tag_open'] = '<li><i class="fa fa-long-arrow-left"></i>';
-        $config['prev_tag_close'] = '</li>';
         $this->pagination->initialize($config);
 // END addtion from Stackover flow  https://stackoverflow.com/questions/30096942/how-to-style-pagination-links-without-config-codeigniter
         $this->pagination->initialize($config);
