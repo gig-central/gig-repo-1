@@ -42,19 +42,19 @@ $this->load->view($this->config->item('theme') . 'header'); //Loads Bootswatch t
 
                 <div class="form-group">
                     <legend>
-                        <h2><strong>Add Profile</strong></h2>
+                        <h2><strong>Sign Up</strong></h2>
                     </legend>
                 </div>
 
                 <div class="form-group">
-                    <label for="pic_id" class="col-lg-3 control-label"></label>
+                    <label for="pic_id" class="col-lg-3 control-label">Profile Picture</label>
                     <div class="col-lg-6">
                         <img src="<?=base_url()?>img/picID.jpg" alt="Picture ID" id="pic_id">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="userfile" class="col-lg-3 control-label"></label>
+                    <label for="userfile" class="col-lg-3 control-label">Choose A Picture</label>
                     <div class="col-lg-6">
                         <input type="file" class="form-control" name="userfile" id="userfile">
                     </div>
@@ -136,8 +136,8 @@ $this->load->view($this->config->item('theme') . 'header'); //Loads Bootswatch t
                         <?php echo form_textarea( array( 'name' => 'bio', 'rows' => '5', 'cols' => '53', 'value' => set_value('bio') ) )?>
                     </div>
                 </div>
-
-                <div class="form-group">
+                <br>
+                <div class="form-group"> 
                     <label for="subscribed_to_newsletters" class="col-lg-3 control-label">Subscribe to Newsletter?</label>
                     <div class="col-lg-6">
                         <input id="subscribed_to_newsletters" class="form-control" type="checkbox" name="subscribed_to_newsletters" value="1" checked>
@@ -147,7 +147,7 @@ $this->load->view($this->config->item('theme') . 'header'); //Loads Bootswatch t
                 <div class="form-group text-right">
                     <div class="col-lg-3"></div>
                     <div class="col-lg-6">
-                        <?php echo form_submit('Submit', 'Add',"class='btn btn-success'"); ?>
+                        <?php echo form_submit('Submit', 'Sign Up',"class='btn btn-success'"); ?>
                     </div>
                 </div>
 

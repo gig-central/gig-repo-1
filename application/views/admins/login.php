@@ -36,6 +36,8 @@
                 <?php echo form_error('pass'); ?>
             </div>
             <a href="<?=base_url()?>admin/reset">Forgot Password?</a>
+            <br>
+            <a href="<?=base_url()?>profile/add">Sign Up</a>
             <div class="form-group text-center">
                 <button type="submit" class="btn" name="Submit">Submit</button>
             </div>
