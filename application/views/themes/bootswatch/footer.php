@@ -33,7 +33,8 @@
     $( "#datepicker" ).datepicker({
       changeMonth: true,
       changeYear: true,
-      minDate: 0
+      minDate: 0,
+      maxDate: "+1Y"
     });
   } );
 
