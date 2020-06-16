@@ -116,4 +116,8 @@ input:checked ~ .tab-content {
     max-height: 15em;
 }
 
+.form-control[readonly] {
+    background-color:white;
+    cursor: auto;
+}
 

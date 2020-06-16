@@ -166,14 +166,18 @@
                         <?php
                             echo form_error('GigCloseDate');
                             $attributes = '
-                                id="GigCloseDate" 
-                                class="form-control" 
+                                readonly="readonly"
+                                id="datepicker" 
+                                class="form-control"
                                 name="GigCloseDate" 
                                 placeholder="YYYY-MM-DD"';
                             echo form_input('GigCloseDate', set_value('GigCloseDate'), $attributes);
+                            
                         ?>
+                        
                     </div>
                 </div>
+
                 <div class="form-group">
                     <label for="GigOutline" class="col-lg-3 control-label hidden-label"><em>Description</em></label>
                     <div class="col-md-6">
