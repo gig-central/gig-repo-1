@@ -62,9 +62,23 @@ class Admin_model extends CI_Model {
                             'logged_in' => TRUE,
                             'bio'     => $row->bio,
                         );
-        
+                    
                         $this->load->library('session');
+                    
                         $this->session->set_userdata($newdata);
+                        
+                        //var_dump($newdata);==> returns valid data
+                       
+                        // $cookie = array(
+                        //     'name'   => 'test_cookie',
+                        //     'value'  => 'test',
+                        //     'domain' => '/',
+                        //     'secure' => FALSE
+                        //     );
+                        // $this->input->set_cookie($cookie); 
+                        //
+                        // the above lines of code is not setting cookies:
+                        //  var_dump($this->input->cookie('test_cookie',false)); ==> returns null
                          
                         return TRUE;
                     }else

@@ -226,12 +226,14 @@ class Gig extends CI_Controller
     {
         $this->config->set_item('nav-active', 'Post a Gig');
         $data['title'] = 'Add a New Gig'; //set values to be passed to view
-
         //establish form validation rules is handled in config/form_validation.php
 
+        //echo $this->session->userdata(); ==> prints null
+        //var_dump($this->input->cookie('test_cookie'));  ==> gives null 
+
         //if the user is logged in then send him to gigs/add page, 
-        //else send him to welcome_page
-        if($this->session->logged_in === TRUE)
+        //else send him to welcome_page:
+        if($this->session->logged_in == TRUE)    
         {
             if ($this->form_validation->run() == FALSE)
         {// validation not passed, re-load form to add gig
