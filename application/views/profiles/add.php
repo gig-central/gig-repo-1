@@ -47,23 +47,23 @@ $this->load->view($this->config->item('theme') . 'header'); //Loads Bootswatch t
                 </div>
 
                 <div class="form-group">
-                    <label for="pic_id" class="col-lg-3 control-label">Profile Picture</label>
-                    <div class="col-lg-6">
+                    <label for="pic_id" class="col-xs-5 col-sm-3 col-md-5 col-lg-3 control-label">Profile Picture</label>
+                    <div class="col-xs-3 col-sm-3 col-md-5 col-lg-4">
                         <img src="<?=base_url()?>img/picID.jpg" alt="Picture ID" id="pic_id">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="userfile" class="col-lg-3 control-label">Choose A Picture</label>
-                    <div class="col-lg-6">
+                    <label for="userfile" class="col-xs-5 col-sm-3 col-md-5 col-lg-3 control-label">Choose A Picture</label>
+                    <div class="col-xs-7 col-sm-5 col-md-5 col-lg-4">
                         <input type="file" class="form-control" name="userfile" id="userfile">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <?php echo form_error('i_am_a'); ?>
-                    <label for="i_am_a" class="col-lg-3 control-label">I am an</label>
-                    <div class="col-lg-6">
+                    <label for="i_am_a" class="col-xs-5 col-sm-3 col-md-5 col-lg-3 control-label">I am an</label>
+                    <div class="col-xs-7 col-sm-5 col-md-5 col-lg-4">
                         <select name="i_am_a" id="i_am_a" class="form-control">
                             <option value="employee">Employee</option>
                             <option value="employer">Employer</option>
@@ -72,48 +72,48 @@ $this->load->view($this->config->item('theme') . 'header'); //Loads Bootswatch t
                 </div>
 
                 <div class="form-group">
-                    <label for="first_name" class="col-lg-3 control-label">First Name</label>
-                    <div class="col-lg-6">
+                    <label for="first_name" class="col-xs-5 col-sm-3 col-md-5 col-lg-3 control-label">First Name</label>
+                    <div class="col-xs-7 col-sm-5 col-md-5 col-lg-4">
                         <?php echo form_error('first_name'); ?>
                         <input id="first_name" class="form-control" type="text" name="first_name" value="<?php echo set_value('first_name'); ?>">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="last_name" class="col-lg-3 control-label">Last Name</label>
-                    <div class="col-lg-6">
+                    <label for="last_name" class="col-xs-5 col-sm-3 col-md-5 col-lg-3 control-label">Last Name</label>
+                    <div class="col-xs-7 col-sm-5 col-md-5 col-lg-4">
                         <?php echo form_error('last_name'); ?>
                         <input id="last_name" class="form-control" type="text" name="last_name" value="<?php echo set_value('last_name'); ?>">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="email" class="col-lg-3 control-label">Email</label>
-                    <div class="col-lg-6">
+                    <label for="email" class="col-xs-5 col-sm-3 col-md-5 col-lg-3 control-label">Email</label>
+                    <div class="col-xs-7 col-sm-5 col-md-5 col-lg-4">
                         <?php echo form_error('email'); ?>
                         <input id="email" class="form-control" type="text" name="email" value="<?php echo set_value('email'); ?>">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="linkedin" class="col-lg-3 control-label">Linkedin</label>
-                    <div class="col-lg-6">
+                    <label for="linkedin" class="col-xs-5 col-sm-3 col-md-5 col-lg-3 control-label">Linkedin</label>
+                    <div class="col-xs-7 col-sm-5 col-md-5 col-lg-4">
                         <?php echo form_error('email'); ?>
                         <input id="linkedin" class="form-control" type="text" name="linkedin" value="<?php echo set_value('email'); ?>">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="github" class="col-lg-3 control-label">Github</label>
-                    <div class="col-lg-6">
+                    <label for="github" class="col-xs-5 col-sm-3 col-md-5 col-lg-3 control-label">Github</label>
+                    <div class="col-xs-7 col-sm-5 col-md-5 col-lg-4">
                         <?php echo form_error('email'); ?>
                         <input id="github" class="form-control" type="text" name="github" value="<?php echo set_value('email'); ?>">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="password" class="col-lg-3 control-label">Password</label>
-                    <div class="col-lg-6">
+                    <label for="password" class="col-xs-5 col-sm-3 col-md-5 col-lg-3 control-label">Password</label>
+                    <div class="col-xs-7 col-sm-5 col-md-5 col-lg-4">
                         <?php echo form_error('password'); ?>
                         <input id="password" class="form-control" type="password" name="password" value="<?php echo set_value('password'); ?>">
                     </div>
@@ -121,8 +121,8 @@ $this->load->view($this->config->item('theme') . 'header'); //Loads Bootswatch t
                 </div>
 
                 <div class="form-group">
-                    <label for="re_password" class="col-lg-3 control-label">Retype Password</label>
-                    <div class="col-lg-6">
+                    <label for="re_password" class="col-xs-5 col-sm-3 col-md-5 col-lg-3 control-label">Retype Password</label>
+                    <div class="col-xs-7 col-sm-5 col-md-5 col-lg-4">
                         <?php echo form_error('re_password'); ?>
                         <input id="re_password" class="form-control" type="password" name="re_password">
                     </div>
@@ -130,16 +130,16 @@ $this->load->view($this->config->item('theme') . 'header'); //Loads Bootswatch t
                 </div>
 
                 <div class="form-group">
-                    <label for="languages" class="col-lg-3 control-label">Bio</label>
-                    <div class="col-lg-3">
+                    <label for="languages" class="col-xs-5 col-sm-3 col-md-5 col-lg-3 control-label">Bio</label>
+                    <div class="col-xs-5 col-sm-3 col-md-5 col-lg-4">
                         <?php echo form_error('bio'); ?>
-                        <?php echo form_textarea( array( 'name' => 'bio', 'rows' => '5', 'cols' => '53', 'value' => set_value('bio') ) )?>
+                        <?php echo form_textarea( array( 'name' => 'bio', 'rows' => '5', 'cols' => '35', 'value' => set_value('bio') ) )?>
                     </div>
                 </div>
                 <br>
                 <div class="form-group"> 
-                    <label for="subscribed_to_newsletters" class="col-lg-3 control-label">Subscribe to Newsletter?</label>
-                    <div class="col-lg-6">
+                    <label for="subscribed_to_newsletters" class="col-xs-7 col-sm-4 col-md-6 col-lg-3 control-label">Subscribe to Newsletter?</label>
+                    <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1">
                         <input id="subscribed_to_newsletters" class="form-control" type="checkbox" name="subscribed_to_newsletters" value="1" checked>
                     </div>
                 </div>
