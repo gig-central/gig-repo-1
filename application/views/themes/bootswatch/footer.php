@@ -17,9 +17,10 @@
     <script src="<?=base_url();?>public/themes/bootswatch/js/bootstrap.min.js"></script>
     <script src="<?=base_url();?>public/themes/bootswatch/js/bootswatch.js"></script>
     <script src="<?=base_url();?>public/js/jQueryRotateCompressed.js"></script>
+    
 
 <!--from jquery footer-->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
@@ -28,13 +29,14 @@
 
 <!--jquery ui datepicker-->
 <script type="text/javascript">
-$(function() {
-    $("#GigCloseDate").datepicker(
-        //{
-           // dateFormat: 'yy-mm-dd'
-        //}
-    );
-});
+ $( function() {
+    $( "#datepicker" ).datepicker({
+      changeMonth: true,
+      changeYear: true,
+      minDate: 0,
+      maxDate: "+1Y"
+    });
+  } );
 
 $(function() {
     $("#VenueExpirationDate").datepicker(
@@ -61,6 +63,7 @@ $( function() {
       $( "#dialog" ).dialog( "open" );
     });
 });
+
 
 </script>
 
